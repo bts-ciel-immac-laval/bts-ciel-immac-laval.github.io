@@ -1,0 +1,15 @@
+.md-typeset .grid {
+    grid-template-columns: repeat(auto-fit,minmax(min(100%,8rem),1fr))
+}
+.bts-green {
+    color: #8bc34b;
+}
+.bts-purple {
+    color: #ab47bd;
+}
+.bts-amber {
+    color: #ffc105;
+}
+.bts-blue {
+    color: #4287ff;
+}
