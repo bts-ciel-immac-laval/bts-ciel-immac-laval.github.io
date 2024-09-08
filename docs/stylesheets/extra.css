@@ -13,3 +13,10 @@
 .bts-blue {
     color: #4287ff;
 }
+.md-typeset h1, .md-typeset h2 {
+    font-weight: bold;
+}
+.md-typeset object {
+    width: 100%;
+    min-height: 400px;
+}

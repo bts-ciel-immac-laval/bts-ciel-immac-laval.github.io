@@ -1,10 +1,14 @@
 # 01 - Du C au C++
 
-## 05/09/2024
+## Cours
 
-### Exercice 0
+<object data="../../pdf/cours/bts2_01_du-c-au-cpp.pdf" type="application/pdf">
+    <embed src="../../pdf/cours/bts2_01_du-c-au-cpp.pdf" type="application/pdf" />
+</object>
 
-Ecrire un programme en C++ qui affiche ```"hello, world!"```
+## Exercice 0
+
+Ecrire un programme en C++ qui affiche `hello, world!`
 
 ??? tip "Indice"
     
@@ -28,7 +32,7 @@ Ecrire un programme en C++ qui affiche ```"hello, world!"```
     > g++ exo0.cpp -o exo.exe
     ```
 
-### Exercice 1
+## Exercice 1
 
 Ecrire un programme en C++ qui calcule la racine carrée de nombres fournis par l'utilisateur. 
 
@@ -50,4 +54,17 @@ Il refusera les valeurs négatives et s'arrêtera si on lui fournit 0.
 
 ??? tip "Indice"
 
-    ```sqrt()``` est dans la bibliothèque cmath.
+    `sqrt()` est dans la bibliothèque cmath.
+
+## Exercice 2
+
+Ecrire deux fonctions de swap utilisant :
+
+1. le passage par adresse
+2. le passage par référence
+
+et le programme principal de test les utilisant en C++.
+
+??? danger "Aller plus loin"
+
+    Trouver une méthode de swap sans utiliser de 3<sup>ème</sup> variable.
