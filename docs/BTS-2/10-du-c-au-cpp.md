@@ -2,8 +2,8 @@
 
 ## Cours
 
-<object data="../../pdf/cours/bts2_01_du-c-au-cpp.pdf" type="application/pdf">
-    <embed src="../../pdf/cours/bts2_01_du-c-au-cpp.pdf" type="application/pdf" />
+<object data="../../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf" type="application/pdf">
+    <embed src="../../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf" type="application/pdf" />
 </object>
 
 ## Exercice 0
@@ -68,3 +68,44 @@ et le programme principal de test les utilisant en C++.
 ??? danger "Aller plus loin"
 
     Trouver une méthode de swap sans utiliser de 3<sup>ème</sup> variable.
+
+## Exercice 3
+
+Ecrire une fonction qui permet de retourner le nombre de secondes en additionnant les heures, minutes et secondes qu'on lui passe en paramètres. 
+
+Seul le paramètre des heures est obligatoire. 
+
+Ecrire un programme de test.
+
+??? tip "Indice"
+    
+    Arguments optionnels
+
+## Exercice 4
+
+```cpp
+void fct (int);         // fonction A 
+void fct (float); 		// fonction B
+void fct (int, float); 	// fonction C
+void fct (float, int); 	// fonction D
+
+int main () {
+    int n, p;
+    float x, y;
+    char c;
+    double z;
+    /*
+    Les appels suivants des fonctions sont ils corrects ? 
+    Si oui, quelle est la fonction appelée et quelles sont
+    éventuellement les conversions mises en place ?
+    *
+    fct(n);
+    fct(x);
+    fct(n, x);
+    fct(x, n);
+    fct(c);
+    fct(n, p);
+    fct(n, c);
+    fct(n, z);
+}
+```
