@@ -32,6 +32,19 @@ Ecrire un programme en C++ qui affiche `hello, world!`
     > g++ exo0.cpp -o exo.exe
     ```
 
+??? success "Correction"
+
+    ```c
+    #include <iostream>
+
+    using namespace std;
+
+    int main() {
+        cout << "hello, world!";
+        return 0;
+    }
+    ```
+
 ## Exercice 1
 
 Ecrire un programme en C++ qui calcule la racine carrée de nombres fournis par l'utilisateur. 
@@ -56,6 +69,39 @@ Il refusera les valeurs négatives et s'arrêtera si on lui fournit 0.
 
     `sqrt()` est dans la bibliothèque cmath.
 
+??? success "Correction"
+
+    ```c
+    #include <iostream>
+    #include <cmath>
+
+    using namespace std;
+
+    int main() {
+        int input;
+        
+        cout << endl << "-= Calcul de racine carrée =-" << endl << endl;
+
+        cout << "Entrer 0 pour quitter." << endl << endl;
+        
+        do {
+        
+            cout << "Entrer une valeur positive : ";
+            cin >> input;
+            if (input < 0) {
+                cout << "J'ai dit P-O-S-I-T-I-V-E !!!" << endl;
+                continue;
+            }
+            if (input > 0) {
+                cout << "Racine carrée : " << sqrt(input) << endl;
+            }
+        }
+        while(input != 0);
+        
+        return 0;
+    }
+    ```
+
 ## Exercice 2
 
 Ecrire deux fonctions de swap utilisant :
@@ -68,6 +114,52 @@ et le programme principal de test les utilisant en C++.
 ??? danger "Aller plus loin"
 
     Trouver une méthode de swap sans utiliser de 3<sup>ème</sup> variable.
+
+??? success "Correction"
+
+    ```c
+    #include <iostream>
+
+    using namespace std;
+
+    void swapByAddr(int *, int *);
+    void swapByRef(int &, int &);
+    // Aller plus loin
+    void swapWithoutTemp(int &, int &);
+
+    int main() {
+        int x = 12, y = -4;
+
+        cout << "1/ x : " << x << ", y : " << y << endl;
+        swapByAddr(&x, &y);
+        cout << "2/ x : " << x << ", y : " << y << endl;
+        swapByRef(x, y);
+        cout << "3/ x : " << x << ", y : " << y << endl;
+        swapWithoutTemp(x, y);
+        cout << "4/ x : " << x << ", y : " << y << endl;
+        
+        return 0;
+    }
+
+    void swapByAddr(int * a, int * b) {
+        int buffer = *a;
+        *a = *b;
+        *b = buffer;
+    }
+
+    void swapByRef(int & a, int & b) {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    // Aller plus loin
+    void swapWithoutTemp(int & a, int & b) {
+        a = a + b;
+        b = a - b;
+        a = a - b;
+    }
+    ```
 
 ## Exercice 3
 
@@ -109,3 +201,73 @@ int main () {
     fct(n, z);
 }
 ```
+
+## Exercice 5
+
+1. Ecrire une fonction qui permet d'effectuer la saisie d’un tableau d'entiers qui lui est passé (vide) en paramètre **puis** l'affiche.
+
+2. Surdéfinir cette fonction pour qu’elle puisse effectuer la saisie de caractères.
+
+3. Ecrire un programme de test.
+
+Exemple :
+    
+```output
+> ./exo5.exe
+Saisir 3 entiers :
+1: 23
+2: 675
+3: -33
+Valeurs saisie : 23, 675, -33
+```
+    
+??? tip "Indice"
+    
+    La fonction a 2 arguments.
+    
+??? tip "Indice"
+    
+    ```cpp
+    // Prototype de la fonction
+    void remplir(int *, int);
+    ```
+    
+??? danger "Aller plus loin"
+    
+    Rendre le nombre d’éléments et le type de tableau paramétrable via la ligne de commande.
+
+## Exercice 6
+
+Migrer le programme en C suivant en C++ en utilisant les nouvelles possibilités du langage
+
+```cpp
+#include <stdio.h>
+
+struct Personne
+{
+    char nom [30];
+    int age;
+};
+
+int main () {
+    struct Personne p[3];
+    int nbpers, i;
+    nbpers = 0;
+    //saisie des 3 personnes
+    for (i = 0; i < 3; i++)
+    {
+        printf("Saisissez le nom de la personne N° %d : ", i+1);
+        gets(p[i].nom);
+        printf("Saisissez l'age de la personne N° %d : ", i+1);
+        scanf("%d", &p[i].age);
+        nbpers++;
+    }
+    printf("\\n%d personnes ont ete saisies\\n", nbpers);
+
+    return 0;
+}
+```
+
+??? danger "Aller plus loin"
+    
+    Déplacer le code de remplissage de la personne dans une fonction `saisiePersonne`.
