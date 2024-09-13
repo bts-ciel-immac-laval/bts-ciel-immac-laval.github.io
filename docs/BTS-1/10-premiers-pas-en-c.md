@@ -119,7 +119,7 @@ Année de naissance : 1984
 Vous avez 38 ans !
 ```
 
-> On sera plus précis dans l'exercice 2
+> On sera plus précis dans l'exercice 3
 
 ### Exercice 2
 
