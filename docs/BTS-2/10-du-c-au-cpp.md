@@ -71,7 +71,7 @@ Il refusera les valeurs négatives et s'arrêtera si on lui fournit 0.
 
 ??? success "Correction"
 
-    ```c
+    ```cpp
     #include <iostream>
     #include <cmath>
 
@@ -173,6 +173,28 @@ Ecrire un programme de test.
     
     Arguments optionnels
 
+??? success "Correction"
+
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    // Prototype avec les valeurs par défaut
+    int nombreDeSecondes(int heures, int minutes = 0, int secondes = 0);
+
+    int main() {
+        cout << nombreDeSecondes(1, 10, 25) << endl;
+        cout << nombreDeSecondes(1, 10) << endl;
+        cout << nombreDeSecondes(1) << endl;
+        return 0;
+    }
+    // Définition de la fonction, SANS les valeurs par défaut
+    int nombreDeSecondes(int heures, int minutes, int secondes) {
+        return heures * 3600 + minutes * 60 + secondes;
+    }
+    ```
+
 ## Exercice 4
 
 ```cpp
@@ -202,6 +224,19 @@ int main () {
 }
 ```
 
+??? success "Correction"
+
+    ```output
+    fct (n);    // Correct, appel de la fonction A
+    fct (x);    // Correct, appel de la fonction B
+    fct (n,x);  // Correct, appel de la fonction C
+    fct (x,n);  // Correct, appel de la fonction D
+    fct (c);    // Correct, appel de la fonction A, conversion implicite de char en int
+    fct (n,p);  // Incorrect, conflit entre C et D
+    fct (n,c);  // Incorrect, conflit entre C et D 
+    fct (n,z);  // Correct, appel de la fonction C, conversion implicite de double en float
+    ```
+
 ## Exercice 5
 
 1. Ecrire une fonction qui permet d'effectuer la saisie d’un tableau d'entiers qui lui est passé (vide) en paramètre **puis** l'affiche.
@@ -230,6 +265,60 @@ Valeurs saisie : 23, 675, -33
     ```cpp
     // Prototype de la fonction
     void remplir(int *, int);
+    ```
+
+??? success "Correction"
+
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    const int COUNT_INT = 5;
+    const int COUNT_CHAR = 5;
+
+    void remplir (int *, int); 
+    // surdefinition de la fonction remplir
+    void remplir (char *, int);
+
+    int main (void) { 
+        int intArray[COUNT_INT];
+        remplir(intArray, COUNT_INT);
+
+        cout << endl;
+
+        char charArray[COUNT_CHAR];
+        remplir(charArray, COUNT_CHAR);
+
+        return 0;
+    }
+
+    void remplir (int * array, int count) {
+        // Remplissage
+        for (int i = 0; i < count; i++) {
+            cout << "Saisissez l'entier N° " << i + 1 << " : ";
+            cin >> array[i];
+        }
+        // Affichage
+        cout << "Saisie :";
+        for (int i = 0; i < count; i++) {
+            cout << " " << array[i];
+        }
+    }
+
+
+    void remplir (char * array, int count) {
+        // Remplissage
+        for (int i = 0; i < count; i++) {
+            cout << "Saisissez le caractère N° " << i + 1 << " : ";
+            cin >> array[i];
+        }
+        // Affichage
+        cout << "Saisie :";
+        for (int i = 0; i < count; i++) {
+            cout << " " << array[i];
+        }
+    }
     ```
     
 ??? danger "Aller plus loin"
@@ -268,6 +357,37 @@ int main () {
 }
 ```
 
+??? success "Correction"
+
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    struct Personne {
+        char nom [30];
+        int age;
+    };
+
+    int main () {
+        Personne p[3];
+        int nbpers = 0;
+        
+        //saisie des 3 personnes
+        for (int i = 0; i < 3; i++, nbpers++)
+        {
+            cout << "Saisissez le nom de la personne N° " << i + 1 << " : ";
+            cin >> p[i].nom;
+            cout << "Saisissez l'age de la personne N° " << i + 1 << " : ";
+            cin >> p[i].age ;
+        }
+        
+        cout << endl << nbpers << " personnes ont ete saisies" << endl;
+
+        return 0;
+    }
+    ```
+
 ??? danger "Aller plus loin"
     
     Déplacer le code de remplissage de la personne dans une fonction `saisiePersonne`.
@@ -291,6 +411,35 @@ Nombre d'étages : 5
 
 Le nombre d'étages est donné par l'utilisateur.
 
+??? success "Correction"
+
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    main() {
+        int l;
+        
+        do {
+            cout << "nombre d'étages : ";
+            cin >> l;
+        } while (l < 1);
+        
+        cout << '\n';
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < l - i + 1; j++) {
+                cout << ' ';
+            }
+            for (int j = 0; j < 2 * i + 1; j++) {
+                cout << '*';
+            }
+            cout << '\n';
+        }
+        cout << string(l + 1, ' ') << '*';
+    }
+    ```
+
 ## Exercice 8
 
 Afficher les tables de multiplications de 1 à 10 sous la forme suivante :
@@ -309,6 +458,38 @@ Afficher les tables de multiplications de 1 à 10 sous la forme suivante :
   9  |   9  18  27  36  45  54  63  72  81  90
  10  |  10  20  30  40  50  60  70  80  90 100
 ```
+
+??? success "Correction"
+
+    ```cpp
+    #include <iostream>
+    #include <iomanip>
+
+    using namespace std;
+
+    int main()
+    {
+        int i, j;
+
+        // En-têtes
+        cout << "     |";
+        for (j = 1; j <= 10; j++) {
+            cout << setw(4) << j;
+        }
+        cout << "\n------";
+        for (j = 1; j <= 10; j++) {
+            cout << "----";
+        }
+
+        // Lignes
+        for (i = 1; i <= 10; i++) {
+            cout << '\n' << setw(3) << i << "  |";
+            for (j = 1; j <= 10; j++) {
+                cout << setw(4) << i * j;
+            }
+        }
+    }
+    ```
 
 ??? danger "Aller plus loin"
     
