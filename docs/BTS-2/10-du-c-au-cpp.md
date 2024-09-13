@@ -278,7 +278,7 @@ int main () {
 
 Dessiner un sapin de Noël formé d'étoiles :
 
-```
+```output
 Nombre d'étages : 5
 
     *
@@ -295,7 +295,7 @@ Le nombre d'étages est donné par l'utilisateur.
 
 Afficher les tables de multiplications de 1 à 10 sous la forme suivante :
 
-```
+```output
      |   1   2   3   4   5   6   7   8   9  10
 ----------------------------------------------
   1  |   1   2   3   4   5   6   7   8   9  10
@@ -308,5 +308,8 @@ Afficher les tables de multiplications de 1 à 10 sous la forme suivante :
   8  |   8  16  24  32  40  48  56  64  72  80
   9  |   9  18  27  36  45  54  63  72  81  90
  10  |  10  20  30  40  50  60  70  80  90 100
- ```
+```
 
+??? danger "Aller plus loin"
+    
+    Rendre les tables affichées paramétrables via la ligne de commande.
