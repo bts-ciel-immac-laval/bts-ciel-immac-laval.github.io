@@ -144,3 +144,21 @@ Mois de naissance : 9
 Jour de naissance : 7
 Joyeux non-anniversaire !
 ```
+
+## Exercice 3
+
+Créer un programme exo3.c qui demande à l'utilisateur son année, puis son mois, puis son jour de naissance et lui donne son âge plus précisément qu'à l'exercice 1.
+
+```output
+> ./exo3.exe
+Année de naissance : 1984
+Mois de naissance : 12
+Jour de naissance : 25
+Vous avez 37 ans !
+
+> ./exo3.exe
+Année de naissance : 1984
+Mois de naissance : 9
+Jour de naissance : 7
+Vous avez 38 ans !
+```
