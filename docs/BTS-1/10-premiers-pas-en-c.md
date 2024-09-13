@@ -78,7 +78,7 @@
 
 ### Opérateurs arithmétiques et relationnels
     
-+ Quel est le résultat des calculs (~~débiles~~) suivants ?
++ **Sur papier** : quel est le résultat des calculs (~~débiles~~) suivants ?
 
     ```
     (12 + 3 * 5 - 2) / 5
@@ -106,3 +106,41 @@
     Mesure du second côté : 7
     L'hypothénuse mesure : 13.892443
     ```
+
+## Exercices
+
+### Exercice 1
+
+Créer un programme `exo1.c` qui demande à l'utilisateur son année de naissance et lui donne son âge.
+
+```output
+> exo1.exe
+Année de naissance : 1984
+Vous avez 38 ans !
+```
+
+> On sera plus précis dans l'exercice 2
+
+### Exercice 2
+
+Créer un programme `exo2.c` qui demande à l'utilisateur son année, puis son mois, puis son jour de naissance et lui souhaite un joyeux anniversaire **si** c'est aujourd'hui.
+
+> Réfléchir sur le papier
+
+> La date du jour doit être définie dans des constantes.
+
+```output
+// Si nous sommes le 13/09 😄
+
+> exo2.exe
+Année de naissance : 1984
+Mois de naissance : 9
+Jour de naissance : 13
+Joyeux anniversaire !
+
+> exo2.exe
+Année de naissance : 1984
+Mois de naissance : 9
+Jour de naissance : 7
+Joyeux non-anniversaire !
+```
