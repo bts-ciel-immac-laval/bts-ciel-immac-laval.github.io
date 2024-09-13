@@ -9,6 +9,12 @@
 ### Déclarer une variable
     
 + Déclarer un entier nommé `a`.
+
+??? success "Correction"
+
+    ```c
+    int a;
+    ```
     
 + Déclarer un entier nommé `jeSuisUnEntier`.
     
