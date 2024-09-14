@@ -501,9 +501,7 @@ Joyeux non-anniversaire !
 
 ??? success "Correction"
 
-    ```c
-    ![Please... wait...](../images/meme/waiting-kid.gif)
-    ```
+    ![Please... wait...](../images/meme/waiting-bean.gif)
 
 ### Exercice 3
 
