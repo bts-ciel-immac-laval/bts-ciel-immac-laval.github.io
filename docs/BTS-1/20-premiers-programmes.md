@@ -1,4 +1,4 @@
-# Premiers programmes
+# 02 - Premiers programmes
 
 ## Exercice 1
 
