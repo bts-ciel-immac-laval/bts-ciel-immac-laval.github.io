@@ -118,7 +118,7 @@
     
     + avec 3 `printf` :
     
-    ```output
+    ```
     234
     2F
     -1234567
@@ -147,7 +147,7 @@
     
     + avec un seul `printf` :
     
-    ```output
+    ```
     234 2F -1234567
     
     2F
@@ -208,7 +208,7 @@
 
     Résultat : 
 
-    ```output
+    ```
     int4Bytes : 4 octets,
     int2Bytes : 2 octets,
     int1Byte  : 1 octet.
@@ -239,7 +239,7 @@
    
     ??? success "Correction"
 
-        ```output
+        ```
         moi_initialisee : 426    !!? 🚨 Les variables ne sont pas automatiquement initialisée à 0 et récupèrent ce qu'il y avait dans l'espace mémoire alloué.
         moi_pas_initialisee : 123
         ```
@@ -292,7 +292,7 @@
 
         Résultat : 
 
-        ```output
+        ```
         5
         ```
 
@@ -300,7 +300,7 @@
     
 + **Sur papier** : quel est le résultat des calculs (~~débiles~~) suivants ?
 
-    ```output
+    ```
     (12 + 3 * 5 - 2) / 5
 
     -12 >= 3 + 5
@@ -310,7 +310,7 @@
     
     ??? success "Correction"
 
-        ```output
+        ```
         (12 + 3 * 5 - 2) / 5
         (12 +   15  - 2) / 5     🡒 La multiplication est prioritaire
                25        / 5
@@ -347,7 +347,7 @@
 
         Résultat : 
 
-        ```output
+        ```
         127 + 1 = -128
         ```
     
@@ -380,7 +380,7 @@
 
         Résultat : 
 
-        ```output
+        ```
         int4Bytes : 933FF64C,
         int2Bytes : 933FF64A,
         int1Byte  : 933FF649.
@@ -390,7 +390,7 @@
 
 + Reprendre l’exercice du calcul de l’hypothénuse en rendant la saisie des longueurs des deux côtés paramétrable par l’utilisateur :
     
-    ```output
+    ```
     > ./hypothenuse.exe
     Mesure du premier côté : 12
     Mesure du second côté : 7
@@ -433,94 +433,8 @@
 
         Résultat : 
 
-        ```output
+        ```
         Mesure du premier cote : 8
         Mesure du second cote : 13
         L'hypothenuse mesure : 15.264338
         ```
-
-## Exercices
-
-### Exercice 1
-
-Créer un programme `exo1.c` qui demande à l'utilisateur son année de naissance et lui donne son âge.
-
-```output
-> exo1.exe
-Annee de naissance : 1984
-Vous avez 38 ans !
-```
-
-> On sera plus précis dans l'exercice 3
-
-??? success "Correction"
-
-    ```c
-    #include <stdio.h>
-
-    int main() {
-        int annee;
-
-        printf("Annee de naissance : ");
-        scanf("%d", &annee);
-        //          🡑 on oublie pas le &, sinon gare à l'erreur de segmentation !
-        //                                                               🡑 C'est ce qui arrive quand 
-        //                                                                 on écrit dans une zone 
-        //                                                                 mémoire qui ne nous est pas 
-        //                                                                 allouée ⛔
-
-        printf("Vous avez %d ans !", 2024 - annee);
-
-        return 0;
-    }
-    ```
-
-### Exercice 2
-
-Créer un programme `exo2.c` qui demande à l'utilisateur son année, puis son mois, puis son jour de naissance et lui souhaite un joyeux anniversaire **si** c'est aujourd'hui.
-
-> Réfléchir sur le papier
-
-> La date du jour doit être définie dans des constantes.
-
-```output
-// Si nous sommes le 13/09 😄
-
-> exo2.exe
-Annee de naissance : 1984
-Mois de naissance : 9
-Jour de naissance : 13
-Joyeux anniversaire !
-
-> exo2.exe
-Annee de naissance : 1984
-Mois de naissance : 9
-Jour de naissance : 7
-Joyeux non-anniversaire !
-```
-
-??? success "Correction"
-
-    ![Please... wait...](../images/meme/waiting-bean.gif)
-
-### Exercice 3
-
-Créer un programme exo3.c qui demande à l'utilisateur son année, puis son mois, puis son jour de naissance et lui donne son âge plus précisément qu'à l'exercice 1.
-
-```output
-> ./exo3.exe
-Année de naissance : 1984
-Mois de naissance : 12
-Jour de naissance : 25
-Vous avez 37 ans !
-
-> ./exo3.exe
-Année de naissance : 1984
-Mois de naissance : 9
-Jour de naissance : 7
-Vous avez 38 ans !
-```
-
-??? success "Correction"
-
-    ![You've been rickrolled !](../images/meme/rickroll-roll.gif)
