@@ -1,5 +1,60 @@
 # 02 - Premiers programmes
 
+## Récapitulatif
+
+``` mermaid
+%%{init: {'theme':'neutral'}}%%
+mindmap
+  root((Langage C))
+    Compilateur
+        langage compilé != langage interprété
+            Python, PHP
+        4 étapes
+            1 - Pré-processeur
+                Suppression des commentaires
+                Récupération du contenu des bibliothèques
+            2 - Compilateur
+                Traduction en assembleur
+            3 - Assemblage
+                Traduction en binaire
+            4 - Editeur de liens
+                Récupération des bibliothèques pré-compilées
+                Ajout des routines pour l'exécution
+    Variables
+        Types
+            Entiers
+                char 1 octet
+                short 2 octets
+                int 4 octets
+                long 4 octets
+                long long 8 octets
+            Réels
+                ["float 
+                (précision à 6 chiffres)"]
+                double
+        Identificateur
+    Fonctions
+        Principale main
+            Point d'entrée du programme
+        Bibliothèques 
+            #include
+            stdio.h
+                ["printf()"]
+                ["scanf()"]
+            math.h
+                ["sqrt()"]
+    Opérateurs
+        Arithmétiques
+        Relationnels
+        Logiques
+        Affectation composée
+        Incrémentaux
+        Taille
+        Adresse
+    Logique
+        if...else if...else
+```
+
 ## Exercice 1
 
 Créer un programme `exo1.c` qui demande à l'utilisateur son année de naissance et lui donne son âge.
@@ -60,7 +115,32 @@ Joyeux non-anniversaire !
 
 ??? success "Correction"
 
-    ![Please... wait...](../images/meme/waiting-bean.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int year, month, day;
+        const int today_year  = 2023, 
+                  today_month = 9, 
+                  today_day   = 26;
+
+        printf("Annee de naissance : ");
+        scanf("%d", &year);
+        printf("Mois de naissance : ");
+        scanf("%d", &month);
+        printf("Jour de naissance : ");
+        scanf("%d", &day);
+
+        if (day == today_day && month == today_month) {
+            printf("Joyeux anniversaire !");
+        }
+        else {
+            printf("Joyeux non-anniversaire !");
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 3
 
@@ -81,8 +161,73 @@ Vous avez 38 ans !
 ```
 
 ??? success "Correction"
+    
+    Solution détaillée :
 
-    ![You've been rickrolled !](../images/meme/rickroll-roll.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int year, month, day;
+        const int TODAY_YEAR = 2024, 
+                TODAY_MONTH = 9, 
+                TODAY_DAY = 17;
+
+        printf("Annee de naissance : ");
+        scanf("%d", &year);
+        printf("Mois de naissance : ");
+        scanf("%d", &month);
+        printf("Jour de naissance : ");
+        scanf("%d", &day);
+
+        // L'anniversaire de l'utilisateur est déjà passé : 
+        // (Mois avant le mois actuel)
+        if (month < TODAY_MONTH) {
+            printf("Vous avez %d ans !", TODAY_YEAR - year);
+        }
+
+        // (Ce mois-ci mais avant aujourd'hui ou aujourd'hui)
+        else if (month == TODAY_MONTH && day <= TODAY_DAY) {
+            printf("Vous avez %d ans !", TODAY_YEAR - year);
+        }
+
+        // L'anniversaire n'est pas encore passé :
+        else {
+            printf("Vous avez %d ans !", TODAY_YEAR - year - 1);
+        }
+
+        return 0;
+    }
+    ```
+
+    Solution condensée :
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int year, month, day;
+        const int TODAY_YEAR = 2024, 
+                TODAY_MONTH = 9, 
+                TODAY_DAY = 17;
+
+        printf("Annee de naissance : ");
+        scanf("%d", &year);
+        printf("Mois de naissance : ");
+        scanf("%d", &month);
+        printf("Jour de naissance : ");
+        scanf("%d", &day);
+        
+        if (month < TODAY_MONTH || (month == TODAY_MONTH && day <= TODAY_DAY)) {
+            printf("Vous avez %d ans !", TODAY_YEAR - year);
+        }
+        else {
+            printf("Vous avez %d ans !", TODAY_YEAR - year - 1);
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 4
 
