@@ -229,6 +229,64 @@ Vous avez 38 ans !
     }
     ```
 
+## Exercice sur papier 1
+
+Soit le programme suivant :
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 0, b = 1, c = 2, d = 3;
+    
+    a = 5;                  // a:      b:     c:     d:
+    a + b;                  // a:      b:     c:     d:
+    c = a + b;              // a:      b:     c:     d:
+    d = a - (2 * d - b);    // a:      b:     c:     d: 
+    c = a + b * -c + 1;     // a:      b:     c:     d:
+    a = b = c;              // a:      b:     c:     d:
+    
+    return 0;
+}
+```
+
+Définir sur papier les valeurs stockées dans les variables a, b, c et d à la fin de chaque instruction.
+
+> Les priorité des calculs sont les mêmes qu'en mathématiques
+
+??? success "Correction"
+
+    ![Please... wait...](../images/meme/waiting-bean.gif)
+
+## Exercice sur papier 2
+
+Le programme suivant ne fonctionne pas... Pourquoi ?
+
+```c
+#include <stio.h>
+
+main() {
+    int jour = 0, mois = 0 annee = 0;
+
+    printf("Donner un jour (1-31) : );
+    scanf("%d", &jour);
+    
+    printf("Donner un mois (1-12) : ");
+    scanf("%d", mois);
+
+    printf("Donner un année (0-2021) : ")
+    scanf("%d", &annee);
+    
+    print("La date saisie est : %02d/%02d/%04d", jour, mois, annee);
+
+    return 0;
+}
+```
+
+??? success "Correction"
+
+    Il y a 6 erreurs !
+
 ## Exercice 4
 
 Créer un programme exo4.c qui demande un entier à l'utilisateur puis lui affiche la conversion en hexadécimal et en octal.
