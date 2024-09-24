@@ -334,7 +334,21 @@ Octal : 52
 
 ??? success "Correction"
 
-    ![Please... wait...](../images/meme/waiting-kid.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int nombre;
+
+        printf("Nombre à convertir : ");
+        scanf("%d", &nombre);
+
+        printf("Hexadecimal : %X\n", nombre);
+        printf("Octal : %o", nombre);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 5
 
@@ -358,7 +372,20 @@ Couleur en hexa    : #FFCC00
 
 ??? success "Correction"
 
-    ![Please... wait...](../images/meme/waiting-zootopia.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        unsigned char r, g, b;
+
+        printf("Couleur en decimal : ");
+        scanf("%hhd %hhd %hhd", &r, &g, &b);
+
+        printf("Couleur en hexa    : #%02X%02X%02X", r, g, b);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 6
 
