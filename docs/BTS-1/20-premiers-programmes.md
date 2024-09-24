@@ -256,7 +256,22 @@ Définir sur papier les valeurs stockées dans les variables a, b, c et d à la 
 
 ??? success "Correction"
 
-    ![Please... wait...](../images/meme/waiting-bean.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int a = 0, b = 1, c = 2, d = 3;
+        
+        a = 5;                  // a: 5    b: 1   c: 2   d: 3
+        a + b;                  // a: 5    b: 1   c: 2   d: 3
+        c = a + b;              // a: 5    b: 1   c: 6   d: 3
+        d = a - (2 * d - b);    // a: 5    b: 1   c: 6   d: 0
+        c = a + b * -c + 1;     // a: 5    b: 1   c: 0   d: 0
+        a = b = c;              // a: 0    b: 0   c: 0   d: 0
+        
+        return 0;
+    }
+    ```
 
 ## Exercice sur papier 2
 
@@ -285,7 +300,26 @@ main() {
 
 ??? success "Correction"
 
-    Il y a 6 erreurs !
+    ```c
+    #include <stdio.h> // et non stio
+
+    int main() { // et non main() tout court
+        int jour = 0, mois = 0, annee = 0; // Il manquait une virgule
+
+        printf("Donner un jour (1-31) : "); // Chaine de caractère à fermer
+        scanf("%d", &jour);
+
+        printf("Donner un mois (1-12) : ");
+        scanf("%d", &mois); // Sans le &, on risque l'erreur de segmentation
+
+        printf("Donner un année (0-2021) : "); // Avec un point-virgule
+        scanf("%d", &annee);
+
+        printf("La date saisie est : %02d/%02d/%04d", jour, mois, annee); // et non print
+
+        return 0;
+    }
+    ```
 
 ## Exercice 4
 
