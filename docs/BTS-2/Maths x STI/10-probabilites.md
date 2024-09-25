@@ -76,7 +76,7 @@ Le nombre de lignes de la planche de Galton et le nombre de billes à lâcher do
 > ./galton.exe [nombre de lignes] [nombre de billes]
 ```
 
-Après avoir simuler le lâcher des billes, le programme affichera le nombre de billes par cases (`bins`) ainsi que leur indice.
+Après avoir simulé le lâcher des billes, le programme affichera le nombre de billes par cases (`bins`) ainsi que leur indice.
 
 Affichage attendu :
 
@@ -90,9 +90,31 @@ Affichage attendu :
    0      1      2      3      4      5
 ```
 
-Développer le programme en respectant diagramme de classes ci-dessous.
+Développer le programme en respectant les éléments de conception suivants.
 
-![Class diagramm](../../images/cours/bts-2/maths-sti-2/galton-cpp.png)
+### Diagramme de classes
+
+Le diagramme de classes du programme est le suivant :
+
+``` mermaid
+classDiagram
+    class GaltonBoard {
+        - rowsCount : int
+        - bins : int [ ]
+        + GaltonBoard(_rowscount : int)
+        + ~GaltonBoard()
+        - emptyBins()
+        + dropMarbles(int marblesCount)
+        + displayBins()
+    }
+    class Marble {
+        - bin : int
+        - direction() bool
+        + drop(rowsCount : int)
+        + getBin() int
+    }
+    GaltonBoard -- Marble
+```
 
 `GaltonBoard` est la classe permettant de simuler le lâcher de toutes les billes.
 
@@ -116,9 +138,37 @@ Le rôle des méthodes est le suivant :
 
 + `Marble::getBin() : int` accesseur de `bin`.
 
+### Diagramme de séquence
+
 Le diagramme de séquence du programme est le suivant :
 
-
+``` mermaid
+sequenceDiagram
+    autonumber
+    Programme->>Programme: Vérifier les paramètres (rowsCount, marblesCount)
+    create participant GaltonBoard
+    Programme->>GaltonBoard: new(rowsCount)
+    Programme->>+GaltonBoard: dropMarbles(marblesCount)
+    create participant Marble
+    GaltonBoard->>Marble: new()
+    loop marblesCount
+        GaltonBoard->>+Marble: drop(rowsCount)
+        loop rowsCount
+            Marble->>Marble: direction()
+        end
+        Marble->>Marble: sauvegarder le numéro de la case()
+        Marble->>-GaltonBoard: fin
+        GaltonBoard->>Marble: getBin()
+        GaltonBoard->>GaltonBoard: Incrémenter la case()
+    end
+    destroy Marble
+    GaltonBoard-xMarble: 
+    GaltonBoard->>-Programme: fin
+    Programme->>+GaltonBoard: displayBins()
+    GaltonBoard->>-Programme: fin
+    destroy GaltonBoard
+    Programme-xGaltonBoard: 
+```
 
 ??? success "Correction"
 

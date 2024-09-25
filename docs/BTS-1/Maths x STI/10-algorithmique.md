@@ -12,7 +12,7 @@ Dans chaque cas un booléen est renvoyé. Lequel ?
 
 ## MxSTI 1.2
 
-Qu'affiche le programme suivant si on saisi `Sacha` à la ligne 7 ?
+Qu'affiche le programme suivant si on saisit `Sacha` à la ligne 7 ?
 
 ```c linenums="1"
 #include <stdio.h>
