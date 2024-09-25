@@ -64,6 +64,10 @@ Donner l’état des variables au cours de l’exécution de l’algorithme.
 
 Traduire en C et vérifier les résultats trouvés.
 
+??? question "Tu ne sais pas traduire le "tant que..." ?"
+
+	[Documentation en ligne :material-play:](https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/14722-repetez-des-instructions-grace-aux-boucles#/id/r-14682){ .md-button .md-button--primary }
+
 ## MxSTI 1.4
 
 On souhaite écrire une séquence d’instructions qui calcule :

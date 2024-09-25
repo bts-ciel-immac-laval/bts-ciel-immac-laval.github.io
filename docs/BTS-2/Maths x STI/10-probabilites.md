@@ -18,7 +18,7 @@ On suppose qu'à chaque clou, la probabilité d'aller à droite est égale à 0,
 
 ??? question "Qui est Galton ?"
 
-    ![Francis Galton](../../images/cours/bts-2/maths-sti-2/galton.jpg)
+    ![Francis Galton](../../images/cours/bts-2/maths-sti-2/galton.jpg){ align=left }
     
     Sir Francis Galton (1822 - 1911) est un anthropologue, explorateur, géographe, inventeur, météorologue, écrivain, proto-généticien, psychométricien et statisticien britannique.
 
@@ -28,7 +28,7 @@ Simuler la chute de 1 000 billes le long de cette planche et vérifier que la si
 
 ## Questions préliminaires
 
-1) En réalisant un schéma et en partant du principe que à chaque niveau quand la bille tombe à gauche son trajet vaut 0 et que quand elle part à droite son trajet vos 1, trouver le lien entre le parcours de la bille et le numéro de la case dans laquelle elle va tomber. 
+1) En réalisant un schéma et en partant du principe que à chaque niveau quand la bille tombe à gauche son trajet vaut 0 et que quand elle part à droite son trajet vaut 1, trouver le lien entre le parcours de la bille et le numéro de la case dans laquelle elle va tomber. 
 
 2) Estimer la probabilité que la bille tombe :
 
