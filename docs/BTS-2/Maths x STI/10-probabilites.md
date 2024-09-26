@@ -34,7 +34,7 @@ Simuler la chute de 1 000 billes le long de cette planche et vérifier que la si
 
 + Dans la case de gauche
 
-+ Dans la case n°6
++ Dans la case n°1
 
 ## Simulation dans Excel 365
 
