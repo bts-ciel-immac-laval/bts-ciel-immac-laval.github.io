@@ -400,7 +400,46 @@ Resultat : 12 / 5 = 2.40000
 
 ??? success "Correction"
 
-    ![Please... wait...](../images/meme/waiting-kid.gif)
+    Solution 1
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int n1, n2;
+        
+        printf("Entier 1 : ");
+        scanf("%d", &n1);
+        
+        printf("Entier 2 : ");
+        scanf("%d", &n2);
+
+        // int / int -> int 
+        // donc on doit "caster" n1 et n2 pour obtenir un float
+        printf("Resultat : %d / %d = %f", n1, n2, (float)n1 / (float)n2);
+    }
+    ```
+
+    Solution 2
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        float n1, n2;
+        
+        // On n'est pas obligé de dire à l'utilisateur 
+        // qu'on stocke son entier dans un float :)
+        printf("Entier 1 : ");
+        scanf("%f", &n1);
+        
+        printf("Entier 2 : ");
+        scanf("%f", &n2);
+
+        // On affiche le float sans nombre après la virgule
+        printf("Resultat : %.0f / %.0f = %f", n1, n2, n1 / n2);
+    }
+    ```
 
 ## Exercice 7
 
@@ -415,6 +454,26 @@ Ce nombre n'est pas strictement positif.
 Entrer un nombre strictement positif : 23
 OK ! Merci...
 ```
+??? success "Correction"
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int nombre;
+
+        do {
+            printf("Entrer un nombre strictement positif : ");
+            scanf("%d", &nombre);
+            if(nombre <= 0) {
+                printf("Ce nombre n'est pas strictement positif.\n");
+            }
+        }
+        while(nombre <= 0);
+         
+        printf("OK ! Merci...\n");
+    }
+    ```
 
 ??? danger "Aller plus loin"
     
@@ -434,6 +493,29 @@ OK ! Merci...
     Ah quand même... 3 fois pour y arriver :(
     ```
 
-??? success "Correction"
+    ??? success "Correction"
 
-    ![Please... wait...](../images/meme/waiting-bean.gif)
+        ```c
+        #include <stdio.h>
+
+        int main() {
+            int nombre, nb_essais = 1;
+
+            do {
+                printf("Entrer un nombre strictement positif : ");
+                scanf("%d", &nombre);
+                if(nombre <= 0) {
+                    nb_essais++;
+                    printf("Ce nombre n'est pas strictement positif.\n");
+                }
+            }
+            while(nombre <= 0);
+            
+            if (nb_essais == 1) {
+                printf("Chapeau ! Du premier coup !");
+            }
+            else {
+                printf("Ah quand même... %d fois pour y arriver :(", nb_essais);
+            }
+        }
+        ```
