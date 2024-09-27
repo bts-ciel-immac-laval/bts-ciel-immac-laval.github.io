@@ -65,9 +65,15 @@ Ecrire un programme qui affiche les nombres pairs de 2 à 100 avec une boucle `f
 
 Ecrire un programme qui demande un nombre positif à l'utilisateur puis affiche le décompte à partir de ce nombre jusqu'à 0 avec les trois types de boucles.
 
+??? success "Correction"
+
+    ```c
+    
+    ```
+
 ## Exercice 4
 
-Ecrire un programme en Python qui affiche les nombres de 1 à 100 (inclus) sauf : 
+Ecrire un programme en C qui affiche les nombres de 1 à 100 (inclus) sauf : 
 •	si le nombre est un multiple de 3, il affiche "fi",
 •	si le nombre est un multiple de 5, il affiche "foo",
 •	si le nombre est un multiple de 3 et de 5, il affiche "fifoo".
@@ -95,6 +101,12 @@ fifoo
 ...
 ```
 
+??? success "Correction"
+
+    ```c
+    
+    ```
+
 ## Exercice 5
 
 Ecrire un programme pour gérer la saisie du code d'une carte bancaire.
@@ -106,3 +118,9 @@ Si le code est trouvé, afficher "Code bon".
 Si le code est faux, afficher "Code faux (X essai(s) restant(s))" où X est le nombre d'essais restants.
 
 Au sortir de la saisie, si le code est bon, afficher "Paiement en cours...", sinon afficher "Carte bloquée X(" 
+
+??? success "Correction"
+
+    ```c
+    
+    ```
