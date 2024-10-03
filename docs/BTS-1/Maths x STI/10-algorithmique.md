@@ -35,6 +35,10 @@ int main() {
 }
 ```
 
+??? tip "A toutes fins utiles"
+
+	![Table ASCII](../../images/cours/bts-1/maths-sti-1/table-ascii.svg)
+
 ## MxSTI 1.3
 
 On exécute l’algorithme suivant en saisissant `N = 2`
