@@ -20,7 +20,7 @@ Déclarer les fonctions suivantes :
 
 + Une fonction qui demande à l'utilisateur de saisir une liste de 10 entiers et renvoie le plus grand.
 
-+ Une fonction qui le plus grand des 10 entiers passés en paramètres.
++ Une fonction qui renvoie le plus grand des 10 entiers passés en paramètres.
 
 ## Exercice 2
 
