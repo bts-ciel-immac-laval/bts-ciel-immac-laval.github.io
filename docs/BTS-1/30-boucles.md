@@ -183,7 +183,63 @@ Au sortir de la saisie, si le code est bon, afficher "`Paiement en cours...`", s
 ??? success "Correction"
 
     ```c
-    
+    #include <stdio.h>
+
+    #ifdef _WIN32
+    #include <windows.h>
+    #endif
+
+    #ifdef linux
+    #include <unistd.h>
+    #endif
+
+    int main() {
+        int code_a_trouver = 1234, code_saisi = -1;
+        float montant = 25.99;
+
+        // Affichae cosmétique :)
+        printf("Montant :%11.2f EUR\n", montant);
+        
+        // Une boucle pour limiter le nombre d'essai
+        for (int i = 1; i <= 3 ; i++) {
+            
+            // Saisie du code
+            printf("Saisir code (%d/3) : ", i);
+            scanf("%d", &code_saisi);
+            
+            // Vérification
+            if (code_saisi == code_a_trouver) {
+                printf("Code bon !\n");
+                break;                  // Sortie de la boucle, si c'est bon
+            }
+
+            // Sinon quoi qu'il arrive, le code est faux.
+            printf("Code faux...\n");
+        }
+
+        // Paiement
+        if (code_saisi == code_a_trouver) {
+            printf("Paiement en cours");
+
+            // Boucle de crâneur 😎
+            for (int i = 1; i <= 3; i++) {
+                #ifdef _WIN32
+                Sleep(1000);
+                #endif
+
+                #ifdef linux
+                usleep(1000 * 1000);
+                #endif
+
+                printf(".");
+            }
+        }
+        else {
+            printf("Carte bloquee X(");
+        }
+
+        return 0;
+    }
     ```
 
 ## Exercice 6
@@ -211,7 +267,48 @@ Gagné !!!
 ??? success "Correction"
 
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+
+    int main() {
+
+        // Graine pour les nombres aléatoires :
+        // A moins de lancer le programme deux fois dans la même seconde, 
+        // on aura un tirage différent à chaque fois... dans la limite du
+        // nombre de valeurs possibles 🙃
+        srand(time(NULL));
+
+        // rand renvoie un nombre positif "aléatoire", il faut le ramener
+        // dans l'intervale souhaité. On sait qu'en récupérent le reste 
+        // de la division  par un nombre on récupère une valeur entre 0 
+        // et ce nombre - 1. ex : 123456 % 10 va renvoyer un nombre entre
+        // 0 et 9. Si on ajoute 1 à ce calcul, on obtient un nombre entre
+        // 1 et 10 😎
+        int nombreATrouver = rand() % 10 + 1, nombreSaisi, i;
+
+        printf("Devine un nombre entre 1 et 10 (3 essais max.) !");
+
+        // Il ne reste qu'à boucler 😵‍💫 comme à l'exercice précédent...
+        for (i = 1; i <= 3; i++) {
+            
+            printf("\nEssai %d : ", i);
+            scanf("%d", &nombreSaisi);
+
+            if (nombreSaisi == nombreATrouver) {
+                printf("Gagne !!!\n");
+                break;
+            }
+
+            printf("Perdu !");
+        }    
+
+        if (i > 3) {
+            printf(" C'etait %d !\n", nombreATrouver);
+        }
+
+        return 0;
+    }
     ```
 
 ## Exercice 7
@@ -251,7 +348,51 @@ Gagné !!!
 ??? success "Correction"
 
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+
+    // Les constantes...
+    #define BORNE_MIN   3
+    #define BORNE_MAX  42
+    #define NB_ESSAIS   7
+
+    int main() {
+
+        srand(time(NULL));
+
+        // ...qu'il ne faut pas oublier de modifier partout...
+        int nombreATrouver = rand() % BORNE_MAX + BORNE_MIN, nombreSaisi, i;
+
+        // ...partout...
+        printf("Devine un nombre entre %d et %d (%d essai%s max.) !", 
+            BORNE_MIN, 
+            BORNE_MAX, 
+            NB_ESSAIS,
+            NB_ESSAIS == 1 ? "" : "s"
+        );
+
+        // ...partout...
+        for (i = 1; i <= NB_ESSAIS; i++) {
+            
+            printf("\nEssai %d : ", i);
+            scanf("%d", &nombreSaisi);
+
+            if (nombreSaisi == nombreATrouver) {
+                printf("Gagne !!!\n");
+                break;
+            }
+
+            printf("Perdu !");
+        }    
+
+        // ...partout !
+        if (i > NB_ESSAIS) {
+            printf(" C'etait %d !", nombreATrouver);
+        }
+
+        return 0;
+    }
     ```
 
 ## Exercice 8
@@ -278,5 +419,57 @@ int main() {
 ??? success "Correction"
 
     ```c
+    #include <stdio.h>
+
+    int main() {
+
+        int u, d, c;
+
+        // Les boucles peuvent s'imbriquer.
+        for (int c = 0; c <= 9; c++) {
+            for (int d = 0; d <= 9; d++) {
+                for (int u = 0; u <= 9; u++) {
+                    printf("%d%d%d\n", c, d, u);
+                }
+            }
+        }
+
+        return 0;
+    }
+    ```
+
+    et pour `aller plus loin` :
     
+    ```c
+    #include <stdio.h>
+
+    #ifdef _WIN32
+    #include <windows.h>
+    #endif
+
+    #ifdef linux
+    #include <unistd.h>
+    #endif
+
+    int main() {
+
+        int u, d, c;
+
+        // Les boucles peuvent s'imbriquer.
+        for (int c = 0; c <= 9; c++) {
+            for (int d = 0; d <= 9; d++) {
+                for (int u = 0; u <= 9; u++) {
+                    printf("%d%d%d\n", c, d, u);
+                    #ifdef _WIN32
+                    Sleep(10);
+                    #endif
+                    #ifdef linux
+                    usleep(10 * 1000);
+                    #endif
+                }
+            }
+        }
+
+        return 0;
+    }
     ```

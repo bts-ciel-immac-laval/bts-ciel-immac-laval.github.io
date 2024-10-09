@@ -4,23 +4,61 @@
 
 ## Exercice 1
 
-Déclarer les fonctions suivantes :
+Déclarer (= proposer un prototype) les fonctions suivantes :
+
+??? tip "Conseils"
+
+    1. Identifier les **entrées** de la fonction. Que va-t-on devoir lui fournir comme valeurs en entrée pour qu'elle puisse fonctionner ? Si ces valeurs viennent d'une autre partie du programme, alors il faut un paramètre par information. Si la fonction les récupérer toute seule (en appelant une autre fonction), pas besoin de paramètres.
+
+    2. Identifier les **sorties** de la fonction. Doit-elle retourner quelquechose **au programme qui l'appelle** ? Si oui, il faut que son type retour soit en adéquation avec la valeur retournée, sinon elle peut ne rien renvoyer.
 
 + Une fonction qui affiche la date du système (qu'on récupère via une fonction).
 
+??? success "Solution"
+
+    `void afficher_heure();`
+
 + Une fonction qui affiche la table de multiplication d'un chiffre qui lui est passé en paramètre.
+
+??? success "Solution"
+
+    `void displayMultiplicationTable(int);`
 
 + Une fonction qui affiche le résultat de la somme de deux entiers passés en paramètres.
 
+??? success "Solution"
+
+    `void affichageSomme(int, int);`
+
 + Une fonction qui renvoie le résultat de la somme de deux réels passés en paramètres.
+
+??? success "Solution"
+
+    `float add(float, float);`
 
 + Une fonction qui demande de saisir deux nombres, les multiplie, affiche le résultat et le renvoie.
 
+??? success "Solution"
+
+    `int multiplie();`
+
 + Une fonction qui renvoie le résultat de la division de deux réels passés en paramètres.
+
+??? success "Solution"
+
+    `float division(float, float);`
 
 + Une fonction qui demande à l'utilisateur de saisir une liste de 10 entiers et renvoie le plus grand.
 
+??? success "Solution"
+
+    `int getMax();`
+
 + Une fonction qui renvoie le plus grand des 10 entiers passés en paramètres.
+
+??? success "Solution"
+
+    `int getMaxFrom10(int, int, int, int, int, int, int, int, int, int, int);`
 
 ## Exercice 2
 
