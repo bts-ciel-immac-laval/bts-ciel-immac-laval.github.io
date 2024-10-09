@@ -16,11 +16,19 @@ Déclarer (= proposer un prototype) les fonctions suivantes :
 
 ??? success "Solution"
 
+    Entrées : Aucune, si on peut récupérer l'heure avec une fonction, on a besoin de rien.
+    
+    Sorties : On ne nous demande que d'afficher une donnée, donc rien à renvoyer.
+
     `void afficher_heure();`
 
 + Une fonction qui affiche la table de multiplication d'un chiffre qui lui est passé en paramètre.
 
 ??? success "Solution"
+
+    Entrées : On a besoin du chiffre dont on doit afficher la table, donc un entier.
+    
+    Sorties : On ne nous demande que d'afficher une donnée, donc rien à renvoyer.
 
     `void displayMultiplicationTable(int);`
 
@@ -28,11 +36,19 @@ Déclarer (= proposer un prototype) les fonctions suivantes :
 
 ??? success "Solution"
 
+    Entrées : On a besoin des deux entiers qu'on doit additionner.
+    
+    Sorties : On ne nous demande que d'afficher une donnée, donc rien à renvoyer.
+
     `void affichageSomme(int, int);`
 
 + Une fonction qui renvoie le résultat de la somme de deux réels passés en paramètres.
 
 ??? success "Solution"
+
+    Entrées : On a besoin des deux réels qu'on doit additionner.
+    
+    Sorties : On doit renvoyer le résultat de la somme de deux réels qui doit donc être... un réel.
 
     `float add(float, float);`
 
@@ -40,11 +56,19 @@ Déclarer (= proposer un prototype) les fonctions suivantes :
 
 ??? success "Solution"
 
-    `int multiplie();`
+    Entrées : Si la fonction demande la saisie (scanf) des deux nombres pas besoin de données en entrée.
+    
+    Sorties : Il faut renvoyer le produit de deux nombres dont on ne connaît pas la nature. Qui peut le plus peut le moins : mettons un `double` ! 
+
+    `double multiplie();`
 
 + Une fonction qui renvoie le résultat de la division de deux réels passés en paramètres.
 
 ??? success "Solution"
+
+    Entrées : On a besoin des deux réels.
+    
+    Sorties : On doit renvoyer le résultat de la division de deux réels qui doit donc être... un réel.
 
     `float division(float, float);`
 
@@ -52,11 +76,19 @@ Déclarer (= proposer un prototype) les fonctions suivantes :
 
 ??? success "Solution"
 
+    Entrées : La fonction gère la saisie, besoin de rien en entrée.
+    
+    Sorties : Le plus grand entier. Si on met un `int`, on s'assurera de lire des `int` dans le corps de la fonction.
+
     `int getMax();`
 
 + Une fonction qui renvoie le plus grand des 10 entiers passés en paramètres.
 
 ??? success "Solution"
+
+    Entrées : Il nous faut de quoi passer 10 entiers... Pas de tableau pour l'instant (d'ailleurs, qu'est-ce que c'est !!? 🤔), donc 10 `int` !
+    
+    Sorties : Le plus grand entier qui sera un `int` ici.
 
     `int getMaxFrom10(int, int, int, int, int, int, int, int, int, int, int);`
 
