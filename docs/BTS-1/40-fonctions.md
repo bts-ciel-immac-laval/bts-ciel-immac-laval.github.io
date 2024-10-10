@@ -106,7 +106,35 @@ int minimum(int, int);
 
 ??? success "Solution"
 
-    ![](../images/meme/waiting-barney.gif)
+    ```c
+    #include <stdio.h>
+
+    int minimum(int, int);
+
+    int main() {
+        
+        printf("%d\n", minimum(5, 4));  // doit afficher 4
+        printf("%d\n", minimum(7, 20)); // doit afficher 7
+        printf("%d\n", minimum(5, 5));  // doit afficher 5
+        
+        return 0;
+    }
+
+    int minimum(int a, int b) {
+        if (a < b) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+    /*
+    // Ecriture en une ligne :
+    int minimum(int a, int b) {
+        return a < b ? a : b ;
+    }
+    */
+    ```
 
 ## Exercice 3
 
