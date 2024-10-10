@@ -128,9 +128,9 @@ $$
 
 On admet que le tableau de signe de $f'$ est le suivant :
 
-| $x$ | $0$                                           $ln(2+\sqrt{5})$                                          $+\infty$ |
-| --- | --- |
-| $f’(x)$ |                        $-$                            $0$                              $+$ |
+| $x$ | $0$ | | $ln(2+\sqrt{5})$ | | $+\infty$ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| $f’(x)$ | | $-$ | $0$ | $+$ | |
 
 Dresser le tableau de variations de la fonction $f$ et démontrer que l’équation $f(x)= 0$ admet une unique solution strictement positive $\alpha$.
 
