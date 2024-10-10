@@ -97,3 +97,68 @@ int main() {
 
 1. Expliquer ce qu’il se passe et rectifier le programme.
 2. Proposer un autre programme qui effectue la même tâche avec une boucle bornée (boucle `for`).
+
+## MxSTI 1.5
+
+On cherche à déterminer les solutions strictement positives de l’équation :
+
+$$
+e^x+e^{-x}-4x-2=0
+$$
+
+### Question 1
+
+On note $f$ la fonction définie sur l’intervalle $[0,+\infty[$ par : 
+
+pour tout $x>0$, $f(x)=e^x+e^{-x}-4x-2$
+
+**Vérifier** que pour tout $x>0$,
+
+$$
+f(x)=x(\frac{e^x}{x}-4)+e^{-x}-2
+$$
+
+En **déduire** 
+
+$$
+\lim_{x \to \infty}f(x)
+$$
+
+### Question 2
+
+On admet que le tableau de signe de $f'$ est le suivant :
+
+| $x$ | $0$                                           $ln(2+\sqrt{5})$                                          $+\infty$ |
+| --- | --- |
+| $f’(x)$ |                        $-$                            $0$                              $+$ |
+
+Dresser le tableau de variations de la fonction $f$ et démontrer que l’équation $f(x)= 0$ admet une unique solution strictement positive $\alpha$.
+
+### Question 3
+
+On considère l’algorithme de dichotomie suivant :
+
+```
+VARIABLES :
+	a, b et ù sont des nombres réels
+
+INITIALISATION :
+Affecter à a la valeur 2
+Affecter à b la valeur 3
+
+TRAITEMENT :
+Tant que b - a > 0,1
+	Affecter à m la valeur (a + b) / 2
+	Si *f(m)* > 0 alors
+		Affecter à b la valeur de m
+	Sinon
+		Affecter à a la valeur de m
+	Fin Si
+Fin Tant que
+Afficher a et b
+```
+
+1. Exécuter cet algorithme en notant dans un tableau, les valeurs de `a`, `b`, `b-a` et `m`.
+2. Que représentent les valeurs affichées par cet algorithme ?
+3. Ecrire en C une fonction qui met en œuvre l’algorithme précédent. Documenter cette fonction.
+4. Modifier cette fonction pour qu’elle renvoie une valeur de $\alpha$ à $10^{-3}$ près.
