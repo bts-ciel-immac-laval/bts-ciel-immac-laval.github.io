@@ -121,7 +121,7 @@ $$
 En **déduire** 
 
 $$
-\lim_{x \to \infty}f(x)
+\lim_{x \to +\infty}f(x)
 $$
 
 ### Question 2
