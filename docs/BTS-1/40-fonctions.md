@@ -169,7 +169,11 @@ float division (float a, float b) {
 
 ??? success "Solution"
 
-    ![](../images/meme/waiting-zootopia.gif)
+    **Fonction 1** : Si l’exécution ne passe pas dans le `if`, si `b` est égal à 0, il n’y a pas de `return`. Cela ne va pas gêner le compilateur, mais à l’exécution, dans ce cas, n’importe quelle valeur sera renvoyée… 
+
+    **Fonction 2** : Ici, si `b` est égal à 0, on renvoie `"Erreur !"`, qui est une chaîne de caractères, ce qui ne correspond pas au type retour de la fonction. Cette fois, le programme ne compilera pas.
+
+    **Fonction 3** : Cette fonction est correctement déclarée.
 
 ## Exercice 4
 
@@ -194,7 +198,7 @@ Déclarer et définir la fonction `somme` qui effectue la somme des valeurs pass
 
 ## Exercice 5
 
-Ecrire une fonction qui, pour des valeurs de a, b et x données par l’utilisateur, calcule le résultat de :
+Ecrire une fonction qui, pour des valeurs de a, b et x saisies par l’utilisateur, calcule le résultat de :
 
 $$
 ax^3 + 2 ax^2 + b
@@ -211,3 +215,17 @@ Valeurs de a, b, x : 0, 2, 2
 ??? success "Solution"
 
     ![](../images/meme/waiting-kid.gif)
+
+## Exercice 6
+
+1. Ecrire une fonction `estPair` qui renvoie vrai si le nombre qui lui est passé est… pair 😎.
+
+2. Ecrire une fonction `impairEntreBornes` qui affiche les nombres impairs entre 2 bornes en utilisant la fonction `estPair`.
+
+3. Ecrire un programme de test.
+
+4. Commenter les fonctions en utilisant le format JSDoc (Commencer à taper `/**` 🤩).
+
+??? danger "Aller plus loin"
+
+    Proposer au moins une autre version de la fonction `impairEntreBornes` en utilisant toujours la fonction `estPair`.
