@@ -162,3 +162,17 @@ Afficher a et b
 2. Que représentent les valeurs affichées par cet algorithme ?
 3. Ecrire en C une fonction qui met en œuvre l’algorithme précédent. Documenter cette fonction.
 4. Modifier cette fonction pour qu’elle renvoie une valeur de $\alpha$ à $10^{-3}$ près.
+
+## MxSTI 1.6
+
+Avec des cubes identiques, on construit des pyramides comme indiqué ci-dessous :
+
+![Cubes](../../images/cours/bts-1/maths-sti-1/cubes.png)
+
+1. Combien de cubes sont nécessaires pour construire une pyramide à 4 étages ? A 5 étages ?
+
+2. Proposer une fonction « pyramide » en C qui permet, pour un entier N donné, de renvoyer le nombre de cubes nécessaires pour construire une pyramide à N étages.
+
+3. Faire fonctionner le programme pour qu’il renvoie le nombre de cubes nécessaires pour construire une pyramide à 20 étages, puis 30 étages.
+
+4. On dispose de 5 000 cubes. On voudrait savoir quel est le nombre maximal d’étages que l’on peut construire. Proposer un programme en C qui, pour un entier K donné, renvoie le nombre maximal d’étages que l’on peut construire avec K cubes, ainsi que le nombre de cubes non utilisés.
