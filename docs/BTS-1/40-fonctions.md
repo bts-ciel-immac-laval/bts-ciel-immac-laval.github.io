@@ -229,3 +229,34 @@ Valeurs de a, b, x : 0, 2, 2
 ??? danger "Aller plus loin"
 
     Proposer au moins une autre version de la fonction `impairEntreBornes` en utilisant toujours la fonction `estPair`.
+
+## Exercice 7
+
+Ecrire un programme de calculatrice "simple" :
+
+```
+> ./exo4.exe
+1 + 2
+= 3
+
+3 / 4
+= 0.750000
+
+55 * 56
+= 3080
+
+7 - 12
+= -5
+```
+
+1. Créer les prototypes pour les fonctions qui affichent le résultat des 4 opérations : somme, soustraction, multiplication et division.
+
+2. Définir les 4 fonctions.
+
+3. Faire appel aux 4 fonctions dans une fonction principale capable de lire les calculs tant que le programme n’est pas interrompu.
+
+??? danger "Aller plus loin"
+
+    1. Si ce n'est pas le cas, gérer la saisie de nombres à virgule flottante.
+    
+    2. Proposer un système pour reprendre le résultat du calcul précédent dans le calcul suivant.
