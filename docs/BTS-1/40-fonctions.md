@@ -194,7 +194,24 @@ Déclarer et définir la fonction `somme` qui effectue la somme des valeurs pass
 
 ??? success "Solution"
 
-    ![](../images/meme/waiting-bean.gif)    
+    ```c
+    #include <stdio.h>
+
+    // Déclaration
+    int somme(int, int);
+
+    int main() {
+        int s, a = 1, b = 3 ;
+        s = somme(a, b);
+        printf("%d + %d = %d\n", a, b, s);
+        return 0;
+    }
+
+    // Définition
+    int somme(int x, int y) {
+        return x + y;
+    }
+    ```
 
 ## Exercice 5
 
@@ -214,7 +231,28 @@ Valeurs de a, b, x : 0, 2, 2
 
 ??? success "Solution"
 
-    ![](../images/meme/waiting-kid.gif)
+    ```c
+    #include <stdio.h>
+
+    // Déclaration
+    int fonction(int, int, int);
+
+    int main() {
+        int a, b, x;
+        
+        printf("Valeurs de a, b, x : ");
+        scanf("%d, %d, %d", &a, &b, &x);
+        
+        printf("= %d\n", fonction(a, b, x));
+        
+        return 0;
+    }
+
+    // Définition
+    int fonction(int a, int b, int x) {
+        return a*x*x*x + 2*a*x*x + b;
+    }
+    ```
 
 ## Exercice 6
 
@@ -224,11 +262,15 @@ Valeurs de a, b, x : 0, 2, 2
 
 3. Ecrire un programme de test.
 
-4. Commenter les fonctions en utilisant le format JSDoc (Commencer à taper `/**` 🤩).
+4. Commenter les fonctions en utilisant le format Doxygen (Commencer à taper `/**` 🤩).
 
 ??? danger "Aller plus loin"
 
     Proposer au moins une autre version de la fonction `impairEntreBornes` en utilisant toujours la fonction `estPair`.
+
+??? success "Solution"
+
+    ![](../images/meme/waiting-kid.gif)
 
 ## Exercice 7
 
@@ -260,3 +302,7 @@ Ecrire un programme de calculatrice "simple" :
     1. Si ce n'est pas le cas, gérer la saisie de nombres à virgule flottante.
     
     2. Proposer un système pour reprendre le résultat du calcul précédent dans le calcul suivant.
+
+??? success "Solution"
+
+    ![](../images/meme/waiting-bean.gif)
