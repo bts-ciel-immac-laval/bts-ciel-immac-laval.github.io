@@ -262,7 +262,7 @@ Valeurs de a, b, x : 0, 2, 2
 
 3. Ecrire un programme de test.
 
-4. Commenter les fonctions en utilisant le format Doxygen (Commencer à taper `/**` 🤩).
+4. Installer l'extension Doxygen Documentation Generator, puis commenter les fonctions en utilisant le format Doxygen (Commencer à taper `/**` 🤩).
 
 ??? danger "Aller plus loin"
 
