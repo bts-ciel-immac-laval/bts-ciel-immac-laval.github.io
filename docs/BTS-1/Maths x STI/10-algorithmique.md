@@ -140,7 +140,7 @@ On considère l’algorithme de dichotomie suivant :
 
 ```
 VARIABLES :
-	a, b et ù sont des nombres réels
+	a, b et m sont des nombres réels
 
 INITIALISATION :
 Affecter à a la valeur 2
