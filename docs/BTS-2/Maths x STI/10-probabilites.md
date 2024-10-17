@@ -172,7 +172,83 @@ sequenceDiagram
 
 ??? success "Correction"
 
-    ![Please... wait...](../../images/meme/waiting-zootopia.gif)
+    ```cpp
+    #include <iostream>
+    #include <ctime>
+    #include <vector>
+    #include <iomanip>
+    #include <cstring>
+
+    using namespace std;
+
+    class Marble {
+        private :
+            int bin = 0;
+            bool direction() {
+                return rand() % 2;
+            };
+        public :
+            void drop(int rowsCount) {
+                bin = 0;
+                for (int i = 0; i < rowsCount; i++) {
+                    bin += direction();
+                }
+            };
+            int getBin() {
+                return bin;
+            }
+    };
+
+    class GaltonBoard {
+        private : 
+            int rowsCount;
+            int * bins;
+            void emptyBins() {
+                for (int i = 0; i < rowsCount + 1; i++) {
+                    bins[i] = 0;
+                }
+            }
+        public :
+            GaltonBoard(int _rowsCount) {
+                rowsCount = _rowsCount;
+                bins = new int[rowsCount + 1];
+            }
+            ~GaltonBoard() {
+                delete [] bins;
+            }
+            void dropMarbles(int marblesCount) {
+                emptyBins();
+                Marble m;
+                for (int i = 0; i < marblesCount; i++) {
+                    m.drop(rowsCount);
+                    bins[m.getBin()] += 1;
+                }
+            }
+            void displayBins(int width) {
+                for (int i = 0; i < rowsCount + 1; i++) {
+                    cout << "[ " << setw(width) << bins[i] << " ]";
+                }
+                cout << endl << setw(width + 1) << 0;
+                for (int i = 1; i < rowsCount + 1; i++) {
+                    cout << setw(width + 4 + (width % 2 == 1  && i == 10 ? 1 : 0)) << i;
+                }
+            }
+    };
+
+    int main(int argc, char ** argv) {
+        
+        srand(time(nullptr));
+        
+        int rows = atoi(argv[1]);
+        int marbles = atoi(argv[2]);
+
+        GaltonBoard g(rows);
+        g.dropMarbles(marbles);
+        g.displayBins(strlen(argv[2]));
+
+        return 0;
+    }
+    ```
 
 
 ??? danger "Fin de séquence"
