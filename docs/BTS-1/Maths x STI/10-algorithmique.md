@@ -149,7 +149,7 @@ Affecter à b la valeur 3
 TRAITEMENT :
 Tant que b - a > 0,1
 	Affecter à m la valeur (a + b) / 2
-	Si *f(m)* > 0 alors
+	Si f(m) > 0 alors
 		Affecter à b la valeur de m
 	Sinon
 		Affecter à a la valeur de m
