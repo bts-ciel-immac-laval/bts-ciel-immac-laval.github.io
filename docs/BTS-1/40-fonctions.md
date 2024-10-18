@@ -332,11 +332,11 @@ Ecrire un programme de calculatrice "simple" :
 = -5
 ```
 
-1. Créer les prototypes pour les fonctions qui affichent le résultat des 4 opérations : somme, soustraction, multiplication et division.
+1. Déclarer les fonctions qui affichent le résultat des 4 opérations : somme, soustraction, multiplication et division.
 
 2. Définir les 4 fonctions.
 
-3. Faire appel aux 4 fonctions dans une fonction principale capable de lire les calculs tant que le programme n’est pas interrompu.
+3. Faire appel aux 4 fonctions dans une fonction principale capable de lire des calculs tant que le programme n’est pas interrompu.
 
 ??? danger "Aller plus loin"
 
