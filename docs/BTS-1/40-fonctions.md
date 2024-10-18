@@ -270,7 +270,48 @@ Valeurs de a, b, x : 0, 2, 2
 
 ??? success "Solution"
 
-    ![](../images/meme/waiting-kid.gif)
+    ```c
+    #include <stdio.h>
+
+    int estPair(int);
+    void impairEntreBornes(int, int);
+
+    int main() {
+
+        impairEntreBornes(1, 100); // affiche de 1, 3, 5... à 99
+        impairEntreBornes(-4, 7);  // affiche -3, -1, 1, 3, 5, 7
+
+        return 0;
+    }
+
+    /**
+    * @brief Dit si la variable x est paire
+    * 
+    * @param x la variable dont on veut connaître la parité
+    * @return int vrai (1) si x est paire, faux(0) sinon. 
+    */
+    int estPair(int x) {
+        return x % 2 == 0;
+    }
+
+    
+    void impairEntreBornes(int minimum, int maximum) {
+        for (int i = minimum; i <= maximum; i++) {
+            if (!estPair(i)) {          // i.e.   estPair(x) == 0
+                printf("%d\n", i);
+            }
+        }
+    }
+
+    void impairEntreBornes2(int minimum, int maximum) {
+        if (estPair(minimum)) {
+            minimum ++;
+        }
+        for (int i = minimum; i <= maximum; i = i + 2) { // de 2 en 2
+            printf("%d\n", i);
+        }
+    }
+    ```
 
 ## Exercice 7
 
