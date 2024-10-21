@@ -332,7 +332,7 @@ Ecrire un programme de calculatrice "simple" :
 = -5
 ```
 
-1. Déclarer les fonctions qui affichent le résultat des 4 opérations : somme, soustraction, multiplication et division.
+1. Déclarer les fonctions qui affichent le résultat des 4 opérations : addition, soustraction, multiplication et division.
 
 2. Définir les 4 fonctions.
 
@@ -346,4 +346,228 @@ Ecrire un programme de calculatrice "simple" :
 
 ??? success "Solution"
 
-    ![](../images/meme/waiting-bean.gif)
+    Solution "simple" avec un **if ... else if**
+
+    ```c
+    #include <stdio.h>
+
+    void addition(int, int);
+    void soustraction(int, int);
+    void multiplication(int, int);
+    void division(int, int);
+
+    int main() {
+        int operand1, operand2;
+        char operation;
+
+        while(1) {
+
+            scanf("%d %c %d", &operand1, &operation, &operand2);
+            
+            if (operation == '+') {
+                addition(operand1, operand2);
+            }
+            else if (operation == '-') {
+                soustraction(operand1, operand2);
+            }
+            else if (operation == '*') {
+                multiplication(operand1, operand2);
+            }
+            else if (operation == '/') {
+                division(operand1, operand2);
+            }
+            else {
+                printf("Operation non reconnue :\nOperation autorisee : + - * /\n\n");
+            }
+        }
+        
+        return 0;
+    }
+
+    void addition(int a, int b) {
+        printf("= %d\n\n", a + b);
+    }
+
+    void soustraction(int a, int b) {
+        printf("= %d\n\n", a - b);
+    }
+
+    void multiplication(int a, int b) {
+        printf("= %d\n\n", a * b);
+    }
+
+    void division(int a, int b) {
+        printf("= %f\n\n", (float)a / (float)b);
+    }
+    ```
+
+    Solution "simple" avec un **switch** (utilisable quand toutes les conditions d'un bloc portent sur les différentes valeurs d'une seule variable).
+
+    ```c
+    #include <stdio.h>
+
+    void addition(int, int);
+    void soustraction(int, int);
+    void multiplication(int, int);
+    void division(int, int);
+
+    int main() {
+        int operand1, operand2;
+        char operation;
+
+        while(1) {
+            
+            scanf("%d %c %d", &operand1, &operation, &operand2);
+            
+            switch (operation) {
+                case '+' :
+                    addition(operand1, operand2);
+                    break; // Obligatoire sinon les autres  
+                case '-' :
+                    soustraction(operand1, operand2);
+                    break; 
+                case '*' :
+                    multiplication(operand1, operand2);
+                    break;  
+                case '/' :
+                    division(operand1, operand2);
+                    break;
+                default :
+                    printf("Operation non reconnue :\nOperation autorisee : + - * /\n\n");
+            }
+        }
+        
+        return 0;
+    }
+
+    void addition(int a, int b) {
+        printf("= %d\n\n", a + b);
+    }
+
+    void soustraction(int a, int b) {
+        printf("= %d\n\n", a - b);
+    }
+
+    void multiplication(int a, int b) {
+        printf("= %d\n\n", a * b);
+    }
+
+    void division(int a, int b) {
+        printf("= %f\n\n", (float)a / (float)b);
+    }
+    ```
+
+    Solution "Aller plus loin" 💪
+
+    Cette version nécessite des connaissances que vous n'avez pas encore : on stocke la saisie dans une **chaîne de caractères** pour l'analyser puis on utilise **sscanf()** une fonction qui permet de faire un scanf sur une chaîne de caractères.
+
+    ```c
+    #include <stdio.h>
+
+    // Les fonctions sont modifiées pour renvoyer le résultat
+    float addition(float, float);
+    float soustraction(float, float);
+    float multiplication(float, float);
+    float division(float, float);
+
+    int main() {
+        float operand1, operand2;
+        char operation;
+
+        // On doit analyser la saisie. Pour faire cela, on a besoin d'un tableau de caractères.
+        char saisie[30] = "";
+
+        while(1) {
+
+            // On stocke la saisie dans le tableau...
+            scanf("%s", saisie);
+            
+            // ... et on regarde si le premier caractère saisi est un opérateur
+            if (saisie[0] == '+' || saisie[0] == '-' || saisie[0] == '/' || saisie[0] == '*') {
+                
+                // Si c'est le cas, on ne récupère pas le premier opérand
+                sscanf(saisie, "%c %f", &operation, &operand2);
+            
+            }
+            else {
+
+                // Sinon on fait la lecture complète comme dans la version "simple".
+                sscanf(saisie, "%f %c %f", &operand1, &operation, &operand2);
+
+            }
+            
+            switch (operation) {
+                case '+' :
+                    operand1 = addition(operand1, operand2);
+                    break; // Obligatoire sinon les autres  
+                case '-' :
+                    operand1 = soustraction(operand1, operand2);
+                    break; 
+                case '*' :
+                    operand1 = multiplication(operand1, operand2);
+                    break;  
+                case '/' :
+                    operand1 = division(operand1, operand2);
+                    break;
+                default :
+                    printf("Operation non reconnue :\nOperation autorisee : + - * /\n\n");
+                    return -1;
+            }
+        }
+        
+        return 0;
+    }
+
+    float addition(float a, float b) {
+        float r = a + b;
+        printf("= %f\n\n", r);
+        return r;
+    }
+
+    float soustraction(float a, float b) {
+        float r = a - b;
+        printf("= %f\n\n", r);
+        return r;
+    }
+
+    float multiplication(float a, float b) {
+        float r = a * b;
+        printf("= %f\n\n", r);
+        return r;
+    }
+
+    float division(float a, float b) {
+        float r = a / b;
+        printf("= %f\n\n", r);
+        return r;
+    }
+    ```
+    
+    Résultats :
+
+    ```
+    > ./exo7.exe
+    1 + 2
+    = 3.000000
+
+    + 3
+    = 6.000000
+
+    * 4
+    = 24.000000
+
+    1 + 4
+    = 5.000000
+
+    * 5
+    = 25.000000
+
+    / 3
+    = 8.333333
+
+    * 3.14
+    = 26.166666
+
+    5 + 3
+    = 8.000000
+    ```
