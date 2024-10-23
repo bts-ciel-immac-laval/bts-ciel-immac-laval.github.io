@@ -1,5 +1,5 @@
 ---
-icon: material/gamepad-square
+icon: material/gamepad
 ---
 
 # Plus Plus
