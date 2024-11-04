@@ -3,15 +3,37 @@ site_url: https://bts-ciel-immac-laval.github.io
 
 copyright: Copyright &copy; 2024 - 2025 Mathieu DOMER
 
+nav:
+  - Commun : 
+    - Les gammes : commun/10_gammes.md
+    - Stages : commun/20_stages.md
+    - Vidéos : commun/30_videos.md
+    - Plus Plus : commun/99_plusplus.md
+  - BTS 1 : 
+    - 01 - Premiers pas en C : bts-1/10-premiers-pas-en-c.md
+    - 02 - Premiers programmes : bts-1/20-premiers-programmes.md
+    - 03 - Boucles : bts-1/30-boucles.md
+    - 04 - Fonctions :
+      - Usage courant : bts-1/40-fonctions.md
+      - Variables statiques : bts-1/41-fonctions.md
+      - Récursivité : bts-1/42-fonctions.md
+    - Maths x STI :
+      - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
+  - BTS 2 : 
+    - 01 - Du C au C++ : bts-2/10-du-c-au-cpp.md
+    - 02 - Premiers pas en POO : bts-2/20-poo-1.md
+    - 03 - POO level 2 : bts-2/30-poo-2.md
+    - Qt : 
+      - Découverte : bts-2/90-qt-1.md
+    - Maths x STI :
+      - 01 - Probabilités : bts-2/Maths x STI/10-probabilites.md
+
 theme:
   name: material
   language: fr
   features:
     - navigation.tabs
-    - navigation.expand
-    - navigation.path
     - navigation.indexes
-    - navigation.top
     - content.code.copy
     - content.code.select
     - content.code.annotate
