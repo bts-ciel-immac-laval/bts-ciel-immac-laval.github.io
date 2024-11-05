@@ -16,7 +16,7 @@ nav:
     - 04 - Fonctions :
       - Usage courant : bts-1/40-fonctions.md
       - Variables statiques : bts-1/41-fonctions.md
-      - Récursivité : bts-1/42-fonctions.md
+      #- Récursivité : bts-1/42-fonctions.md
     - Maths x STI :
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
   - BTS 2 : 
