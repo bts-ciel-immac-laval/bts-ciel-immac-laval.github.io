@@ -2,9 +2,7 @@
 
 ## Cours
 
-<object class="fullscreenAllowed" data="../../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf" type="application/pdf">
-    <embed src="../../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf" type="application/pdf" />
-</object>
+<object class="fullScreenAble" data="../../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf" type="application/pdf"></object>
 
 ## Exercice 0
 

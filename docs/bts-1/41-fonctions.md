@@ -2,9 +2,7 @@
 
 ## Cours
 
-<object data="../../pdf/cours/bts1/bts1_2425_05_fonctions_gestion_variables.pdf" type="application/pdf">
-    <embed src="../../pdf/cours/bts1/bts1_2425_05_fonctions_gestion_variables.pdf" type="application/pdf" />
-</object>
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_2425_05_fonctions_gestion_variables.pdf" type="application/pdf"></object>
 
 ## Exercice 1
 
@@ -25,7 +23,7 @@ Créer un programme de test qui la lance 4096 fois.
         do {
             count = iCountMyself();
             
-            // printf("%d\n", count); // <- Pour visualiser les appels 👍
+            // printf("%d\n", count); // <- Pour visualiser les appels 🤓
         }
         while (count != 4096);
 
@@ -52,7 +50,44 @@ Créer un programme de test qui l’appelle plusieurs fois de suite en faisant d
 
 ??? success "Solution"
     
-    ![Wait for it](../images/meme/waiting-kid.gif)
+    ```c
+    #include <stdio.h>
+    #include <time.h>
+    #include <windows.h>
+
+    int mesureEntre2Appels();
+
+    int main() {
+        printf("%d\n", mesureEntre2Appels());
+        Sleep(3000);                            // On patiente 3 secondes
+        printf("%d\n", mesureEntre2Appels());
+        Sleep(5000);                            // On patiente 5 secondes
+        printf("%d\n", mesureEntre2Appels());
+
+        return 0;
+    }
+
+    int mesureEntre2Appels() {
+        // Une variable statique pour conserver l'heure du dernier appel de la fonction
+        // Initialisée à 0 pour le 1er appel
+        static time_t dernierAppel = 0;
+        
+        // On récupère l'heure du système (en secondes depuis EPOCH)
+        time_t maintenant = time(NULL);
+        int tempsEcoule = 0;
+        
+        // Si ce n'est pas le premier appel, on calcule le temps écoulé depuis le dernier appel
+        if (dernierAppel != 0) {
+            tempsEcoule = maintenant - dernierAppel;
+        }
+
+        // ⚠️ On n'oublie pas de sauvegarder l'heure du dernier appel !
+        dernierAppel = time(NULL);
+        
+        // On renvoie (ou affiche) le temps écoulé.
+        return tempsEcoule;
+    }
+    ```
 
 ## Exercice 3
 

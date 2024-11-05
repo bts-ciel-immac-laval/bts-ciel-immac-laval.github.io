@@ -80,3 +80,20 @@ background-color: rgb(193, 38, 38);
         mask-image: var(--md-admonition-icon--exo-hard);
 }
 /* Admonition exo-hard */
+
+.bts-fullscreen-container {
+    position: relative;
+}
+.bts-fullscreen-button {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    bottom: 1rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    background-color: rgba(171, 71, 189, 0.321);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z" /></svg>');
+    border-radius: 0.5rem;
+}

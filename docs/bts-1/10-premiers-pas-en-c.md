@@ -2,9 +2,7 @@
 
 ## Les entiers
 
-<object data="../../pdf/cours/bts1/bts1_03_premiers-pas-en-c.pdf" type="application/pdf">
-    <embed src="../../pdf/cours/bts1/bts1_03_premiers-pas-en-c.pdf" type="application/pdf" />
-</object>
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_03_premiers-pas-en-c.pdf" type="application/pdf"></object>
 
 ### Déclarer une variable
     
