@@ -14,7 +14,35 @@ Créer un programme de test qui la lance 4096 fois.
 
 ??? success "Solution"
     
-    ![Wait for it](../images/meme/waiting-barney.gif)
+    ```c
+    #include <stdio.h>
+
+    int iCountMyself();
+
+    int main() {
+        int count = 0;
+
+        do {
+            count = iCountMyself();
+            
+            // printf("%d\n", count); // <- Pour visualiser les appels 👍
+        }
+        while (count != 4096);
+
+        printf("Et voila : %d fois !\n", count);
+
+        return 0;
+    }
+
+    int iCountMyself() {
+        // Déclaration de la variable statique initialisée à 0 lors du premier appel...
+        static int count = 0; 
+        
+        // ... mais qui va garder sa valeur entre 2 appels de la fonction !
+        // Seule l'instruction suivante sera exécutée à chaque appel suivant.
+        return ++count;
+    }
+    ```
     
 ## Exercice 2
 
