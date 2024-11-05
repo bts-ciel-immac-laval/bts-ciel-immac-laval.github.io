@@ -46,9 +46,9 @@ Créer un programme de test qui la lance 4096 fois.
     
 ## Exercice 2
 
-Ecrire une fonction qui calcule le temps passé entre 2 exécutions (dans le même programme…).
+Ecrire une fonction qui calcule le temps écoulé depuis sa dernière exécution (dans le même programme 😅).
 
-Créer un programme de test qui l’appelle plusieurs fois de suite en faisant des “pauses” entre 2 appels.
+Créer un programme de test qui l’appelle plusieurs fois de suite en faisant des "pauses" entre 2 appels.
 
 ??? success "Solution"
     
