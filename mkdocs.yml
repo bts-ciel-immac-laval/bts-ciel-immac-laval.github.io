@@ -5,6 +5,7 @@ copyright: Copyright &copy; 2024 - 2025 Mathieu DOMER
 
 nav:
   - Commun : 
+    - Calendrier de l'Avent : commun/00_calendrier_avent.md
     - Les gammes : commun/10_gammes.md
     - Stages : commun/20_stages.md
     - Vidéos : commun/30_videos.md
@@ -25,6 +26,8 @@ nav:
     - 03 - POO level 2 : bts-2/30-poo-2.md
     - Qt : 
       - Découverte : bts-2/90-qt-1.md
+      - Premier projet : bts-2/90-qt-2.md
+      - Exercices : bts-2/90-qt-3.md
     - Maths x STI :
       - 01 - Probabilités : bts-2/Maths x STI/10-probabilites.md
 
