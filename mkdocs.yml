@@ -5,7 +5,7 @@ copyright: Copyright &copy; 2024 - 2025 Mathieu DOMER
 
 nav:
   - Commun : 
-    - Calendrier de l'Avent : commun/00_calendrier_avent.md
+    #- Calendrier de l'Avent : commun/00_calendrier_avent.md
     - Les gammes : commun/10_gammes.md
     - Stages : commun/20_stages.md
     - Vidéos : commun/30_videos.md
