@@ -127,4 +127,63 @@ Calculer la somme des saisies successives d’un utilisateur à l’aide d’une
 
 ??? success "Solution"
     
-    ![Wait for it](../images/meme/waiting-bean.gif)
+    ```c
+    #include <stdio.h>
+    #include <time.h>
+    #include <windows.h>
+
+    int addition(int);
+
+    int main() {
+        
+        int saisie;
+        
+        printf("Saisir les valeur a additionner :\n");
+        
+        while(1) {
+            scanf("%d", &saisie);
+            printf("= %d\n", addition(saisie));
+        }
+
+        return 0;
+    }
+
+    int addition(int x) {
+        static int somme = 0;
+        somme += x;
+        return somme;
+    }
+    ```
+
+    Solution **Aller plus loin**
+
+    ```c
+    #include <stdio.h>
+    #include <time.h>
+    #include <windows.h>
+
+    int addition(int);
+
+    int main() {
+        
+        int saisie;
+        
+        printf("Saisir les valeur a additionner (0 pour reinitialiser) :\n");
+        
+        while(1) {
+            scanf("%d", &saisie);
+            printf("= %d\n", addition(saisie));
+        }
+
+        return 0;
+    }
+
+    int addition(int x) {
+        static int somme = 0;
+        if (x == 0) {
+            somme = 0;
+        }
+        somme += x;
+        return somme;
+    }
+    ```
