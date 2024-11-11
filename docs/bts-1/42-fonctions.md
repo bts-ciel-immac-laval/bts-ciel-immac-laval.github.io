@@ -30,7 +30,7 @@ void f(int n) {
 
 ## Exercice 2
 
-Ecrire une fonction récursive qui demande à l'utilisateur de saisir un chiffre tant qu'il ne saisit pas un zéro, puis lui affiche les chiffres saisis du dernier au premier.
+Ecrire une fonction récursive qui demande à l'utilisateur de saisir des chiffres tant qu'il ne saisit pas un zéro, puis lui affiche les chiffres saisis du dernier au premier.
 
 ```
 > ./exo2.exe
