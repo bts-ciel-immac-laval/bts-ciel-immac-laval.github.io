@@ -30,7 +30,7 @@ void f(int n) {
 
 ## Exercice 2
 
-Ecrire une fonction récursive qui affiche les saisies de l’utilisateur en partant de sa dernière saisie jusqu’à la première.
+Ecrire une fonction récursive qui demande à l'utilisateur de saisir un chiffre tant qu'il ne saisit pas un zéro, puis lui affiche les chiffres saisis du dernier au premier.
 
 ```
 > ./exo2.exe
@@ -59,11 +59,11 @@ OK ! Voici vos saisies en partant de la fin :
 
 ## Exercice 3
 
-Ecrire une fonction récursive qui affiche les saisies de l’utilisateur en partant de sa dernière saisie jusqu’à la première en limitant le nombre de saisies à 5.
+Réécrire la fonction récursive de l'exercice 2 en limitant le nombre de saisies à 5.
 
 ```
 > ./exo.exe
-Saisir 5 chiffres
+Saisir 5 chiffres :
 12
 298
 34
