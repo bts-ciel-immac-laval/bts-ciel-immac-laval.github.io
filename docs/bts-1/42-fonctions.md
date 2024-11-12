@@ -54,7 +54,34 @@ OK ! Voici vos saisies en partant de la fin :
 
 ??? success "Solution"
     
-    ![Wait for it](../images/meme/waiting-sonic.gif)
+    ```c
+    #include <stdio.h>
+
+    void f();
+
+    int main() {
+        printf("Saisir des chiffres (0 pour arreter) :\n");
+        f();
+        return 0;
+    }
+
+    void f() {
+        int saisie;
+        
+        // Saisie
+        scanf("%d", &saisie);
+
+        // si saisie == 0 -> STOP
+        if (saisie == 0) {
+            printf("\nOK ! Voici vos saisies en partant de la fin :\n");
+        }
+        // sinon on rappelle f puis on affiche 
+        else {
+            f();
+            printf("%d\n", saisie);
+        }
+    }
+    ```
     
 
 ## Exercice 3
@@ -80,4 +107,30 @@ Et les voici en ordre inverse :
 
 ??? success "Solution"
     
-    ![Wait for it](../images/meme/waiting-britney.gif)
+    ```c
+    #include <stdio.h>
+
+    void f(int);
+
+    int main() {
+        printf("Saisir 5 chiffres :\n");
+        f(5);
+        return 0;
+    }
+
+    void f(int i) {
+        int saisie;
+        
+        // Si i == 0 -> STOP !
+        if (i == 0) {
+            printf("\nOK ! Voici vos saisies en partant de la fin :\n");
+        }
+        else {
+            // Saisie
+            scanf("%d", &saisie);
+            f(i - 1);
+            // Affichage
+            printf("%d\n", saisie);
+        }
+    }
+    ```
