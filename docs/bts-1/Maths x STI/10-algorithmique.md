@@ -176,3 +176,33 @@ Avec des cubes identiques, on construit des pyramides comme indiqué ci-dessous 
 3. Faire fonctionner le programme pour qu’il renvoie le nombre de cubes nécessaires pour construire une pyramide à 20 étages, puis 30 étages.
 
 4. On dispose de 5 000 cubes. On voudrait savoir quel est le nombre maximal d’étages que l’on peut construire. Proposer un programme en C qui, pour un entier K donné, renvoie le nombre maximal d’étages que l’on peut construire avec K cubes, ainsi que le nombre de cubes non utilisés.
+
+## MxSTI 1.7
+
+Un jeune développeur web demande votre aide pour améliorer son animation d’une célèbre voiture des années 90.
+
+Il vous envoie le fichier suivant :
+
+[kitt.html](../../assets/bts1/kitt.html)
+
+Il souhaiterait que le mouvement du faisceau ait l’air moins "molasson" et plus "amorti" quand il s’approche des extrémités.
+
+1. 	Télécharger le fichier et étudier le programme et suivre l’évolution de la variable `step`. 
+Entre quelles valeurs et à quel pas évolue-t-elle ?
+    
+    !!! tip ""
+    	
+		La fonction `console.log()` permet d’afficher le contenu d’une variable dans la console Javascript, elle-même accessible via les outils du développeur en appuyant sur F12 dans le navigateur.
+    
+	!!! tip ""
+	
+		En Javascript, les variables ne sont pas typées et si elles sont introduites par le mot-clé `var`, elles sont considérées comme globales…
+    
+2. 	La variation de la vitesse attendue doit être la même dans les deux directions. 
+Ajouter une variable `x` dans la fonction `delay`. Trouver un calcul qui, en fonction de la valeur de `step`, donne à `x` une valeur croissante quelque soit la direction du faisceau.
+
+3. 	Dessiner sur papier une courbe d’évolution des valeurs renvoyées par `delay` en fonction de `x` pour simuler l’amorti à l’approche des extrémités.
+
+4. 	A l’aide de GeoGebra, trouver une fonction permettant de coder tout ou partie la courbe dessinée à la question précédente.
+
+5. 	Implémenter votre courbe d’évolution de la vitesse dans la fonction `delay`.
