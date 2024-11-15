@@ -26,7 +26,18 @@ void f(int n) {
 
 ??? success "Solution"
     
-    ![Wait for it](../images/meme/waiting-alice.gif)
+    `f(5)` affiche :
+
+    ```
+    5
+    4
+    3
+    2
+    1
+    Partez !
+    ```
+
+    `f` est une fonction récursive car elle s'appelle elle-même.
 
 ## Exercice 2
 
