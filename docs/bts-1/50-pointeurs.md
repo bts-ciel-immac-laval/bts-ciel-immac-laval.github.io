@@ -38,6 +38,34 @@ Créer une fonction qui permet d’intervertir les valeurs de deux variables qui
 
 Créer une fonction qui permet de mettre en majuscule une variable de type `char` passée en paramètre si sa valeur est une lettre de l’alphabet.
 
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+
+    void uppercase(char *);
+
+    int main() {
+        char c = 'a', d = 'k', e= ';';
+
+        printf("c : %c | d : %c | e : %c\n", c, d, e);
+        
+        uppercase(&c);
+        uppercase(&d);
+        uppercase(&e);
+
+        printf("c : %c | d : %c | e : %c\n", c, d, e);
+
+        return 0;
+    }
+
+    void uppercase(char * p) {
+        if (*p >= 97 && *p <= 122) {
+            *p -= 32;
+        }
+    }
+    ```
+
 ## Exercice 3
 
 Créer une fonction qui joue au bonneteau avec 3 variables qui lui sont fournies.
