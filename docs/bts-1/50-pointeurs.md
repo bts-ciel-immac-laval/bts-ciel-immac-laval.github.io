@@ -1,5 +1,9 @@
 # 04 - Pointeurs
 
+## Cours 
+
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_08_pointeurs.pdf" type="application/pdf"></object>
+
 ## Exercice 1
 
 Créer une fonction qui permet d’intervertir les valeurs de deux variables qui lui sont fournies en paramètres.
