@@ -18,6 +18,7 @@ nav:
       - Usage courant : bts-1/40-fonctions.md
       - Variables statiques : bts-1/41-fonctions.md
       - Récursivité : bts-1/42-fonctions.md
+    - 05 - Pointeurs : bts-1/50-pointeurs.md
     - Maths x STI :
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
   - BTS 2 : 
