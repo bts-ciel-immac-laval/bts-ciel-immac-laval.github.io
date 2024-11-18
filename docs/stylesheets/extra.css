@@ -10,7 +10,7 @@ h1#bts-ciel-immac-2024-25 {
 .md-typeset .grid {
     grid-template-columns: repeat(auto-fit,minmax(min(100%,8rem),1fr))
 }
-.md-typeset details {
+.md-typeset details, .md-typeset .admonition {
     border: 0;
 }
 .bts-welcome {
