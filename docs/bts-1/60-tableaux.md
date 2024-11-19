@@ -1,6 +1,6 @@
 # 05 - Tableaux
 
-# Exercice 1
+## Exercice 1
 
 Ecrire un programme `exo1.c` qui permet de 
 
@@ -25,7 +25,7 @@ Les entiers sont 2, 6, 3
     
     ![Minute papillon !](../images/meme/waiting-pikachu.gif)
 
-# Exercice 2
+## Exercice 2
 
 Ecrire un programme `exo2.c` qui :
 
