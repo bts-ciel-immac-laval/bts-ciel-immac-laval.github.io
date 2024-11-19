@@ -59,7 +59,7 @@ La moyenne est de 13.4.
 
 ??? danger "Aller plus loin 3"
     
-    Déplacer le calcul de la somme dans une fonction.
+    Déplacer le calcul de la moyenne dans une fonction.
 
 ??? success "Solution"
     
