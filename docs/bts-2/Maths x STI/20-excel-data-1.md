@@ -46,7 +46,7 @@ Les premiers exercices utiliseront le fichier suivant : [Défibrillateurs en May
 
 2.  Calculer les indicateurs suivants :
 
-    +   Nombre de Défibrillateur externe automatisé (DAE) en tout dans le fichier(1)
+    +   Nombre de Défibrillateurs externes automatisés (DAE) en tout dans le fichier(1)
         { .annotate }
         1.  Utiliser la formule `NB()`.
 
