@@ -1,5 +1,9 @@
 # 05 - Tableaux
 
+## Cours
+
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_09_tableaux_1.pdf" type="application/pdf"></object>
+
 ## Exercice 1
 
 Ecrire un programme `exo1.c` qui permet de 
@@ -325,11 +329,11 @@ C'était le 251ème jour de l'année 2024 !
 
 Créer un programme `exo_6.c` qui :
 
-+ crée deux tableaux de tailles différentes (utiliser des constantes pour pouvoir modifier la taille des tableaux à volonté (du prof…)),
++   crée deux tableaux de tailles différentes (utiliser des constantes pour pouvoir modifier la taille des tableaux à volonté (du prof…)),
 
-+ puis les remplit chacun avec des chiffres consécutifs,
++   puis les remplit chacun avec des chiffres consécutifs,
 
-+ enfin les fusionne dans un seul nouveau tableau.
++   enfin les fusionne dans un seul nouveau tableau.
 
 ```
 Premier tableau [4] : 1, 2, 3, 4
