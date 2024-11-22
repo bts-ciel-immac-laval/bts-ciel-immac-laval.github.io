@@ -285,21 +285,23 @@ Ecrire un programme `exo_3.c` qui stocke les multiples de 5 de 0 à 255 dans un 
 
 ??? success "Solution"
     
+    Solution avec 2 indices
+
     ```c
     #include <stdio.h>
 
     int main() {
 
         // 52 valeurs à stocker
-        int multipleDe5[52];
+        int multiplesDe5[52];
         
         // Parcours de tous les nombres de 0 à 255
-        // j va servire d'indice pour le tableau multipleDe5
+        // j va servire d'indice pour le tableau multiplesDe5
         for (int i = 0, j = 0; i <= 255; i++) {
             // Si i est multiple de 5...
             if (i % 5 == 0) {
                 // ...on le stocke dans le tableau
-                multipleDe5[j] = i;
+                multiplesDe5[j] = i;
                 j++;
             }
         }
@@ -307,8 +309,39 @@ Ecrire un programme `exo_3.c` qui stocke les multiples de 5 de 0 à 255 dans un 
         // Affichage en ordre inverse
         for (int i = 51; i >= 0; i--)
         {
-            printf("%d\n", multipleDe5[i]);
+            printf("%d\n", multiplesDe5[i]);
         }
+        
+        return 0;
+    }
+    ```
+
+    Solution avec un pointeur
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+
+        // 52 valeurs à stocker
+        int multiplesDe5[52];
+        int * p = multiplesDe5;
+        
+        // Parcours de tous les nombres de 0 à 255
+        for (int i = 0; i <= 255; i++) {
+            // Si i est multiple de 5...
+            if (i % 5 == 0) {
+                // ...on le stocke dans le tableau
+                *(p) = i;
+                p++;
+            }
+        }
+
+        // Affichage en ordre inverse
+        do {
+            p--;
+            printf("%d\n", *p);
+        } while (p != multiplesDe5);
         
         return 0;
     }
