@@ -300,7 +300,7 @@ Ecrire un programme `exo_3.c` qui stocke les multiples de 5 de 0 à 255 dans un 
         int multiplesDe5[52];
         
         // Parcours de tous les nombres de 0 à 255
-        // j va servire d'indice pour le tableau multiplesDe5
+        // j va servir d'indice pour le tableau multiplesDe5
         for (int i = 0, j = 0; i <= 255; i++) {
             // Si i est multiple de 5...
             if (i % 5 == 0) {
@@ -357,7 +357,7 @@ Dans un programme `exo_4.c` :
 
 1. Initialiser un tableau avec le nombre de jours de chaque mois (31 jours en janvier, 28 en février...).
 
-2. En se servant de ce tableau, écrire un programme qui affiche le numéro du jour dans l'année d'une date saisie (format `JJ/MM`) sans tenir compte des années bissextiles :)
+2. En se servant de ce tableau, écrire un programme qui affiche le numéro du jour dans l'année d'une date saisie (format `JJ/MM`) sans tenir compte des années bissextiles 😅
 
 ```
 Saisir une date : 07/09
@@ -374,7 +374,7 @@ C'est le 250ème jour de l'année !
 
 ## Exercice 5
 
-Reprendre le code de l'exercice 4 dans un programme `exo_5.c`, permettre la saisie de date au format `JJ/MM/AAAA` et gérer le cas des années bissextiles !
+Reprendre le code de l'exercice 4 dans un programme `exo_5.c`, permettre la saisie de date au format `JJ/MM/AAAA` **et** gérer le cas des années bissextiles !
 
 ```
 Saisir une date : 07/09/2020
