@@ -1,4 +1,4 @@
-# 02 - BDD
+# 02 - Bases de données
 
 ## Support
 

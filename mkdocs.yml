@@ -22,6 +22,7 @@ nav:
     - 06 - Tableaux : bts-1/60-tableaux.md
     - Maths x STI :
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
+      - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
   - BTS 2 : 
     - 01 - Du C au C++ : bts-2/10-du-c-au-cpp.md
     - 02 - Premiers pas en POO : bts-2/20-poo-1.md
