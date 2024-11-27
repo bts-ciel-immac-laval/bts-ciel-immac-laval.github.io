@@ -2,7 +2,7 @@
 
 ## Support
 
-[bts1_bdd_document.pdf](https://immaclaval-my.sharepoint.com/:b:/g/personal/mdomer_immac_fr/ETn-J2wgpvlHsRh22VUoRZoBCNLu4QJCbbT-0aHm4vr-zA)
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_bdd_document.pdf" type="application/pdf"></object>
 
 ## Fichiers
 
