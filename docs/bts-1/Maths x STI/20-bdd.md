@@ -2,7 +2,7 @@
 
 ## Support
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_bdd_document.pdf" type="application/pdf"></object>
+<object class="fullScreenAble" data="../../../pdf/cours/bts1/bts1_bdd_document.pdf" type="application/pdf"></object>
 
 ## Fichiers
 
