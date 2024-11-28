@@ -89,3 +89,19 @@ Les premiers exercices utiliseront le fichier suivant : [Défibrillateurs en May
         +   le 21/11/2024 à 11:00
 
         +   le 24/11/2024 à 13:00
+
+    ??? question "Comment calculer la distance entre points du globe à partir de leurs coordonnées 🌍 GPS 🛰️  ?"
+
+        La distance d entre deux points A et B sera calculée en utilisant la formule suivante :
+
+        \begin{split}
+        &x=(longitudeB-longitudeA)\times\cos(\frac{latitudeA+latitudeB}{2}) \\
+        &y=latitudeB-latitudeA \\
+        &d=\sqrt{x^2+y^2}\times6371
+        \end{split}
+
+        Notes : 
+        
+        +   Dans cette formule, les latitudes et longitudes sont exprimées en **radians**. 
+        
+        +   6371 correspond au rayon de la terre en km.
