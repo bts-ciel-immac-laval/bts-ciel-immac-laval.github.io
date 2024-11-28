@@ -90,7 +90,7 @@ Les premiers exercices utiliseront le fichier suivant : [Défibrillateurs en May
 
         +   le 24/11/2024 à 13:00
 
-    ??? question "Comment calculer la distance entre points du globe à partir de leurs coordonnées 🌍 GPS 🛰️  ?"
+    ??? question "Calculer la distance entre deux points du globe 🌍 à partir de leurs coordonnées GPS 🛰️"
 
         La distance d entre deux points A et B sera calculée en utilisant la formule suivante :
 
