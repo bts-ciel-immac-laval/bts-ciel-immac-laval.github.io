@@ -366,24 +366,90 @@ C'est le 250ème jour de l'année !
 
 ??? question "Avez-vous pensé à tout ?"
     
-    Avez-vous pensé à l'affichage du premier jour de l'année ?   
+    +   Avez-vous pensé à l'affichage du premier jour de l'année ?
+
+    +   Est-ce que votre programme accepte la date 30/02 ou 32/13 ?
 
 ??? success "Solution"
     
-    ![Minute papillon !](../images/meme/waiting-moone.gif) 
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+
+        system("chcp 65001");
+        system("cls");
+        
+        int nbJoursParMois[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }, 
+            nbJours = 0, jour = 0, mois = 0;
+
+        // Saisie
+        do {
+            printf("Saisir une date (JJ/MM) : ");
+            scanf("%2d/%2d", &jour, &mois);
+        }
+        while (jour < 1 || jour > nbJoursParMois[mois - 1] || mois < 1 || mois > 12);
+
+        // Comptage
+        for (int i = 0; i < mois - 1; i++) {
+            nbJours += nbJoursParMois[i];
+        }
+        nbJours += jour;
+
+        // Affichage
+        printf("C'est le %d%s jour de l'année !", nbJours, nbJours == 1 ? "er" : "ème");
+
+        return 0;
+    }
+    ```
 
 ## Exercice 5
 
 Reprendre le code de l'exercice 4 dans un programme `exo_5.c`, permettre la saisie de date au format `JJ/MM/AAAA` **et** gérer le cas des années bissextiles !
 
 ```
-Saisir une date : 07/09/2020
+Saisir une date : 07/09/2024
 C'était le 251ème jour de l'année 2024 !
 ```
 
 ??? success "Solution"
     
-    ![Minute papillon !](../images/meme/waiting-sonic.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+
+        system("chcp 65001");
+        system("cls");
+        
+        int nbJoursParMois[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }, 
+            nbJours = 0, jour = 0, mois = 0, annee = 0;
+
+        // Saisie
+        do {
+            printf("Saisir une date (JJ/MM/AAAA) : ");
+            scanf("%2d/%2d/%4d", &jour, &mois, &annee);
+        }
+        while (jour < 1 || jour > nbJoursParMois[mois - 1] || mois < 1 || mois > 12);
+
+        // Comptage
+        for (int i = 0; i < mois - 1; i++) {
+            nbJours += nbJoursParMois[i];
+            // On traite le cas du mois de février les annnées bissextiles
+            if (i == 1 && ((annee % 4 == 0 && annee % 100 != 0) || (annee % 400 == 0))) {
+                nbJours += 1;
+            }
+        }
+        nbJours += jour;
+
+        // Affichage
+        printf("C'est le %d%s jour de l'année !", nbJours, nbJours == 1 ? "er" : "ème");
+
+        return 0;
+    }
+    ```
 
 ## Exercice 6
 
@@ -401,8 +467,185 @@ Deuxième tableau [3] : 5, 6, 7
 Tableau fusionné [7] : 1, 2, 3, 4, 5, 6, 7
 ```
 
-Déplacer le remplissage et la fusion dans des fonctions.
+??? danger "Aller plus loin"
+
+    Déplacer le remplissage et la fusion dans des fonctions.
 
 ??? success "Solution"
     
-    ![Minute papillon !](../images/meme/waiting-alice.gif)
+    Version longue et répétitive :
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    #define TAILLE1 5
+    #define TAILLE2 6
+
+    int main() {
+
+        system("chcp 65001");
+        system("cls");
+
+        int tab1[TAILLE1], tab2[TAILLE2], tab3[TAILLE1 + TAILLE2], i, compteur = 1;
+
+        // Remplissage du 1er tableau
+        for (i = 0; i < TAILLE1; i++, compteur++) {
+            tab1[i] = compteur;
+        }
+
+        // Remplissage du 2ème tableau
+        for (i = 0; i < TAILLE2; i++, compteur++) {
+            tab2[i] = compteur;
+        }
+
+        // Remplissage du 3ème tableau à partir du 1er et du 2ème
+        for (i = 0; i < TAILLE1 + TAILLE2; i++) {
+            if (i < TAILLE1) {
+                tab3[i] = tab1[i];
+            }
+            else {
+                tab3[i] = tab2[i - TAILLE1];
+            }
+        }
+
+        // Affichage
+        printf("Premier tableau [%d] : [ ", TAILLE1);
+        for (int i = 0; i < TAILLE1; i++) {
+            if (i != 0) {
+                printf(", ");
+            }
+            printf("%d", tab1[i]);
+        }
+        printf(" ]");
+        
+        printf("\nDeuxième tableau [%d] : [ ", TAILLE2);
+        for (int i = 0; i < TAILLE2; i++) {
+            if (i != 0) {
+                printf(", ");
+            }
+            printf("%d", tab2[i]);
+        }
+        printf(" ]");
+        
+        printf("\nTableau fusionné [%d] : [ ", TAILLE1 + TAILLE2);
+        for (int i = 0; i < TAILLE1 + TAILLE2; i++) {
+            if (i != 0) {
+                printf(", ");
+            }
+            printf("%d", tab3[i]);
+        }
+        printf(" ]");
+
+        return 0;
+    }
+    ```
+
+    Version courte :
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    #define TAILLE1 5
+    #define TAILLE2 6
+
+    void initializeTab(int*, int, int);
+    void mergeTab(int*, int, int*, int, int*);
+    void printfIntTab(int*, int);
+
+    int main() {
+
+        system("chcp 65001");
+        system("cls");
+
+        int tab1[TAILLE1], tab2[TAILLE2], tab3[TAILLE1 + TAILLE2];
+
+        // Remplissage des tableaux
+        initializeTab(tab1, TAILLE1, 1);
+        initializeTab(tab2, TAILLE2, TAILLE1 + 1);
+
+        // Fusion
+        mergeTab(tab1, TAILLE1, tab2, TAILLE2, tab3);
+
+        // Affichage
+        printf("Premier tableau [%d] : ", TAILLE1);
+        printfIntTab(tab1, TAILLE1);
+        printf("\nDeuxième tableau [%d] : ", TAILLE1);
+        printfIntTab(tab2, TAILLE1);
+        printf("\nTableau fusionné [%d] : ", TAILLE1 + TAILLE2);
+        printfIntTab(tab3, TAILLE1 + TAILLE2);
+        
+
+        return 0;
+    }
+
+    void initializeTab(int* a, int s, int v) {
+        for (int i = 0; i < s; i++) {
+            a[i] = v++;
+        }
+    }
+
+    void mergeTab(int* a1, int s1, int* a2, int s2, int* a3) {
+        for (int i = 0; i < s1 + s2; i++) {
+            if (i < s1) {
+                a3[i] = a1[i];
+            }
+            else {
+                a3[i] = a2[i - TAILLE1];
+            }
+        }
+    }
+
+    void printfIntTab(int* a, int s) {
+        printf("[ ");
+        for (int i = 0; i < s; i++) {
+            if (i != 0) {
+                printf(", ");
+            }
+            printf("%d", a[i]);
+        }
+        printf(" ]");
+    }
+    ```
+
+## Exercice 7
+
+!!! danger "📝 A faire sur papier."
+
+Soit le programme suivant :
+
+```c
+#include <stdio.h>
+
+int main() {
+    int tab[6] = { 42, 8, 4, 16, 23, 15 }, temp;
+
+    for (int i = 1; i <= 6; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (tab[j] > tab[j + 1]) {
+                temp = tab[j];
+                tab[j] = tab[j + 1];
+                tab[j + 1] = temp;
+            }
+        }
+    }
+
+    // Affichage du tableau
+
+    return 0;
+}
+
+```
+
++   Donner l'état de la mémoire du programme après la première exécution de la première boucle `for`
+
++   Donner l'état de la mémoire du programme après la deuxième exécution de la première boucle `for`
+
++   Quel est le but de ce programme ?
+
++   Coder l'affichage du tableau.
+
+??? success Solution
+
+    ![Minute papillon !](../images/meme/waiting-britney.gif)
