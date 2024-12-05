@@ -20,6 +20,7 @@ nav:
       - Récursivité : bts-1/42-fonctions.md
     - 05 - Pointeurs : bts-1/50-pointeurs.md
     - 06 - Tableaux : bts-1/60-tableaux.md
+    - 07 - Chaînes de caractères : bts-1/70-strings.md
     - Maths x STI :
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
       - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md

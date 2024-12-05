@@ -438,7 +438,7 @@ Le nombre d'étages est donné par l'utilisateur.
     }
     ```
 
-## Exercice 8
+### Exercice 8
 
 Afficher les tables de multiplications de 1 à 10 sous la forme suivante :
 
