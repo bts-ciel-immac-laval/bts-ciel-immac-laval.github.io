@@ -6,7 +6,24 @@ Ecrire un programme exo_8.c qui affiche le deuxième, le quatrième et le septi�
 
 ??? success "Solution"
 
-    ![Minute paillon...](../images/meme/oups-panda.gif)
+    ```c
+    #include <stdio.h>
+    #include <string.h>
+
+    int main() {
+        char input[11] = "";
+
+        printf("Saisir une chaine de 10 caracteres : ");
+
+        while (strlen(input) != 10) {
+            gets(input);
+        }
+
+        printf("Caracteres  n°2 : %c, n°4 : %c et n°7 : %c\n", input[1], input[3], input[6]);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 9
 
@@ -15,6 +32,12 @@ Ecrire un programme exo_9.c qui :
 1.  d'abord, crée une chaîne de caractères (20 caractères maximum),
 
 2.  puis, y stocke la saisie de l'utilisateur lue caractère par caractère jusqu'à ce que la chaîne soit remplie,
+
+    ??? warning "Oh oh... 😣"
+
+        Des difficultés à lire successivement des caractères ?
+
+        Qu'est-ce qu'on a dit **en cours** sur `scanf` et sa mémoire tampon (buffer) ?
 
 3.  ensuite, affiche la chaîne,
 
