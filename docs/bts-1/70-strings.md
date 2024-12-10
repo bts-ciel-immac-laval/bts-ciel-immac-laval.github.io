@@ -47,7 +47,48 @@ Ecrire un programme exo_9.c qui :
 
 ??? success "Solution"
 
-    ![Minute papillon...](../images/meme/waiting-kid.gif) 
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        
+        char string[21] = "", temp;
+
+        system("chcp 65001");
+        system("cls");
+
+        puts("Saisir 20 caractères :");
+        for (int i = 0; i < 20; i++) {
+            printf("#%02d : ", i + 1);
+            
+            // Lecture caractère par caractère
+            scanf("%c", string + i);
+            // 💡 Pour se débarasser du '\n' qui reste dans le buffer de scanf !
+            scanf("%c", &temp); 
+
+            // Autre solution :
+            // char input[2];
+            // gets(input);
+            // sscanf(input, "%c", string + i);
+        }
+
+        // On n'oublie pas de mettre un \0 à la fin
+        string[20] = '\0';
+
+        // Affichage dans l'ordre
+        printf("\nChaîne saisie : %s\n", string);
+
+        // Affichage dans l'ordre inverse
+        printf("\nChaîne saisie en ordre inverse : ");
+        for (int i = 19; i >= 0; i--) {
+            printf("%c", string[i]);
+        }
+        printf("\n");
+
+        return 0;
+    }
+    ```
 
 ## Exercice 10
 
