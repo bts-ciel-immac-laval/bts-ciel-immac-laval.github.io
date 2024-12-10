@@ -1,5 +1,7 @@
 # Les chaînes de caractères
 
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_09_tableaux_2.pdf" type="application/pdf"></object>
+
 ## Exercice 8
 
 Ecrire un programme exo_8.c qui affiche le deuxième, le quatrième et le septième caractère d'une chaîne saisie au clavier (10 caractères maximum).
@@ -45,7 +47,7 @@ Ecrire un programme exo_9.c qui :
 
 ??? success "Solution"
 
-    ![Minute paillon...](../images/meme/waiting-kid.gif) 
+    ![Minute papillon...](../images/meme/waiting-kid.gif) 
 
 ## Exercice 10
 
@@ -53,12 +55,12 @@ Ecrire un programme exo_10.c qui affiche le nombre de fois où le caractère 'a'
 
 ??? success "Solution"
 
-    ![Minute paillon...](../images/meme/waiting-barney.gif)
+    ![Minute papillon...](../images/meme/waiting-barney.gif)
     
 
 ## Exercice 11
 
-Reprendre l'exercice 11 dans un nouveau programme exo_10.c :
+Reprendre l'exercice 10 dans un nouveau programme exo_11.c :
 
 1. En rendant le **caractère** et la **chaîne** saisissables par l'utilisateur.
 
@@ -66,4 +68,5 @@ Reprendre l'exercice 11 dans un nouveau programme exo_10.c :
 
 ??? success "Solution"
 
-    ![Minute paillon...](../images/meme/oups-kristen.gif)
+    ![Minute papillon...](../images/meme/oups-kristen.gif)
+
