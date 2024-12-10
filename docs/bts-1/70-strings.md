@@ -96,7 +96,30 @@ Ecrire un programme exo_10.c qui affiche le nombre de fois où le caractère 'a'
 
 ??? success "Solution"
 
-    ![Minute papillon...](../images/meme/waiting-barney.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main() {
+        
+        char string[] = "It's gonna be legend... wait for it... dary!";
+        int count = 0;
+
+        system("chcp 65001");
+        system("cls");
+
+        for (int i = 0; i < strlen(string); i++) {
+            if (string[i] == 'a') {
+                count++;
+            }
+        }
+
+        printf("Il y a %d 'a' dans %s", count, string);
+
+        return 0;
+    }
+    ```
     
 
 ## Exercice 11
@@ -109,5 +132,61 @@ Reprendre l'exercice 10 dans un nouveau programme exo_11.c :
 
 ??? success "Solution"
 
-    ![Minute papillon...](../images/meme/oups-kristen.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #include <ctype.h>
 
+    int main() {
+        
+        char string[100] = "", letter = 0;
+        int count = 0;
+
+        system("chcp 65001");
+        system("cls");
+
+        // Saisie
+        puts("Saisir une phrase :");
+        gets(string);
+        while (!(letter >= 'a' && letter <= 'z' || letter >= 'A' && letter <= 'Z')) {
+            printf("Caractère recherché : ");
+            scanf("%c", &letter);
+        }
+        
+        // On s'assure d'avoir une minuscule
+        letter = tolower(letter);
+        
+        // Comptage
+        for (int i = 0; i < strlen(string); i++) {
+            if (string[i] == letter || string[i] == letter - 32) {
+                count++;
+            }
+        }
+
+        printf("Il y a %d '%c' dans %s", count, letter, string);
+
+        return 0;
+    }
+    ```
+
+## Exercice 12 - Chiffrage de César
+
+Proposer un programme permettant de chiffrer et déchiffrer un message grâce au [chiffrage de César](https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage){target="_blank"}.
+
+```
+> cryptage.exe
+Message : Salut, comment allez-vous ?
+Décalage : 1
+Résultat : 1tbmvudpnnfoubmmfawpvt
+```
+
+!!! warning "La permutation est cyclique !"
+
+    ex : `'z' + 2 = 'b'` !
+
+```
+> decryptage.exe
+Message : 1tbmvudpnnfoubmmfawpvt
+Résultat : salutcommentallezvous
+```
