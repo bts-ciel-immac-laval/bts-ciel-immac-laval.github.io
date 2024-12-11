@@ -82,13 +82,15 @@ Les premiers exercices utiliseront le fichier suivant : [Défibrillateurs en May
 
 4.  Créer un nouvel onglet "Localisation".
 
-    Quel est le DAE le plus proche des coordonnées ci-après (Souvenir de BTS 1 ⏰) ?
+    Quel est le DAE le plus proche des coordonnées ci-après ?
 
     +   48.07430141009146, -0.7680929238111576
 
         +   le 21/11/2024 à 11:00
 
         +   le 24/11/2024 à 13:00
+
+    + Le plus proche de chez vous si vous habitez en Mayenne, sinon de la chambre d'hôtes Fleurs des Champs à Saint-Germain-le-Fouilloux.
 
     ??? question "Calculer la distance entre deux points du globe 🌍 à partir de leurs coordonnées GPS 🛰️"
 
@@ -105,3 +107,11 @@ Les premiers exercices utiliseront le fichier suivant : [Défibrillateurs en May
         +   Dans cette formule, les latitudes et longitudes sont exprimées en **radians**. 
         
         +   6371 correspond au rayon de la terre en km.
+
+### 📈 En utilisant un tableau croisé dynamique
+
+Excel propose une fonctionalité permettant de croiser les données d'un tableau : le [tableau croisé dynamique](https://excel-pratique.com/fr/formation-excel/tableau-croise-dynamique).
+
+En utilisant les tableaux croisés dynamiques et le bon jeu de données de l'[INSEE](https://catalogue-donnees.insee.fr/fr/catalogue/recherche), trouver la probabilité qu'une personne, née la même année que vous, porte le même prénom que vous.
+
+De même, conseiller de jeunes parents qui souhaitent s'installer en [Mayenne](https://data.lamayenne.fr/explore/) sur le canton où ils auront le plus de chance d'avoir une place chez un⸱e assistant⸱e maternel⸱le.
