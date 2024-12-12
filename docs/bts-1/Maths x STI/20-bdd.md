@@ -18,11 +18,11 @@ Dans DBeaver :
 
 2.  Créer une nouvelle base de données **factures** en répétant les étapes de la section 3.3 du support.
 
-![import](../../images/cours/bts-1/maths-sti-2/Capture%20d'écran%202024-12-12%20130852.png)
+    ![import](../../images/cours/bts-1/maths-sti-2/Capture%20d'écran%202024-12-12%20130852.png)
 
 3.  Importer la table **produit** en en cliquant-droit sur la base de données **factures** puis en choisissant l'action **Outils > Restore database**.
 
-![import](../../images/cours/bts-1/maths-sti-2/Capture%20d'écran%202024-12-12%20131524.png)
+    ![import](../../images/cours/bts-1/maths-sti-2/Capture%20d'écran%202024-12-12%20131524.png)
 
 4.  Dans la fenêtre **Database Import**, charger le fichier [dump-factures-produits.sql](../../files/bts1/dump-factures-produits.sql) dans le champ **Input File**
 
