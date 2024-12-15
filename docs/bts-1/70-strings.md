@@ -190,3 +190,32 @@ Résultat : 1tbmvudpnnfoubmmfawpvt
 Message : 1tbmvudpnnfoubmmfawpvt
 Résultat : salutcommentallezvous
 ```
+![cesar](../images/cours/bts-1/70/cesar.jpg)
+
+!!! abstract "Avez-vous pensé à tout ?"
+
+    + [x] Fonction de nettoyage du texte :
+
+        + [ ] Supprime les espaces
+        
+        + [ ] Supprime les caractères non alphabétiques
+
+        + [ ] Remplace les caractères accentués par leur équivalent non-accentué
+
+        + [ ] Transforme les caractères alphabétiques en minuscules
+
+    + [x] Fonction de chiffrage :
+
+        + [ ] Permute les caractères de manière cyclique
+
+    + [x] Fonction de déchiffrage :
+
+        + [ ] Permute les caractères de manière cyclique
+
+    + [ ] Aller plus loin
+
+        + [ ] Offusquer la clé dans le message de manière efficace
+
+        + [ ] On peut passer le message et le décalage via la ligne de commande
+        
+        + [ ] Proposer un chiffrage par décalage plus robuste à une attaque brute force
