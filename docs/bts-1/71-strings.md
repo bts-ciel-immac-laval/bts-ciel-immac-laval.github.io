@@ -27,9 +27,9 @@ Pour chaque géolocalisation, les informations suivantes devront être mentionn�
 
 Voici la liste des points à éclaircir avant de coder :
 
-+ [ ] Lire un fichier CSV en C 📄
++ [X] Lire un fichier CSV en C 📄
 
-    + [ ] Lire un fichier texte ligne par ligne
+    + [X] Lire un fichier texte ligne par ligne
 
     + [ ] Séparer les données de chaque ligne suivant un séparateur (token)
 
@@ -62,6 +62,47 @@ Voici la liste des points à éclaircir avant de coder :
         +   6371 correspond au rayon de la terre en km.
 
 + [ ] Ecrire un fichier CSV en C ✏️
+
+## Conception incrémentale
+
+### Lire un fichier ligne par ligne
+
+![Algorigramme](../images/cours/bts-1/71/flowchart_01.png)
+
+??? success "Code en C"
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        
+        char cheminFichierLog[] = "gruber_20241126.log",
+            ligne[100];
+
+        FILE * fichierLog = NULL;
+        
+        // Ouverture du fichier
+        fichierLog = fopen(cheminFichierLog, "r");
+
+        // Vérification
+        if (fichierLog == NULL) {
+            puts("Erreur lors de l'ouverture en lecture du fichier de log");
+            return -1;
+        }
+        
+        // Lecture ligne à ligne
+        while (fgets(ligne, 100, fichierLog) != NULL) {
+            printf(ligne);
+        }
+
+        // Fermeture du fichier
+        fclose(fichierLog);
+
+        return 0;
+    }
+    ```
+
+## Programme final
 
 ??? success "Solution"
 
