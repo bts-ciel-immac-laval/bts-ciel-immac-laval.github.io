@@ -7,8 +7,11 @@ h1#bts-ciel-immac-2024-25 {
 .md-tabs {
     background-color: #e9af00;
 }
-.md-typeset .grid {
+.md-typeset .grid-4 {
     grid-template-columns: repeat(auto-fit,minmax(min(100%,8rem),1fr))
+}
+.md-typeset .grid-3 {
+    grid-template-columns: repeat(auto-fit,minmax(min(100%,10rem),1fr))
 }
 .md-typeset details, .md-typeset .admonition {
     border: 0;
