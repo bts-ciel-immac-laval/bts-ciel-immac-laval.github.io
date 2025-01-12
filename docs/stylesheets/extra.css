@@ -1,6 +1,19 @@
 h1#bts-ciel-immac-2024-25 {
     display:none;
 }
+h3::before {
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 21a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2zm1-8h8.5L11 16.5l1.42 1.42L18.34 12l-5.92-5.92L11 7.5l3.5 3.5H6z"></path></svg>');
+    display: block;
+    width: 1em;
+    margin-right:0.4em;
+    padding-top: 0.25em;
+}
+h3 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
 .md-header__topic .md-ellipsis {
     font-weight: 700;
 }

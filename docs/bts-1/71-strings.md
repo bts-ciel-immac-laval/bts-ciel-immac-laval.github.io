@@ -63,9 +63,11 @@ Voici la liste des points à éclaircir avant de coder :
 
 + [ ] Ecrire un fichier CSV en C ✏️
 
-## Conception incrémentale
+## Développement incrémental
 
 ### Lire un fichier ligne par ligne
+
+Coder le programme suivant :
 
 ![Algorigramme](../images/cours/bts-1/71/flowchart_01.png)
 
@@ -101,6 +103,40 @@ Voici la liste des points à éclaircir avant de coder :
         return 0;
     }
     ```
+
+:octicons-arrow-right-16: Transformer ce programme en fonction.
+
+### Vérifier le checksum d'une trame NMEA
+
+Créer un programme qui isole, calcule et vérifie le checksum de la trame NMEA suivante :
+
+```
+$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
+```
+
+??? info "Indice 1"
+
+    S'inspirer des exemples fournis sur cette [page](https://rietman.wordpress.com/2008/09/25/how-to-calculate-the-nmea-checksum/).
+
+:octicons-arrow-right-16: Transformer ce programme en fonction et tester avec d'autres trames.
+
+### Séparer les données de chaque ligne suivant un séparateur (token)
+
+Créer un programme qui lit la ligne suivante, extrait chacune des valeurs dans une chaine de caractères et les affiche.
+
+```
+$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
+```
+
+??? info "Indice 1"
+
+    Utiliser un tableau de chaînes de caractères
+
+??? info "Indice 2"
+
+    Utiliser la fonction [strtok()](https://koor.fr/C/cstring/strtok.wp)
+
+:octicons-arrow-right-16: Transformer ce programme en fonction et tester avec d'autres trames.
 
 ## Programme final
 
