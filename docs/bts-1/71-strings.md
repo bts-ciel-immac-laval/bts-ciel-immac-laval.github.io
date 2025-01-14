@@ -104,7 +104,49 @@ Coder le programme suivant :
     }
     ```
 
-:octicons-arrow-right-16: Transformer ce programme en fonction.
+:octicons-arrow-right-16: Transformer ce programme en fonction et la stocker dans une bibliothèque `experts.h`
+
+??? success "Code en C"
+
+    :octicons-file-16: `experts.h`
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    void lireFichier(char *);
+
+    void lireFichier(char * cheminFichier) {
+        char ligne[100];
+
+        FILE * fichier = NULL;
+        
+        fichier = fopen(cheminFichier, "r");
+        if (fichier == NULL) {
+            puts("Erreur lors de l'ouverture en lecture du fichier de log");
+            exit(-1);
+        }
+        
+        while (fgets(ligne, 100, fichier) != NULL) {
+            printf(ligne);
+        }
+        
+        fclose(fichier);
+    }
+    ```
+
+    :octicons-file-16: `experts.c`
+
+    ```c
+    #include "experts.h"
+
+    int main() {
+        
+        lireFichier("gruber_20241126.log");
+
+        return 0;
+    }
+    ```
 
 ### Vérifier le checksum d'une trame NMEA
 
@@ -118,7 +160,7 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
 
     S'inspirer des exemples fournis sur cette [page](https://rietman.wordpress.com/2008/09/25/how-to-calculate-the-nmea-checksum/).
 
-:octicons-arrow-right-16: Transformer ce programme en fonction et tester avec d'autres trames.
+:octicons-arrow-right-16: Transformer ce programme en fonction, la stocker dans une bibliothèque `experts.h` et tester avec d'autres trames.
 
 ### Séparer les données de chaque ligne suivant un séparateur (token)
 
@@ -136,7 +178,7 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
 
     Utiliser la fonction [strtok()](https://koor.fr/C/cstring/strtok.wp)
 
-:octicons-arrow-right-16: Transformer ce programme en fonction et tester avec d'autres trames.
+:octicons-arrow-right-16: Transformer ce programme en fonction, la stocker dans une bibliothèque `experts.h` et tester avec d'autres trames.
 
 ## Programme final
 
