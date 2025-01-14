@@ -160,7 +160,85 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
 
     S'inspirer des exemples fournis sur cette [page](https://rietman.wordpress.com/2008/09/25/how-to-calculate-the-nmea-checksum/).
 
+??? success "Code en C"
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+
+        char trame[] = "$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E";
+        char checksumCalcule = 0, checksumLu;
+        int i;
+        
+        // Calcul du checksum
+        for (i = 1; trame[i] != '*'; i++) {
+            checksumCalcule ^= trame[i];    
+        }
+
+        // Lecture du checksum
+        sscanf(trame + i + 1, "%x", &checksumLu);
+
+        // Comparaison
+        if (checksumCalcule == checksumLu) {
+            puts("OK !");
+        }
+        else {
+            puts("KO...");
+        }
+        
+        return 0;
+    }
+    ```
+
 :octicons-arrow-right-16: Transformer ce programme en fonction, la stocker dans une bibliothèque `experts.h` et tester avec d'autres trames.
+
+??? success "Code en C"
+
+    :octicons-file-16: `experts.h`
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    // [...]
+    int verifierChecksumNMEA(char *);
+
+    // [...]
+    int verifierChecksumNMEA(char * trame) {
+        char checksumCalcule = 0, checksumLu;
+        int i;
+
+        // Calcul du checksum
+        for (i = 1; trame[i] != '*'; i++) {
+            checksumCalcule ^= trame[i];
+        }
+
+        // Lecture du checksum
+        sscanf(trame + i + 1, "%x", &checksumLu);
+
+        // Comparaison
+        return checksumCalcule == checksumLu;
+    }
+    ```
+
+    :octicons-file-16: `experts.c`
+
+    ```c
+    #include "experts.h"
+
+    int main() {
+
+        if (verifierChecksumNMEA("$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E")) {
+            puts("OK !");
+        }
+        else {
+            puts("KO...");
+        }
+        
+        return 0;
+    }
+    ```
 
 ### Séparer les données de chaque ligne suivant un séparateur (token)
 
