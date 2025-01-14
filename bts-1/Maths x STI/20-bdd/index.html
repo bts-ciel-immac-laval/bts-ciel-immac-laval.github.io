@@ -1,0 +1,1770 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://bts-ciel-immac-laval.github.io/bts-1/Maths%20x%20STI/20-bdd/">
+      
+      
+        <link rel="prev" href="../10-algorithmique/">
+      
+      
+        <link rel="next" href="../30-integrales/">
+      
+      
+      <link rel="icon" href="../../../assets/f11_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>02 - Bases de données - BTS CIEL Immac' 2024 - 25</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#02-bases-de-donnees" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../.." title="BTS CIEL Immac&#39; 2024 - 25" class="md-header__button md-logo" aria-label="BTS CIEL Immac' 2024 - 25" data-md-component="logo">
+      
+  <img src="../../../assets/f11_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BTS CIEL Immac' 2024 - 25
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02 - Bases de données
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="indigo"  aria-label="Mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="indigo"  aria-label="Mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../commun/10_gammes/" class="md-tabs__link">
+          
+  
+    
+  
+  Commun
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../10-premiers-pas-en-c/" class="md-tabs__link">
+          
+  
+    
+  
+  BTS 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bts-2/10-du-c-au-cpp/" class="md-tabs__link">
+          
+  
+    
+  
+  BTS 2
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BTS CIEL Immac&#39; 2024 - 25" class="md-nav__button md-logo" aria-label="BTS CIEL Immac' 2024 - 25" data-md-component="logo">
+      
+  <img src="../../../assets/f11_logo.png" alt="logo">
+
+    </a>
+    BTS CIEL Immac' 2024 - 25
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Commun
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Commun
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commun/10_gammes/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 3v12.5a3.5 3.5 0 0 1-3.5 3.5 3.5 3.5 0 0 1-3.5-3.5 3.5 3.5 0 0 1 3.5-3.5c.54 0 1.05.12 1.5.34V6.47L9 8.6v8.9A3.5 3.5 0 0 1 5.5 21 3.5 3.5 0 0 1 2 17.5 3.5 3.5 0 0 1 5.5 14c.54 0 1.05.12 1.5.34V6z"/></svg>
+  
+  <span class="md-ellipsis">
+    Les gammes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commun/20_stages/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 18v2h4v-2zm0-4v2h10v-2zm6 4v2h4v-2zm6-4v2h4v-2zm0 4v2h4v-2zM2 22V8l5 4V8l5 4V8l5 4 1-10h3l1 10v10z"/></svg>
+  
+  <span class="md-ellipsis">
+    Stages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commun/30_videos/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7z"/></svg>
+  
+  <span class="md-ellipsis">
+    Vidéos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commun/99_plusplus/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16.5 9-3 3 3 3H22V9M9 16.5V22h6v-5.5l-3-3M7.5 9H2v6h5.5l3-3M15 7.5V2H9v5.5l3 3z"/></svg>
+  
+  <span class="md-ellipsis">
+    Plus Plus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    BTS 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            BTS 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-premiers-pas-en-c/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    01 - Premiers pas en C
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-premiers-programmes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    02 - Premiers programmes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-boucles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    03 - Boucles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    04 - Fonctions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 - Fonctions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-fonctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage courant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../41-fonctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variables statiques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42-fonctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Récursivité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-pointeurs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    05 - Pointeurs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-tableaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    06 - Tableaux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-strings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    07 - Chaînes de caractères
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../71-strings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    08 - Les experts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Maths x STI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Maths x STI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-algorithmique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    01 - Algorithmique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    02 - Bases de données
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    02 - Bases de données
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fichiers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repartir-du-bon-pied" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repartir du bon pied
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#un-peu-dentrainement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un peu d'entraînement
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-integrales/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    03 - Intégrales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    BTS 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            BTS 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/10-du-c-au-cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    01 - Du C au C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/20-poo-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    02 - Premiers pas en POO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/30-poo-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    03 - POO level 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/40-poo-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    04 - POO ++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Qt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Qt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/90-qt-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Découverte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/90-qt-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Premier projet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/90-qt-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exercices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/90-qt-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Maths x STI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Maths x STI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/Maths%20x%20STI/10-probabilites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    01 - Probabilités
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bts-2/Maths%20x%20STI/20-excel-data-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    02 - Valorisation de la donnée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fichiers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repartir-du-bon-pied" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repartir du bon pied
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#un-peu-dentrainement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un peu d'entraînement
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="02-bases-de-donnees">02 - Bases de données</h1>
+<h2 id="support">Support</h2>
+<object class="fullScreenAble" data="../../../pdf/cours/bts1/bts1_bdd_document.pdf" type="application/pdf"></object>
+
+<h2 id="fichiers">Fichiers</h2>
+<p><a href="https://immaclaval-my.sharepoint.com/:u:/g/personal/mdomer_immac_fr/EQ-SF87oMCZJm7Wk6GYcw0cBQN8PfNyG1iY_nimPvQlnHw?e=9Qrpsb">bts1_bdd_fichiers.zip</a></p>
+<p>Mot de passe : cybersécurité-informatique-réseaux</p>
+<h2 id="repartir-du-bon-pied">Repartir du bon pied</h2>
+<p>Dans DBeaver :</p>
+<ol>
+<li>
+<p>Supprimer la base de données à remplacer en cliquant-droit sur la base de données <strong>factures</strong> puis en choisissant l'action <strong>Supprimer</strong>.</p>
+</li>
+<li>
+<p>Créer une nouvelle base de données <strong>factures</strong> en répétant les étapes de la section 3.3 du support.</p>
+<p><img alt="import" src="../../../images/cours/bts-1/maths-sti-2/Capture%20d%27%C3%A9cran%202024-12-12%20130852.png" /></p>
+</li>
+<li>
+<p>Importer la table <strong>produit</strong> en en cliquant-droit sur la base de données <strong>factures</strong> puis en choisissant l'action <strong>Outils &gt; Restore database</strong>.</p>
+<p><img alt="import" src="../../../images/cours/bts-1/maths-sti-2/Capture%20d%27%C3%A9cran%202024-12-12%20131524.png" /></p>
+</li>
+<li>
+<p>Dans la fenêtre <strong>Database Import</strong>, charger le fichier <a href="../../../files/bts1/dump-factures-produits.sql">dump-factures-produits.sql</a> dans le champ <strong>Input File</strong></p>
+</li>
+<li>
+<p>Cliquer sur <strong>Démarrage</strong>.</p>
+</li>
+<li>
+<p>Une fois l'import terminé, fermer la fenêtre d'import et reprendre à partir de la section 3.7 du support.</p>
+</li>
+</ol>
+<h2 id="un-peu-dentrainement">Un peu d'entraînement</h2>
+<p>Pour cet entraînement, nous utiliserons la base de données <strong>MONDIAL</strong>. </p>
+<p>Il s'agit d'une base de données rélationnelle qui compile un certain nombre de données géographiques et qui est gérée par l'université de Göttingen (dernière mise à jour en 2015).</p>
+<p>Il est possible d'interagir avec elle en utilisant un formulaire que l'on trouve à l'adresse : <a href="http://www.semwebtech.org/sqlfrontend/">http://www.semwebtech.org/sqlfrontend/</a></p>
+<ol>
+<li>
+<p>Afficher la liste des tables de cette BDR.</p>
+<p>Saisir la requête : </p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">user_tables</span>
+</span></code></pre></div>
+<p>puis cliquer sur <strong>send</strong>.</p>
+<p>Vous devez obtenir la liste des 47 noms des tables présentes dans cette base de données.</p>
+</li>
+<li>
+<p>Description de la table <code>COUNTRY</code>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Envoyer la requête suivante puis interpréter le résultat.</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">DESC</span><span class="w"> </span><span class="n">COUNTRY</span>
+</span></code></pre></div>
+<p>L'attribut <code>NULLABLE</code> affiché (<code>Yes</code> ou <code>No</code>) permet de définir si, lors de l'insertion, l'information est obligatoire ou pas.</p>
+</li>
+<li>
+<p>Exploration d'une table.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Avant d'envoyer les requêtes suivantes, les <strong>interpréter</strong> (= les traduire en français)</p>
+</div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">capital</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">capital</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>On peut ajouter des <strong>filtres</strong> pour affiner les critères de sélection à l'aide d'une clause <code>WHERE</code> et combiner ces filtres à l'aide des opérateurs logiques <code>AND</code> et <code>OR</code>. </p>
+<p>Exemple : </p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cm">/* Afficher la liste des pays ayant plus de 60 millions d&#39;habitants */</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">population</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">population</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">60000000</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="cm">/* Afficher la liste des pays ayant plus de 60 millions d&#39;habitants ET dont le nom commence par un E */</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">population</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">population</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">60000000</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;E%&#39;</span>
+</span></code></pre></div>
+<p>Liste d'opérateurs de comparaisons utilisables :</p>
+<ul>
+<li><code>=</code>  (égal)</li>
+<li><code>&lt;&gt;</code> (différent de)</li>
+<li><code>&gt;</code> (supérieur)   <code>&lt;</code> (inférieur)  <code>&gt;=</code> (supérieur ou égal)    <code>&lt;=</code> (inférieur ou égal)</li>
+<li><code>IS NULL</code> (n'a pas de valeur)   <code>IS NOT NULL</code></li>
+<li><code>LIKE '%'</code> (comparaison avec un modèle)</li>
+<li><code>IN (a, b...)</code> (dans une liste)</li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher la liste des pays ayant moins de 10 habitants au km².</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher la liste des villes de la zone tropicale ayant plus de 1 million d'habitants.</p>
+</div>
+</li>
+<li>
+<p>On peut <strong>trier</strong> les résultats à l'aide du mot-clés <code>ORDER BY</code>.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cm">/* Afficher les pays par ordre alphabétique */</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span>
+</span></code></pre></div>
+<p><code>ORDER BY</code> doit toujours être en fin de requête.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher la liste des pays par ordre décroissant de population.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher la liste des villes française du nord au sud.</p>
+</div>
+</li>
+<li>
+<p>Un certains nombres de fonctions permettent d'effectuer des transformations sur les valeurs de chaque ligne.</p>
+<p>En voici une liste non-exhaustive :</p>
+<table>
+<thead>
+<tr>
+<th>Fonctions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UPPER(string)</code></td>
+<td>Renvoie la chaîne de caractères en paramètre en majuscules</td>
+</tr>
+<tr>
+<td><code>ROUND(reel [,precision])</code></td>
+<td>Renvoie le réel en paramètre arrondi à la précision demandée sinon à l'entier</td>
+</tr>
+<tr>
+<td><code>NOW()</code></td>
+<td>Renvoie la date et l'heure du système</td>
+</tr>
+<tr>
+<td><code>TIMEDIFF(date1, date2)</code></td>
+<td>Renvoie le nombre d'heure entre les deux dates</td>
+</tr>
+<tr>
+<td><code>COALESCE(valeur, valeur...)</code></td>
+<td>Renvoie la première valeur non nulle</td>
+</tr>
+</tbody>
+</table>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cm">/* Afficher la liste des religions en France et la part de la population qui s&#39;en revendique arrondie à l&#39;entier */</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">percentage</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pourcentage</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">religion</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;F&#39;</span>
+</span></code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher les noms des villes en majuscules et leur population, si il n'y a pas de valeur, afficher -1</p>
+</div>
+<p>Des fonctions d'<code>aggrégations</code> permettent de réaliser des opérations sur l'ensemble des lignes du résultat de la requête.</p>
+<p>En voici une liste non-exhaustive :</p>
+<table>
+<thead>
+<tr>
+<th>Fonctions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AVG()</code></td>
+<td>Renvoie la moyenne sur un ensemble d'enregistrement</td>
+</tr>
+<tr>
+<td><code>COUNT()</code></td>
+<td>Renvoie le nombre de lignes renvoyées</td>
+</tr>
+<tr>
+<td><code>MAX()</code></td>
+<td>Renvoie la valeur maximale</td>
+</tr>
+<tr>
+<td><code>MIN()</code></td>
+<td>Renvoie la valeur minimale</td>
+</tr>
+<tr>
+<td><code>SUM()</code></td>
+<td>Renvoie la somme</td>
+</tr>
+</tbody>
+</table>
+<p>Une fonction d'aggrégation s'utilise soit seule pour récupérer une valeur à l'échelle de la table :</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cm">/* Afficher la population de la ville la plus peuplée */</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">population</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">city</span>
+</span></code></pre></div>
+<p>soit accompagné d'un <code>GROUP BY</code> pour être calculée sur un sous-ensemble de résultats :</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/* Afficher la population de la ville la plus peuplée de chaque pays */</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">country</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">population</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">country</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="cm">/* Afficher le nombre de villes de France présentes dans la base */</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">country</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;F&#39;</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">country</span>
+</span></code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher la population de la ville la plus peuplée de France</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Afficher le nombre de pays dans le monde</p>
+</div>
+</li>
+<li>
+<p>Jointures</p>
+<p>L'intérêt d'une base de données réside en particulier dans la possibilité de croiser des informations présentes dans plusieurs tables par l'intermédiaire d'une jointure.</p>
+<p>Dans la base de données que nous utilisons, on trouve une table nommée encompasses (traduction <img alt="🇬🇧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1ec-1f1e7.svg" title=":flag_gb:" /> : englobe).</p>
+<div class="admonition abstract">
+<p class="admonition-title">Saisir la requête qui permet d'afficher les attributs de la table encompasses.</p>
+</div>
+<p>Le premier attribut d'un enregistrement de cette table est le code du pays, le deuxième le nom du continent et le dernier la portion du pays présente sur ce continent. </p>
+<p>La clé primaire de cette table est le couple (Country ; Continent) et la valeur du troisième argument ne peut pas être nulle.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Cette table encompasses possède un attribut en commun avec la première table country. Indiquer lequel.</p>
+</div>
+<p>Cet attribut commun va nous permettre de croiser les informations de ces deux tables.</p>
+<p>Le croisement de celles-ci revient à créer une table virtuelle contenant les informations des deux tables et qui possèdera donc ici 9 attributs :</p>
+<p><img alt="jointure" src="../../../images/cours/bts-1/maths-sti-2/jointure.png" /></p>
+<p>Le principe d'une requête de jointure est : </p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">expression_logique</span>
+</span></code></pre></div>
+<p>Par exemple, la requête suivante affiche tous les attributs de la jointure des tables country et encompasses dont une fraction au moins est en Europe.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">country</span><span class="w"> </span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">encompasses</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">country</span><span class="p">.</span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encompasses</span><span class="p">.</span><span class="n">country</span><span class="w"> </span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">encompasses</span><span class="p">.</span><span class="n">continent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Europe&#39;</span>
+</span></code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Exécuter cette requête.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Modifier cette requête pour n'afficher que la liste des pays européens.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Modifier la requête pour afficher la liste des pays à cheval entre l'Europe et un autre continent.</p>
+</div>
+</li>
+<li>
+<p>Exercices</p>
+<div class="admonition abstract">
+<p class="admonition-title">Rédiger une requête SQL pour obtenir le nom des pays qui sont à cheval sur plusieurs continents.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Rédiger une requête SQL pour obtenir les pays du contient américain qui comptent moins de 10 habitants par km²</p>
+</div>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - 2025 Mathieu DOMER
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+
+
+  
+
+
+<h4>Consentement aux cookies</h4>
+<p>Nous utilisons des cookies pour reconnaître vos visites répétées et vos préférences, ainsi que pour mesurer l'efficacité de notre site et pour savoir si les utilisateurs trouvent ce qu'ils recherchent. Avec votre consentement, vous nous aidez à améliorer notre application.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accepter</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Paramétrer vos choix</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "content.code.copy", "content.code.select", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../../javascripts/main.js"></script>
+      
+    
+  </body>
+</html>

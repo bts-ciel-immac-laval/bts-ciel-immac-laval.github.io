@@ -1,0 +1,131 @@
+h1#bts-ciel-immac-2024-25 {
+    display:none;
+}
+h3::before {
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 21a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2zm1-8h8.5L11 16.5l1.42 1.42L18.34 12l-5.92-5.92L11 7.5l3.5 3.5H6z"></path></svg>');
+    display: block;
+    width: 1em;
+    margin-right:0.4em;
+    padding-top: 0.25em;
+}
+h3 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+.md-header__topic .md-ellipsis {
+    font-weight: 700;
+}
+.md-tabs {
+    background-color: #e9af00;
+}
+.md-typeset .grid-4 {
+    grid-template-columns: repeat(auto-fit,minmax(min(100%,8rem),1fr))
+}
+.md-typeset .grid-3 {
+    grid-template-columns: repeat(auto-fit,minmax(min(100%,10rem),1fr))
+}
+.md-typeset details, .md-typeset .admonition {
+    border: 0;
+}
+.bts-welcome {
+    display: block;
+    margin: 0 auto;
+}
+.bts-green {
+    color: #8bc34b;
+}
+.bts-purple {
+    color: #ab47bd;
+}
+.bts-amber {
+    color: #ffc105;
+}
+.bts-blue {
+    color: #4287ff;
+}
+.md-typeset h1, .md-typeset h2 {
+    font-weight: bold;
+}
+.md-typeset object {
+    width: 100%;
+    min-height: 400px;
+}
+/* Admonition exo-easy */
+:root {
+    --md-admonition-icon--exo-easy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M19.5 5.5v13h-2v-13zm-7 5v8h-2v-8zM21 4h-5v16h5zm-7 5H9v11h5zm-7 5H2v6h5z'/%3E%3C/svg%3E");
+}
+.md-typeset .admonition.exo-easy,
+.md-typeset details.exo-easy {
+border-color: rgb(43, 155, 70);
+}
+.md-typeset .exo-easy > .admonition-title,
+.md-typeset .exo-easy > summary {
+background-color: transparent;
+}
+.md-typeset .exo-easy > .admonition-title::before,
+.md-typeset .exo-easy > summary::before {
+background-color: rgb(43, 155, 70);
+-webkit-mask-image: var(--md-admonition-icon--exo-easy);
+        mask-image: var(--md-admonition-icon--exo-easy);
+}
+/* Admonition exo-easy */
+/* Admonition exo-medium */
+:root {
+    --md-admonition-icon--exo-medium: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M19.5 5.5v13h-2v-13zM21 4h-5v16h5zm-7 5H9v11h5zm-7 5H2v6h5z'/%3E%3C/svg%3E");
+}
+.md-typeset .admonition.exo-medium,
+.md-typeset details.exo-medium {
+border-color: rgb(236, 165, 12);
+}
+.md-typeset .exo-medium > .admonition-title,
+.md-typeset .exo-medium > summary {
+background-color: transparent;
+}
+.md-typeset .exo-medium > .admonition-title::before,
+.md-typeset .exo-medium > summary::before {
+background-color: rgb(236, 165, 12);
+-webkit-mask-image: var(--md-admonition-icon--exo-medium);
+        mask-image: var(--md-admonition-icon--exo-medium);
+}
+/* Admonition exo-medium */
+/* Admonition exo-hard */
+:root {
+    --md-admonition-icon--exo-hard: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M21 4h-5v16h5zm-7 5H9v11h5zm-7 5H2v6h5z'/%3E%3C/svg%3E");
+}
+.md-typeset .admonition.exo-hard,
+.md-typeset details.exo-hard {
+border-color: rgb(193, 38, 38);
+}
+.md-typeset .exo-hard > .admonition-title,
+.md-typeset .exo-hard > summary {
+background-color: transparent;
+}
+.md-typeset .exo-hard > .admonition-title::before,
+.md-typeset .exo-hard > summary::before {
+background-color: rgb(193, 38, 38);
+-webkit-mask-image: var(--md-admonition-icon--exo-hard);
+        mask-image: var(--md-admonition-icon--exo-hard);
+}
+/* Admonition exo-hard */
+
+.bts-fullscreen-container {
+    position: relative;
+}
+.bts-fullscreen-button {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    bottom: 1rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    background-color: rgba(171, 71, 189, 0.321);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z" /></svg>');
+    border-radius: 0.5rem;
+}
+.bts-fullscreen-button:hover {
+    border: 1px solid #ab47bd;
+}
