@@ -256,6 +256,34 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
 
     Utiliser la fonction [strtok()](https://koor.fr/C/cstring/strtok.wp)
 
+??? success "Code en C"
+
+    Solution avec un tableau de tableau qui récupère toutes les valeurs :
+
+    ```c
+    #include <stdio.h>
+    #include <string.h>
+
+    int main() {
+
+        char ligne[] = "$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E";
+        char valeurs[12][13] = { "" };
+        int i = 0;
+
+        char * valeur = strtok (ligne, ",");
+        while (valeur != NULL) {
+            strcpy(valeurs[i++], valeur);
+            valeur = strtok (NULL, ",");
+        }
+
+        for (int i = 0; i < 12; i++) {
+            puts(valeurs[i]);
+        }
+        
+        return 0;
+    }
+    ```
+
 :octicons-arrow-right-16: Transformer ce programme en fonction, la stocker dans une bibliothèque `experts.h` et tester avec d'autres trames.
 
 ## Programme final
