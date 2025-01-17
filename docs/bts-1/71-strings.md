@@ -321,13 +321,75 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
 
 :octicons-arrow-right-16: Transformer ce programme en fonction, la stocker dans une bibliothèque `experts.h` et tester avec d'autres trames.
 
+??? success "Code en C"
+
+    :octicons-file-16: `experts.h`
+
+    ```c
+    // [...]
+    #include <string.h>
+
+    // [...]
+    void extraireValeurs(char *, char *, char *, char *, char *, char*);
+
+    // [...]
+    void extraireValeurs(char * ligne, char * heure, char * latitude, char * ns, char * longitude, char* we) {
+        char * valeur = NULL;
+        
+        valeur = strtok(ligne, ",");
+        for (int i = 1; valeur != NULL; i++) {
+            switch(i) {
+                case 2 : strcpy(heure, valeur);     break;
+                case 3 : strcpy(latitude, valeur);  break;
+                case 4 : strcpy(ns, valeur);        break;
+                case 5 : strcpy(longitude, valeur); break;
+                case 6 : strcpy(we, valeur);        break;
+            }
+            valeur = strtok(NULL, ",");
+        }
+    }
+    ```
+
+    :octicons-file-16: `experts.c`
+
+    ```c
+    #include "experts.h"
+
+    int main() {
+
+        char trame[] = "$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E";
+        char heureTxt[11], latitudeTxt[12], longitudeTxt[13], ns[2], we[2];
+        
+        extraireValeurs(trame, heureTxt, latitudeTxt, ns, longitudeTxt, we);
+
+        puts(heureTxt);
+        puts(latitudeTxt);
+        puts(ns);
+        puts(longitudeTxt);
+        puts(we);
+        
+        return 0;
+    }
+    ```
+
+
 ### Convertir les données lues
 
 Créer une fonction pour chacune des conversions suivantes :
 
 +   Passer d'une heure au format `hhmmss.sss` au format `hh:mm:ss`
 
+    ??? success "Code en C"
+
+        ```c
+        ```
+
 +   Passer d'une coordonnée au format DDDMM.MMMMMM + N/S ou E/W au format (-)DDD.DDDDDD
+
+    ??? success "Code en C"
+
+        ```c
+        ```
 
 ## Programme final
 
