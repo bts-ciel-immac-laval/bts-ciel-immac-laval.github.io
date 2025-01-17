@@ -258,7 +258,7 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
 
 ??? success "Code en C"
 
-    Solution avec un tableau de tableau qui récupère toutes les valeurs :
+    Solution avec un tableau de tableau qui récupère toutes les valeurs (quand on veut tout récupérer) :
 
     ```c
     #include <stdio.h>
@@ -279,6 +279,41 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
         for (int i = 0; i < 12; i++) {
             puts(valeurs[i]);
         }
+        
+        return 0;
+    }
+    ```
+
+    Solution avec des variables différenciées (quand on ne veut récupérer que certaines valeurs)
+
+    ```c
+    #include <stdio.h>
+    #include <string.h>
+
+    int main() {
+
+        char ligne[] = "$GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E";
+        char heure[11], latitude[12], longitude[13], ns[2], we[2];
+        int i = 0;
+        char * valeur = NULL;
+        
+        valeur = strtok(ligne, ",");
+        for (int i = 1; valeur != NULL; i++) {
+            switch(i) {
+                case 2 : strcpy(heure, valeur);     break;
+                case 3 : strcpy(latitude, valeur);  break;
+                case 4 : strcpy(ns, valeur);        break;
+                case 5 : strcpy(longitude, valeur); break;
+                case 6 : strcpy(we, valeur);        break;
+            }
+            valeur = strtok(NULL, ",");
+        }
+
+        puts(heure);
+        puts(latitude);
+        puts(ns);
+        puts(longitude);
+        puts(we);
         
         return 0;
     }
