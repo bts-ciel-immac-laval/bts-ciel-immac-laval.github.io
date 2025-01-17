@@ -31,11 +31,11 @@ Voici la liste des points à éclaircir avant de coder :
 
     + [X] Lire un fichier texte ligne par ligne
 
-    + [ ] Séparer les données de chaque ligne suivant un séparateur (token)
+    + [X] Séparer les données de chaque ligne suivant un séparateur (token)
 
 + [ ] Décoder une trame NMEA 🛰️
 
-    + [ ] Vérifier le checksum
+    + [X] Vérifier le checksum
     
     + [ ] Récupérer l'heure
 
@@ -285,6 +285,14 @@ $GPGGA,080104.555,4804.656727,N,00047.507355,W,1,04,3.8,88.27,M,,,,,0000*3E
     ```
 
 :octicons-arrow-right-16: Transformer ce programme en fonction, la stocker dans une bibliothèque `experts.h` et tester avec d'autres trames.
+
+### Convertir les données lues
+
+Créer une fonction pour chacune des conversions suivantes :
+
++   Passer d'une heure au format `hhmmss.sss` au format `hh:mm:ss`
+
++   Passer d'une coordonnée au format DDDMM.MMMMMM + N/S ou E/W au format (-)DDD.DDDDDD
 
 ## Programme final
 
