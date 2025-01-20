@@ -391,6 +391,21 @@ Créer une fonction pour chacune des conversions suivantes :
         ```c
         ```
 
+### Calculer une distance à vol d'oiseau
+
+Créer une fonction qui calcule la distance à vol d'oiseau entre deux points à partir de leurs coordonnées GPS (en degrés décimaux).
+
+??? info "Indice"
+
+    ![look up](../images/meme/looking-up.gif)
+
+    J'ai l'impression qu'on se répète...
+
+??? success "Code en C"
+
+    ```c
+    ```
+
 ## Programme final
 
 ??? success "Solution"
