@@ -382,6 +382,9 @@ Créer une fonction pour chacune des conversions suivantes :
     ??? success "Code en C"
 
         ```c
+        void convertirHeure(char * nmea, char * resultat) {
+            sprintf(resultat, "%c%c:%c%c:%c%c", nmea[0], nmea[1], nmea[2], nmea[3], nmea[4], nmea[5]);
+        }
         ```
 
 +   Passer d'une coordonnée au format DDDMM.MMMMMM + N/S ou E/W au format (-)DDD.DDDDDD
@@ -389,6 +392,25 @@ Créer une fonction pour chacune des conversions suivantes :
     ??? success "Code en C"
 
         ```c
+        float convertirCoordonnees(char * coordonnee, char * direction) {
+            char * point = NULL, degres[4] = "";
+            float resultat;
+            
+            // Recupération des degrés
+            point = strchr(coordonnee, '.');
+            strncpy(degres, coordonnee, point - coordonnee - 2);
+            resultat = atof(degres);
+            
+            // Extraction des minutes et conversion en degrés
+            resultat += atof(point - 2) / 60;
+
+            // Gestion de la direction
+            if (*direction == 'S' || *direction == 'W') {
+                resultat *= -1;
+            }
+            
+            return resultat;
+        }
         ```
 
 ### Calculer une distance à vol d'oiseau
