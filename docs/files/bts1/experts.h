@@ -12,7 +12,7 @@ float convertirCoordonnees(char *, char *);
 float convertirDegresEnRadians(float);
 float calculerDistance(float, float, float, float);
 int extraireHeure(char *);
-void ajouterJoursADate(char *, int);
+void incrementerDate(char *);
 
 /**
  * @brief Ouvre en lecture et affiche le contenu du fichier dont le chemin est passé en paramètre.
