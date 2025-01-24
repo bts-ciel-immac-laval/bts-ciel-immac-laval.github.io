@@ -33,13 +33,13 @@ Voici la liste des points à éclaircir avant de coder :
 
     + [X] Séparer les données de chaque ligne suivant un séparateur (token)
 
-+ [ ] Décoder une trame NMEA 🛰️
++ [X] Décoder une trame NMEA 🛰️
 
     + [X] Vérifier le checksum
     
-    + [ ] Récupérer l'heure
+    + [X] Récupérer l'heure
 
-    + [ ] Récupérer et convertir la latitude et la longitude en degrés décimaux
+    + [X] Récupérer et convertir la latitude et la longitude en degrés décimaux
 
 + [ ] Calculer la date 📆
 
@@ -426,7 +426,50 @@ Créer une fonction qui calcule la distance à vol d'oiseau entre deux points à
 ??? success "Code en C"
 
     ```c
+    // Bibliothèque pour obtenir PI, cos, pow et sqrt
+    #define _USE_MATH_DEFINES
+    #include <math.h>
+
+    float convertirDegresEnRadians(float);
+    float calculerDistance(float, float, float, float);
+
+    int main() {
+
+        printf("%f\n", calculerDistance(48.07429936102162, -0.7680080793209888, 48.07352056412836, -0.7723579441783978)); 
+        
+        // 334,87m d'après Google Maps
+        
+        return 0;
+    }
+
+    float convertirDegresEnRadians(float angle) {
+        return angle * M_PI / 180;
+    }
+
+    float calculerDistance(float latA, float lngA, float latB, float lngB) {
+        float distance = 0;
+
+        // Conversion en radian
+        latA = convertirDegresEnRadians(latA);
+        lngA = convertirDegresEnRadians(lngA);
+        latB = convertirDegresEnRadians(latB);
+        lngB = convertirDegresEnRadians(lngB);
+
+        // Calcul de la distance
+        return sqrt(pow((lngB - lngA) * cos((latA + latB) / 2), 2) + pow(latB - latA, 2)) * 6371 * 1000;
+    }
     ```
+
+## Première intégration
+
+A partir de la bibliothèque `experts.h` suivante, créer un programme qui lit le fichier `gruber_20241126.log` et affiche pour les trames valides dont la distance avec le domicile de Mme H.GENNERO est inférieure à 500 m :
+
++   Date (`jj/mm/aaaa`),
++   Heure (`hh:mm:ss`),
++   Les coordonnées GPS en degrés décimaux (`DD.DDDDDD`),
++   La distance à vol d'oiseau calculée en mètres (`m`).
+
+[:material-file-download: Télécharger la bibliothèque experts.h](../files/bts1/experts.h){ .md-button .md-button--primary }
 
 ## Programme final
 
