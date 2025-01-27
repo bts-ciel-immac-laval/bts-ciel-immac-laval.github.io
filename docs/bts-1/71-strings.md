@@ -41,7 +41,7 @@ Voici la liste des points à éclaircir avant de coder :
 
     + [X] Récupérer et convertir la latitude et la longitude en degrés décimaux
 
-+ [ ] Calculer la date 📆
++ [X] Calculer la date 📆
 
 + [X] Calculer une distance à vol d'oiseau à partir de coordonnées GPS 🕊️
 
@@ -470,6 +470,124 @@ A partir de la bibliothèque `experts.h` suivante, créer un programme qui lit l
 +   La distance à vol d'oiseau calculée en mètres (`m`).
 
 [:material-file-download: Télécharger la bibliothèque experts.h](../files/bts1/experts.h){ .md-button .md-button--primary }
+
+??? success "Première version"
+
+    :octicons-file-16: `experts.h`
+
+    On choisit de traiter le fichier ligne à ligne, tout le traitement va donc être réalisé dans la fonction `lireFichier`.
+
+    ```c
+    void lireFichier(char * cheminFichier) {
+        char ligne[100], nmeaHeure[10], nmeaLatitude[12], nmeaNS[2], nmeaLongitude[13], nmeaWS[2], heure[9], date[] = "01/11/2024";
+        float latitude, longitude, distance;
+        int heureCourante, heurePrecedente = 0;
+
+        FILE * fichier = NULL;
+        
+        fichier = fopen(cheminFichier, "r");
+        if (fichier == NULL) {
+            puts("Erreur lors de l'ouverture en lecture du fichier de log");
+            exit(-1);
+        }
+        
+        // Pour chaque ligne...
+        while (fgets(ligne, 100, fichier) != NULL) {
+            
+            // ...on vérifie le checksum...
+            if (verifierChecksumNMEA(ligne)) {
+                
+                // ...on extrait les valeurs...
+                extraireValeurs(ligne, nmeaHeure, nmeaLatitude, nmeaNS, nmeaLongitude, nmeaWS);
+                
+                // ...convertit l'heure en texte...
+                convertirHeure(nmeaHeure, heure);
+
+                // ...puis en entier pour voir si on a changé de journée et gérer la date...
+                heureCourante = extraireHeure(heure);
+                if (heureCourante < heurePrecedente) {
+                    incrementerDate(date);
+                }
+                heurePrecedente = heureCourante;
+
+                // ...puis on convertit les coordonnées...
+                latitude = convertirCoordonnees(nmeaLatitude, nmeaNS);
+                longitude = convertirCoordonnees(nmeaLongitude, nmeaWS);
+
+                // ...pour calculer la distance...
+                distance = calculerDistance(48.06410268512942, -0.7801647985752476, latitude, longitude);
+
+                // ...pour enfin vérifier si elle est inférieure à 500 m...
+                if (distance < 500) {
+
+                    // finalement on affiche les informations demandées
+                    printf("%s %s (%f, %f) %f m\n", date, heure, latitude, longitude, distance);
+                }
+            }
+        }
+        
+        fclose(fichier);
+    }
+    ```
+
+    :octicons-file-16: `experts.c`
+
+    La fonction principale se résume à un appel à la fonction `lireFichier`.
+
+    ```c
+    #include "experts.h"
+
+    int main() {
+
+        lireFichier("gruber_20241126.log");
+        
+        return 0;
+    }
+    ```
+
+## Suite et fin
+
+### Générer un fichier texte
+
+Réaliser les exercices suivants :
+
++   Créer une fonction qui crée un fichier `exo1.txt` et le remplit en **une seule fois** avec une phrase passée en paramètre. 
+
+    La tester avec la phrase :
+    
+        Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur.
+
++   Créer une fonction qui crée un fichier `exo2.txt` et le remplit **5 caractères par 5 caractères** avec une phrase passée en paramètre.
+
+    La tester avec la phrase :
+    
+        Quand on veut on peut, quand on peut on doit.
+
++   Créer une fonction qui crée un fichier `exo3.txt` et le remplit **caractère par caractère** avec une phrase passée en paramètre.
+
+    La tester avec le texte :
+
+        Entre :
+        Ce que je pense,
+        Ce que je veux dire, 
+        Ce que je crois dire, 
+        Ce que je dis, 
+        Ce que vous avez envie d'entendre, 
+        Ce que vous entendez, 
+        Ce que vous comprenez... 
+        Il y a dix possibilités qu'on ait des difficultés à communiquer. 
+        Mais essayons quand même...
+
++   Créer une fonction qui crée un fichier `exo4.csv` (séparateur : tabulation) et le remplit avec les valeurs de 3 tableaux passées en paramètres.
+
+    La tester avec les tableaux suivants :
+
+        [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+        [ 1.2, 3.4, 5.6, 6.7, 8.9, 0.1, 2.3, 4.5, 6.7, 8.9 ]
+
+        [ Archibald, Tryphon, Piotr, Bianca, Tchang, Abdallah, Roberto, Séraphin, Allan, Oliveira ]
+
 
 ## Programme final
 
