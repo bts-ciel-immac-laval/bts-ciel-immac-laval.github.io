@@ -591,43 +591,43 @@ Réaliser les exercices suivants :
     
         Quand on veut on peut, quand on peut on doit.
 
-        ??? success "Solution"
+    ??? success "Solution"
 
-            ```c
-            #include <stdio.h>
-            #include <stdlib.h>
-            #include <string.h>
+        ```c
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <string.h>
 
-            void exo2(char * chaine) {
-                FILE * fichier = NULL;
-                int i = 0;
+        void exo2(char * chaine) {
+            FILE * fichier = NULL;
+            int i = 0;
 
-                fichier = fopen("exo2.txt", "w");
+            fichier = fopen("exo2.txt", "w");
 
-                if (fichier == NULL) {
-                    puts("Exo 2 - Erreur lors de l'ouverture.");
-                    exit(-1);
-                }
-
-                // Par soucis de généricité, pour ne pas dépasser la longueur 
-                // de la chaîne pour les chaines dont la taille n'est pas un 
-                // multiple de 5, on s'arrête 5 caractères avant la fin.
-                for (i = 0; i < strlen(chaine) - 5; i += 5) {
-                    fwrite(chaine + i, sizeof(char), 5, fichier);
-                }
-
-                // On écrit finalement le reliquat (de 1 à 5 caractères)
-                fwrite(chaine + i, sizeof(char), strlen(chaine) - i, fichier);
-
-                fclose(fichier);
+            if (fichier == NULL) {
+                puts("Exo 2 - Erreur lors de l'ouverture.");
+                exit(-1);
             }
 
-            int main() {
-                exo2("Quand on veut o123n peut, quand on peut on doit.");
-
-                return 0;
+            // Par soucis de généricité, pour ne pas dépasser la longueur 
+            // de la chaîne pour les chaines dont la taille n'est pas un 
+            // multiple de 5, on s'arrête 5 caractères avant la fin.
+            for (i = 0; i < strlen(chaine) - 5; i += 5) {
+                fwrite(chaine + i, sizeof(char), 5, fichier);
             }
-            ```
+
+            // On écrit finalement le reliquat (de 1 à 5 caractères)
+            fwrite(chaine + i, sizeof(char), strlen(chaine) - i, fichier);
+
+            fclose(fichier);
+        }
+
+        int main() {
+            exo2("Quand on veut o123n peut, quand on peut on doit.");
+
+            return 0;
+        }
+        ```
 
 +   Créer une fonction qui crée un fichier `exo3.txt` et le remplit **caractère par caractère** avec une phrase passée en paramètre.
 
