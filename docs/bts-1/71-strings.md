@@ -580,6 +580,8 @@ Réaliser les exercices suivants :
 
         int main() {
             exo1("Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur.");
+
+            return 0;
         }
         ```
 
@@ -588,6 +590,44 @@ Réaliser les exercices suivants :
     La tester avec la phrase :
     
         Quand on veut on peut, quand on peut on doit.
+
+        ??? success "Solution"
+
+            ```c
+            #include <stdio.h>
+            #include <stdlib.h>
+            #include <string.h>
+
+            void exo2(char * chaine) {
+                FILE * fichier = NULL;
+                int i = 0;
+
+                fichier = fopen("exo2.txt", "w");
+
+                if (fichier == NULL) {
+                    puts("Exo 2 - Erreur lors de l'ouverture.");
+                    exit(-1);
+                }
+
+                // Par soucis de généricité, pour ne pas dépasser la longueur 
+                // de la chaîne pour les chaines dont la taille n'est pas un 
+                // multiple de 5, on s'arrête 5 caractères avant la fin.
+                for (i = 0; i < strlen(chaine) - 5; i += 5) {
+                    fwrite(chaine + i, sizeof(char), 5, fichier);
+                }
+
+                // On écrit finalement le reliquat (de 1 à 5 caractères)
+                fwrite(chaine + i, sizeof(char), strlen(chaine) - i, fichier);
+
+                fclose(fichier);
+            }
+
+            int main() {
+                exo2("Quand on veut o123n peut, quand on peut on doit.");
+
+                return 0;
+            }
+            ```
 
 +   Créer une fonction qui crée un fichier `exo3.txt` et le remplit **caractère par caractère** avec une phrase passée en paramètre.
 
