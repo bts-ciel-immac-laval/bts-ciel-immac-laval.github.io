@@ -557,6 +557,32 @@ Réaliser les exercices suivants :
     
         Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur.
 
+    ??? success "Solution"
+
+        ```c
+        #include <stdio.h>
+        #include <stdlib.h>
+
+        void exo1(char * chaine) {
+            FILE * fichier = NULL;
+
+            fichier = fopen("exo1.txt", "w");
+
+            if (fichier == NULL) {
+                puts("Exo 1 - Erreur lors de l'ouverture.");
+                exit(-1);
+            }
+
+            fputs(chaine, fichier);
+
+            fclose(fichier);
+        }
+
+        int main() {
+            exo1("Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur.");
+        }
+        ```
+
 +   Créer une fonction qui crée un fichier `exo2.txt` et le remplit **5 caractères par 5 caractères** avec une phrase passée en paramètre.
 
     La tester avec la phrase :
