@@ -71,6 +71,12 @@
         printf("avec 50 intervalles : %f\n",  aireMethode3(0, 1, 50));
         printf("avec 100 intervalles : %f\n", aireMethode3(0, 1, 100));
 
+        puts("Aire avec la méthode des trapèzes");
+        printf("avec 10 intervalles : %f\n",  aireMethodeTrapeze(0, 1, 10));
+        printf("avec 50 intervalles : %f\n",  aireMethodeTrapeze(0, 1, 50));
+        printf("avec 100 intervalles : %f\n", aireMethodeTrapeze(0, 1, 100));
+        printf("avec 1000 intervalles : %f\n", aireMethodeTrapeze(0, 1, 100));
+
         return 0;
     }
 
@@ -103,6 +109,15 @@
         float pas = (fin - debut) / intervalles;
         for (int i = 0; i < intervalles; i++) {
             somme += f(i * pas + pas / 2) * pas;
+        }
+        return somme;
+    }
+
+    float aireMethodeTrapeze(float debut, float fin, float intervalles) {
+        float somme = 0;
+        float pas = (fin - debut) / intervalles;
+        for (int i = 0; i < intervalles; i++) {
+            somme += (f(i * pas) + f((i + 1) * pas)) / 2 * pas;
         }
         return somme;
     }
