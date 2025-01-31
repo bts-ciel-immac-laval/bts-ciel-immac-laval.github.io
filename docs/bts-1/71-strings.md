@@ -644,6 +644,38 @@ Réaliser les exercices suivants :
         Il y a dix possibilités qu'on ait des difficultés à communiquer. 
         Mais essayons quand même...
 
+    ??? success "Solution"
+
+        ```c
+        #include <stdio.h>
+        #include <stdlib.h>
+
+        void exo3(char * chaine) {
+            FILE * fichier = NULL;
+            int i = 0;
+
+            fichier = fopen("exo2.txt", "w");
+
+            if (fichier == NULL) {
+                puts("Exo 3 - Erreur lors de l'ouverture.");
+                exit(-1);
+            }
+
+            // On parcourt la chaine caractère par caractère
+            for (int i = 0; chaine[i] != '\0'; i++) {
+                fputc(chaine[i], fichier);
+            }
+
+            fclose(fichier);
+        }
+
+        int main() {
+            exo3("Entre :\nCe que je pense,\nCe que je veux dire,\nCe que je crois dire,\nCe que je dis,\nCe que vous avez envie d'entendre,\nCe que vous entendez,\nCe que vous comprenez..\nIl y a dix possibilités qu'on ait des difficultés à communiquer.\nMais essayons quand même...");
+
+            return 0;
+        }
+        ```
+
 +   Créer une fonction qui crée un fichier `exo4.csv` (séparateur : tabulation) et le remplit avec les valeurs de 3 tableaux passées en paramètres.
 
     La tester avec les tableaux suivants :
@@ -654,6 +686,76 @@ Réaliser les exercices suivants :
 
         [ Archibald, Tryphon, Piotr, Bianca, Tchang, Abdallah, Roberto, Séraphin, Allan, Oliveira ]
 
+    ??? success "Solution"
+
+        ```c
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <string.h>
+
+        // Les tableaux multidimensionnels dont la mémoire a été réservée dans la pile doivent être passés avec l'écriture tableau
+        void exo4(int * a1, float * a2, char a3[10][10], int n) {
+            FILE * fichier = NULL;
+
+            fichier = fopen("exo4.csv", "w");
+
+            if (fichier == NULL) {
+                puts("Exo 4 - Erreur lors de l'ouverture.");
+                exit(-1);
+            }
+
+            for (int i = 0; i < n; i++) {
+                fprintf(fichier, "%d\t%f\t%s\n", a1[i], a2[i], a3[i]);
+            }
+
+            fclose(fichier);
+        }
+
+        int main() {
+
+            int   tab1[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            float tab2[10] = { 1.2, 3.4, 5.6, 6.7, 8.9, 0.1, 2.3, 4.5, 6.7, 8.9 };
+            char  tab3[10][10] = { "Archibald", "Tryphon", "Piotr", "Bianca", "Tchang", "Abdallah", "Roberto", "Séraphin", "Allan", "Oliveira" };
+            
+            exo4(tab1, tab2, tab3, 10);
+
+            return 0;
+        }
+        ```
+
+### Rendre le programme générique
+
+<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_10_argc-argv.pdf" type="application/pdf"></object>
+
+Créer un programme qui prend 4 paramètres d'entrées : 
+
++   le chemin d'un fichier
+
++   une date au format jj/mm/aaaa
+
++   la latitude et la longitude en degrés décimaux d'une coordonnée GPS
+
+Le programme vérifie la présence des paramètres, convertit les coordonnées et affiche les paramètres à l'écran.
+
+Exemple :
+
+```
+> param.exe ../eyjafjallajokull.txt 20/03/2010 63.63528391052931 -19.606861438578065
+../eyjafjallajokull.txt
+20/03/2010 
+63.63528391052931 
+-19.606861438578065
+```
+
+## Intégration finale
+
+A partir des derniers travaux, reprendre la première intégration et terminer le programme avec les fonctionnalités suivantes :
+
++   exportation des résultats dans un fichier csv
+
++   programme générique pouvant prendre n'importe quel fichier de log, date de démarrage et coordonnées de domicile en entrée.
+
+Tester.
 
 ## Programme final
 
