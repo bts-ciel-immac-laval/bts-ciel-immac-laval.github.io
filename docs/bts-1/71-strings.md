@@ -747,6 +747,30 @@ Exemple :
 -19.606861438578065
 ```
 
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main(int argc, char ** argv) {
+
+        float lat, lng;
+
+        if (argc < 5) {
+            puts("Nombre de paramètres insuffisant :\n>param.exe chemin_fichier date latitude longitude");
+            return -1;
+        }
+
+        lat = atof(argv[3]);
+        lng = atof(argv[4]);
+
+        printf("%s\n%s\n%.14f\n%.14f\n", argv[1], argv[2], lat, lng);
+
+        return 0;
+    }
+    ```
+
 ## Intégration finale
 
 A partir des derniers travaux, reprendre la première intégration et terminer le programme avec les fonctionnalités suivantes :
@@ -756,6 +780,10 @@ A partir des derniers travaux, reprendre la première intégration et terminer l
 +   programme générique pouvant prendre n'importe quel fichier de log, date de démarrage et coordonnées de domicile en entrée.
 
 Tester.
+
+```
+> experts.exe ../gruber_20241126.log 01/11/2024 48.064132391638964, -0.7801643032709202
+```
 
 ## Programme final
 
