@@ -747,6 +747,45 @@ Exemple :
 -19.606861438578065
 ```
 
+??? warning "Déboguer avec des arguments en ligne de commande avec VS Code"
+
+    Utiliser le fichier .vscode/launch.json suivant (à la racine du projet dans VS Code) en modifiant les valeurs surlignés pour correspondre à votre environnement :
+
+    ```json hl_lines="10 16"
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "gcc.exe - Build and debug active file",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "args": [
+                    "Mathieu"
+                ],
+                "stopAtEntry": false,
+                "cwd": "${workspaceFolder}",
+                "environment": [],
+                "MIMode": "gdb",
+                "miDebuggerPath": "C:\\projects\\mingw64\\bin\\gdb.exe",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    },
+                    {
+                        "description": "Set Disassembly Flavor to Intel",
+                        "text": "-gdb-set disassembly-flavor intel",
+                        "ignoreFailures": true
+                    }
+                ],
+                "preLaunchTask": "C/C++: gcc.exe build active file"
+            }
+        ]
+    }
+    ```
+
 ??? success "Solution"
 
     ```c
@@ -776,6 +815,7 @@ Exemple :
 A partir des derniers travaux, reprendre la première intégration et terminer le programme avec les fonctionnalités suivantes :
 
 +   exportation des résultats dans un fichier csv
+
 
 +   programme générique pouvant prendre n'importe quel fichier de log, date de démarrage et coordonnées de domicile en entrée.
 
