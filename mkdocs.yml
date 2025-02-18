@@ -1,4 +1,4 @@
-site_name: BTS CIEL Immac' 2024 - 25
+site_name: Immac' 2024 - 25
 site_url: https://bts-ciel-immac-laval.github.io
 
 copyright: Copyright &copy; 2024 - 2025 Mathieu DOMER
@@ -39,6 +39,9 @@ nav:
     - Maths x STI :
       - 01 - Probabilités : bts-2/Maths x STI/10-probabilites.md
       - 02 - Valorisation de la donnée : bts-2/Maths x STI/20-excel-data-1.md
+  - NSI : 
+    - Coder à la maison : nsi/10_coder.md
+    - Les gammes : nsi/20_gammes.md
 
 theme:
   name: material
