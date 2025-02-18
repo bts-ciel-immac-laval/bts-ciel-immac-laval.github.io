@@ -4,7 +4,7 @@ icon: material/music
 
 # Les gammes
 
-Voici quelques mini-exercices pour s'entraîner aux basiques de la programmation.
+Voici quelques mini-exercices pour s'entraîner aux basiques de la programmation en C/C++.
 
 ## Variables
 
