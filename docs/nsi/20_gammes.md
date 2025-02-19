@@ -18,7 +18,7 @@ Besoin de reprendre *from scratch* 💪 ?
 
 Une bonne ressource en ligne : [https://www.france-ioi.org/algo/chapters.php](https://www.france-ioi.org/algo/chapters.php)
 
-N'hésite pas à vous créer un compte pour suivre vos progrès.
+N'hésite pas à te créer un compte pour suivre tes progrès.
 
 ## Les exercices
 
@@ -58,7 +58,7 @@ N'hésite pas à vous créer un compte pour suivre vos progrès.
 
             assert rayon >= 0 , "Le rayon doit être positif !"
 
-            return 4 / 3 * pi * rayon * rayon * rayon
+            return 4 / 3 * pi * rayon ** 3
 
         # Tests
         print(volume_boule(1))          # 4.18879020
@@ -251,4 +251,143 @@ N'hésite pas à vous créer un compte pour suivre vos progrès.
         # Saisir 12 345 donne : [12, 345]
         # Ne rien saisir donne : []
         # Saisir a b c renvoie une erreur de conversion : invalid literal for int() with base 10: 'a'
+        ```
+
+??? exo-chrono "Exercice 5.1<span class="chrono">15:00</span>"
+
+    Coder une fonction `calculer_distance_vol_oiseau` qui calcule la distance $d$ à vol d'oiseau entre deux points $A$ et $B$ du globe à partir de leurs coordonnées GPS en utilisant la [formule de haversine](https://fr.wikipedia.org/wiki/Formule_de_haversine){target="_blank"}.
+
+    Voici la formule :
+
+    \begin{split}
+    &d=2r\arcsin{(\sqrt{\sin^2{(\frac{\varphi_B - \varphi_A}{2})}+\cos{(\varphi_A)}\cos{(\varphi_B)}\sin^2{(\frac{\lambda_B - \lambda_A}{2})}})}
+    \end{split}
+
+    où :
+
+    + $r$ est le rayon de la terre : 6371 km,
+
+    + $\varphi_A$ et $\varphi_B$ sont les latitudes des points A et B,
+
+    + $\lambda_A$ et $\lambda_B$ sont les longitudes des points A et B,
+
+    + les latitudes et longitudes sont exprimées en **radians** ($1 ° × π/180 = 0,01745 rad$),
+
+    + les fonctions trigonométriques sont disponibles dans la bibliothèque `math`.
+    
+    Résultats attendus :
+
+    | A | B | Distance |
+    | --- | --- | --- |
+    | **Petit bois à l'Immac**<br>Latitude : `48.07465140238585`<br>Longitude : `-0.7685811118128099` | **Kiosque du Square de Boston**<br>Latitude : `48.07352246874617`<br>Longitude : `-0.7723670509520487` | 308 m |
+    | **Tour Eiffel**<br>Latitude : `48.8584830111056`<br>Longitude : `2.2944598391027196` | **Golden Gate**<br>Latitude : `37.82000588671323`<br>Longitude : `-122.47860249700975` | 8949 km |
+
+    ??? success "Solution"
+
+        ```py
+        from math import cos, pi, sqrt, sin, asin
+
+        def calculer_distance_vol_oiseau(latA : float, lngA : float, latB : float, lngB : float) :
+            '''
+            Calcule la distance à vol d'oiseau entre deux points A(latA, lngA) et B(latB, lngB) du globe à partir de leurs coordonnées GPS.
+            '''
+
+            distance = 0
+
+            # Conversion en radians
+            latA = latA * pi / 180
+            lngA = lngA * pi / 180
+            latB = latB * pi / 180
+            lngB = lngB * pi / 180
+
+            # Calcul de la distance
+            distance =  2 * 6371 * asin(sqrt(sin((latB - latA) / 2) ** 2 + cos(latA) * cos(latB) * sin((lngB - lngA) / 2) ** 2))
+
+            return distance
+
+        # Tests
+
+        print(calculer_distance_vol_oiseau(48.07465140238585, -0.7685811118128099, 48.07352246874617, -0.7723670509520487)) #  308 m
+
+        print(calculer_distance_vol_oiseau(48.8584830111056, 2.2944598391027196, 37.82000588671323, -122.47860249700975))   # 8949 km
+        ```
+
+??? exo-chrono "Exercice 5.2<span class="chrono">15:00</span>"
+
+    Reprendre la fonction créée à l'exercice 5.1 en l'adaptant pour qu'elle prenne en entrée un dictionnaire au format suivant :
+
+    ```py
+    trajet1 = {
+        "A" : {
+            "nom" : "Petit bois à l'Immac",
+            "lat" : 48.07465140238585,
+            "lng" : -0.7685811118128099
+        },
+        "B" : {
+            "nom" : "Kiosque du Square de Boston",
+            "lat" : 48.07352246874617,
+            "lng" : -0.7723670509520487
+        },
+        "distance" : 0
+    }
+    ```
+
+    ??? success "Solution"
+
+        ```py
+        from math import cos, pi, sqrt, sin, asin
+
+        def calculer_distance_vol_oiseau(trajet : dict) :
+            '''
+            Calcule la distance à vol d'oiseau entre deux points A(latA, lngA) et B(latB, lngB) du globe à partir de leurs coordonnées GPS.
+            '''
+
+            distance = 0
+
+            # Conversion en radians (on garde des variables locales pour ne pas modifier le dictionnaire)
+            latA = trajet["A"]["lat"] * pi / 180
+            lngA = trajet["A"]["lng"] * pi / 180
+            latB = trajet["B"]["lat"] * pi / 180
+            lngB = trajet["B"]["lng"] * pi / 180
+
+            # Calcul de la distance
+            trajet["distance"] =  2 * 6371 * asin(sqrt(sin((latB - latA) / 2) ** 2 + cos(latA) * cos(latB) * sin((lngB - lngA) / 2) ** 2))
+
+            # Rien à renvoyer : les dictionnaires comme les listes sont passés par références
+            # (modifier le dictionnaire dans la fonction le modifie dans la fonction appelante)
+
+        # Tests
+
+        trajet1 = {
+            "A" : {
+                "nom" : "Petit bois à l'Immac",
+                "lat" : 48.07465140238585,
+                "lng" : -0.7685811118128099
+            },
+            "B" : {
+                "nom" : "Kiosque du Square de Boston",
+                "lat" : 48.07352246874617,
+                "lng" : -0.7723670509520487
+            },
+            "distance" : 0
+        }
+        calculer_distance_vol_oiseau(trajet1)
+        print(trajet1["distance"])              #  308 m
+
+        #print(calculer_distance_vol_oiseau(48.8584830111056, 2.2944598391027196, 37.82000588671323, -122.47860249700975))
+        trajet2 = {
+            "A" : {
+                "nom" : "Tour Eiffel",
+                "lat" : 48.8584830111056,
+                "lng" : 2.2944598391027196
+            },
+            "B" : {
+                "nom" : "Golden Gate",
+                "lat" : 37.82000588671323,
+                "lng" : -122.47860249700975
+            },
+            "distance" : 0
+        }
+        calculer_distance_vol_oiseau(trajet2)
+        print(trajet2["distance"]) # 8949 km
         ```
