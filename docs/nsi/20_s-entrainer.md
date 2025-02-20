@@ -16,7 +16,7 @@ Des difficultés 😣 ?
 
 Besoin de reprendre *from scratch* 💪 ?
 
-Une bonne ressource en ligne : [https://www.france-ioi.org/algo/chapters.php](https://www.france-ioi.org/algo/chapters.php)
+Une bonne ressource en ligne : [https://www.france-ioi.org/algo/chapters.php](https://www.france-ioi.org/algo/chapters.php){target="_blank"}
 
 N'hésite pas à te créer un compte pour suivre tes progrès.
 
