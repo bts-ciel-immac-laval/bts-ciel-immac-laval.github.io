@@ -71,6 +71,12 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
 
     Coder une fonction `multiplyArrayBy` permettant de multiplier toutes les valeurs d'une liste par un entier et qui renvoie les résultats dans une nouvelle liste.
 
+    Autrement dit : 
+
+    ```
+    [1, 2, 3] x 2 🡲 [2, 4, 6]
+    ```
+
     ??? info "Y as-tu pensé ?"
 
         + Si le tableau est vide ?
@@ -109,7 +115,7 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
 
 ??? exo-chrono "Exercice 2.2<span class="chrono">10:00</span>"
 
-    Coder une fonction `multiplyArrayInPlaceBy` permettant de multiplier toutes les valeurs d'une liste par un entier et qui remplace les valeurs originales dans la liste par les résultats.
+    Coder une fonction `multiplyArrayInPlaceBy` permettant de multiplier toutes les valeurs d'une liste par un entier mais qui, cette fois, remplace les valeurs dans la liste **originale** par les résultats.
 
     ??? info "Y as-tu pensé ?"
 
@@ -158,6 +164,12 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
 ??? exo-chrono "Exercice 3<span class="chrono">15:00</span>"
 
     Coder la fonction `somme_prod` permettant de multiplier une à une les valeurs de deux listes et d'en renvoyer la somme.
+    
+    Autrement dit : 
+
+    ```
+    [1, 2, 3] x [4, 5, 6] 🡲 [4, 10, 18] 🡲 32
+    ```
 
     ??? info "Y as-tu pensé ?"
 
@@ -200,6 +212,13 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
 ??? exo-chrono "Exercice 4<span class="chrono">20:00</span>"
 
     Coder une fonction `saisirListe` qui demande à l'utilisateur de saisir *en une fois* une liste d'entiers séparés par des espaces, puis la renvoie sous la forme d'un tableau d'entiers.
+
+    Exemple
+
+    ```
+    Saisir une liste d'entiers séparés par des espaces : 1 23 456 7 8 90
+    Résultat : [1, 23, 456, 7, 8, 90]
+    ```
 
     ??? info "Y as-tu pensé ?"
 
@@ -245,7 +264,7 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
             return liste
 
         # Test
-        print(saisirListe())
+        print("Résultat :", saisirListe())
 
         # Saisir 1 2 3 4 5 donne : [1, 2, 3, 4, 5]
         # Saisir 12 345 donne : [12, 345]
@@ -317,7 +336,7 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
     Reprendre la fonction créée à l'exercice 5.1 en l'adaptant pour qu'elle prenne en entrée un dictionnaire au format suivant :
 
     ```py
-    trajet1 = {
+    trajet = {
         "A" : {
             "nom" : "Petit bois à l'Immac",
             "lat" : 48.07465140238585,
@@ -331,6 +350,8 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
         "distance" : 0
     }
     ```
+
+    La distance calculée par la fonction doit être stockée comme **valeur** de la clé `distance`.
 
     ??? success "Solution"
 
