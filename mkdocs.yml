@@ -42,7 +42,7 @@ nav:
       - 02 - Valorisation de la donnée : bts-2/Maths x STI/20-excel-data-1.md
   - NSI : 
     - Coder à la maison : nsi/10_coder.md
-    - S'entraîner : nsi/20_gammes.md
+    - S'entraîner : nsi/20_s-entrainer.md
 
 theme:
   name: material

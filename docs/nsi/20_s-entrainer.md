@@ -391,3 +391,173 @@ N'hésite pas à te créer un compte pour suivre tes progrès.
         calculer_distance_vol_oiseau(trajet2)
         print(trajet2["distance"]) # 8949 km
         ```
+
+??? exo-chrono "Exercice 6.1<span class="chrono">3:00</span>"
+
+    Expliquer pourquoi le programme suivant renvoie une erreur `SyntaxError` :
+
+    ```py linenums="1"
+    def surpuissance_seconde(x)
+        return x ** x
+
+    surpuissance_seconde(2)
+    ```
+
+    ??? success "Solution"
+
+        Il manque le deux-points (`:`) qui termine l'*en-tête* de la fonction :
+
+        ```py linenums="1"    
+                                    🡳
+        def surpuissance_seconde(x) :
+            return x ** x
+
+        surpuissance_seconde(2)
+        ```
+
+??? exo-chrono "Exercice 6.2<span class="chrono">3:00</span>"
+
+    Expliquer pourquoi le programme suivant renvoie une erreur `IndentationError` :
+
+    ```py linenums="1"
+    def valeurAbsolue(x) :
+    return sqrt(x ** 2)
+
+    valeurAbsolue(-42)
+    ```
+
+    ??? success "Solution"
+
+        Il faut **indenter** le *corps* de la fonction :
+
+        ```py linenums="1"
+        def valeurAbsolue(x) :
+        🡲🡲🡲🡲return sqrt(x ** 2)
+
+        valeurAbsolue(-42)
+        ```
+
+??? exo-chrono "Exercice 6.3<span class="chrono">3:00</span>"
+
+    Expliquer pourquoi le programme suivant renvoie une erreur `NameError` :
+
+    ```py linenums="1"
+    def incremente(x) :
+        resultat = x + 1
+        return resultat
+
+    print(resultat)
+    ```
+
+    ??? success "Solution"
+
+        `resultat` est une variable **locale** de la fonction `incremente`.
+
+        On ne peut pas l'utiliser *à l'extérieur* de la fonction.
+
+        Ici, il faut utiliser le **retour** de la fonction pour récupérer la valeur de `resultat` :
+
+        ```py linenums="1"
+        def incremente(x) :
+            resultat = x + 1
+            return resultat
+
+        print(incremente(41))
+        ```
+
+??? exo-chrono "Exercice 6.4<span class="chrono">3:00</span>"
+
+    Expliquer pourquoi le programme suivant affiche `None` en exécutant la ligne 5 :
+
+    ```py linenums="1"
+    def decremente(x) :
+        print(x - 1)
+
+    resultat = decremente(43)
+    print(resultat)
+    ```
+
+    ??? success "Solution"
+
+        `print` n'équivaut pas à un `return`. Elle ne fait qu'afficher la valeur à l'écran.
+
+        La fonction `decremente` ne renvoie donc rien (`None` en Python).
+
+        ```py linenums="1"
+        def decremente(x) :
+            return x - 1
+
+        resultat = decremente(43)
+        print(resultat)
+        ```
+
+??? exo-chrono "Exercice 6.5<span class="chrono">5:00</span>"
+
+    Expliquer pourquoi le programme suivant n'affiche que `h` :
+
+    ```py linenums="1"
+    def remplacerEspacePar(texte : str, car : str) :
+        resultat = ""
+        for i in range(len(texte)) :
+            if texte[i] == " " :
+                resultat += car
+            else :
+                resultat += texte[i]
+            return resultat
+
+    print(remplacerEspacePar("hello, world! how are you ?", "*"))
+    ```
+
+    ??? success "Solution"
+
+        Si on regarde l'*indentation*, le `return` ligne 8 est dans la boucle `for`, ce qui a pour effet d'arrêter le programme dès la première exécution de la boucle.
+
+        Il faut "reculer" l'instruction ligne 8 au niveau du `for` pour que la boucle s'exécute complètement.
+
+        ```py    
+        def remplacerEspacePar(texte : str, car : str) :
+            resultat = ""
+            for i in range(len(texte)) :
+                if texte[i] == " " :
+                    resultat += car
+                else :
+                    resultat += texte[i]
+            return resultat🡰🡰🡰🡰
+
+        print(remplacerEspacePar("hello, world! how are you ?", "*"))
+        ```
+
+??? exo-chrono "Exercice 6.6<span class="chrono">5:00</span>"
+
+    Expliquer pourquoi le programme suivant renvoie une erreur `TypeError` :
+
+    ```py linenums="1"
+    def ajoute_entier_a_chaque_valeur(valeurs : list, entier : int) :
+        for i in range(len(valeurs)) :
+            valeurs[i] += entier
+
+    un_deux_trois = [1, 2, 3]
+    ajoute_entier_a_chaque_valeur(5, un_deux_trois)
+    print(un_deux_trois)
+    ```
+
+    ??? success "Solution"
+
+        Il faut respecter l'ordre des **paramètres** (arguments d'entrée) de la fonction.
+
+        La fonction `ajoute_entier_a_chaque_valeur` attend une *liste* puis un *entier*.
+        
+        A la ligne 6, on lui fournit un *entier* puis une *liste* ce qui cause l'erreur.
+
+        Il suffit d'inverser les paramètres à la ligne 6 pour que le programme fonctionne.
+
+        ```py linenums="1"
+                                             🡳              🡳
+        def ajoute_entier_a_chaque_valeur(valeurs : list, entier : int) :
+            for i in range(len(valeurs)) :
+                valeurs[i] += entier
+
+        un_deux_trois = [1, 2, 3]          🡳        🡳
+        ajoute_entier_a_chaque_valeur(un_deux_trois, 5)
+        print(un_deux_trois)
+        ```
