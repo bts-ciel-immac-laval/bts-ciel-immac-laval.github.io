@@ -22,7 +22,7 @@ nav:
     - 06 - Tableaux : bts-1/60-tableaux.md
     - 07 - Chaînes de caractères : bts-1/70-strings.md
     - 08 - Les experts : bts-1/71-strings.md
-    #- 09 - Structures : bts-1/80-structures.md
+    - 09 - Structures : bts-1/80-structures.md
     - Maths x STI :
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
       - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
@@ -72,8 +72,9 @@ theme:
   logo: assets/f11_logo.png
   favicon: assets/f11_logo.png
 extra_css:
-  - stylesheets/extra.css
   - https://unpkg.com/katex@0/dist/katex.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css
+  - stylesheets/extra.css
 extra:
   consent:
     title: Consentement aux cookies
@@ -118,4 +119,5 @@ extra_javascript:
   - javascripts/katex.js
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs
   - javascripts/main.js
