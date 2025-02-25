@@ -42,20 +42,150 @@ Exemple :
 20230423103342
 ```
 
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+    #include <time.h>
+
+    int main() {
+        time_t t = time(NULL);
+        struct tm tm = *localtime(&t);
+        
+        // jj/mm/aaaa hh h ii' ss"
+        printf("%02d/%02d/%04d %02d h %02d' %02d\"\n", 
+            tm.tm_mday, 
+            tm.tm_mon + 1, 
+            tm.tm_year + 1900, 
+            tm.tm_hour, 
+            tm.tm_min, 
+            tm.tm_sec
+        );
+
+        // aaaammjjhhiiss
+        printf("%04d%02d%02d%02d%02d%02d\n", 
+            tm.tm_year + 1900, 
+            tm.tm_mon + 1, 
+            tm.tm_mday, 
+            tm.tm_hour, 
+            tm.tm_min, 
+            tm.tm_sec
+        );
+    }
+    ```
+
 ## Etudier le programme
 
 ### Déclaration
 
 **Q2** | Trouver et noter la déclaration de la structure tm.
 
+??? success "Solution"
+
+    ```c
+    struct tm
+    {
+        int tm_sec;   // seconds after the minute - [0, 60] including leap second
+        int tm_min;   // minutes after the hour - [0, 59]
+        int tm_hour;  // hours since midnight - [0, 23]
+        int tm_mday;  // day of the month - [1, 31]
+        int tm_mon;   // months since January - [0, 11]
+        int tm_year;  // years since 1900
+        int tm_wday;  // days since Sunday - [0, 6]
+        int tm_yday;  // days since January 1 - [0, 365]
+        int tm_isdst; // daylight savings time flag
+    };
+    ```
+
 **Q3** | Quel terme utilise-t-on pour nommer les **éléments** d’une structure ?
 
+??? success "Solution"
+
+    **attributs**, propriétés, champs, membres (+ générique)
+
 **Q4** | Proposer une écriture générique pour **déclarer une structure**.
+
+??? success "Solution"
+
+    ```c
+    struct nom_de_la_strcuture {
+        type_1 attribut_1;
+        type_2 attribut_2;
+        ...
+        type_n attribut_n;
+    };
+    ```
 
 ## Utilisation
 
 **Q5** | Dans le programme, quel **mot-clé** est utilisé lors de la déclaration de la variable utilisant la structure tm ?
 
+??? success "Solution"
+
+    `struct`
+
 **Q6** | A l'aide de quel symbole accède-t-on aux valeurs stockées (aux attributs) dans la variable utilisant la structure tm ?
 
+??? success "Solution"
+
+    On utilise le point `.` :
+
+    ```c
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    tm.tm_mday
+    ```
+
+
 **Q7** | Il existe deux symboles pour accéder aux valeurs stockées dans une variable utilisant une structure. Les trouver et noter quand est-ce qu'on les utilise.
+
+??? success "Solution"
+
+    Avec une variable, on utilise le `.` 
+
+    Avec un pointeur, on utilise la `->`
+
+    ```c
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    tm.tm_mday
+
+    struct tm * tm2 = localtime(&t);
+
+    tm2->tm_mday
+    ```
+
+## Aller plus loin
+
+![aller plus loin](../images/illustration/aller_plus_loin.jpg)
+
+### Déclarer sa propre structure
+
+**Q8** | Proposer la déclaration d'une structure nommée `point` pour stocker les coordonnées entières x et y d’un point sur un graphique.
+
+**Q9** | Proposer la déclaration d'une structure nommée `student` pour stocker le nom d'un étudiant, son prénom et 10 notes.
+
+**Q10** | Proposer la déclaration d'une structure nommée `releve_temperature` pour stocker un relevé de température en conservant la date et l'heure du relevé.
+
+La définition d'une structure doit toujours être placée avant sa première utilisation. L'endroit où elle est définie détermine sa portée.
+
+**Q11** | Expliquer pourquoi le programme suivant ne compile pas.
+
+```c
+void f(struct ma_structure * p) {
+    p->b = 13.4;
+}
+
+int main() {
+    struct ma_structure {
+        int a;
+        float b;
+    };
+
+    struct ma_structure s;
+    s.a = 42;
+    f(&s);
+}
+```
