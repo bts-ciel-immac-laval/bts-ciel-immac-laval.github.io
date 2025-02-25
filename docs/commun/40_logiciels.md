@@ -1,6 +1,0 @@
----
-icon: material/apps
----
-
-# Logiciels
-

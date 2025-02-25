@@ -1,6 +1,6 @@
 # Les chaînes de caractères
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_09_tableaux_2.pdf" type="application/pdf"></object>
+![Chaînes de caractères](../pdf/cours/bts1/bts1_09_tableaux_2.pdf)
 
 ## Exercice 8
 

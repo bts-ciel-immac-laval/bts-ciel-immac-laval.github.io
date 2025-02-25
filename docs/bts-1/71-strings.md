@@ -725,7 +725,7 @@ Réaliser les exercices suivants :
 
 ### Rendre le programme générique
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_10_argc-argv.pdf" type="application/pdf"></object>
+![argc/argv](../pdf/cours/bts1/bts1_10_argc-argv.pdf)
 
 Créer un programme qui prend 4 paramètres d'entrées : 
 

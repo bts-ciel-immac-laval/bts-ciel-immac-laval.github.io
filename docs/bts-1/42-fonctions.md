@@ -2,7 +2,7 @@
 
 ## Cours
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_2425_05_fonctions_recursivite.pdf" type="application/pdf"></object>
+![Récursivité](../pdf/cours/bts1/bts1_2425_05_fonctions_recursivite.pdf)
 
 ## Exercice 1
 

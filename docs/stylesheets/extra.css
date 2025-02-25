@@ -180,6 +180,18 @@ background-color: rgb(193, 38, 38);
 .bts-fullscreen-button:hover {
     border: 1px solid #ab47bd;
 }
-.bts-pdf-viewer {
+.bts-pdf-viewer-container {
+    position: relative;
+    overflow: hidden;
     width: 100%;
+    padding-top: 60%;
+}
+.bts-pdf-viewer-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
 }

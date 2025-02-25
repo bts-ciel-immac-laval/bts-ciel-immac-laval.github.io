@@ -2,7 +2,7 @@
 
 ## Cours
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_09_tableaux_1.pdf" type="application/pdf"></object>
+![Tableaux](../pdf/cours/bts1/bts1_09_tableaux_1.pdf)
 
 ## Exercice 1
 

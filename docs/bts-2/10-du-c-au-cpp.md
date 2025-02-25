@@ -2,7 +2,7 @@
 
 ## Cours
 
-<object class="fullScreenAble" data="../../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf" type="application/pdf"></object>
+![Du C au C++](../pdf/cours/bts2/bts2_01_du-c-au-cpp.pdf)
 
 ## Exercice 0
 

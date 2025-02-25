@@ -2,7 +2,7 @@
 
 ## Cours 
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_08_pointeurs.pdf" type="application/pdf"></object>
+![Pointeurs](../pdf/cours/bts1/bts1_08_pointeurs.pdf)
 
 ## Exercice 1
 
@@ -36,7 +36,7 @@ Créer une fonction qui permet d’intervertir les valeurs de deux variables qui
 
 ## Le passage d'arguments à une fonction
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_05_passages.pdf" type="application/pdf"></object>
+![Passage par adresses](../pdf/cours/bts1/bts1_05_passages.pdf)
 
 ## Exercice 2
 

@@ -2,7 +2,7 @@
 
 ## Cours
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_2425_05_fonctions_gestion_variables.pdf" type="application/pdf"></object>
+![Gestions des variables](../pdf/cours/bts1/bts1_2425_05_fonctions_gestion_variables.pdf)
 
 ## Exercice 1
 

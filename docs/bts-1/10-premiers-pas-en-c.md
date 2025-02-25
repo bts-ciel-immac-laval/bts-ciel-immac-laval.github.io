@@ -2,7 +2,7 @@
 
 ## Les entiers
 
-<object class="fullScreenAble" data="../../pdf/cours/bts1/bts1_03_premiers-pas-en-c.pdf" type="application/pdf"></object>
+![Permiers pas en C](../pdf/cours/bts1/bts1_03_premiers-pas-en-c.pdf)
 
 ### Déclarer une variable
     
