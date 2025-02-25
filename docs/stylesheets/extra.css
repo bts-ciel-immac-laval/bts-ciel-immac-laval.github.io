@@ -180,3 +180,6 @@ background-color: rgb(193, 38, 38);
 .bts-fullscreen-button:hover {
     border: 1px solid #ab47bd;
 }
+.bts-pdf-viewer {
+    width: 100%;
+}
