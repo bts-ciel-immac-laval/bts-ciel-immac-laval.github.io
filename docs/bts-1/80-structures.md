@@ -352,7 +352,7 @@ Contrairement aux tableaux (et par extension aux chaînes de caractères), il es
 
 **Q20** | Créer la variable `md1` pour Maurice, le frère de Michel DURAND, en l'initialisant avec `md`, puis en changeant son prénom.
 
-**Q21** | Pour simplifier le processus de création de `student`, en compilant vos travaux ci-dessus, créer une fonction `createStudent()` qui renvoie une variable `student` avec toutes ses notes à -1 et les noms et prénoms passés en paramètres.
+**Q21** | Pour simplifier le processus de création de `student`, en compilant vos travaux ci-dessus, créer une fonction `createStudent()` qui renvoie une variable `student` avec toutes ses notes initialisées à 0 et les noms et prénoms passés en paramètres.
 
 ### Modifier les valeurs des champs
 
