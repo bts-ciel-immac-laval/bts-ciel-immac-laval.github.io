@@ -290,6 +290,72 @@ Nom : FROUBILLON
 Notes : 18.00, 13.00, 17.50, 19.50
 ```
 
+??? success "Solution"
+
+    Il faut compléter notre structure `student` pour ajouter le nombre de notes saisies dans le tableau :
+
+    ```c
+    struct student {
+        char nom [25];
+        char prenom [25];
+        float notes [10];
+        int notesCount;
+    };
+    ```
+
+    Ce qui permet d'afficher le contenu d'une structure `student` de la manière suivante :
+
+    ```c
+    struct student mf = {
+        "FROUBILLON", 
+        "Micheline",         
+        { 18, 13, 17.5, 19.5 },
+        4
+    };
+
+    printf("Prénom : %s\nNom : %s\nNotes : ", mf.prenom, mf.nom);
+    for (int i = 0; i < mf.notesCount; i++) {
+        printf("%s%.2f", i == 0 ? "" : ", ", mf.notes[i]);
+    }
+    ```
+
 **Q18** | Remplacer le code de la question précédente par une fonction nommée display() et l'utiliser pour afficher les valeurs des champs des variables `mf`, `md` et `xx`.
 
+??? success "Solution"
+
+    ```c
+    void display(struct student s) {
+        printf("Prénom : %s\nNom : %s\nNotes : ", s.prenom, s.nom);
+        for (int i = 0; i < s.notesCount; i++) {
+            printf("%s%.2f", i == 0 ? "" : ", ", s.notes[i]);
+        }
+    }
+    ```
+
 **Q19** | Créer une fonction nommée `getAverageGrade()` qui renvoie la moyenne d'un `student` passé en paramètre.
+
+??? success "Solution"
+
+    ```c
+    float getAverageGrade(struct student s) {
+        float result = 0;
+        for (int i = 0; i < s.notesCount; i++) {
+            result += s.notes[i];
+        }
+        return result / s.notesCount;
+    }
+    ```
+
+### Copier une variable de type structuré
+
+Contrairement aux tableaux (et par extension aux chaînes de caractères), il est possible de copier une variable de type structuré dans une autre par simple affectation.
+
+**Q20** | Créer la variable `md1` pour Maurice, le frère de Michel DURAND, en l'initialisant avec `md`, puis en changeant son prénom.
+
+**Q21** | Pour simplifier le processus de création de `student`, en compilant vos travaux ci-dessus, créer une fonction `createStudent()` qui renvoie une variable `student` avec toutes ses notes à -1 et les noms et prénoms passés en paramètres.
+
+### Modifier les valeurs des champs
+
+**Q22** | Créer dans le `main()`, une variable `student` nommée `js` pour Jacqueline SUPINOT en utilisant la fonction `create_student()` puis modifier ses 3 premières notes : elle a eu 17, 9.5 et 13.75 aux premiers contrôles.
+    
+**Q23** | Créer une fonction `ucFirstFirstname()` qui permet de mettre la première lettre du prénom d'une variable `student` passée en argument en majuscule.
