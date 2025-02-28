@@ -412,7 +412,7 @@ Contrairement aux tableaux (et par extension aux chaînes de caractères), il es
     ucFirstFirstname(&js);
     ```
     
-## Exercice 1
+## Exercice
 
 Le programme temp_100.c ci-dessous lit le fichier ci-après et affiche les relevé de températures qu'il contient.
 
@@ -444,12 +444,12 @@ void readFile() {
 
     for (int i = 0; i < 100; i++) {
 
-        fscanf(ftemp, "%d;%f;%f;%f\\r\\n", &timestamp, &tmin, &tmax, &tmoy);
+        fscanf(ftemp, "%d;%f;%f;%f\r\n", &timestamp, &tmin, &tmax, &tmoy);
 
         struct tm * tm = localtime(&timestamp);
 
         printf(
-            "%02d/%02d/%4d : min : %6.2f °C, max : %6.2f °C, moy : %6.2f °C\\n",
+            "%02d/%02d/%4d : min : %6.2f °C, max : %6.2f °C, moy : %6.2f °C\n",
             tm->tm_mday,
             tm->tm_mon + 1,
             tm->tm_year + 1900,
@@ -472,7 +472,56 @@ int main() {
 
     return 0;
 }
-```    
+```
+
+??? note "Rappel sur les échanges de tableaux avec les fonctions"
+
+    ![Fonctions et tableaux](../pdf/cours/bts1/bts1_05_fonctions_tableaux.pdf)
+
+??? success "Solution"
+
+    Modification de `readfile()` :
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+
+    struct releve_temperature {
+        time_t timestamp;
+        float temperature;
+    };
+
+    void readFile(struct releve_temperature * releves) {
+        FILE * ftemp = fopen("temp-100-jours.csv", "r");
+        float tmax = 0.0f, tmoy = 0.0f;
+
+        if (ftemp == NULL) {
+            puts("Problème lors de la lecture du fichier");
+            exit(-1);
+        }
+
+        for (int i = 0; i < 100; i++) {
+            fscanf(ftemp, "%d;%f;%f;%f\r\n", &releves[i].timestamp, &releves[i].temperature, &tmax, &tmoy);
+        }
+
+        fclose(ftemp);
+    }
+
+    int main() {
+        // Encodage et nettoyage de la console
+        system("chcp 65001");
+        system("cls");
+
+        struct releve_temperature releves[100];
+
+        // Lecture du fichier
+        readFile(releves);
+
+        return 0;
+    }
+    ```
+
 
 ## Exercice bonus
 
