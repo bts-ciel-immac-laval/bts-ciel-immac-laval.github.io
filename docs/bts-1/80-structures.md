@@ -348,14 +348,132 @@ Notes : 18.00, 13.00, 17.50, 19.50
 
 ### Copier une variable de type structuré
 
-Contrairement aux tableaux (et par extension aux chaînes de caractères), il est possible de copier une variable de type structuré dans une autre par simple affectation.
+Contrairement aux tableaux (et par extension aux chaînes de caractères), il est possible de copier une variable de type structuré dans une autre par *simple* affectation.
 
 **Q20** | Créer la variable `md1` pour Maurice, le frère de Michel DURAND, en l'initialisant avec `md`, puis en changeant son prénom.
 
+??? success "Solution"
+
+    ```c
+    #include <string.h>
+
+    // ...
+
+    struct student md = { .prenom = "Michel", .nom = "DURAND", .notesCount = 0 };
+    struct student md1;
+    md1 = md;
+    strcpy(md1.prenom, "Maurice"); // ! Pas d'affectation de chaîne de caractères !
+    ```
+
 **Q21** | Pour simplifier le processus de création de `student`, en compilant vos travaux ci-dessus, créer une fonction `createStudent()` qui renvoie une variable `student` avec toutes ses notes initialisées à 0 et les noms et prénoms passés en paramètres.
+
+??? success "Solution"
+
+    ```c
+    struct student createStudent(char * nom, char * prenom) {
+        struct student newStudent = { 
+            .notes = { 0 }, 
+            .notesCount = 0 
+        };
+        strcpy(newStudent.nom, nom);
+        strcpy(newStudent.prenom, prenom);
+        return newStudent;
+    }
+    ```
 
 ### Modifier les valeurs des champs
 
-**Q22** | Créer dans le `main()`, une variable `student` nommée `js` pour Jacqueline SUPINOT en utilisant la fonction `create_student()` puis modifier ses 3 premières notes : elle a eu 17, 9.5 et 13.75 aux premiers contrôles.
-    
+**Q22** | Créer dans le `main()`, une variable `student` nommée `js` pour Jacqueline SUPINOT en utilisant la fonction `createStudent()` puis modifier ses 3 premières notes : elle a eu 17, 9.5 et 13.75 aux premiers contrôles.
+
+??? success "Solution"
+
+    ```c
+    struct student js = createStudent("SUPINOT", "Jacqueline");
+    js.notes[0] = 17;
+    js.notes[1] = 9.5;
+    js.notes[2] = 13.75;
+    js.notesCount = 3;
+    display(js);
+    ```
+  
 **Q23** | Créer une fonction `ucFirstFirstname()` qui permet de mettre la première lettre du prénom d'une variable `student` passée en argument en majuscule.
+
+??? success "Solution"
+
+    ```c
+    void ucFirstFirstname(struct student * s) {
+        s->prenom[0] = toupper(s->prenom[0]);
+    }
+
+    // ...
+
+    // Utilisation
+    struct student js = createStudent("SUPINOT", "jacqueline");
+    ucFirstFirstname(&js);
+    ```
+    
+## Exercice 1
+
+Le programme temp_100.c ci-dessous lit le fichier ci-après et affiche les relevé de températures qu'il contient.
+
+[temp-100-jours.csv](../files/bts1/temp-100-jours.csv){ .md-button .md-button--primary }
+
+1. En utilisant la structure `releve_temperature` créée plus tôt, modifier la fonction `readFile()` pour charger les données lues dans un tableau de `releve_temperature` et le renvoyer à la fonction appelante.
+
+2. Créer une fonction `getMin()` qui parcourt le tableau de `releve_temperature` et qui renvoie le relevé dont la température est la plus basse. Afficher cette température et la date correspondante sous la forme :
+
+```
+> ./temp_100.exe
+Il faisait 4.7 degres le 07/11/2016.
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void readFile() {
+    FILE * ftemp = fopen("temp-100-jours.csv", "r");
+    time_t timestamp = 0;
+    float tmin = 0.0f, tmax = 0.0f, tmoy = 0.0f;
+
+    if (ftemp == NULL) {
+        puts("Problème lors de la lecture du fichier");
+        exit(-1);
+    }
+
+    for (int i = 0; i < 100; i++) {
+
+        fscanf(ftemp, "%d;%f;%f;%f\\r\\n", &timestamp, &tmin, &tmax, &tmoy);
+
+        struct tm * tm = localtime(&timestamp);
+
+        printf(
+            "%02d/%02d/%4d : min : %6.2f °C, max : %6.2f °C, moy : %6.2f °C\\n",
+            tm->tm_mday,
+            tm->tm_mon + 1,
+            tm->tm_year + 1900,
+            tmin,
+            tmax,
+            tmoy
+        );
+    }
+
+    fclose(ftemp);
+}
+
+int main() {
+    // Encodage et nettoyage de la console
+    system("chcp 65001");
+    system("cls");
+
+    // Lecture du fichier
+    readFile();
+
+    return 0;
+}
+```    
+
+## Exercice bonus
+
+Créer un programme qui reproduit le fonctionnement du site : https://estcequecestbientotleweekend.fr/
