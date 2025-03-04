@@ -480,8 +480,6 @@ int main() {
 
 ??? success "Solution"
 
-    Modification de `readfile()` :
-
     ```c
     #include <stdio.h>
     #include <stdlib.h>
@@ -492,8 +490,12 @@ int main() {
         float temperature;
     };
 
+    // On passe le tableau par adresse, ça ne change pas...
     void readFile(struct releve_temperature * releves) {
         FILE * ftemp = fopen("temp-100-jours.csv", "r");
+        
+        // Le timestamp et la temperature minimale vont aller dans la structure 
+        // mais les deux autres températures doivent être lues.
         float tmax = 0.0f, tmoy = 0.0f;
 
         if (ftemp == NULL) {
@@ -501,6 +503,7 @@ int main() {
             exit(-1);
         }
 
+        // Lecture et stockage dans le tableau 
         for (int i = 0; i < 100; i++) {
             fscanf(ftemp, "%d;%f;%f;%f\r\n", &releves[i].timestamp, &releves[i].temperature, &tmax, &tmoy);
         }
@@ -508,15 +511,39 @@ int main() {
         fclose(ftemp);
     }
 
+    // Détection du minimum, algorithme classique de recherche de minimum
+    struct releve_temperature getMin(struct releve_temperature * releves) {
+        struct releve_temperature minimum = releves[0];
+        for (int i = 1; i < 100; i++) {
+            if (releves[i].temperature < minimum.temperature) {
+                minimum = releves[i];
+            }
+        }
+        return minimum;
+    }
+
     int main() {
         // Encodage et nettoyage de la console
         system("chcp 65001");
         system("cls");
 
-        struct releve_temperature releves[100];
+        struct releve_temperature releves[100], minimum;
+        struct tm minimumDate;
 
         // Lecture du fichier
         readFile(releves);
+        minimum = getMin(releves);
+
+        // On tranforme le timestamp en date lisible
+        minimumDate = *localtime(&minimum.timestamp);
+
+        // Affichage
+        printf("Il faisait %.2f°C le %02d/%02d/%04d", 
+            minimum.temperature,
+            minimumDate.tm_mday,
+            minimumDate.tm_mon + 1,
+            minimumDate.tm_year + 1900
+        );
 
         return 0;
     }
