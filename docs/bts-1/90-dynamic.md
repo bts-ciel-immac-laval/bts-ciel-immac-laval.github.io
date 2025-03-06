@@ -16,7 +16,108 @@ Afin de réaliser la saisie une chaîne de caractères, on désire allouer dynam
         
 3. avec la fonction `realloc`
 
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main() {
+        char * ma_chaine = NULL;
+
+        //                      malloc ↓ avec un paramètre
+        ma_chaine = (char *) malloc(26 * sizeof(char));
+        if (ma_chaine != NULL) {
+            printf("malloc  : %p : %s\n", ma_chaine, ma_chaine);
+            strcpy(ma_chaine, "abcdefghijklmnopqrstuvwxy");
+            printf("strcpy  : %p : %s\n", ma_chaine, ma_chaine);
+            free(ma_chaine);
+            printf("free    : %p : %s\n", ma_chaine, ma_chaine);
+            // On notera que libération ne signifie pas nettoyage de la zone !
+        }
+
+        //                     calloc ↓ avec deux paramètres
+        ma_chaine = (char *) calloc(26, sizeof(char));
+        if (ma_chaine != NULL) {
+            printf("calloc  : %p : %s\n", ma_chaine, ma_chaine);
+            strcpy(ma_chaine, "abcdefghijklmnopqrstuvwxy");
+            printf("strcpy  : %p : %s\n", ma_chaine, ma_chaine);
+            free(ma_chaine);
+            printf("free    : %p : %s\n", ma_chaine, ma_chaine);
+        }
+
+        //            ↓  On n'oublie pas de réinitialiser à NULL sinon on essaie de réallouer un espace libéré !
+        ma_chaine = NULL;
+        ma_chaine = (char *) realloc(ma_chaine, 26);
+        if (ma_chaine != NULL) {
+            printf("realloc : %p : %s\n", ma_chaine, ma_chaine);
+            strcpy(ma_chaine, "abcdefghijklmnopqrstuvwxy");
+            printf("strcpy  : %p : %s\n", ma_chaine, ma_chaine);
+            free(ma_chaine);
+            printf("free    : %p : %s\n", ma_chaine, ma_chaine);
+        }
+
+        return 0;
+    }
+    ```
+
 Refaire l’exercice avec un tableau de 100 `float`.
+
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        float * mes_floats = NULL;
+
+        //                         malloc ↓ avec un paramètre
+        mes_floats = (float *) malloc(100 * sizeof(float));
+        if (mes_floats != NULL) {
+            for (int i = 0; i < 100; i++) {
+                mes_floats[i] = (i + 1) * 0.01;
+            }
+            for (int i = 0; i < 100; i++) {
+                printf("%.2f ", mes_floats[i]);
+            }
+            printf("\n\n");
+            free(mes_floats);
+        }
+
+        //                        calloc ↓ avec deux paramètres
+        mes_floats = (float *) calloc(100, sizeof(float));
+        if (mes_floats != NULL) {
+            // Si on n'en remplit que la moitié...
+            for (int i = 0; i < 50; i++) {
+                mes_floats[i] = (i + 1) * 0.01;
+            }
+            // ...l'autre moitié est initialisé à 0 avec calloc !
+            for (int i = 0; i < 100; i++) {
+                printf("%.2f ", mes_floats[i]);
+            }
+            printf("\n\n");
+            free(mes_floats);
+        }
+
+        //            ↓  On n'oublie pas de réinitialiser à NULL sinon on essaie de réallouer un espace libéré !
+        mes_floats = NULL;
+        mes_floats = (float *) realloc(mes_floats, 100 * sizeof(float));
+        if (mes_floats != NULL) {
+            for (int i = 0; i < 100; i++) {
+                mes_floats[i] = (i + 1) * 0.01;
+            }
+            for (int i = 0; i < 100; i++) {
+                printf("%.2f ", mes_floats[i]);
+            }
+            printf("\n\n");
+            free(mes_floats);
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 2
 
