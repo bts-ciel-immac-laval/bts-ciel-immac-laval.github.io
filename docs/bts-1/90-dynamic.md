@@ -136,7 +136,53 @@ Ecrire un programme permettant de saisir un tableau de nombres décimaux. Ce pro
 
 ??? success "Solution"
 
-    ![Loading...](../images/meme/loading-01.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        int taille = 0;
+        float * tableau = NULL;
+
+        system("chcp 65001");
+        system("cls");
+
+        // Saisie du nombre d'éléments
+        printf("Nombre d'éléments : ");
+        scanf("%d", &taille);
+        if (taille <= 0) {
+            puts("Le nombre d'éléments doit être strictement positif !!!");
+            return -1;
+        }
+
+        // Création du tableau
+        tableau = (float *) calloc(taille, sizeof(float));
+        // ou : tableau = (float *) malloc(taille * sizeof(float));
+        // ou : tableau = (float *) realloc(NULL, taille * sizeof(float));
+        if (tableau == NULL) {
+            puts("Erreur lors de l'allocation de mémoire...");
+            return -2;
+        }
+
+        // Saisie des éléments
+        printf("\nSaisie des %d éléments :\n", taille);
+        for (int i = 0; i < taille; i++) {
+            printf("#%02d : ", i + 1);
+            scanf("%f", tableau + i);
+        }
+
+        // Affichage
+        printf("\nAffichage des %d éléments :\n", taille);
+        for (int i = 0; i < taille; i++) {
+            printf("%s%.2f", i == 0 ? "" : ", ", tableau[i]);
+        }
+
+        // Libération de la mémoire
+        free(tableau);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 3
 
