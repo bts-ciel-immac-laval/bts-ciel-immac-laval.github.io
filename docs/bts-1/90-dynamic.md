@@ -194,4 +194,47 @@ On veut pouvoir saisir un tableau d’entiers. Le nombre d’entiers à saisir n
 
 ??? success "Solution"
 
-    ![Loading Cat](../images/meme/loading-03.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        int taille = 0;
+        int * tableau = NULL;
+        char saisie[10];
+
+        system("chcp 65001");
+        system("cls");
+
+        puts("Saisir les entiers (saisie vide = fin de saisie) :");
+        do {
+            printf("#%02d: ", taille + 1);
+            gets(saisie);
+            if (saisie[0] != '\0') {
+                tableau = (int *) realloc(tableau, ++taille * sizeof(int));
+                if (tableau == NULL) {
+                    puts("Erreur d'allocation !!!");
+                    return -1;
+                }
+                tableau[taille - 1] = atoi(saisie);
+            }
+        }
+        while (saisie[0] != '\0');
+
+        printf("Eléments saisis :\n[");
+        for (int i = 0; i < taille; i++) {
+            printf("%s%d", i == 0 ? "" : ", ", tableau[i]);
+        }
+        printf("]\n");
+
+        printf("Taille mémoire allouée : %d\n", taille * sizeof(int));
+
+        free(tableau);
+
+        return 0;
+    }
+    ```
+
+# Exercice 4
+
+Ecrire un programme qui permet à l'utilisateur de saisir un nombre indéfini de chaînes de caractères (127 caractères maximum). Les chaînes sont rangées successivement dans un tableau de pointeurs. La fin de la saisie sera signalée par une chaîne vide. Le programme affichera toutes les chaînes saisies avant de libérer la mémoire.
