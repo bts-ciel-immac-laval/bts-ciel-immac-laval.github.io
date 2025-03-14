@@ -123,12 +123,29 @@ Refaire l’exercice avec un tableau de 100 `float`.
 
 Ecrire un programme permettant de saisir un tableau de nombres décimaux. Ce programme allouera la mémoire pour ce tableau dynamiquement. Le programme :
 
-1. Demandera de saisir la taille n du tableau.
+1.  Demandera de saisir la taille n du tableau.
 
-2. Allouera la mémoire nécessaire avec la fonction adaptée (penser à gérer le cas ou l’allocation s’avère impossible à effectuer).
+2.  Allouera la mémoire nécessaire avec la fonction adaptée (penser à gérer le cas ou l’allocation s’avère impossible à effectuer).
 
-3. Effectuera la saisie des n éléments du tableau.
+3.  Effectuera la saisie des n éléments du tableau.
 
-4. Affichera le tableau.
+4.  Affichera le tableau.
 
-5. Libèrera l’espace mémoire alloué.
+5.  Libèrera l’espace mémoire alloué.
+
+
+??? success "Solution"
+
+    ![Loading...](../images/meme/loading-01.gif)
+
+## Exercice 3
+
+On veut pouvoir saisir un tableau d’entiers. Le nombre d’entiers à saisir n’est pas connu à l’avance donc la taille du tableau grandira à chaque saisie.
+
++   Après la saisie, le tableau sera affiché avec un pointeur et la mémoire sera libérée.
+
++   Le programme affichera également la taille mémoire allouée.
+
+??? success "Solution"
+
+    ![Loading Cat](../images/meme/loading-03.gif)
