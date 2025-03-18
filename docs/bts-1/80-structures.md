@@ -553,3 +553,9 @@ int main() {
 ## Exercice bonus
 
 Créer un programme qui reproduit le fonctionnement du site : https://estcequecestbientotleweekend.fr/
+
+## Devoir
+
+Correction du devoir :
+
+[:material-file-download: Télécharger le programme](../files/bts1/bts1_devoir_2.zip){ .md-button .md-button--primary }
