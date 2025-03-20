@@ -253,3 +253,85 @@ Les chaînes sont rangées successivement dans un tableau de pointeurs.
 La fin de la saisie sera signalée par une chaîne vide. 
 
 Le programme sauvegardera les chaînes saisies dans un fichier texte horodaté avant de libérer la mémoire.
+
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #include <time.h>
+
+    int main() {
+
+        char ** tableau = NULL;
+        int nbSaisies = 0;
+        char saisie[128] = "", nomFichier[20] = "";
+        time_t timestamp;
+        struct tm horodatage;
+        FILE * fichier = NULL;
+
+        system("chcp 65001");
+        system("cls");
+
+        puts("Saisir les chaines de caractères (saisie vide pour arrêter) :");
+        do {
+            gets(saisie);
+            // Quelquechose a été saisi...
+            if (saisie[0] != '\0') {
+                // Agrandir tableau pour pouvoir y stocker le pointeur vers la nouvelle
+                // zone du tas où on va stocker la nouvelle chaîne saisie
+                tableau = (char **) realloc(tableau, ++nbSaisies * sizeof(char *));
+                if (tableau == NULL) {
+                    puts("Erreur d'allocation !");
+                    return -1;
+                }
+                
+                // Réserver un espace pour stocker la nouvelle chaîne saisie
+                // et stocker le pointeur vers cette zone à la fin de tableau
+                tableau[nbSaisies - 1] = (char *) malloc((strlen(saisie) + 1) * sizeof(char));
+                if (tableau[nbSaisies - 1] == NULL) {
+                    puts("Erreur d'allocation !");
+                    return -2;
+                }
+                
+                // Copier dans la nouvelle zone la nouvelle chaîne saisie
+                strcpy(tableau[nbSaisies - 1], saisie);
+            }
+        }
+        while (saisie[0] != '\0');
+
+        // Génération du nom de fichier horodaté
+        timestamp = time(NULL);
+        horodatage = *localtime(&timestamp);
+        sprintf(nomFichier, "%04d%02d%02d%02d%02d%02d.txt", 
+            horodatage.tm_year + 1900,
+            horodatage.tm_mon + 1,
+            horodatage.tm_mday,
+            horodatage.tm_hour,
+            horodatage.tm_min,
+            horodatage.tm_sec
+        );
+
+        // Création du fichier
+        fichier = fopen(nomFichier, "w");
+        if (fichier == NULL) {
+            puts("Erreur lors de la création du fichier");
+            return -3;
+        }
+
+        // Ecriture dans le fichier et libération des zones mémoires des chaines saisies
+        for (int i = 0; i < nbSaisies; i++) {
+            fprintf(fichier, "%s\n", tableau[i]);
+            free(tableau[i]);
+        }
+
+        // Libération du tableau
+        free(tableau);
+
+        // Fermeture du fichier
+        fclose(fichier);
+
+        return 0;
+    }
+    ```
