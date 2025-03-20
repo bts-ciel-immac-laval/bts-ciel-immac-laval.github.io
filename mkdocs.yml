@@ -28,6 +28,7 @@ nav:
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
       - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
       - 03 - Intégrales : bts-1/Maths x STI/30-integrales.md
+      - 04 - Algorithme de Dijkstra : bts-1/Maths x STI/40-dijkstra.md
   - BTS 2 : 
     - 01 - Du C au C++ : bts-2/10-du-c-au-cpp.md
     - 02 - Premiers pas en POO : bts-2/20-poo-1.md
