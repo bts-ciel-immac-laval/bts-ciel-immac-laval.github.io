@@ -24,6 +24,7 @@ nav:
     - 08 - Les experts : bts-1/71-strings.md
     - 09 - Structures : bts-1/80-structures.md
     - 10 - Allocations dynamiques : bts-1/90-dynamic.md
+    - 11 - Listes chaînées : bts1/91-listes-chainees.md
     - Maths x STI :
       - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
       - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
