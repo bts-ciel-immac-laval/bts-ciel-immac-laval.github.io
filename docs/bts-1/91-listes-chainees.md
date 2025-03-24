@@ -2,7 +2,7 @@
 
 ![chaines](../images/illustration/chaines.jpg)
 
-## Exercice
+## Exercice 1
 
 Créer dans l'ordre les fonctions suivantes :
 
@@ -107,3 +107,66 @@ Taille : 6
  5: 42
 
 ```
+
+??? success "Solution intermédiaire - 1^ère^ et 2^ème^ étapes"
+
+    ```c
+    Node * nodeCreate(int value) {
+        Node * newNode = (Node *) malloc(sizeof(Node));
+        if (newNode == NULL) {
+            puts("Erreur d'allocation !");
+            exit(-1);
+        }
+        newNode->value = value;
+        newNode->next = NULL;
+        return newNode;
+    }
+
+    void nodeDisplay(Node * n) {
+        if (n != NULL) {
+            printf("%d\n", n->value);
+        }
+        else {
+            printf("NULL\n");
+        }
+    }
+
+    void nodesFree(Node * n) {
+        Node * temp;
+        while (n != NULL) {
+            temp = n->next;
+            free(n);
+            n = temp;
+        }
+    }
+
+    void nodePush(Node * n, int value) {
+        Node * newNode = nodeCreate(value);
+        while (n->next != NULL) {
+            n = n->next;
+        }
+        n->next = newNode;
+    }
+
+    int nodesCount(Node *n) {
+        int count = 0;
+        while (n != NULL) {
+            count++;
+            n = n->next;
+        }
+        return count;
+    }
+
+    Node * nodeAt(Node * n, int i) {
+        for (int j = 0; j < i; j++) {
+            n = n->next;
+        }
+        return i < 0 ? NULL : n;
+    }
+    ```
+
+## Exercice 2
+
+
+
+## Exercice 3
