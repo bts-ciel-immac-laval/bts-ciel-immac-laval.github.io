@@ -108,7 +108,7 @@ Taille : 6
 
 ```
 
-??? success "Solution intermédiaire - 1^ère^ et 2^ème^ étapes"
+??? success "Solution intermédiaire - 1^ère^, 2^ème^ et 3^ème^ étapes"
 
     ```c
     Node * nodeCreate(int value) {
@@ -162,5 +162,30 @@ Taille : 6
             n = n->next;
         }
         return i < 0 ? NULL : n;
+    }
+
+    Node * nodeDelete(Node * n, int i) {
+        Node * temp, * next;
+
+        if (i == 0 && n != NULL) {
+            temp = n->next;
+            free(n);
+            return temp;
+        }
+        
+        temp = nodeAt(n, i - 1);
+        if (temp != NULL && temp->next != NULL) {
+            next = temp->next;
+            temp->next = next->next;
+            free(next);
+        }
+        return n;
+    }
+
+    void nodesDisplay(Node *n) {
+        printf("\nTaille : %d\n", nodesCount(n));
+        for (int i = 0; n != NULL; i++, n = n->next) {
+            printf("%2d: %2d\n", i, n->value);
+        }
     }
     ```
