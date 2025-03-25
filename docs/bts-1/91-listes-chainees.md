@@ -108,9 +108,66 @@ Taille : 6
 
 ```
 
-??? success "Solution intermédiaire - 1^ère^, 2^ème^ et 3^ème^ étapes"
+??? success "Solution"
 
     ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    typedef struct Node {
+        int value;
+        struct Node * next;
+    } Node;
+
+    // 1ère étape
+    Node * nodeCreate(int);
+    void nodeDisplay(Node *);
+    void nodesFree(Node *);
+
+    // 2ème étape
+    void nodePush(Node *, int);
+    int nodesCount(Node *);
+    Node * nodeAt(Node *, int);
+
+    // 3ème étape
+    Node * nodeDelete(Node *, int);
+    void nodesDisplay(Node *);
+
+    // 4ème étape
+    Node * nodeShift(Node *, int);
+    void nodeInsert(Node *, int, int);
+
+    // [8|•]->[15|•]->[22|•]->[23|•]->[42|NULL]
+
+    int main() {
+        Node * n1 = nodeCreate(8);
+        nodeDisplay(n1);
+
+        nodePush(n1, 15);
+        nodePush(n1, 22);
+        nodePush(n1, 23);
+        nodePush(n1, 42);
+
+        printf("\nTaille : %d\n", nodesCount(n1));
+        
+        nodeDisplay(nodeAt(n1, 1));
+        nodeDisplay(nodeAt(n1, 5));
+
+        
+        n1 = nodeDelete(n1, 2);
+        nodesDisplay(n1);
+
+        n1 = nodeShift(n1, 4);
+        nodesDisplay(n1);
+
+        nodeInsert(n1, 3, 16);
+        nodesDisplay(n1);
+        
+        nodesFree(n1);
+
+        return 0;
+    }
+
     Node * nodeCreate(int value) {
         Node * newNode = (Node *) malloc(sizeof(Node));
         if (newNode == NULL) {
@@ -186,6 +243,21 @@ Taille : 6
         printf("\nTaille : %d\n", nodesCount(n));
         for (int i = 0; n != NULL; i++, n = n->next) {
             printf("%2d: %2d\n", i, n->value);
+        }
+    }
+
+    Node * nodeShift(Node * n, int value) {
+        Node * newNode = nodeCreate(value);
+        newNode->next = n;
+        return newNode;
+    }
+
+    void nodeInsert(Node * n, int i, int value) {
+        Node * prev = nodeAt(n, i - 1), * newNode = NULL;
+        if (i != 0 && prev != NULL) {
+            newNode = nodeCreate(value);
+            newNode->next = prev->next;
+            prev->next = newNode;
         }
     }
     ```
