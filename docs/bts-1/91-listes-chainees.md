@@ -30,9 +30,9 @@ Créer dans l'ordre les fonctions suivantes :
 
 4. Quatrième étape
 
-    + `nodeShift` pour retirer le premier noeud d'une liste chaînée.
+    + `nodeShift` pour ajouter un noeud à la première place d'une liste chaînée.
 
-    + `nodeInsert` pour insérer un noeud à l'indice n d'une liste chaînée.
+    + `nodeInsert` pour insérer un noeud à l'indice n d'une liste chaînée (mais pas la première 😅).
 
 afin que le programme suivant :
 
@@ -164,9 +164,3 @@ Taille : 6
         return i < 0 ? NULL : n;
     }
     ```
-
-## Exercice 2
-
-
-
-## Exercice 3
