@@ -293,9 +293,17 @@ int main() {
     Le cout minimum pour y arriver est : 77.
     ```
 
-??? success "Correction partielle"
+??? success "Solution"
 
     ```c
+    /**
+    * @brief Retourne le poids d'une arête (parent -> enfant) dans le graphe
+    * 
+    * @param graphe Le tableau du graphe
+    * @param parent Le noeud parent (origine)
+    * @param enfant Le noeud enfant (destination)
+    * @return int Le poids de l'arête si elle existe, sinon INFINI
+    */
     int recuperer_poids_arete(struct arete * graphe, int parent, int enfant) {
         for (int i = 0; i < NB_ARETES; i++) {
             if (graphe[i].parent == parent && graphe[i].enfant == enfant) {
@@ -303,6 +311,35 @@ int main() {
             }
         }
         return INFINI;
+    }
+
+    /**
+    * @brief Renvoie parmi les noeuds non étudiés celui dont le poids 
+    *        pour y arriver est le plus petit.
+    * 
+    * @param parcours Le tableau contenant les noeuds (le tableau de travail)
+    * @return int Le plus petit poids s'il reste des noeuds à étudier sinon -1
+    */
+    int recuperer_chemin_minimum(struct noeud * parcours) {
+        // Initialiser le minimum
+        int min = INFINI;
+        // Initialiser l'indice
+        int iMin = -1;
+        // On parcourt tous les noeuds :
+        for (int i = 0; i < NB_NOEUDS; i++) {
+            // Si le noeud n'est pas étudié
+            if (parcours[i].etudie == 0) {
+                // Si le cout du noeud est inférieur au minimum
+                if (parcours[i].cout < min) {
+                    // Sauvegarder le nouveau minimum
+                    min = parcours[i].cout;
+                    // Sauvegarder l'indice
+                    iMin = i;
+                }
+            }
+        }
+        // Renvoyer l'indice
+        return iMin;
     }
     ``` 
 
