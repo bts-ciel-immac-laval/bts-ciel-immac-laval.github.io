@@ -402,3 +402,183 @@ Voici quelques mini-exercices pour s'entraîner aux basiques de la programmation
         return 0;
     }
     ```
+
+## Pointeurs
+
+??? exo-easy "Ecrire une fonction qui remplace un caractère passé par **adresse** par le suivant dans la table ASCII"
+
+    ```c
+    #include <stdio.h>
+
+    void remplacerCharParSuivant(char * c) {
+        *c += 1;
+    }
+
+    int main() {
+        char A = 'A';
+        remplacerCharParSuivant(&A);
+        printf("A = %c", A);
+
+        return 0;
+    }
+    ```
+
+??? exo-easy "En exécutant votre programme avec la commande `.\exo.exe test 1 2 3 0 "fin test"`, afficher les éléments présents sur la ligne de commande."
+
+    ```c
+    #include <stdio.h>
+
+    int main(int argc, char ** argv) {
+        for (int i = 0; i < argc; i++) {
+            printf("%d: %s\n", i, argv[i]);
+        }
+
+        return 0;
+    }
+    ```
+
+??? exo-medium "En exécutant votre programme avec la commande `.\exo.exe test 1 2 3 0 "fin test"`, n'afficher que les paramètres numériques passés au programme."
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main(int argc, char ** argv) {
+        int temp;
+        for (int i = 0; i < argc; i++) {
+            temp = atoi(argv[i]);
+            //                  ↓ Pour détecter un vrai 0
+            if (temp != 0 || strcmp(argv[i], "0") == 0) {
+                printf("%d\n", temp);
+            }
+        }
+
+        return 0;
+    }
+    ```
+
+## Structures
+
+??? exo-easy "Déclarer une structure `UnEntierEtUnReel` qui permet de stocker un entier et un réel."
+
+    ```c
+    struct UnEntierEtUnReel {
+        int unEntier;
+        float unReel;
+    };
+    ```
+
+??? exo-easy "Déclarer une structure `UnHorodatageEtDixReels` qui permet de stocker un horodatage (timestamp) et dix réels."
+
+    ```c
+    #include <time.h>
+
+    struct UnHorodatageEtDixReels {
+        time_t unHorodatage;
+        float dixReels[10];
+    };
+    ```
+
+??? exo-medium "Déclarer au moins deux structures `PersonneX` qui permettent de stocker le prénom, le nom et la date de naissance d'une personne et évaluer la place occupée en mémoire par une variable qui les utiliserait. Vérifier par le code."
+    
+    ```c
+    #include <stdio.h>
+    #include <time.h>
+
+    struct Personne1 {
+        char prenom[25];
+        char nom[25];
+        char dateNaissance[10];
+    }; // → 25 + 25 + 10 = 60 octets / variable dont plein d'espace inutile dans prenom et nom.
+
+    struct Personne2 {
+        char * prenom;
+        char * nom;
+        time_t dateNaissance;
+    }; // → 8 + 8 + 8 = 24 octets / variable + espace exact pour chaque chaîne de caractères.
+
+    int main() {
+        
+        printf("%d %d", sizeof(struct Personne1), sizeof(struct Personne2)); // → 60 24
+        
+        return 0;
+    }
+    ```
+
+??? exo-easy "Initialiser une variable `UnEntierEtUnReel` avec les valeurs `2` et `3.14` et afficher son contenu."
+
+    ```c
+    #include <stdio.h>
+
+    struct UnEntierEtUnReel {
+        int unEntier;
+        float unReel;
+    };
+
+    int main() {
+        
+        struct UnEntierEtUnReel ueeu1 = { 2, 3.14 };
+
+        printf("%d, %.2f", ueeu1.unEntier, ueeu1.unReel);
+        
+        return 0;
+    }
+    ```
+
+??? exo-medium "Initialiser une variable `UnEntierEtUnReel` avec les valeurs `3.14` et `2` *dans cet ordre* et afficher son contenu."
+
+    ```c
+    #include <stdio.h>
+
+    struct UnEntierEtUnReel {
+        int unEntier;
+        float unReel;
+    };
+
+    int main() {
+        
+        struct UnEntierEtUnReel ueeu1 = { .unReel = 3.14, .unEntier = 2 };
+
+        printf("%d, %.2f", ueeu1.unEntier, ueeu1.unReel);
+        
+        return 0;
+    }
+    ```
+
+??? exo-medium "Initialiser une variable `UnHorodatageEtDixReels` avec l'heure du système et dix valeurs et afficher son contenu."
+
+    ```c
+    #include <stdio.h>
+    #include <time.h>
+
+    struct UnHorodatageEtDixReels {
+        time_t unHorodatage;
+        float dixReels[10];
+    };
+
+    int main() {
+        
+        struct UnHorodatageEtDixReels uhedr1 = { time(NULL), { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 } };
+        
+        printf("Brut : %ld, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f\n", uhedr1.unHorodatage, uhedr1.dixReels[0], uhedr1.dixReels[1], uhedr1.dixReels[2], uhedr1.dixReels[3], uhedr1.dixReels[4], uhedr1.dixReels[5], uhedr1.dixReels[6], uhedr1.dixReels[7], uhedr1.dixReels[8], uhedr1.dixReels[9]);
+        
+        printf("Mis en forme :\n");
+        struct tm * tmHorodatage = localtime(&uhedr1.unHorodatage);
+        printf("%02d/%02d/%04d %02d:%02d:%02d\n",
+            tmHorodatage->tm_mday,
+            tmHorodatage->tm_mon + 1,
+            tmHorodatage->tm_year + 1900,
+            tmHorodatage->tm_hour,
+            tmHorodatage->tm_min,
+            tmHorodatage->tm_sec
+        );
+        printf("[");
+        for (int i = 0; i < 10; i++) {
+            printf("%s%.1f", i == 0 ? "" : ", ", uhedr1.dixReels[i]);
+        }
+        printf("]\n");
+
+        return 0;
+    }
+    ```
