@@ -347,6 +347,40 @@ int main() {
 
 Adapter le programme pour résoudre le second exercice.
 
+??? success "Solution"
+
+    Il "suffit" de mettre à jour les variables/constantes suivantes :
+
+    ```c
+    #define NB_ARETES   12
+
+    struct arete graphe[] = {
+        { 0, 1, 14 },
+        { 0, 2, 27 },
+        { 1, 2, 12 },
+        { 1, 3, 27 },
+        { 2, 3, 15 },
+        { 2, 4, 30 },
+        { 3, 4, 14 },
+        { 3, 5, 12 },
+        { 4, 6, 7  },
+        { 5, 6, 19 },
+        { 5, 7, 35 },
+        { 6, 7, 19 },
+    };
+
+    struct noeud parcours[] = {
+        { 'H',  0, 0,      1 },
+        { 'B', -1, INFINI, 0 },
+        { 'T', -1, INFINI, 0 },
+        { 'C', -1, INFINI, 0 },
+        { 'M', -1, INFINI, 0 },
+        { 'L', -1, INFINI, 0 },
+        { 'A', -1, INFINI, 0 },
+        { 'N', -1, INFINI, 0 },
+    };
+    ``` 
+
 ## Aller beaucoup plus loin
 
 Adapter le programme pour pouvoir le paramétrer à l’aide d’un fichier !
