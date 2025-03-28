@@ -293,6 +293,19 @@ int main() {
     Le cout minimum pour y arriver est : 77.
     ```
 
+??? success "Correction partielle"
+
+    ```c
+    int recuperer_poids_arete(struct arete * graphe, int parent, int enfant) {
+        for (int i = 0; i < NB_ARETES; i++) {
+            if (graphe[i].parent == parent && graphe[i].enfant == enfant) {
+                return graphe[i].poids;
+            }
+        }
+        return INFINI;
+    }
+    ``` 
+
 ## Aller plus loin
 
 Adapter le programme pour résoudre le second exercice.
@@ -304,3 +317,4 @@ Adapter le programme pour pouvoir le paramétrer à l’aide d’un fichier !
 <aside>
 💡 Seul le tableau `graphe` nécessite d’être paramétré, toutes les autres variables et constantes peuvent être calculées à partir de ce tableau.
 </aside>
+
