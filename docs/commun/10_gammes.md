@@ -496,7 +496,7 @@ Voici quelques mini-exercices pour s'entraîner aux basiques de la programmation
         char * prenom;
         char * nom;
         time_t dateNaissance;
-    }; // → 8 + 8 + 8 = 24 octets / variable + espace exact pour chaque chaîne de caractères.
+    }; // → 8 + 8 + 8 = 24 octets / variable + espace exact pour chaque chaîne de caractères qui sera stockée dans le tas.
 
     int main() {
         
@@ -563,7 +563,7 @@ Voici quelques mini-exercices pour s'entraîner aux basiques de la programmation
         
         printf("Brut : %ld, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f, %.1f\n", uhedr1.unHorodatage, uhedr1.dixReels[0], uhedr1.dixReels[1], uhedr1.dixReels[2], uhedr1.dixReels[3], uhedr1.dixReels[4], uhedr1.dixReels[5], uhedr1.dixReels[6], uhedr1.dixReels[7], uhedr1.dixReels[8], uhedr1.dixReels[9]);
         
-        printf("Mis en forme :\n");
+        printf("\nMis en forme :\n");
         struct tm * tmHorodatage = localtime(&uhedr1.unHorodatage);
         printf("%02d/%02d/%04d %02d:%02d:%02d\n",
             tmHorodatage->tm_mday,
@@ -578,6 +578,58 @@ Voici quelques mini-exercices pour s'entraîner aux basiques de la programmation
             printf("%s%.1f", i == 0 ? "" : ", ", uhedr1.dixReels[i]);
         }
         printf("]\n");
+
+        return 0;
+    }
+    ```
+
+## Allocations dynamiques
+
+??? exo-medium "Ecrire un programme qui prend en paramètre un nombre d'éléments, puis crée un tableau dans le tas à partir de ce nombre, le remplit des nombres de 1 à ce nombre - 1 et l'affiche."
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main(int argc, char ** argv) {
+        int nbElements, * tableau;
+
+        // Vérification des paramètres
+        if (argc != 2) {
+            puts("Erreur de paramètre !");
+            return -1;
+        }
+        
+        // Récupération du nombre d'éléments
+        nbElements = atoi(argv[1]);
+        if (nbElements == 0) {
+            puts("Nombre d'éléments incorrect !");
+            return -2;
+        }
+
+        // Allocation dans le tas
+        tableau = (int *) malloc(nbElements * sizeof(int));
+        // ou : tableau = (int *) calloc(nbElements, sizeof(int));
+        // ou : tableau = (int *) realloc(NULL, nbElements * sizeof(int));
+
+        // Vérification de l'allocation
+        if (tableau == NULL) {
+            puts("Erreur d'allocation !");
+            return -3;
+        }
+        
+        // Remplissage
+        for (int i = 0; i < nbElements; i++) {
+            tableau[i] = i + 1;
+        }
+
+        // Affichage
+        for (int i = 0; i < nbElements; i++) {
+            printf("%d\n", tableau[i]);
+        }
+
+        // L I B E R A T I O N
+        free(tableau);
 
         return 0;
     }
