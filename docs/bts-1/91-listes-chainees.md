@@ -863,3 +863,7 @@ void queueDisplayOutput(Queue * s, int output) {
     printf(" → %d\n", output);
 }
 ```
+
+??? success "Solution"
+
+    ![zootopia](../images/meme/waiting-zootopia.gif)
