@@ -734,130 +734,86 @@ void queueDisplayInput(Queue *, int);
 void queueDisplayOutput(Queue *, int);
 
 int main() {
-    Queue * s = queueCreate(7);
+    Queue * q = queueCreate(7);
     int value;
     
     system("chcp 65001");
     system("cls");
 
-    for (int i = 1; !queueIsFull(s); i++) {
-        queueEnqueue(s, i);
-        queueDisplayInput(s, i);
+    for (int i = 1; !queueIsFull(q); i++) {
+        queueEnqueue(q, i);
+        queueDisplayInput(q, i);
     }
 
     for (int i = 1; i < 5; i++) {
-        queueDequeue(s, &value);
-        queueDisplayOutput(s, value);
+        queueDequeue(q, &value);
+        queueDisplayOutput(q, value);
     }
 
-    queueEnqueue(s, 42);
-    queueDisplayInput(s, 42);
-    queueEnqueue(s, 13);
-    queueDisplayInput(s, 13);
+    queueEnqueue(q, 42);
+    queueDisplayInput(q, 42);
+    queueEnqueue(q, 13);
+    queueDisplayInput(q, 13);
 
-    while (!queueIsEmpty(s)) {
-        queueDequeue(s, &value);
-        queueDisplayOutput(s, value);
+    while (!queueIsEmpty(q)) {
+        queueDequeue(q, &value);
+        queueDisplayOutput(q, value);
     }
 
-    queueEnqueue(s, 123);
-    queueDisplayInput(s, 123);
-    queueEnqueue(s, 45);
-    queueDisplayInput(s, 45);
+    queueEnqueue(q, 123);
+    queueDisplayInput(q, 123);
+    queueEnqueue(q, 45);
+    queueDisplayInput(q, 45);
+
+    while (!queueIsEmpty(q)) {
+        queueDequeue(q, &value);
+        queueDisplayOutput(q, value);
+    }
+    free(q);
 
     return 0;
 }
 
-/**
- * @brief Crée une nouvelle file dans le tas.
- * 
- * @param maxLength Le nombre maximal d'éléments dans la file.
- * @return Stack* - La file créée.
- */
 Queue * queueCreate(int maxLength) {
 
     return NULL;
 }
 
-/**
- * @brief Permet de savoir si la file est vide.
- * 
- * @param s (Stack *) La file à étudier.
- * @return true - La file est vide.
- * @return false - La file n'est pas vide ! (OO')
- */
-bool queueIsEmpty(Queue * s) {
+bool queueIsEmpty(Queue * q) {
+    return false;
+}
+
+bool queueIsFull(Queue * q) {
+    return false
+}
+
+bool queueEnqueue(Queue * q, int value) {
 
     return false;
 }
 
-/**
- * @brief Permet de savoir si la file est... pleine !
- * 
- * @param s (Stack *) La file à étudier.
- * @return true - La file est pleine.
- * @return false - La file n'est pas pleine ! Mais non ?!! Mais si !
- */
-bool queueIsFull(Queue * s) {
-    
+bool queueDequeue(Queue * q, int * value) {
+
     return false;
 }
 
-/**
- * @brief Enfile un nouvel élément dans la file.
- * 
- * @param s (Queue *) La file sur laquelle on travaille.
- * @param value (int) La valeur de l'élément à enfiler.
- * @return true - L'enfilement a réussi.
- * @return false - Il n'y a plus de place !!!
- */
-bool queueEnqueue(Queue * s, int value) {
-    
-    return false;
-}
-
-/**
- * @brief Défile un élément de la file.
- * 
- * @param s (Queue *) La file sur laquelle on travaille.
- * @param value (int *, sortie) La valeur de l'élément défilé
- * @return true - Le défilement s'est bien déroulé.
- * @return false - La file était vide... 
- */
-bool queueDequeue(Queue * s, int * value) {
-    
-    return false;
-}
-
-/**
- * @brief Affiche la file suite à un enfilement.
- * 
- * @param s (Queue *) La file à afficher.
- * @param input (int) La valeur de l'élément enfilé.
- */
-void queueDisplayInput(Queue * s, int input) {
-    printf("File (%d/%d) : %3d → ", s->length, s->maxLength, input);
-    for (int i = 0; i < s->maxLength - s->length; i++) {
+void queueDisplayInput(Queue * q, int input) {
+    printf("File (%d/%d) : %3d → ", q->length, q->maxLength, input);
+    for (int i = 0; i < q->maxLength - q->length; i++) {
         printf("[     ]");
     }
-    for (Element * e = s->first; e != NULL; e = e->next) {
+    for (Element * e = q->last; e != NULL; e = e->prev) {
         printf("[ %3d ]", e->value);
     }
     printf("\n");
 }
 
-/**
- * @brief Affiche la file suite à un défilement.
- * 
- * @param s (Queue *) La file à afficher.
- * @param output (int) La valeur de l'élément défilé.
- */
-void queueDisplayOutput(Queue * s, int output) {
-    printf("File (%d/%d) :       ", s->length, s->maxLength);
-    for (int i = 0; i < s->maxLength - s->length; i++) {
+void queueDisplayOutput(Queue * q, int output) {
+    printf("File (%d/%d) :       ", q->length, q->maxLength);
+    for (int i = 0; i < q->maxLength - q->length; i++) {
         printf("[     ]");
     }
-    for (Element * e = s->first; e != NULL; e = e->next) {
+    for (Element * e = q->last; e != NULL; e = e->prev) {
         printf("[ %3d ]", e->value);
     }
     printf(" → %d\n", output);
@@ -866,4 +822,167 @@ void queueDisplayOutput(Queue * s, int output) {
 
 ??? success "Solution"
 
-    ![zootopia](../images/meme/waiting-zootopia.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdbool.h>
+
+    typedef struct Element {
+        int value;
+        struct Element * next;
+        struct Element * prev;
+    } Element;
+
+    typedef struct Queue {
+        int length;
+        int maxLength;
+        struct Element * first;
+        struct Element * last;
+    } Queue;
+
+    Queue * queueCreate(int);
+    bool queueIsEmpty(Queue *);
+    bool queueIsFull(Queue *);
+    bool queueEnqueue(Queue *, int);
+    bool queueDequeue(Queue *, int *);
+    void queueDisplayInput(Queue *, int);
+    void queueDisplayOutput(Queue *, int);
+
+    int main() {
+        Queue * q = queueCreate(7);
+        int value;
+        
+        system("chcp 65001");
+        system("cls");
+
+        for (int i = 1; !queueIsFull(q); i++) {
+            queueEnqueue(q, i);
+            queueDisplayInput(q, i);
+        }
+
+        for (int i = 1; i < 5; i++) {
+            queueDequeue(q, &value);
+            queueDisplayOutput(q, value);
+        }
+
+        queueEnqueue(q, 42);
+        queueDisplayInput(q, 42);
+        queueEnqueue(q, 13);
+        queueDisplayInput(q, 13);
+
+        while (!queueIsEmpty(q)) {
+            queueDequeue(q, &value);
+            queueDisplayOutput(q, value);
+        }
+
+        queueEnqueue(q, 123);
+        queueDisplayInput(q, 123);
+        queueEnqueue(q, 45);
+        queueDisplayInput(q, 45);
+
+        while (!queueIsEmpty(q)) {
+            queueDequeue(q, &value);
+            queueDisplayOutput(q, value);
+        }
+        free(q);
+
+        return 0;
+    }
+
+    Queue * queueCreate(int maxLength) {
+        Queue * q = (Queue *) malloc(sizeof(Queue));
+        if (q == NULL) {
+            puts("Erreur d'allocation !");
+            exit(-1);
+        }
+        q->first = NULL;
+        q->last = NULL;
+        q->length = 0;
+        q->maxLength = maxLength;
+        return q;
+    }
+
+    bool queueIsEmpty(Queue * q) {
+        return q->length == 0;
+    }
+
+    bool queueIsFull(Queue * q) {
+        return q->length == q->maxLength;
+    }
+
+    bool queueEnqueue(Queue * q, int value) {
+        Element * e = NULL;
+        if (!queueIsFull(q)) {
+            // Création du nouvel élément
+            e = (Element *) malloc(sizeof(Element));
+            if (e == NULL) {
+                puts("Erreur d'allocation !");
+                exit(-2);
+            }
+            e->value = value;
+            e->next = NULL;
+            // Placement en tant que dernier rentré
+            e->prev = q->last;
+            q->last = e;
+            // Si la file était vide
+            if (queueIsEmpty(q)) {
+                // Le premier est aussi le dernier
+                q->first = q->last;
+            }
+            // Sinon
+            else {
+                // Le précédent dernier doit pointer sur le nouveau
+                q->last->prev->next = e;
+            }
+            // Incrémentation de la taille de la file
+            q->length++;
+            return true;
+        }
+        return false;
+    }
+
+    bool queueDequeue(Queue * q, int * value) {
+        if (!queueIsEmpty(q)) {
+            // Récupération de la valeur du premier élément inséré
+            *value = q->first->value;
+            // Décrémentation de la taille de la file
+            q->length--;
+            // Le deuxième élément devient le nouveau premier
+            q->first = q->first->next;
+            // Si la file n'est pas vide
+            if (!queueIsEmpty(q)) {
+                // Le nouveau premier ne doit plus pointer vers l'ancien
+                q->first->prev = NULL;
+            }
+            // Sinon
+            else {
+                // Il n'y a plus de dernier
+                q->last = NULL;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    void queueDisplayInput(Queue * q, int input) {
+        printf("File (%d/%d) : %3d → ", q->length, q->maxLength, input);
+        for (int i = 0; i < q->maxLength - q->length; i++) {
+            printf("[     ]");
+        }
+        for (Element * e = q->last; e != NULL; e = e->prev) {
+            printf("[ %3d ]", e->value);
+        }
+        printf("\n");
+    }
+
+    void queueDisplayOutput(Queue * q, int output) {
+        printf("File (%d/%d) :       ", q->length, q->maxLength);
+        for (int i = 0; i < q->maxLength - q->length; i++) {
+            printf("[     ]");
+        }
+        for (Element * e = q->last; e != NULL; e = e->prev) {
+            printf("[ %3d ]", e->value);
+        }
+        printf(" → %d\n", output);
+    }
+    ```
