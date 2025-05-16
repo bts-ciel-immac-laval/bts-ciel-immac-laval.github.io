@@ -12,6 +12,14 @@ icon: material/factory
 
 [:material-file-download: Télécharger la liste des compétences](../pdf/stage/bts_stage_competences.pdf){ .md-button .md-button--primary }
 
+## Attestation de stage
+
+[:material-file-download: Télécharger l'attestation de stage](../pdf/stage/bts_stage_attestation.docx){ .md-button .md-button--primary }
+
+## Evaluation
+
+[:material-file-download: Télécharger la fiche d'évaluation](../pdf/stage/bts_stage_evaluation.pdf){ .md-button .md-button--primary }
+
 ## Carte des entreprises
 
 Entreprises ayant accueilli ou étant susceptibles d'accueillir des stagiaires BTS CIEL.
