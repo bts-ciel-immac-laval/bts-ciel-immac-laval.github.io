@@ -4,6 +4,6 @@ hide:
   - toc
 ---
 
-# Immac' 2024 - 25
+# Immac' 2025 - 26
 
-![Welcome](images/illustration/5998383.png){class="bts-welcome"}
+![Welcome](images/illustration/6463429.png){class="bts-welcome"}

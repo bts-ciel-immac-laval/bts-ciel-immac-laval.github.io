@@ -1,49 +1,49 @@
-site_name: Immac' 2024 - 25
+site_name: Immac' 2025 - 26
 site_url: https://bts-ciel-immac-laval.github.io
 
-copyright: Copyright &copy; 2024 - 2025 Mathieu DOMER
+copyright: Copyright &copy; 2025 - 2026 Mathieu DOMER
 
 nav:
   - Commun : 
-    #- Calendrier de l'Avent : commun/00_calendrier_avent.md
-    - Les gammes : commun/10_gammes.md
+    # - Calendrier de l'Avent : commun/00_calendrier_avent.md
+    # - Les gammes : commun/10_gammes.md
     - Stages : commun/20_stages.md
-    - Vidéos : commun/30_videos.md
-    - Plus Plus : commun/99_plusplus.md
-  - BTS 1 : 
-    - 01 - Premiers pas en C : bts-1/10-premiers-pas-en-c.md
-    - 02 - Premiers programmes : bts-1/20-premiers-programmes.md
-    - 03 - Boucles : bts-1/30-boucles.md
-    - 04 - Fonctions :
-      - Usage courant : bts-1/40-fonctions.md
-      - Variables statiques : bts-1/41-fonctions.md
-      - Récursivité : bts-1/42-fonctions.md
-    - 05 - Pointeurs : bts-1/50-pointeurs.md
-    - 06 - Tableaux : bts-1/60-tableaux.md
-    - 07 - Chaînes de caractères : bts-1/70-strings.md
-    - 08 - Les experts : bts-1/71-strings.md
-    - 09 - Structures : bts-1/80-structures.md
-    - 10 - Allocations dynamiques : bts-1/90-dynamic.md
-    - 11 - Listes chaînées : bts-1/91-listes-chainees.md
-    - 12 - POO : bts-1/100-poo-1.md
-    - Maths x STI :
-      - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
-      - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
-      - 03 - Intégrales : bts-1/Maths x STI/30-integrales.md
-      - 04 - Algorithme de Dijkstra : bts-1/Maths x STI/40-dijkstra.md
-  - BTS 2 : 
-    - 01 - Du C au C++ : bts-2/10-du-c-au-cpp.md
-    - 02 - Premiers pas en POO : bts-2/20-poo-1.md
-    - 03 - POO level 2 : bts-2/30-poo-2.md
-    - 04 - POO ++ : bts-2/40-poo-3.md
-    - Qt : 
-      - Découverte : bts-2/90-qt-1.md
-      - Premier projet : bts-2/90-qt-2.md
-      - Exercices : bts-2/90-qt-3.md
-      - Projet : bts-2/90-qt-4.md
-    - Maths x STI :
-      - 01 - Probabilités : bts-2/Maths x STI/10-probabilites.md
-      - 02 - Valorisation de la donnée : bts-2/Maths x STI/20-excel-data-1.md
+    # - Vidéos : commun/30_videos.md
+    # - Plus Plus : commun/99_plusplus.md
+  # - BTS 1 : 
+  #   - 01 - Premiers pas en C : bts-1/10-premiers-pas-en-c.md
+  #   - 02 - Premiers programmes : bts-1/20-premiers-programmes.md
+  #   - 03 - Boucles : bts-1/30-boucles.md
+  #   - 04 - Fonctions :
+  #     - Usage courant : bts-1/40-fonctions.md
+  #     - Variables statiques : bts-1/41-fonctions.md
+  #     - Récursivité : bts-1/42-fonctions.md
+  #   - 05 - Pointeurs : bts-1/50-pointeurs.md
+  #   - 06 - Tableaux : bts-1/60-tableaux.md
+  #   - 07 - Chaînes de caractères : bts-1/70-strings.md
+  #   - 08 - Les experts : bts-1/71-strings.md
+  #   - 09 - Structures : bts-1/80-structures.md
+  #   - 10 - Allocations dynamiques : bts-1/90-dynamic.md
+  #   - 11 - Listes chaînées : bts-1/91-listes-chainees.md
+  #   - 12 - POO : bts-1/100-poo-1.md
+  #   - Maths x STI :
+  #     - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
+  #     - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
+  #     - 03 - Intégrales : bts-1/Maths x STI/30-integrales.md
+  #     - 04 - Algorithme de Dijkstra : bts-1/Maths x STI/40-dijkstra.md
+  # - BTS 2 : 
+  #   - 01 - Du C au C++ : bts-2/10-du-c-au-cpp.md
+  #   - 02 - Premiers pas en POO : bts-2/20-poo-1.md
+  #   - 03 - POO level 2 : bts-2/30-poo-2.md
+  #   - 04 - POO ++ : bts-2/40-poo-3.md
+  #   - Qt : 
+  #     - Découverte : bts-2/90-qt-1.md
+  #     - Premier projet : bts-2/90-qt-2.md
+  #     - Exercices : bts-2/90-qt-3.md
+  #     - Projet : bts-2/90-qt-4.md
+  #   - Maths x STI :
+  #     - 01 - Probabilités : bts-2/Maths x STI/10-probabilites.md
+  #     - 02 - Valorisation de la donnée : bts-2/Maths x STI/20-excel-data-1.md
   - NSI : 
     - Coder à la maison : nsi/10_coder.md
     - S'entraîner : nsi/20_s-entrainer.md
@@ -64,14 +64,14 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Mode sombre
-      primary: amber
+      primary: lime
       accent: indigo
     # Palette toggle for dark mode
     - scheme: slate
       toggle:
         icon: material/toggle-switch-off-outline
         name: Mode clair
-      primary: amber
+      primary: lime
       accent: indigo
   logo: assets/f11_logo.png
   favicon: assets/f11_logo.png
