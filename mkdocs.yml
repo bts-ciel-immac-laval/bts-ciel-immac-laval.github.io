@@ -4,13 +4,14 @@ site_url: https://bts-ciel-immac-laval.github.io
 copyright: Copyright &copy; 2025 - 2026 Mathieu DOMER
 
 nav:
-  - Commun : 
+  - BTS : 
     # - Calendrier de l'Avent : commun/00_calendrier_avent.md
     # - Les gammes : commun/10_gammes.md
-    - Stages : commun/20_stages.md
+    - Stages : bts/20_stages.md
     # - Vidéos : commun/30_videos.md
     # - Plus Plus : commun/99_plusplus.md
-  # - BTS 1 : 
+  - BTS 1 :
+    - C'est pour bientôt ! : bts-1/00-waitforit.md
   #   - 01 - Premiers pas en C : bts-1/10-premiers-pas-en-c.md
   #   - 02 - Premiers programmes : bts-1/20-premiers-programmes.md
   #   - 03 - Boucles : bts-1/30-boucles.md
@@ -31,7 +32,8 @@ nav:
   #     - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
   #     - 03 - Intégrales : bts-1/Maths x STI/30-integrales.md
   #     - 04 - Algorithme de Dijkstra : bts-1/Maths x STI/40-dijkstra.md
-  # - BTS 2 : 
+  - BTS 2 : 
+    - C'est pour bientôt ! : bts-2/00-waitforit.md
   #   - 01 - Du C au C++ : bts-2/10-du-c-au-cpp.md
   #   - 02 - Premiers pas en POO : bts-2/20-poo-1.md
   #   - 03 - POO level 2 : bts-2/30-poo-2.md
