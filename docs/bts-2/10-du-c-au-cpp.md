@@ -112,6 +112,8 @@ Ecrire deux fonctions de swap utilisant :
 
 et le programme principal de test les utilisant en C++.
 
+Nommer les fonctions "echange".
+
 ??? danger "Aller plus loin"
 
     Trouver une méthode de swap sans utiliser de 3<sup>ème</sup> variable.
@@ -119,6 +121,44 @@ et le programme principal de test les utilisant en C++.
 ??? success "Correction"
 
     ```c
+    #include <iostream>
+
+    using namespace std;
+
+    // Passage par adresse
+    void echange(int * x, int * y) {
+        int z = *x;
+        *x = *y;
+        *y = z;
+    }
+
+    // Passage par référence
+    void echange(int & x, int & y) {
+        int z = x;
+        x = y;
+        y = z;
+    }
+
+    // Aller plus loin
+    void echangeSansVariableSupplementaire(int & a, int & b) {
+        a = a + b;
+        b = a - b;
+        a = a - b;
+    }
+
+    int main() {
+        int a = 42, b = -1;
+
+        cout << a << ", " << b << endl;
+        echange(a, b);
+        cout << a << ", " << b << endl;
+        echange(&a, &b);
+        cout << a << ", " << b << endl;
+        echangeSansVariableSupplementaire(a, b);
+        cout << a << ", " << b << endl;
+        
+        return 0;
+    }
     ```
 
 ## Exercice 3
@@ -136,6 +176,7 @@ Ecrire un programme de test.
 ??? success "Correction"
 
     ```cpp
+
     ```
 
 ## Exercice 4
