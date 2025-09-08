@@ -33,6 +33,14 @@ Ecrire un programme en C++ qui affiche `hello, world!`
 ??? success "Correction"
 
     ```c
+    #include <iostream>
+
+    using namespace std;
+
+    int main() {
+        cout << "hello, world!";
+        return 0;
+    }
     ```
 
 ## Exercice 1
@@ -62,6 +70,37 @@ Il refusera les valeurs négatives et s'arrêtera si on lui fournit 0.
 ??? success "Correction"
 
     ```cpp
+    #include <iostream>
+    #include <cmath>
+
+    using namespace std;
+
+    int main() {
+        int input;
+
+        system("chcp 65001");
+        system("cls");
+        
+        cout << endl << "-= Calcul de racine carrée =-" << endl << endl;
+
+        cout << "Entrer 0 pour quitter." << endl << endl;
+        
+        do {
+        
+            cout << "Entrer une valeur positive : ";
+            cin >> input;
+            if (input < 0) {
+                cout << "J'ai dit P-O-S-I-T-I-V-E !!!" << endl << endl;
+                continue;
+            }
+            if (input > 0) {
+                cout << "Racine carrée : " << sqrt(input) << endl << endl;
+            }
+        }
+        while(input != 0);
+        
+        return 0;
+    }
     ```
 
 ## Exercice 2
