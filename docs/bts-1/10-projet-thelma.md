@@ -87,9 +87,12 @@ int main() {                    // La fonction principale, le point d'entrée du
     ```c
     int n1 = 1, n2 = 0;
 
+    // Boucles imbriquées
+    // La première permet de passer de table en table
     while (n1 < 10) {
         printf("Table de %d\n----------\n", n1);
         
+        // La seconde (déjà vue) affiche chaque table
         while (n2 < 10) {
             printf("%d + %d = %2d\n", n1, n2, n1 + n2);
             n2 = n2 + 1;
