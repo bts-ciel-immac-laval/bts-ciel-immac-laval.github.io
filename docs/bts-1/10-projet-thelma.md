@@ -38,7 +38,9 @@ int main() {                    // La fonction principale, le point d'entrée du
     ```
 
     2. En calculant vraiment
-
+    ```c
+    printf("%d + %d = %d\n", 1, 1, 1 + 1);
+    ```
 
 
 2. Afficher une table
@@ -46,22 +48,36 @@ int main() {                    // La fonction principale, le point d'entrée du
     1. Avec 10 printf
 
     ```c
-    printf("1 + 0 =  1");
-    printf("1 + 1 =  2");
-    printf("1 + 2 =  3");
-    printf("1 + 3 =  4");
-    printf("1 + 4 =  5");
-    printf("1 + 5 =  6");
-    printf("1 + 6 =  7");
-    printf("1 + 7 =  8");
-    printf("1 + 8 =  9");
-    printf("1 + 9 = 10");
+    printf("%d + %d = %d\n", 1, 0, 1 + 0);
+    printf("%d + %d = %d\n", 1, 1, 1 + 1);
+    printf("%d + %d = %d\n", 1, 2, 1 + 2);
+    printf("%d + %d = %d\n", 1, 3, 1 + 3);
+    printf("%d + %d = %d\n", 1, 4, 1 + 4);
+    printf("%d + %d = %d\n", 1, 5, 1 + 5);
+    printf("%d + %d = %d\n", 1, 6, 1 + 6);
+    printf("%d + %d = %d\n", 1, 7, 1 + 7);
+    printf("%d + %d = %d\n", 1, 8, 1 + 8);
+    printf("%d + %d = %d\n", 1, 9, 1 + 9);
     ```
 
     2. Avec une boucle
 
     ```c
+    // Avec une boucle while (tant que)
+    int n2 = 0;    
+    while (n2 < 10) {
+        printf("1 + %d = %2d\n", n2, 1 + n2);
+        n2 = n2 + 1;
+    }
 
+    // Avec une boucle for (pour)
+    for (n2 = 0; n2 < 10; n2 = n2 + 1) {
+        printf("1 + %d = %2d\n", n2, 1 + n2);
+    }
+    ```
+
+    3. Laisser le choix à l'utilisateur
+    ```c
     ```
 
 3. Afficher toutes les tables
@@ -69,7 +85,20 @@ int main() {                    // La fonction principale, le point d'entrée du
     1. Pour un opérateur en "dur"
 
     ```c
-    
+    int n1 = 1, n2 = 0;
+
+    while (n1 < 10) {
+        printf("Table de %d\n----------\n", n1);
+        
+        while (n2 < 10) {
+            printf("%d + %d = %2d\n", n1, n2, n1 + n2);
+            n2 = n2 + 1;
+        }
+
+        n1 = n1 + 1;
+        n2 = 0;
+        printf("\n");
+    }
     ```
 
     2. Pour un opérateur au choix 
