@@ -227,6 +227,14 @@ int main () {
 ??? success "Correction"
 
     ```output
+    fct (n);    // Correct, appel de la fonction A
+    fct (x);    // Correct, appel de la fonction B
+    fct (n,x);  // Correct, appel de la fonction C
+    fct (x,n);  // Correct, appel de la fonction D
+    fct (c);    // Correct, appel de la fonction A, conversion implicite de char en int
+    fct (n,p);  // Incorrect, conflit entre C et D
+    fct (n,c);  // Incorrect, conflit entre C et D 
+    fct (n,z);  // Correct, appel de la fonction C, conversion implicite de double en float
     ```
 
 ## Exercice 5
@@ -262,6 +270,55 @@ Valeurs saisie : 23, 675, -33
 ??? success "Correction"
 
     ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    const int COUNT_INT = 5;
+    const int COUNT_CHAR = 5;
+
+    void remplir (int *, int); 
+    // surdefinition de la fonction remplir
+    void remplir (char *, int);
+
+    int main() { 
+        int intArray[COUNT_INT];
+        remplir(intArray, COUNT_INT);
+
+        cout << endl;
+
+        char charArray[COUNT_CHAR];
+        remplir(charArray, COUNT_CHAR);
+
+        return 0;
+    }
+
+    void remplir (int * array, int count) {
+        // Remplissage
+        for (int i = 0; i < count; i++) {
+            cout << "Saisissez l'entier N° " << i + 1 << " : ";
+            cin >> array[i];
+        }
+        // Affichage
+        cout << "Saisie :";
+        for (int i = 0; i < count; i++) {
+            cout << " " << array[i];
+        }
+    }
+
+
+    void remplir (char * array, int count) {
+        // Remplissage
+        for (int i = 0; i < count; i++) {
+            cout << "Saisissez le caractère N° " << i + 1 << " : ";
+            cin >> array[i];
+        }
+        // Affichage
+        cout << "Saisie :";
+        for (int i = 0; i < count; i++) {
+            cout << " " << array[i];
+        }
+    }
     ```
     
 ??? danger "Aller plus loin"
@@ -270,7 +327,11 @@ Valeurs saisie : 23, 675, -33
 
 ## Exercice 6
 
-Migrer le programme en C suivant en C++ en utilisant les nouvelles possibilités du langage
+1.  Migrer le programme en C suivant en C++ en utilisant les nouvelles possibilités du langage.
+
+2.  Compléter la fonction principale pour afficher les "personnes" saisies.
+
+3.  Déplacer le code de remplissage de la personne dans une fonction `saisiePersonne`.
 
 ```cpp
 #include <stdio.h>
@@ -304,7 +365,3 @@ int main () {
 
     ```cpp
     ```
-
-??? danger "Aller plus loin"
-    
-    Déplacer le code de remplissage de la personne dans une fonction `saisiePersonne`.

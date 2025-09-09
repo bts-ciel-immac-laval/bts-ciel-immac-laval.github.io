@@ -279,7 +279,7 @@ Valeurs saisie : 23, 675, -33
     // surdefinition de la fonction remplir
     void remplir (char *, int);
 
-    int main (void) { 
+    int main() { 
         int intArray[COUNT_INT];
         remplir(intArray, COUNT_INT);
 
