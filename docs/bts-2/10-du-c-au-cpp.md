@@ -364,4 +364,44 @@ int main () {
 ??? success "Correction"
 
     ```cpp
+    #include <iostream>
+    #include <string>
+    #include <vector>
+
+    using namespace std;
+
+    struct Personne
+    {
+        string nom;
+        int age;
+    };
+
+    Personne saisiePersonne(int i) {
+        Personne indigene;
+        cout << "Saisissez le nom de la personne N°" << i + 1 << " : ";
+        cin >> indigene.nom;
+        
+        cout << "Saisissez l'age de la personne N°" << i + 1 << " : ";
+        cin >> indigene.age;
+
+        return indigene;
+    }
+
+    int main () {
+        vector<Personne> p;
+
+        // Saisie des 3 personnes
+        for (int i = 0; i < 3; i++)
+        {
+            p.push_back(saisiePersonne(i));
+        }
+
+        cout << endl << p.size() << " personnes ont ete saisies" << endl;
+
+        for (int i = 0; i < p.size(); i++) {
+            cout << p[i].nom << " (" << p[i].age << ")" << endl;
+        }
+
+        return 0;
+    }
     ```

@@ -110,3 +110,30 @@
 ### Diagrammes des cas d'utilisation
 
 ![Diagramme des cas d'utilisation](../images/cours/bts-2/80/battleships_usecasesdiagram.png)
+
+### Scénarios
+
+!!! info
+
+    Chaque cas d'utilisation est détaillé sous la forme de scénarios, on y distingue :
+
+    -   Le numéro et le titre du cas d'utilisation
+    
+    -   Les **pré-requis** à l'exécution du cas d'utilisation
+
+        *Exemple : L'utilisateur est connecté*
+
+    -   Les **acteurs** impliqués
+
+    -   Le **déroulement** des scénarios : la suite d'action à réaliser pour exécuter le scénario
+
+        *Exemple :*
+
+        1.  *L'utilisateur lance le logiciel*,
+
+        2.  *L'utilisateur clique sur* "Nouveau document",
+
+        3.  *L'utilisateur saisit le texte désiré.*
+
+        On distingue les scénarios **alternatifs** et les **cas d'erreur**.
+
