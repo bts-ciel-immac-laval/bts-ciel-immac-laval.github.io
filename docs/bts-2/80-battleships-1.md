@@ -2,112 +2,114 @@
 
 ![Illustration](../images/cours/bts-2/80/battleships_illustration.png)
 
-## Brainstorming initial
+??? note "Brainstorming initial"
 
-### Architecture
+    **Architecture**
 
-+   Machine hôte-cliente
-+   Numéro de port
-+   Réponse aux actions des joueurs
-+   Possibilité d'arrêter et reprendre une partie
-+   PC A -> n° de case (A7) -> PC B
-+   PC B -> état de la case (00 pas touché, 10 touché, 11 coulé) -> PC A
+    +   Machine hôte-cliente
+    +   Numéro de port
+    +   Réponse aux actions des joueurs
+    +   Possibilité d'arrêter et reprendre une partie
+    +   PC A -> n° de case (A7) -> PC B
+    +   PC B -> état de la case (00 pas touché, 10 touché, 11 coulé) -> PC A
 
-### IHM
+    **IHM**
 
-+   Affichage des 2 plateaux
-+   Liste des bateaux à éliminer et restant en jeu
-+   Les bateaux sont déplaçables tant qu'on n'a pas validé son plateau de jeu
-+   Placer un bateau permet de l'orienter
-+   Le placement se termine par une validation
+    +   Affichage des 2 plateaux
+    +   Liste des bateaux à éliminer et restant en jeu
+    +   Les bateaux sont déplaçables tant qu'on n'a pas validé son plateau de jeu
+    +   Placer un bateau permet de l'orienter
+    +   Le placement se termine par une validation
 
-### Mécanismes de jeu
+    **Mécanismes de jeu**
 
-+   Choix aléatoire du premier joueur
+    +   Choix aléatoire du premier joueur
 
 ## Cas d'utilisation / Scénarios
 
-+   Créer une partie
+??? note "Réflexion collective"
 
-    +   Générer et communiquer un code
+    +   Créer une partie
 
-    +   Paramétrer la partie
+        +   Générer et communiquer un code
 
-        +   Taille du plateau
+        +   Paramétrer la partie
 
-        +   Le nombre et la taille des bateaux
+            +   Taille du plateau
 
-        +   Temps de jeu ?
+            +   Le nombre et la taille des bateaux
 
-        +   Rejouer si touche ?
+            +   Temps de jeu ?
 
-        +   Attaque simultanée ?
+            +   Rejouer si touche ?
 
-    +   Attendre l'autre joueur
+            +   Attaque simultanée ?
 
-+   Rejoindre une partie
+        +   Attendre l'autre joueur
 
-    +   Renseigner un code
+    +   Rejoindre une partie
 
-    +   Rejoindre une partie aléatoire ?
+        +   Renseigner un code
 
-    +   Attendre l'autre joueur
+        +   Rejoindre une partie aléatoire ?
 
-+   Reprendre une partie
+        +   Attendre l'autre joueur
 
-    +   Renseigner un code
+    +   Reprendre une partie
 
-    +   Attendre l'autre joueur
+        +   Renseigner un code
 
-+   Placer ses bateaux
+        +   Attendre l'autre joueur
 
-    +   Orienter les bateaux
+    +   Placer ses bateaux
 
-    +   Valider le placement
+        +   Orienter les bateaux
 
-    +   Optionnel ? minuteur (ex : 1'30")
+        +   Valider le placement
 
-    +   Optionnel ? placement auto si délai dépassé
+        +   Optionnel ? minuteur (ex : 1'30")
 
-+   Attaquer son adversaire
+        +   Optionnel ? placement auto si délai dépassé
 
-    +   Pré-requis : les deux joueurs ont terminé la phase de placement
+    +   Attaquer son adversaire
 
-    +   Si première attaque : tirage au sort
+        +   Pré-requis : les deux joueurs ont terminé la phase de placement
 
-    +   Choisir une case
+        +   Si première attaque : tirage au sort
 
-        +   Vérifier si attaquable
+        +   Choisir une case
 
-    +   Valider la case
+            +   Vérifier si attaquable
 
-    +   Visualiser l'attaque (animation)
+        +   Valider la case
 
-    +   Optionnel : ré-attaquer si touche
+        +   Visualiser l'attaque (animation)
 
-    +   Optionnel ? minuteur (ex : 30" pour attaquer, paramétrable)
+        +   Optionnel : ré-attaquer si touche
 
-+   Terminer une partie
+        +   Optionnel ? minuteur (ex : 30" pour attaquer, paramétrable)
 
-    +   Gagner ou perdre
+    +   Terminer une partie
 
-    +   Calculer un score
+        +   Gagner ou perdre
 
-+   Consulter son profil
+        +   Calculer un score
 
-    +   Choisir un nom de joueur
+    +   Consulter son profil
 
-    +   Consulter son historique
+        +   Choisir un nom de joueur
 
-    +   Calculer un rang
+        +   Consulter son historique
 
-    +   Photo de profil
+        +   Calculer un rang
 
-    +   Trophées/succès ?
+        +   Photo de profil
 
-        +   Titres/Surnoms utilisables
+        +   Trophées/succès ?
 
-### Diagrammes des cas d'utilisation
+            +   Titres/Surnoms utilisables
+
+### Diagramme des cas d'utilisation
 
 ![Diagramme des cas d'utilisation](../images/cours/bts-2/80/battleships_usecasesdiagram.png)
 
@@ -117,7 +119,7 @@
 
     Chaque cas d'utilisation est détaillé sous la forme de scénarios, on y distingue :
 
-    -   Le numéro et le titre du cas d'utilisation
+    -   Le **numéro** et le **titre** du cas d'utilisation
     
     -   Les **pré-requis** à l'exécution du cas d'utilisation
 

@@ -162,13 +162,30 @@ int main() {                    // La fonction principale, le point d'entrée du
         }
         ```
     
-4. Poser une question à l’utilisateur
+4.  Poser une question à l’utilisateur
+
+    Exemple :
+    ```output
+    3 x 5 = ?
+    > 10
+    Oups ! La bonne réponse est 15.
+    
+    Appuie sur une touche pour continuer...
+    ```
+
+    ```output
+    2 + 5 = ?
+    > 7
+    Bravo !
+    
+    Appuie sur une touche pour continuer...
+    ```
 
     ```c
     
     ```
     
-5. Poser une suite de questions à l’utilisateur
+5.  Poser une suite de questions à l’utilisateur
 
     1. Compter les points (réponses fausses acceptées)
 
