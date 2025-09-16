@@ -164,6 +164,51 @@ int main() {                    // La fonction principale, le point d'entrée du
     
 4.  Poser une question à l’utilisateur
 
+    - [x] Générer des nombres aléatoirement : `srand()` et `rand()`
+
+        ??? info "Exemple"
+
+            ```c
+            #include <stdio.h>
+            #include <stdlib.h> // Bibliothèque contenant srand() et rand()
+            #include <time.h>   // Bibliothèque contenant time()
+
+            int main() {
+
+                /* 
+                1 - Initialisation du seed pour l'aléatoire
+                On l'initialise avec time(NULL) qui renvoie l'heure du 
+                système en seconde de manière à avoir une valeur différente 
+                à chaque exécution.
+                On ne le fait qu'une seule fois au début du programme.
+                */
+
+                srand(time(NULL));
+
+                /*
+                2 - Génération d'un nombre aléatoire
+                On récupère le reste de la division du résultat de rand() 
+                par 10 (modulo 10 ou % 10) pour récupérer un nombre entre 0 et 9.
+                */
+
+                int a = rand() % 10, b = rand() % 10;
+
+                printf("%d + %d = ?\n", a, b);
+
+                return 0;
+            }
+            ```
+
+    - [x] Demander une saisie à l'utilisateur : `scanf()`
+
+    - [x] Afficher des valeurs différentes à chaque calcul : `printf()` et variables
+
+    - [x] Vérifie le résultat : `if` ou `while` 
+
+    - [x] Poser 10 questions : `for`
+    
+    - [x] Demander à l'utilisateur d'appuyer sur une touche (n'importe laquelle...) : `getchar()`
+
     Exemple :
     ```output
     3 x 5 = ?
@@ -182,7 +227,48 @@ int main() {                    // La fonction principale, le point d'entrée du
     ```
 
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+
+    int main() {
+
+        // Initialiser le seed pour l'aléatoire
+        srand(time(NULL));
+
+        int a, b, input, result;
+        
+        for (int i = 1; i <= 10; i++) {
+
+            // Afficher le calcul à effectuer
+            b = rand() % 10;
+            a = rand() % 10;
+            result = a + b;
+
+            system("cls");
+            printf("Question %d :\n\n", i);
+
+            printf("%d + %d = ?\n> ", a, b);
+
+            // Gérer la réponse de l'utilisateur
+            scanf("%d", &input);
+            
+            // Valider la réponse
+            if (input == result) {
+                printf("Bravo !");
+            }
+            else {
+                printf("Oups ! La bonne réponse est %d.", result);
+            }
+
+            // Attendre...
+            printf("\n\nAppuyer sur Entrée pour continuer...");
+            getchar();
+            getchar();
+        }
+
+        return 0;
+    }
     ```
     
 5.  Poser une suite de questions à l’utilisateur
