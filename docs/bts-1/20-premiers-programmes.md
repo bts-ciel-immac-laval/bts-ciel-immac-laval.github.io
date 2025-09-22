@@ -1,4 +1,4 @@
-# 02 - Premiers programmes
+# 01 - Premiers programmes
 
 ## Récapitulatif
 
@@ -96,6 +96,8 @@ Joyeux non-anniversaire !
 Créer un programme exo3.c qui demande à l'utilisateur son année, puis son mois, puis son jour de naissance et lui donne son âge plus précisément qu'à l'exercice 1.
 
 ```
+// Si nous sommes le 22/09 😄
+
 > ./exo3.exe
 Date de naissance : 25/09/1984
 Vous avez 40 ans !
