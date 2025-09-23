@@ -65,7 +65,20 @@ Vous avez 38 ans !
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/loading-03.gif)
+    ```c
+    #include <stdio.h>
+    #define ANNEE 2025
+
+    int main() {
+        int annee_utilisateur;
+
+        printf("Annee de naissance : ");
+        scanf("%d", &annee_utilisateur);
+        printf("Vous avez %d ans !", ANNEE - annee_utilisateur);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 2
 
@@ -89,7 +102,28 @@ Joyeux non-anniversaire !
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/loading-06.gif)
+    ```c
+    #include <stdio.h>
+
+    #define MOIS    9
+    #define JOUR    22
+
+    int main() {
+        int annee_utilisateur, mois_utilisateur, jour_utilisateur, age;
+
+        printf("Date de naissance : ");
+        scanf("%d/%d/%d", &jour_utilisateur, &mois_utilisateur, &annee_utilisateur);
+        
+        if (mois_utilisateur == MOIS && jour_utilisateur == JOUR) {
+            printf("Joyeux anniversaire !");
+        }
+        else {
+            printf("Joyeux non-anniversaire !");
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 3
 
