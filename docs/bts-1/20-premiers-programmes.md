@@ -109,7 +109,7 @@ Joyeux non-anniversaire !
     #define JOUR    22
 
     int main() {
-        int annee_utilisateur, mois_utilisateur, jour_utilisateur, age;
+        int annee_utilisateur, mois_utilisateur, jour_utilisateur;
 
         printf("Date de naissance : ");
         scanf("%d/%d/%d", &jour_utilisateur, &mois_utilisateur, &annee_utilisateur);
@@ -143,7 +143,28 @@ Vous avez 41 ans !
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/loading-05.gif)
+    ```c
+    #include <stdio.h>
+
+    #define MOIS    9
+    #define JOUR    22
+    #define ANNEE    2025
+
+    int main() {
+        int annee_utilisateur, mois_utilisateur, jour_utilisateur, age;
+
+        printf("Date de naissance : ");
+        scanf("%d/%d/%d", &jour_utilisateur, &mois_utilisateur, &annee_utilisateur);
+        
+        age = ANNEE - annee_utilisateur - 1;
+
+        if (mois_utilisateur < MOIS || (mois_utilisateur == MOIS && jour_utilisateur <= JOUR)) {
+            age++;
+        }
+
+        return 0;
+    }
+    ```
 
 
 ## Exercice sur papier 1
@@ -173,7 +194,22 @@ Définir sur papier les valeurs stockées dans les variables a, b, c et d à la 
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/rickroll-roll.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int a = 0, b = 1, c = 2, d = 3;
+        
+        a = 5;                  // a: 5    b: 1   c: 2   d: 3
+        a + b;                  // a: 5    b: 1   c: 2   d: 3
+        c = a + b;              // a: 5    b: 1   c: 6   d: 3
+        d = a - (2 * d - b);    // a: 5    b: 1   c: 6   d: 0
+        c = a + b * -c + 1;     // a: 5    b: 1   c: 0   d: 0
+        a = b = c;              // a: 0    b: 0   c: 0   d: 0
+        
+        return 0;
+    }
+    ```
 
 ## Exercice sur papier 2
 
@@ -202,7 +238,26 @@ main() {
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/waiting-arnold.gif)
+    ```c
+    #include <stdio.h> // et non stio
+
+    int main() { // et non main() tout court
+        int jour = 0, mois = 0, annee = 0; // Il manquait une virgule
+
+        printf("Donner un jour (1-31) : "); // Chaine de caractère à fermer
+        scanf("%d", &jour);
+
+        printf("Donner un mois (1-12) : ");
+        scanf("%d", &mois); // Sans le &, on risque l'erreur de segmentation
+
+        printf("Donner un année (0-2021) : "); // Avec un point-virgule
+        scanf("%d", &annee);
+
+        printf("La date saisie est : %02d/%02d/%04d", jour, mois, annee); // et non print
+
+        return 0;
+    }
+    ```
 
 ## Exercice 4
 
@@ -225,7 +280,21 @@ Octal : 52
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/waiting-bean.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int nombre;
+
+        printf("Nombre à convertir : ");
+        scanf("%d", &nombre);
+
+        printf("Hexadecimal : %X\n", nombre);
+        printf("Octal : %o", nombre);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 5
 
@@ -249,4 +318,17 @@ Couleur en hexa    : #FFCC00
 
 ??? success "Correction"
 
-    ![Loading...](../images/meme/waiting-kid.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        unsigned char r, g, b;
+
+        printf("Couleur en decimal : ");
+        scanf("%hhd %hhd %hhd", &r, &g, &b);
+
+        printf("Couleur en hexa    : #%02X%02X%02X", r, g, b);
+
+        return 0;
+    }
+    ```

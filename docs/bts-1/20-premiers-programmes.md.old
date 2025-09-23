@@ -490,7 +490,7 @@ OK ! Merci...
     Entrer un nombre strictement positif : 0
     Ce nombre n'est pas strictement positif.
     Entrer un nombre strictement positif : 23
-    Ah quand même... 3 fois pour y arriver :(
+    Ah quand même... 3 essais pour y arriver :(
     ```
 
     ??? success "Correction"
@@ -515,7 +515,7 @@ OK ! Merci...
                 printf("Chapeau ! Du premier coup !");
             }
             else {
-                printf("Ah quand même... %d fois pour y arriver :(", nb_essais);
+                printf("Ah quand même... %d essais pour y arriver :(", nb_essais);
             }
         }
         ```
