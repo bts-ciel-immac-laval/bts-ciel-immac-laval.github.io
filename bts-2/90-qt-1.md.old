@@ -1,0 +1,53 @@
+# Qt
+
+![Qt](../pdf/cours/bts2/bts2_qt_01.pdf)
+
+## Objectifs
+
+- Installer Qt
+- Découvrir le framework Qt
+- Se repérer dans le modèle objets de Qt
+- Détecter et expliquer le mécanisme de signaux/slots de Qt
+- Paramétrer l’environnement de développement Qt Creator
+- Différencier les contrôles disponibles dans Qt
+
+## Travail
+
+### Mise en situation
+
+Votre chef vous annonce que votre équipe va devoir développer une application multi-plateforme à l'aide de l'environnement de développement Qt. Il ne le connaît pas et vous non plus 😵‍💫. 
+
+Pour se faire une idée de la difficulté de mise en oeuvre, puis chiffrer le développement, il vous demande d'étudier le framework et de lui préparer un guide simple, imagé et rapide à lire du fonctionnement des applications Qt.
+
+### Partie 1 (1h) - Installation
+
+Installons ensemble Qt sur votre poste.
+
+A l'aide de copies d'écran et de vos notes, rédiger un manuel d'installation de Qt.
+
+Testez-le en installant Qt sur votre poste à la maison.
+
+> Travail à rendre sur EcoleDirecte/Cahier de texte pour jeudi 07/11/2024 au format PDF
+
+### Partie 2 (1h30) - Etude d'une application
+
+Etudier en binôme une application exemple QT parmi les deux applications suivantes : 
+
++ Text Edit
+
++ Calculator Form
+
+En vous aidant de la documentation de l'application, de l'aide et de la documentation en ligne (https://doc.qt.io/) :
+
+- Lancer l'application et la tester.
+- Visiter l'environnement de développement
+- Détecter le point d'entrée du programme.
+- Trouver l'endroit où est conçue l'IHM.
+    - Tenter de déplacer un élément/contrôle.
+    - Identifier/Lister les propriétés des éléments d'IHM. Que peut-on modifier ?
+    - Trouver la liste des éléments d'IHM disponibles
+- Identifier les méthodes correspondant aux actions des contrôles.
+    - Trouver où est le code correspondant à l'activation d'un élément.
+    - Comment l'élément graphique et son code sont-ils liés ?
+
+### Partie 2 (30') - Synthèse
