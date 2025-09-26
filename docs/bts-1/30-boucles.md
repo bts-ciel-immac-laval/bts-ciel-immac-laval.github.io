@@ -45,7 +45,28 @@ Ecrire un programme qui affiche les nombres pairs de 2 à 100 avec une boucle `f
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-britney.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+
+        // Méthode 1 : on compte de 2 en 2
+        printf("Methode 1 :\n");
+        for (int i = 2; i <= 100; i = i + 2) {
+            printf("%3d ", i);
+        }
+
+        // Méthode 2 : on compte de 1 en 1 mais on n'affiche que les nombres pairs
+        printf("\n\nMethode 2 :\n");
+        for (int i = 2; i <= 100; i++) {
+            if (i % 2 == 0) {
+                printf("%3d ", i);
+            }
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 3
 
@@ -54,3 +75,14 @@ Ecrire un programme qui demande un nombre positif à l'utilisateur puis affiche 
 ??? success "Correction"
 
     ![](../images/meme/waiting-pikachu.gif)
+
+
+## Exercice en attendant...
+
+Ecrire un programme en C qui affiche les nombres de 1 à 100 (inclus) sauf : 
+
++   si le nombre est un multiple de 3, il affiche "fi",
+
++   si le nombre est un multiple de 5, il affiche "foo",
+
++   si le nombre est un multiple de 3 et de 5, il affiche "fifoo".
