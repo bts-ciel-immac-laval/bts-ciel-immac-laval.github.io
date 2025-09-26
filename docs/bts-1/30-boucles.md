@@ -74,7 +74,43 @@ Ecrire un programme qui demande un nombre positif à l'utilisateur puis affiche 
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-pikachu.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+
+        int start, i;
+
+        // Saisie
+        do {
+            printf("Saisir un nombre strictement positif : ");
+            scanf("%d", &start);
+        }
+        while (start <= 0);
+
+        // Décompte avec un for
+        for (int i = start; i >= 0; i--) {
+            printf("%d\n", i);
+        }
+        
+        // Décompte avec un while
+        i = start;
+        while(i >= 0) {
+            printf("%d\n", i);
+            i--;
+        }
+
+        // Décompte avec un do...while
+        i = start;
+        do {
+            printf("%d\n", i);
+            i--;
+        }
+        while(i >= 0);
+
+        return 0;
+    }
+    ```
 
 
 ## Exercice en attendant...

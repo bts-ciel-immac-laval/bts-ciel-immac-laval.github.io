@@ -180,6 +180,10 @@ Si le code est faux, afficher "`Code faux (X essai(s) restant(s))`" où X est le
 
 Au sortir de la saisie, si le code est bon, afficher "`Paiement en cours...`", sinon afficher "`Carte bloquée X(`" 
 
+??? danger "Aller plus loin"
+
+    Pénaliser les erreurs de saisie, en bloquant le programme pendant 5 puis 10 secondes en cas d'erreur.
+
 ??? success "Correction"
 
     ```c
