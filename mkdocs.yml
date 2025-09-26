@@ -5,11 +5,11 @@ copyright: Copyright &copy; 2025 - 2026 Mathieu DOMER
 
 nav:
   - BTS : 
-    # - Calendrier de l'Avent : commun/00_calendrier_avent.md
-    # - Les gammes : commun/10_gammes.md
+    # - Calendrier de l'Avent : bts/00_calendrier_avent.md
+    # - Les gammes : bts/10_gammes.md
     - Stages : bts/20_stages.md
-    # - Vidéos : commun/30_videos.md
-    - Plus Plus : commun/99_plusplus.md
+    # - Vidéos : bts/30_videos.md
+    - Plus Plus : bts/99_plusplus.md
   - BTS 1 :
     - Projet Thelma : bts-1/10-projet-thelma.md
   #   - C'est pour bientôt ! : bts-1/00-waitforit.md
