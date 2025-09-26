@@ -6,7 +6,38 @@ Ecrire un programme qui affiche tous les nombres de 1 à 1000 avec les trois typ
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-sonic.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+
+        int i;
+
+        // Boucle for
+        printf("for :\n");
+        for (i = 1; i <= 1000; i++) {   // Faire attention aux bornes
+            printf("%d ", i);
+        }
+
+        // Boucle while
+        printf("\n\nwhile :\n");
+        i = 1;                          // Ne pas oublier d'initialiser le compteur avant la boucle
+        while (i <= 1000) {
+            printf("%d ", i);
+            i++;
+        }
+
+        // Boucle do...while
+        printf("\n\ndo...while :\n");
+        i = 1;                          // idem
+        do {
+            printf("%d ", i);
+            i++;
+        } while (i <= 1000);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 2
 
