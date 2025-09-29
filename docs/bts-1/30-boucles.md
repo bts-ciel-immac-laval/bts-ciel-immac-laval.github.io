@@ -121,4 +121,47 @@ Ecrire un programme en C qui affiche les nombres de 1 à 100 (inclus) sauf :
 
 +   si le nombre est un multiple de 5, il affiche "foo",
 
-+   si le nombre est un multiple de 3 et de 5, il affiche "fifoo".
++   si le nombre est un multiple de 3 et de 5, il affiche "fifoo".  
+
+Résultat : 
+```
+> ./exo4.exe
+1
+2
+fi
+4
+foo
+5
+fi
+7
+8
+fi
+10
+11
+fi
+13
+14
+fifoo
+16
+...
+```
+
+## Exercice 4
+
+Ecrire un programme pour gérer la saisie du code à 4 chiffres d'une carte bancaire.
+
+L'utilisateur a 3 essais pour saisir correctement son code.
+
+Si le code est trouvé, afficher "`Code bon`".
+
+Si le code est faux, afficher "`Code faux (X essai(s) restant(s))`" où X est le nombre d'essais restants.
+
+Au sortir de la saisie, si le code est bon, afficher "`Paiement en cours...`", sinon afficher "`Carte bloquée X(`" 
+
+??? danger "Aller plus loin"
+
+    Pénaliser les erreurs de saisie, en bloquant le programme pendant 5 puis 10 secondes en cas d'erreur.
+
+??? success "Correction"
+
+    ![](../images/meme/waiting-kid.gif)
