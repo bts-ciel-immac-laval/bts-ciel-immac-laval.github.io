@@ -165,3 +165,67 @@ Au sortir de la saisie, si le code est bon, afficher "`Paiement en cours...`", s
 ??? success "Correction"
 
     ![](../images/meme/waiting-kid.gif)
+
+## Exercice 5
+
+Créer un programme `exo6.c` qui demande à l’utilisateur de deviner un nombre entre un 1 et 10 en maximum 3 essais.
+
+```
+> ./exo6.exe
+Devine un nombre entre 1 et 10 (3 essais max.) !
+Essai 1 : 3
+Perdu !
+Essai 2 : 6
+Perdu !
+Essai 3 : 7
+Perdu ! C'était 8 !
+
+> ./exo6.exe
+Devine un nombre entre 1 et 10 (3 essais max.) !
+Essai 1 : 4
+Perdu !
+Essai 2 : 6
+Gagné !!!
+```
+
+??? success "Correction"
+
+    ![](../images/meme/waiting-moone.gif)
+
+## Exercice 7
+
+Reprendre l’exercice 6 en rendant les bornes (1 - 10) et le nombre de tentatives paramétrables via des constantes.
+
+```
+> ./exo7.exe
+Devine un nombre entre 1 et 99 (1 essai max.) !
+Essai 1 : 3
+Perdu ! C'était 83 !
+
+> ./exo7.exe
+Devine un nombre entre 34 et 77 (24 essais max.) !
+Essai 1 : 44
+Perdu !
+Essai 2 : 61
+Perdu !
+Essai 3 : 62
+Perdu !
+Essai 4 : 63
+Perdu !
+Essai 5 : 67
+Perdu !
+Essai 6 : 56
+Perdu !
+Essai 7 : 51
+Perdu !
+Essai 8 : 73
+Perdu !
+Essai 9 : 71
+Perdu !
+Essai 10 : 36
+Gagné !!!
+```
+
+??? success "Correction"
+
+    ![](../images/meme/waiting-zootopia.gif)
