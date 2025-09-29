@@ -6,7 +6,7 @@ copyright: Copyright &copy; 2025 - 2026 Mathieu DOMER
 nav:
   - BTS : 
     # - Calendrier de l'Avent : bts/00_calendrier_avent.md
-    # - Les gammes : bts/10_gammes.md
+    - Les gammes : bts/10_gammes.md
     - Stages : bts/20_stages.md
     # - Vidéos : bts/30_videos.md
     - Plus Plus : bts/99_plusplus.md
