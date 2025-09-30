@@ -158,13 +158,95 @@ Si le code est faux, afficher "`Code faux (X essai(s) restant(s))`" où X est le
 
 Au sortir de la saisie, si le code est bon, afficher "`Paiement en cours...`", sinon afficher "`Carte bloquée X(`" 
 
+??? success "Correction"
+
+    ```c
+    #include <stdio.h>
+
+    #define CODE_A_TROUVER 1234
+
+    int main() {
+
+        int code_utilisateur = -1, tentatives = 0;
+
+        do {
+            printf("Votre code : ");
+            scanf("%d", &code_utilisateur);
+            tentatives++;
+            if (code_utilisateur == CODE_A_TROUVER) {
+                printf("Code bon\n");
+            }
+            else {
+                printf("Code faux (%d essai(s) restant(s))\n", 3 - tentatives);
+            }
+        } while (code_utilisateur != CODE_A_TROUVER && tentatives < 3);
+
+        if (code_utilisateur == CODE_A_TROUVER) {
+            printf("Paiement en cours...");
+        }
+        else {
+            printf("Carte bloquée X(");
+        }
+
+        return 0;
+    }
+    ```
+
 ??? danger "Aller plus loin"
 
     Pénaliser les erreurs de saisie, en bloquant le programme pendant 5 puis 10 secondes en cas d'erreur.
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-kid.gif)
+    ```c
+    #include <stdio.h>
+
+    #ifdef _WIN32
+    #include <windows.h>
+    #endif
+
+    #ifdef linux
+    #include <unistd.h>
+    #endif
+
+    #define CODE_A_TROUVER 1234
+
+    int main() {
+
+        int code_utilisateur = -1, tentatives = 0, attente = 5;
+
+        do {
+            printf("Votre code : ");
+            scanf("%d", &code_utilisateur);
+            tentatives++;
+            if (code_utilisateur == CODE_A_TROUVER) {
+                printf("Code bon\n");
+            }
+            else {
+                printf("Code faux (%d essai(s) restant(s))\n", 3 - tentatives);
+                
+                #ifdef _WIN32
+                Sleep(attente * 1000);
+                #endif
+
+                #ifdef linux
+                usleep(attente * 1000000);
+                #endif
+
+                attente += 5;
+            }
+        } while (code_utilisateur != CODE_A_TROUVER && tentatives < 3);
+
+        if (code_utilisateur == CODE_A_TROUVER) {
+            printf("Paiement en cours...");
+        }
+        else {
+            printf("Carte bloquée X(");
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 5
 
