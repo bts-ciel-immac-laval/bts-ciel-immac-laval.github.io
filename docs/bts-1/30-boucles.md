@@ -229,3 +229,20 @@ Gagné !!!
 ??? success "Correction"
 
     ![](../images/meme/waiting-zootopia.gif)
+
+## Bonus
+
+Dessiner un sapin de Noël formé d'étoiles :
+
+```output
+Nombre d'étages : 5
+
+    *
+   ***
+  *****
+ *******
+*********
+    *
+```
+
+Le nombre d'étages est donné par l'utilisateur.
