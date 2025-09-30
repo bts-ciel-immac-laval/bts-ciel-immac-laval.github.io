@@ -234,7 +234,8 @@ Gagné !!!
 
 Dessiner un sapin de Noël formé d'étoiles :
 
-```output
+```
+> ./sapin.exe
 Nombre d'étages : 5
 
     *
@@ -246,3 +247,7 @@ Nombre d'étages : 5
 ```
 
 Le nombre d'étages est donné par l'utilisateur.
+
+??? success "Correction"
+
+    ![](../images/meme/waiting-sonic.gif)
