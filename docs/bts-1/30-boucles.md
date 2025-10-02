@@ -272,7 +272,50 @@ Gagné !!!
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-moone.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+
+    int main() {
+
+        // Graine pour les nombres aléatoires :
+        // A moins de lancer le programme deux fois dans la même seconde, 
+        // on aura un tirage différent à chaque fois... dans la limite du
+        // nombre de valeurs possibles 🙃
+        srand(time(NULL));
+
+        // rand renvoie un nombre positif "aléatoire", il faut le ramener
+        // dans l'intervale souhaité. On sait qu'en récupérent le reste 
+        // de la division  par un nombre on récupère une valeur entre 0 
+        // et ce nombre - 1. ex : 123456 % 10 va renvoyer un nombre entre
+        // 0 et 9. Si on ajoute 1 à ce calcul, on obtient un nombre entre
+        // 1 et 10 😎
+        int nombreATrouver = rand() % 10 + 1, nombreSaisi, i = 1;
+
+        printf("Devine un nombre entre 1 et 10 (3 essais max.) !");
+
+        // Il ne reste qu'à boucler 😵‍💫 comme à l'exercice précédent...
+        do {
+            
+            printf("\nEssai %d : ", i);
+            scanf("%d", &nombreSaisi);
+
+            if (nombreSaisi == nombreATrouver) {
+                printf("Gagne !!!\n");
+            }
+
+            printf("Perdu !");
+            i++;
+        } while (i <= 3 && nombreSaisi != nombreATrouver);
+
+        if (i > 3) {
+            printf(" C'etait %d !\n", nombreATrouver);
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 6
 
@@ -310,7 +353,53 @@ Gagné !!!
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-zootopia.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+
+    // Les constantes...
+    #define BORNE_MIN   3
+    #define BORNE_MAX  42
+    #define NB_ESSAIS   7
+
+    int main() {
+
+        srand(time(NULL));
+
+        // ...qu'il ne faut pas oublier de modifier partout...
+        int nombreATrouver = rand() % BORNE_MAX + BORNE_MIN, nombreSaisi, i = 1;
+
+        // ...partout...
+        printf("Devine un nombre entre %d et %d (%d essai%s max.) !", 
+            BORNE_MIN, 
+            BORNE_MAX, 
+            NB_ESSAIS,
+            NB_ESSAIS == 1 ? "" : "s"
+        );
+
+        // ...partout...
+        do {
+            
+            printf("\nEssai %d : ", i);
+            scanf("%d", &nombreSaisi);
+
+            if (nombreSaisi == nombreATrouver) {
+                printf("Gagne !!!\n");
+            }
+
+            printf("Perdu !");
+            i++;
+        } while(i <= NB_ESSAIS && nombreSaisi != nombreATrouver);
+
+        // ...partout !
+        if (i > NB_ESSAIS) {
+            printf(" C'etait %d !", nombreATrouver);
+        }
+
+        return 0;
+    }
+    ```
 
 ## Bonus
 
@@ -332,4 +421,80 @@ Le nombre d'étages est donné par l'utilisateur.
 
 ??? success "Correction"
 
-    ![](../images/meme/waiting-sonic.gif)
+    En observant, on note le nombre d'étoiles à chaque étage en les numérotant de manière informatique :
+
+    +   Etage 0 : 1
+
+    +   Etage 1 : 3
+
+    +   Etage 2 : 5
+
+    +   Etage 3 : 7
+
+    +   Etage 4 : 9
+
+    si on généralise : `nbEtoiles = 2 * nbEtage + 1`
+
+    En observant (toujours), on note le nombre d'espaces à chaque étage :
+
+    +   Etage 0 : 4
+
+    +   Etage 1 : 3
+
+    +   Etage 2 : 2
+
+    +   Etage 3 : 1
+
+    +   Etage 4 : 0
+
+    si on généralise : `nbEspaces = nbEtagesTotal - nbEtage`
+
+    Il nous faut dont une boucle pour travailler étage par étage : à l'intérieur de laquelle, il faut une boucle pour afficher les espaces un par un, puis une autre boucle pour les étoiles.
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        int nbEtages = 0;
+
+        system("chcp 65001");
+        system("cls");
+
+        // Saisie du nombre d'étages
+        while (nbEtages <= 0) {
+            printf("Nombre d'étages : ");
+            scanf("%d", &nbEtages);
+        }
+
+        printf("\n");
+
+        // Boucle pour les étages
+        for (int i = 0; i < nbEtages; i++) {
+            // Boucle pour les espaces
+            for (int j = 0; j < nbEtages - i; j++) {
+                printf(" ");
+            } 
+            // Boucle pour les étoiles
+            for (int j = 0; j < 2 * i + 1; j++) {
+                printf("*");
+            }
+            // Passage à la ligne
+            printf("\n");
+        }
+
+        // Et le tronc !!? Comme le 1er étage !
+        for (int i = 0; i < nbEtages; i++) {
+            printf(" ");
+        } 
+        printf("*\n");
+
+        printf("\n🎁🎁🎁 🎄 Joyeux Noël 🎅 🎁🎁🎁\n");
+
+        return 0;
+    }
+    ```
+
+
+
+
