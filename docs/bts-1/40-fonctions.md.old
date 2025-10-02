@@ -12,7 +12,7 @@ Déclarer (= proposer un prototype) les fonctions suivantes :
 
     2. Identifier les **sorties** de la fonction. Doit-elle retourner quelquechose **au programme qui l'appelle** ? Si oui, il faut que son type retour soit en adéquation avec la valeur retournée, sinon elle peut ne rien renvoyer.
 
-+ Une fonction qui affiche la date du système (qu'on récupère via une fonction).
++ Une fonction qui affiche l'heure du système (qu'on récupère via une fonction).
 
 ??? success "Solution"
 
@@ -137,6 +137,8 @@ int minimum(int, int);
     ```
 
 ## Exercice 3
+
+!!! info "A faire sur papier"
 
 Indiquer pour chacune des fonctions ci-dessous si elles sont correctement définies et, si ce n’est pas le cas, expliquer l’anomalie.
 

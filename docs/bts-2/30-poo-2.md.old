@@ -20,7 +20,7 @@ Finalement il affichera la composition des groupes et le groupe d'appartenance d
     
 
 ```
-> ./exo_9.exe
+> ./exo_1.exe
 Saisir les noms des personnes à créer (! pour arrêter) :
 #1 : Bianca
 #2 : Tryphon
@@ -186,67 +186,86 @@ Répondre aux questions suivantes portant sur le diagramme de classes, fruit du 
 
     ??? success "Correction"
 
+        Deux réponses sont acceptables, car le diagramme de classes manque de précision sur ce point :
 
+            + Non, il n'y a qu'un constructeur déclaré et celui-ci a deux paramètres `string` qui "logiquement" correspondent aux deux attributs nom et email.
+
+            + Oui, le constructeur déclaré a deux paramètres `string`, si l'un deux correspond au nom, alors il est possible de lui passer une chaîne de caractères vide...
 
 2.	Expliquer à quoi correspondent chacun des termes et symboles de la ligne suivante : `isEmailValid(string) : bool`
 
     ??? success "Correction"
 
+        C'est une méthode et les différents éléments correspondent à :
 
+        + `isEmailValid` : l'identificateur (le nom) de la méthode ;
+
+        + `(string)` : les paramètres de la méthode (les données en entrée), ici une chaîne de caractères ;
+
+        + `: bool` : le type retour de la méthode (les données en sortie), ici un booléen.
 
 3.	Pourquoi la ligne `+ setEmail(string)` de la classe `Utilisateur` n'a pas de partie avec les `:`&nbsp;?
 
     ??? success "Correction"
 
-
+        C'est un mutateur, une méthode qui modifie un attribut, elle ne renvoie rien, l'UML nous permet de ne pas écrire `: void`.
 
 4.	Peut-on valider le format d’un email avec la méthode `isEmailValid` en l’appelant sur un objet `Utilisateur` créé dans le programme principal&nbsp;? Expliquer.
 
     ??? success "Correction"
 
-
+        Non, la méthode `isEmailValid` est précédée d'un signe `-` qui signifie que la méthode est privée, c'est-à-dire qu'on ne peut l'appeler que depuis la classe et non en-dehors.
 
 5.	Peut-on modifier un emprunt après création&nbsp;? Expliquer.
 
     ??? success "Correction"
 
-
+        Par convention de nommage, on peut déduire que les deux méthodes `setDateRetour` et `prolonger` sont des mutateurs, qui permettent de modifier des attributs après sa création.
 
 6.	Doit-on créer un objet `Emprunt` par exemplaire emprunté ou un objet `Emprunt` peut-il concerné plusieurs exemplaires d’un coup&nbsp;? Expliquer.
 
     ??? success "Correction"
 
-
+        La cardinalité nous indique qu'un emprunt est relié à un et un seul exemplaire, il faut donc créer un objet `Emprunt` par Exeplaire `emprunté`.
 
 7.	Les attributs `dateEmprunt` et `dateRetourPrevu` de la classe `Emprunt` n’ont pas de mutateur et le constructeur n’a pas de paramètre de type date. Qu’en déduisez-vous sur la valorisation de ces deux dates&nbsp;?
 
     ??? success "Correction"
 
-
+        Ils sont probablement généré automatiquement dans le constructeur, la date d'emprunt serait la date du système et la date retour calculée à partir d'une règle comme il est courant d'en rencontrer dans les bibliothèques (emprunt de 4 semaines à Laval Agglo par exemple).
 
 8.	De quel type est l’attribut `emprunts` de la classe `Utilisateur`. Proposer deux manières différentes de l’implémenter en C++. 
 
     ??? success "Correction"
 
+        ```cpp
+        // Si on gère nous-même l'allocation dynamique :
+        Emprunt * emprunts;
 
+        // ou mieux :
+        vector<Emprunt> emprunts;
+
+        // à la rigueur...
+        Emprunt emprunts[];
+        ```
 
 9.	L’attribut `- nombre : int` de la classe `Exemplaire` est souligné, qu’est-ce que cela signifie&nbsp;?
 
     ??? success "Correction"
 
-
+        L'attribut est static, il est partagé par tous les objets de la classe.
 
 10.	Il n’y a pas de mutateur prévu pour l’attribut `- nombre : int` de la classe `Exemplaire`, comment peut-on incrémenter ou décrémenter cet attribut&nbsp;?
 
     ??? success "Correction"
 
-
+        C'est un attribut static, probablement pour compter le nombre d'objets `Exemplaire` dans le système, donc on incrémente probablement ce nombre dans le constructeur et décrémente dans le destructeur.
 
 11.	Comment peut-on, à tout moment, connaître le nombre total de documents disponibles dans la bibliothèque&nbsp;?
 
     ??? success "Correction"
 
-
+        Si l'implémentation proposée à la question précédente est bonne, alors à tout moment, l'attribut `nombre` de la classe `Exemplaire`, contient le nombre d'objets dans le système et donc de documents dans la bibliothèque. On peut en récupérer la valeur avec l'instruction : `Exemplaire::getNombre();`.
 
 12.	Pourrait-on mettre en place sur la classe `Emprunt` un attribut `- nombre : int` avec la même caractéristique qu’à la question 9 pour compter le nombre d’emprunts d’un utilisateur&nbsp;? 
 
@@ -256,19 +275,29 @@ Répondre aux questions suivantes portant sur le diagramme de classes, fruit du 
 
     ??? success "Correction"
 
+        Non, si on mettait cet attribut sur la classe Emprunt, on récupérerai le nombre total d'emprunts (objets `Emprunt`) dans le système. On peut récupérer cette information de deux manières, en fonction de l'implémentation de l'attributs `Uilisateur::empunts` à la question 8 :
 
+        + Si emprunts est un vecteur on pourra récupérer le nombre d'emprunts d'un objet Utilisateur avec l'instruction : `u1.getEmprunts().size()`
+
+        + Si emprunts est un pointeur d'Emprunt (Emprunt *), il faut créer un attribut pour sauvegarder la taille du tableau et un accesseur, on pourra alors récupérer le nombre d'emprunts d'un objet Utilisateur en appelant cet accesseur.
 
 13.	En utilisant les méthodes disponibles, peut-on à partir d’un objet `Livre` remonter jusqu’aux utilisateurs qui en ont emprunté un exemplaire&nbsp;? Expliquer. 
 
     ??? success "Correction"
 
+        Oui :
 
+        1.  en appelant `getExemplaires` sur un objet `Livre` on récupère un tableau d'exemplaires
+
+        2. en parcurant le tableau d'exemplaires avec une boucle et en appelant `getEmprunt` sur chaque élément
+
+        3. si on ne récupère pas `nullptr`, on peut appeler getUtilisateur() et récupérer l'utilisateur lié à chaque emprunt.
 
 14.	Peut-on avoir des emplacements vides&nbsp;? Pourquoi&nbsp;?
 
     ??? success "Correction"
 
-
+        La cardinalité de la liaison entre `Emplacement` et `Livre` nous indique que l'attribut `livres` peut contenir 0 à n livres.
 
 15.	Compléter la déclaration en C++ de la classe Emplacement. 
 
@@ -280,11 +309,27 @@ Répondre aux questions suivantes portant sur le diagramme de classes, fruit du 
     
     ```cpp
     class Emplacement {
-    
+        int 
     };
     ```
 
     ??? success "Correction"
+
+        ```cpp
+        class Emplacement {
+            private :
+                int niveau;
+                int etagere;
+                int travee;
+                vector<Livre *> livres;
+            public :
+                Emplacement(int, int, int);
+                ~Emplacement();
+                void addLivre(Livre *);
+                void removeLivre(Livre *);
+                vector<Livre *> getLivres();
+        };
+        ```
 
 
 
