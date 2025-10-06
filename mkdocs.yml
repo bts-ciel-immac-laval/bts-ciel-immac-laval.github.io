@@ -16,8 +16,8 @@ nav:
   #   - 01 - Premiers pas en C : bts-1/10-premiers-pas-en-c.md
     - 01 - Premiers programmes : bts-1/20-premiers-programmes.md
     - 02 - Boucles : bts-1/30-boucles.md
-  #   - 04 - Fonctions :
-  #     - Usage courant : bts-1/40-fonctions.md
+    - 03 - Fonctions :
+      - Usage courant : bts-1/40-fonctions.md
   #     - Variables statiques : bts-1/41-fonctions.md
   #     - Récursivité : bts-1/42-fonctions.md
   #   - 05 - Pointeurs : bts-1/50-pointeurs.md
