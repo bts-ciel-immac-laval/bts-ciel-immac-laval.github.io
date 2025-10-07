@@ -270,6 +270,70 @@ Valeurs de a, b, x : 0, 2, 2
 
     Proposer au moins une autre version de la fonction `impairEntreBornes` en utilisant toujours la fonction `estPair`.
 
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+
+    int estPair(int);
+    void impairEntreBornes(int, int);
+    void impairEntreBornes2(int, int);
+
+    int main() {
+        
+        // 4 exemples qui doivent afficher le même résult : 3 5 7 9 11
+        
+        impairEntreBornes(3, 11); 
+        impairEntreBornes(2, 12); 
+
+        impairEntreBornes2(3, 11); 
+        impairEntreBornes2(2, 12); 
+
+        return 0;
+    }
+
+    /**
+    * @brief Dit si la variable n est paire
+    * 
+    * @param n la variable dont on veut connaître la parité
+    * @return int vrai (1) si n est pair, faux(0) sinon. 
+    */
+    int estPair(int n) {
+        return n % 2 == 0;
+    }
+
+    /**
+    * @brief affiche les nombres impairs entre 2 bornes
+    * 
+    * @param debut  la borne de début
+    * @param fin    la borne de fin
+    */
+    void impairEntreBornes(int debut, int fin) {
+        for (int i = debut; i <= fin; i++) {
+            if (!estPair(i)) {
+                printf("%d ", i);
+            }
+        }
+        printf("\n");
+    }
+
+    /**
+    * @brief affiche les nombres impairs entre 2 bornes
+    * 
+    * @param debut  la borne de début
+    * @param fin    la borne de fin
+    */
+    void impairEntreBornes2(int debut, int fin) {
+        if (estPair(debut)) {
+            debut++;
+        }
+        for (int i = debut; i <= fin; i += 2) {
+            printf("%d ", i);
+        }
+        printf("\n");
+    }
+    ```
+
 ## Exercice 7
 
 Ecrire un programme de calculatrice "simple" :
