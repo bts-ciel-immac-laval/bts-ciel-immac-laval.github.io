@@ -106,7 +106,35 @@ int minimum(int, int);
 
 ??? success "Solution"
 
-    ![](../images/meme/loading-02.gif)
+    ```c
+    #include <stdio.h>
+
+    int minimum(int, int);
+
+    int main() {
+        
+        printf("%d\n", minimum(5, 4));  // doit afficher 4
+        printf("%d\n", minimum(7, 20)); // doit afficher 7
+        printf("%d\n", minimum(5, 5));  // doit afficher 5
+        
+        return 0;
+    }
+
+    int minimum(int a, int b) {
+        if (a < b) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+    /*
+    // Ecriture en une ligne :
+    int minimum(int a, int b) {
+        return a < b ? a : b ;
+    }
+    */
+    ```
 
 ## Exercice 3
 
@@ -143,7 +171,11 @@ float division (float a, float b) {
 
 ??? success "Solution"
 
-    ![](../images/meme/loading-03.gif)
+    **Fonction 1** : Si l’exécution ne passe pas dans le `if`, si `b` est égal à 0, il n’y a pas de `return`. Cela ne va pas gêner le compilateur, mais à l’exécution, dans ce cas, n’importe quelle valeur sera renvoyée… 
+
+    **Fonction 2** : Ici, si `b` est égal à 0, on renvoie `"Erreur !"`, qui est une chaîne de caractères, ce qui ne correspond pas au type retour de la fonction. Cette fois, le programme ne compilera pas.
+
+    **Fonction 3** : Cette fonction est correctement déclarée.
 
 ## Exercice 4
 
@@ -164,7 +196,24 @@ Déclarer et définir la fonction `somme` qui effectue la somme des valeurs pass
 
 ??? success "Solution"
 
-    ![](../images/meme/loading-04.gif)
+    ```c
+    #include <stdio.h>
+
+    // Déclaration
+    int somme(int, int);
+
+    int main() {
+        int s, a = 1, b = 3 ;
+        s = somme(a, b);
+        printf("%d + %d = %d\n", a, b, s);
+        return 0;
+    }
+
+    // Définition
+    int somme(int x, int y) {
+        return x + y;
+    }
+    ```
 
 ## Exercice 5
 
@@ -184,4 +233,70 @@ Valeurs de a, b, x : 0, 2, 2
 
 ??? success "Solution"
 
-    ![](../images/meme/loading-06.gif)
+    ```c
+    #include <stdio.h>
+
+    // Déclaration
+    int fonction(int, int, int);
+
+    int main() {
+        int a, b, x;
+        
+        printf("Valeurs de a, b, x : ");
+        scanf("%d, %d, %d", &a, &b, &x);
+        
+        printf("= %d\n", fonction(a, b, x));
+        
+        return 0;
+    }
+
+    // Définition
+    int fonction(int a, int b, int x) {
+        return a*x*x*x + 2*a*x*x + b;
+    }
+    ```
+
+## Exercice 6
+
+1. Ecrire une fonction `estPair` qui renvoie vrai si le nombre qui lui est passé est… pair 😎.
+
+2. Ecrire une fonction `impairEntreBornes` qui affiche les nombres impairs entre 2 bornes en utilisant la fonction `estPair`.
+
+3. Ecrire un programme de test.
+
+4. Installer l'extension Doxygen Documentation Generator, puis commenter les fonctions en utilisant le format Doxygen (Commencer à taper `/**` juste au dessus d'une fonction 🤩).
+
+??? danger "Aller plus loin"
+
+    Proposer au moins une autre version de la fonction `impairEntreBornes` en utilisant toujours la fonction `estPair`.
+
+## Exercice 7
+
+Ecrire un programme de calculatrice "simple" :
+
+```
+> ./exo4.exe
+1 + 2
+= 3
+
+3 / 4
+= 0.750000
+
+55 * 56
+= 3080
+
+7 - 12
+= -5
+```
+
+1. Déclarer les fonctions qui affichent le résultat des 4 opérations : addition, soustraction, multiplication et division.
+
+2. Définir les 4 fonctions.
+
+3. Faire appel aux 4 fonctions dans une fonction principale capable de lire des calculs tant que le programme n’est pas interrompu.
+
+??? danger "Aller plus loin"
+
+    1. Si ce n'est pas le cas, gérer la saisie de nombres à virgule flottante.
+    
+    2. Proposer un système pour reprendre le résultat du calcul précédent dans le calcul suivant.
