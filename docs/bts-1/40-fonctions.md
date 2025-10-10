@@ -364,3 +364,63 @@ Ecrire un programme de calculatrice "simple" :
     1. Si ce n'est pas le cas, gérer la saisie de nombres à virgule flottante.
     
     2. Proposer un système pour reprendre le résultat du calcul précédent dans le calcul suivant.
+
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    float addition(float, float);
+    float soustraction(float, float);
+    float multiplication(float, float);
+    float division(float, float);
+    float calcul(float, char, float);
+
+    int main() {
+        float operande1, operande2;
+        char operateur;
+
+        while (1) {
+            scanf("%f %c %f", &operande1, &operateur, &operande2);
+            printf("= %f\n\n", calcul(operande1, operateur, operande2));
+        }
+
+        return 0;
+    }
+
+    float calcul(float operande1, char operateur, float operande2) {
+        float result;
+        switch(operateur) {
+            case '+' : 
+                return addition(operande1, operande2); 
+            case '-' : 
+                return soustraction(operande1, operande2); 
+            case '*' : 
+                return multiplication(operande1, operande2); 
+            case 'x' : 
+                return multiplication(operande1, operande2); 
+            case '/' : 
+                return division(operande1, operande2);
+            default :
+                printf("! Erreur : operateur inconnu !");
+                exit(0);
+            }
+    }
+
+    float addition(float a, float b) {
+        return a + b;
+    }
+
+    float soustraction(float a, float b) {
+        return a - b;
+    }
+
+    float multiplication(float a, float b) {
+        return a * b;
+    }
+
+    float division(float a, float b) {
+        return a / b;
+    }
+    ```
