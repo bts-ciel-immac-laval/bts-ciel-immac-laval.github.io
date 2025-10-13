@@ -338,6 +338,8 @@ int main() {                    // La fonction principale, le point d'entrée du
     
 12. Créer un menu
 
+    ![menu](../images/cours/bts-1/10/menu.jpg)
+
     ```c
     
     ```
