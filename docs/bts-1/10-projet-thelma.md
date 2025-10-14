@@ -270,60 +270,168 @@ int main() {                    // La fonction principale, le point d'entrée du
         return 0;
     }
     ```
-    
-5.  Poser une suite de questions à l’utilisateur
 
-    1. Compter les points (réponses fausses acceptées)
+5. Créer un menu
+
+    ![menu](../images/cours/bts-1/10/menu.jpg)
+
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <conio.h>
+
+    int menu() {
+        int choice = 1;
+        int keyPressed = 0;
+        while (keyPressed != 13) {
+            
+            system("cls");
+            printf("%c Option 1\n%c Option 2\n%c Option 3\n", 
+                choice == 1 ? '>' : ' ', 
+                choice == 2 ? '>' : ' ', 
+                choice == 3 ? '>' : ' '
+            );
+
+            //while (!kbhit()) {}
+
+            keyPressed = getch();
+            if (keyPressed == 72) {
+                choice--;
+                if (choice < 1) {
+                    choice = 3;
+                }
+            }
+            if (keyPressed == 80) {
+                choice++;
+                if (choice > 3) {
+                    choice = 1;
+                }
+            }
+        }
+        return choice;
+    }
+
+    int main() {
+        system("chcp 65001");
+        system("cls");
+        printf("%d", menu());
+    }
+    ```
+
+
+6. Créer un premier programme complet :
+
+    ```c
+    #include <stdio.h>
+
+    void menu_principal();
+    void menu_quizz();
+    void afficher_table();
+    void afficher_tables();
+    void parametrer_quizz_chrono();
+    void lancer_quizz_chrono(int temps_max, char operateur, int table);
+    void parametrer_quizz_compte();
+    void lancer_quizz_compte(char operateur, int table);
+
+    int main() {
+        menu_principal();
+        return 0;
+    }
+
+    /**
+    * @brief Affiche le menu principal
+    * 
+    */
+    void menu_principal() {
+
+    }
+
+    /**
+    * @brief Affiche le menu de choix parmi les quizz
+    * 
+    */
+    void menu_quizz() {
+
+    }
+
+    /**
+    * @brief Demande à l'utilisateur un opérateur (+, -, x) et un chiffre (0-9) et lui affiche la table de ce chiffre
+    * 
+    */
+    void afficher_table() {
+
+    }
+
+    /**
+    * @brief Demande à l'utilisateur un opérateur (+, -, x) et affiche sous la forme d'un tableau les tables pour tous les chiffres (0-9)
+    * 
+    */
+    void afficher_tables() {
+
+    }
+
+    /**
+    * @brief Demande à l'utilisateur un opérateur (+, -, x) et un chiffre (0-9) et lance un quiz chrono avec ces paramètres
+    * 
+    */
+    void parametrer_quizz_chrono() {
+
+    }
+
+    /**
+    * @brief Génère 20 calculs à trous (opérande ou résultat) pour la table et l'opérateur demandé en bloquant tant que la réponse n'est pas bonne.
+    *        Le score correspond au temps passé à répondre aux 20 questions correctement.
+    * 
+    * @param operateur (char) L'opérateur à utiliser dans le quizz
+    * @param table     (int)  La table à utiliser dans le quizz
+    */
+    void lancer_quizz_chrono(char operateur, int table) {
+
+    }
+
+
+    /**
+    * @brief Demande à l'utilisateur un opérateur (+, -, x), un chiffre (0-9) et un nombre de questions et lance un quiz compté avec ces paramètres
+    * 
+    */
+    void parametrer_quizz_compte() {
+
+    }
+
+    /**
+    * @brief Génère nb_questions calculs à trous (opérande ou résultat) pour la table et l'opérateur demandé en affichant la réponse après le calcul.
+    *        Le score est le nombre de bonnes réponses.
+    * 
+    * @param operateur     (char) L'opérateur à utiliser dans le quizz
+    * @param table         (int)  La table à utiliser dans le quizz
+    * @param nb_questions  (int)  Le nombre de questions à poser
+    */
+    void lancer_quizz_compte(char operateur, int table, int nb_questions) {
+
+    }
+
+    // Evolution : se souvenir des calculs et afficher les réponses à la fin
+    ```
+    
+7. Créer un quiz chronométré
 
     ```c
     
     ```
     
-    2. Ne pas passer à la suivante tant que la réponse est fausse
+8. Créer un quiz minuté ?
 
     ```c
     
     ```
     
-6. Créer un quiz aléatoire sur une table
-
-    1. 2 x 4 = ?
+9. Créer un quiz qui donne les réponses juste après chaque question ou à la fin de toutes les questions 
 
     ```c
     
     ```
     
-    2. 2 + ? = 5
-
-    ```c
-    
-    ```
-    
-7. Créer un quiz aléatoire en laissant le choix à l’utilisateur des opérateurs et des tables
-
-    ```c
-    
-    ```
-    
-8. Créer un quiz chronométré
-
-    ```c
-    
-    ```
-    
-9. Créer un quiz minuté ?
-
-    ```c
-    
-    ```
-    
-10. Créer un quiz qui donne les réponses juste après chaque question ou à la fin de toutes les questions 
-
-    ```c
-    
-    ```
-    
-11. Créer un top
+10. Créer un top
     1. En mémoire
 
     ```c
@@ -336,14 +444,6 @@ int main() {                    // La fonction principale, le point d'entrée du
     
     ```
     
-12. Créer un menu
-
-    ![menu](../images/cours/bts-1/10/menu.jpg)
-
-    ```c
-    
-    ```
-    
-13. Tester
+11. Tester
     
 14. Livrer
