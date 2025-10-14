@@ -329,9 +329,9 @@ int main() {                    // La fonction principale, le point d'entrée du
     void afficher_table();
     void afficher_tables();
     void parametrer_quizz_chrono();
-    void lancer_quizz_chrono(int temps_max, char operateur, int table);
+    void lancer_quizz_chrono(char operateur, int table);
     void parametrer_quizz_compte();
-    void lancer_quizz_compte(char operateur, int table);
+    void lancer_quizz_compte(char operateur, int table, int nb_question);
 
     int main() {
         menu_principal();
