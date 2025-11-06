@@ -406,7 +406,7 @@ C'est le 250ème jour de l'année !
 
 ## Exercice 5
 
-Reprendre le code de l'exercice 4 dans un programme `exo_5.c`, permettre la saisie de date au format `JJ/MM/AAAA` **et** gérer le cas des années bissextiles !
+Reprendre le code de l'exercice 4 dans un programme `exo_5.c`, permettre la saisie de date au format `JJ/MM/AAAA` **ET** gérer le cas des années bissextiles !
 
 ```
 Saisir une date : 07/09/2024

@@ -21,7 +21,7 @@ nav:
   #     - Variables statiques : bts-1/41-fonctions.md
   #     - Récursivité : bts-1/42-fonctions.md
     - 04 - Pointeurs : bts-1/50-pointeurs.md
-  #   - 06 - Tableaux : bts-1/60-tableaux.md
+    - 05 - Tableaux : bts-1/60-tableaux.md
   #   - 07 - Chaînes de caractères : bts-1/70-strings.md
   #   - 08 - Les experts : bts-1/71-strings.md
   #   - 09 - Structures : bts-1/80-structures.md
