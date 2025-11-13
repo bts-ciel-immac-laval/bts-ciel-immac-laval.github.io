@@ -63,7 +63,7 @@ Les entiers sont 2, 6, 3
         }
 
         printf("\nLes entiers sont %d, %d et %d"
-                , *mon_beau_tableau
+                , * mon_beau_tableau
                 , *(mon_beau_tableau + 1)
                 , *(mon_beau_tableau + 2));
 
@@ -109,7 +109,46 @@ La moyenne est de 13.4.
 
 ??? success "Solution"
     
-    ![WaitForIt](../images/meme/waiting-arnold.gif)
+    ```c
+    #include <stdio.h>
+
+    float moyenne(float *, int);
+
+    int main() {
+    float notes[5];
+
+    // Saisie (boucle for + écriture pointeur)
+    printf("Saisir 5 notes :\n");
+    for (int i = 0; i < 5; i++) {
+        printf("#%d : ", i + 1);
+        scanf("%f", notes + i);
+    }
+
+    // Affichage (boucle while + écriture tableau)
+    int i = 0;
+    printf("\nLes notes saisies sont : ");
+    while (i < 5) {
+        printf(" %.1f%c", notes[i], i < 4 ? ',' : '.');
+        i++;
+    }
+
+    // Moyenne (boucle do/while + écriture pointeur + fonction)
+    printf("\n\nLa moyenne est de %.1f.", moyenne(notes, 5));
+
+    return 0;
+    }
+
+    // On passe le pointeur vers le premier élément + la taille du tableau
+    float moyenne(float * tab, int tailleTab) {
+    int i = 0;
+    float somme = 0;
+    do {
+        somme += *(tab + i);
+        i++;
+    } while(i < tailleTab);
+    return somme / tailleTab;
+    }
+    ```
 
 ## Exercice 3
 
