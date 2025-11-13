@@ -27,7 +27,49 @@ Les entiers sont 2, 6, 3
 
 ??? success "Solution"
     
-    ![WaitForIt](../images/meme/waiting-britney.gif)
+    En écriture tableau :
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int mon_beau_tableau[3];
+
+        for (int i = 0; i < 3; i++) {
+            printf("Saisir un entier : ");
+            scanf("%d", &mon_beau_tableau[i]);
+        }
+
+        printf("\nLes entiers sont %d, %d et %d"
+                , mon_beau_tableau[0]
+                , mon_beau_tableau[1]
+                , mon_beau_tableau[2]);
+
+        return 0;
+    }
+    ```
+    
+    En écriture pointeur :
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int mon_beau_tableau[3];
+
+        for (int i = 0; i < 3; i++) {
+            printf("Saisir un entier : ");
+            scanf("%d", mon_beau_tableau + i);
+        }
+
+        printf("\nLes entiers sont %d, %d et %d"
+                , *mon_beau_tableau
+                , *(mon_beau_tableau + 1)
+                , *(mon_beau_tableau + 2));
+
+        return 0;
+    }
+    ```
 
 ## Exercice 2
 
