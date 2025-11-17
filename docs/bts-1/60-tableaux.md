@@ -157,3 +157,26 @@ Ecrire un programme `exo_3.c` qui stocke les multiples de 5 de 0 à 255 dans un 
 ??? success "Solution"
     
     ![WaitForIt](../images/meme/waiting-barney.gif)
+
+## Exercice 4
+
+Dans un programme `exo_4.c` :
+
+1. Initialiser un tableau avec le nombre de jours de chaque mois (31 jours en janvier, 28 en février...).
+
+2. En se servant de ce tableau, écrire un programme qui affiche le numéro du jour dans l'année d'une date saisie (format `JJ/MM`) sans tenir compte des années bissextiles 😅
+
+```
+Saisir une date : 07/09
+C'est le 250ème jour de l'année !
+```
+
+??? question "Avez-vous pensé à tout ?"
+    
+    +   Avez-vous pensé à l'affichage du premier jour de l'année ?
+
+    +   Est-ce que votre programme accepte la date 30/02 ou 32/13 ?
+
+??? success "Solution"
+    
+    ![WaitForIt](../images/meme/waiting-britney.gif)
