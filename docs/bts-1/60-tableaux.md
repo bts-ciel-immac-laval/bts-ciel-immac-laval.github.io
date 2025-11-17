@@ -156,7 +156,38 @@ Ecrire un programme `exo_3.c` qui stocke les multiples de 5 de 0 à 255 dans un 
 
 ??? success "Solution"
     
-    ![WaitForIt](../images/meme/waiting-barney.gif)
+    ```c
+    #include <stdio.h>
+
+    int main() {
+
+        int tab [52];
+
+        // 3 méthodes de remplissage différentes possibles (parmi d'autre)
+        
+        // Méthode 1 (la plus simple, mais on n'y pense pas forcément du 1er coup)
+        for (int i = 0; i < 52; i++) {
+            tab[i] = i * 5;
+        }
+
+        // Méthode 2
+        for (int i = 0, n = 0; i < 52; i++, n += 5) {
+            tab[i] = n;
+        }
+
+        // Méthode 3
+        for (int n = 0, * p = tab; n < 256; n += 5, p++) {
+            *p = n;
+        }
+
+        // Affichage à l'envers
+        for (int i = 51; i >= 0; i--) {
+            printf("%d", tab[i]);
+        }
+
+        return 0;
+    }
+    ```
 
 ## Exercice 4
 
@@ -176,6 +207,19 @@ C'est le 250ème jour de l'année !
     +   Avez-vous pensé à l'affichage du premier jour de l'année ?
 
     +   Est-ce que votre programme accepte la date 30/02 ou 32/13 ?
+
+??? success "Solution"
+    
+    ![WaitForIt](../images/meme/waiting-britney.gif)
+
+## Exercice 5
+
+Reprendre le code de l'exercice 4 dans un programme `exo_5.c`, permettre la saisie de date au format `JJ/MM/AAAA` **ET** gérer le cas des années bissextiles !
+
+```
+Saisir une date : 07/09/2024
+C'était le 251ème jour de l'année 2024 !
+```
 
 ??? success "Solution"
     
