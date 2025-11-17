@@ -163,7 +163,7 @@ Ecrire un programme `exo_3.c` qui stocke les multiples de 5 de 0 à 255 dans un 
 
         int tab [52];
 
-        // 3 méthodes de remplissage différentes possibles (parmi d'autre)
+        // 3 méthodes de remplissage différentes possibles (parmi d'autres)
         
         // Méthode 1 (la plus simple, mais on n'y pense pas forcément du 1er coup)
         for (int i = 0; i < 52; i++) {
@@ -210,7 +210,37 @@ C'est le 250ème jour de l'année !
 
 ??? success "Solution"
     
-    ![WaitForIt](../images/meme/waiting-britney.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+
+        system("chcp 65001");
+        system("cls");
+        
+        int nbJoursParMois[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }, 
+            nbJours = 0, jour = 0, mois = 0;
+
+        // Saisie
+        do {
+            printf("Saisir une date (JJ/MM) : ");
+            scanf("%2d/%2d", &jour, &mois);
+        }
+        while (mois < 1 || mois > 12 || jour < 1 || jour > nbJoursParMois[mois - 1]);
+
+        // Comptage
+        for (int i = 0; i < mois - 1; i++) {
+            nbJours += nbJoursParMois[i];
+        }
+        nbJours += jour;
+
+        // Affichage
+        printf("C'est le %d%s jour de l'année !", nbJours, nbJours == 1 ? "er" : "ème");
+
+        return 0;
+    }
+    ```
 
 ## Exercice 5
 
@@ -224,3 +254,37 @@ C'était le 251ème jour de l'année 2024 !
 ??? success "Solution"
     
     ![WaitForIt](../images/meme/waiting-britney.gif)
+
+## Exercice 6
+
+Créer un programme `exo_6.c` contenant :
+
++   une fonction `remplirTableau` qui peut remplir n'importe quel tableau d'entiers avec des entiers consécutives à partir d'une valeur passée en paramètre.
+
++   une fonction `afficherTableau` qui peut afficher n'importe quel tableau d'entiers de la manière suivante : [taille] : valeur1, valeur2...
+
++   une fonction `fusionnerTableau` qui peut fusionner deux tableaux d'entiers l'un à la suite de l'autre dans un troisième tableau.
+
++   une fonction principale qui :
+
+    +   crée deux tableaux de tailles différentes (utiliser des constantes pour pouvoir modifier la taille des tableaux à volonté (du prof… 😈)),
+
+    +   puis les remplit chacun avec des chiffres consécutifs,
+
+    +   les affiche
+
+    +   enfin les fusionne dans un seul nouveau tableau
+    
+    +   avant de l'afficher.
+
+Exemple d'exécution :
+
+```
+Premier tableau [4] : 1, 2, 3, 4
+Deuxième tableau [3] : 5, 6, 7
+Tableau fusionné [7] : 1, 2, 3, 4, 5, 6, 7
+```
+
+??? success "Solution"
+
+    ![WaitForIt](../images/meme/rickroll-roll.gif)
