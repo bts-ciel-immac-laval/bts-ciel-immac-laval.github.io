@@ -22,7 +22,7 @@ nav:
   #     - Récursivité : bts-1/42-fonctions.md
     - 04 - Pointeurs : bts-1/50-pointeurs.md
     - 05 - Tableaux : bts-1/60-tableaux.md
-  #   - 07 - Chaînes de caractères : bts-1/70-strings.md
+    - 06 - Chaînes de caractères : bts-1/70-strings.md
   #   - 08 - Les experts : bts-1/71-strings.md
   #   - 09 - Structures : bts-1/80-structures.md
   #   - 10 - Allocations dynamiques : bts-1/90-dynamic.md
