@@ -253,7 +253,42 @@ C'était le 251ème jour de l'année 2024 !
 
 ??? success "Solution"
     
-    ![WaitForIt](../images/meme/waiting-britney.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+
+        system("chcp 65001");
+        system("cls");
+        
+        int nbJoursParMois[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }, 
+            nbJours = 0, jour = 0, mois = 0, annee = 0;
+
+        // Saisie
+        do {
+            printf("Saisir une date (JJ/MM/AAAA) : ");
+            scanf("%2d/%2d/%5d", &jour, &mois, &annee);
+        }
+        while (mois < 1 || mois > 12 || jour < 1 || jour > nbJoursParMois[mois - 1]);
+
+        // Gestion des années bissextiles
+        if ((annee % 4 == 0 && annee % 100 != 0) || annee % 400 == 0) {
+            nbJoursParMois[1] = 29;
+        }
+
+        // Comptage
+        for (int i = 0; i < mois - 1; i++) {
+            nbJours += nbJoursParMois[i];
+        }
+        nbJours += jour;
+
+        // Affichage
+        printf("C'est le %d%s jour de l'année %d !", nbJours, nbJours == 1 ? "er" : "ème", annee);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 6
 
@@ -263,11 +298,11 @@ Créer un programme `exo_6.c` contenant :
 
 +   une fonction `afficherTableau` qui peut afficher n'importe quel tableau d'entiers de la manière suivante : [taille] : valeur1, valeur2...
 
-+   une fonction `fusionnerTableau` qui peut fusionner deux tableaux d'entiers l'un à la suite de l'autre dans un troisième tableau.
++   une fonction `fusionnerTableaux` qui peut fusionner deux tableaux d'entiers l'un à la suite de l'autre dans un troisième tableau.
 
 +   une fonction principale qui :
 
-    +   crée deux tableaux de tailles différentes (utiliser des constantes pour pouvoir modifier la taille des tableaux à volonté (du prof… 😈)),
+    +   crée deux tableaux de tailles différentes (utiliser des constantes de pré-processeur pour pouvoir modifier la taille des tableaux à volonté (du prof… 😈)),
 
     +   puis les remplit chacun avec des chiffres consécutifs,
 
@@ -287,4 +322,100 @@ Tableau fusionné [7] : 1, 2, 3, 4, 5, 6, 7
 
 ??? success "Solution"
 
-    ![WaitForIt](../images/meme/rickroll-roll.gif)
+    ```c
+    #include <stdio.h>
+
+    #define TAILLE1 4
+    #define TAILLE2 3
+
+    void remplirTableau(int * tab, int taille, int valeur);
+    void afficherTableau(int * tab, int taille);
+    void fusionnerTableaux(int * t1, int taille1, int * t2, int taille2, int * t3);
+
+    int main() {
+        int tab1[TAILLE1], tab2[TAILLE2], tab3[TAILLE1 + TAILLE2];
+        
+        // Remplissage
+        remplirTableau(tab1, TAILLE1, 1);
+        remplirTableau(tab2, TAILLE2, TAILLE1 + 1);
+        
+        // Affichage des deux premiers tableaux
+        printf("Premier tableau ");
+        afficherTableau(tab1, TAILLE1);
+        printf("Second tableau ");
+        afficherTableau(tab2, TAILLE2);
+
+        // Fusion des deux premiers tableaux dans le troisième
+        fusionnerTableaux(tab1, TAILLE1, tab2, TAILLE2, tab3);
+
+        // Affichage du troisième tableau
+        printf("Dernier tableau ");
+        afficherTableau(tab3, TAILLE1 + TAILLE2);
+
+        return 0;
+    }
+
+    void remplirTableau(int * tab, int taille, int valeur) {
+        for (int i = 0; i < taille; i++) {
+            tab[i] = valeur++;  // incrémente valeur après l'avoir affecté 
+        }
+    }
+
+    void afficherTableau(int * tab, int taille) {
+        printf("[%d] :");
+        for (int i = 0; i < taille; i++) {
+            printf("%s%d", i == 0 ? " " : ", ", tab[i]);
+        }
+        printf("\n");
+    }
+
+    void fusionnerTableaux(int * t1, int taille1, int * t2, int taille2, int * t3) {
+        for (int i = 0; i < taille1; i++) {
+            t3[i] = t1[i];
+        }    
+        for (int i = 0; i < taille2; i++) {
+            t3[i + taille1] = t2[i];
+        }
+    }
+    ```
+
+## Exercice 7
+
+!!! danger "📝 A faire sur papier."
+
+Soit le programme suivant :
+
+```c
+#include <stdio.h>
+
+int main() {
+    int tab[6] = { 42, 8, 4, 16, 23, 15 }, temp;
+
+    for (int i = 1; i <= 6; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (tab[j] > tab[j + 1]) {
+                temp = tab[j];
+                tab[j] = tab[j + 1];
+                tab[j + 1] = temp;
+            }
+        }
+    }
+
+    // Affichage du tableau
+
+    return 0;
+}
+
+```
+
++   Donner l'état de la mémoire du programme après la première exécution de la première boucle `for`
+
++   Donner l'état de la mémoire du programme après la deuxième exécution de la première boucle `for`
+
++   Quel est le but de ce programme ?
+
++   Coder l'affichage du tableau.
+
+??? success Solution
+
+    ![Minute papillon !](../images/meme/waiting-britney.gif)
