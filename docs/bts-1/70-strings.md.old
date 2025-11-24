@@ -4,7 +4,7 @@
 
 ## Exercice 8
 
-Ecrire un programme exo_8.c qui affiche le deuxième, le quatrième et le septième caractère d'une chaîne saisie au clavier (10 caractères maximum).
+Ecrire un programme exo_8.c qui affiche le deuxième, le quatrième et le septième caractère d'une chaîne de 10 caractères saisie au clavier.
 
 ??? success "Solution"
 

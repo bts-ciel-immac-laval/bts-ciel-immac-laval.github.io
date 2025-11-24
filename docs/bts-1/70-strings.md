@@ -4,11 +4,30 @@
 
 ## Exercice 8
 
-Ecrire un programme exo_8.c qui affiche le deuxième, le quatrième et le septième caractère d'une chaîne saisie au clavier (10 caractères maximum).
+Ecrire un programme exo_8.c qui affiche le deuxième, le quatrième et le septième caractères d'une chaîne de 10 caractères saisie au clavier.
 
 ??? success "Solution"
 
-    ![waitForIt](../images/meme/loading-05.gif)
+    ```c
+    #include <stdio.h>
+    #include <string.h>
+
+    int main() {
+        char input[11] = "";
+
+        // Demander la saisie d'une chaine de 10 caractères
+        do {
+            puts("Saisir une chaine de 10 caracteres :");
+            gets(input);
+        }
+        while(strlen(input) != 10);
+
+        // Afficher les 2ème, 4ème et 7ème caractères
+        printf("\n%c %c %c\n", input[1], input[3], input[6]);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 9
 
@@ -31,3 +50,11 @@ Ecrire un programme exo_9.c qui :
 ??? success "Solution"
 
     ![waitForIt](../images/meme/loading-05.gif)
+
+## Exercice 10
+
+Ecrire un programme exo_10.c qui affiche le nombre de fois où le caractère 'a' est présent dans la chaîne "It's gonna be legend... wait for it... dary!".
+
+??? success "Solution"
+
+    ![barney](../images/meme/waiting-barney.gif)
