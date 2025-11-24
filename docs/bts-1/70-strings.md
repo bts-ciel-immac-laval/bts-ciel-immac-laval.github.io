@@ -49,7 +49,39 @@ Ecrire un programme exo_9.c qui :
 
 ??? success "Solution"
 
-    ![waitForIt](../images/meme/loading-05.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <conio.h>
+    #include <string.h>
+
+    int main() {
+        char input[21] = "", key;
+        
+        // Saisie avec getch
+        for (int i = 0; i < 20; i++) {
+            do {
+                key = getch();
+                printf("%c\n", key);
+            }
+            while (!(key >= 'A' && key <= 'Z') && !(key >= 'a' && key <= 'z'));
+            // Stockage dans la chaine
+            input[i] = key;
+        }
+        input[20] = '\0';
+
+        // Affichage à l'endroit
+        printf("%s\n", input);
+
+        // Affichage à l'envers
+        for (int i = 19; i >= 0; i--) {
+            printf("%c", input[i]);
+        }
+        printf("\n");
+
+        return 0;
+    }
+    ```
 
 ## Exercice 10
 
@@ -58,3 +90,15 @@ Ecrire un programme exo_10.c qui affiche le nombre de fois où le caractère 'a'
 ??? success "Solution"
 
     ![barney](../images/meme/waiting-barney.gif)
+
+## Exercice 11
+
+Reprendre l'exercice 10 dans un nouveau programme exo_11.c :
+
+1. En rendant le **caractère** et la **chaîne** saisissables par l'utilisateur.
+
+2. En recherchant minuscule et majuscule du caractère saisi pour les 26 lettres non accentuées.
+
+??? success "Solution"
+
+    ![barney](../images/meme/waiting-kid.gif)
