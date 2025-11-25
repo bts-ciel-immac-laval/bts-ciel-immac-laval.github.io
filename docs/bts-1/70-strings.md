@@ -89,7 +89,49 @@ Ecrire un programme exo_10.c qui affiche le nombre de fois où le caractère 'a'
 
 ??? success "Solution"
 
-    ![barney](../images/meme/waiting-barney.gif)
+    Solution en mode tableau de caractères :
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        char input[] = "It's gonna be legend... wait for it... dary!";
+        int count = 0;
+
+        for (int i = 0; input[i] != '\0'; i++) {
+            if (input[i] == 'a') {
+                count++;
+            }
+        }
+        printf("Il y a %d 'a' dans la phrase \"%s\".", count, input);
+
+        return 0;
+    }
+    ```
+
+    Solution en utilisant les fonctions de string.h :
+    
+    ```c
+    #include <stdio.h>
+    #include <string.h>
+
+    int main() {
+        char input[] = "It's gonna be legend... wait for it... dary!";
+        char * p = input;
+        int count = 0;
+        
+        while(p != NULL && *p != '\0') {
+            p = strchr(p, 'a');
+            if (p != NULL) {
+                count++;
+                p++;
+            }
+        }
+        printf("%d", count);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 11
 
@@ -102,3 +144,53 @@ Reprendre l'exercice 10 dans un nouveau programme exo_11.c :
 ??? success "Solution"
 
     ![barney](../images/meme/waiting-kid.gif)
+
+## Exercice 12 - Chiffrage de César
+
+Proposer un programme permettant de chiffrer et déchiffrer un message grâce au [chiffrage de César](https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage){target="_blank"}.
+
+```
+> cryptage.exe
+Message : Salut, comment allez-vous ?
+Décalage : 1
+Résultat : 1tbmvudpnnfoubmmfawpvt
+```
+
+!!! warning "La permutation est cyclique !"
+
+    ex : `'z' + 2 = 'b'` !
+
+```
+> decryptage.exe
+Message : 1tbmvudpnnfoubmmfawpvt
+Résultat : salutcommentallezvous
+```
+![cesar](../images/cours/bts-1/70/cesar.jpg)
+
+!!! abstract "Avez-vous pensé à tout ?"
+
+    + [ ] Fonction de nettoyage du texte :
+
+        + [ ] Supprime les espaces
+        
+        + [ ] Supprime les caractères non alphabétiques
+
+        + [ ] Remplace les caractères accentués par leur équivalent non-accentué
+
+        + [ ] Transforme les caractères alphabétiques en minuscules
+
+    + [ ] Fonction de chiffrage :
+
+        + [ ] Permute les caractères de manière cyclique
+
+    + [ ] Fonction de déchiffrage :
+
+        + [ ] Permute les caractères de manière cyclique
+
+    + [ ] Aller plus loin
+
+        + [ ] Offusquer la clé dans le message de manière efficace
+
+        + [ ] On peut passer le message et le décalage via la ligne de commande
+        
+        + [ ] Proposer un chiffrage par décalage plus robuste à une attaque brute force
