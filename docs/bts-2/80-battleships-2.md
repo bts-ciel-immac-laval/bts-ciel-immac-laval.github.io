@@ -68,4 +68,4 @@ Quelques défis (de saison) pour s'entraîner :
 
 +   Faire neiger sur l'écran
 
-+   Cacher une immage sous un fond noir et afficher un halo révélateur au survol de la souris
++   Cacher une image sous un fond noir et afficher un halo révélateur au survol de la souris
