@@ -68,6 +68,10 @@ Quelques défis (de saison) pour s'entraîner :
 
 +   Afficher "Vive le vent..." mot par mot en changeant de couleur à chaque mot
 
+    ![defi2](../images/gif/defi2.gif)
+
 +   Faire neiger sur l'écran
+
+    ![defi3](../images/gif/defi3.gif)
 
 +   Cacher une image sous un fond noir et afficher un halo révélateur au survol de la souris
