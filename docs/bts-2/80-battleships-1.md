@@ -139,3 +139,12 @@
 
         On distingue les scénarios **alternatifs** et les **cas d'erreur**.
 
+### Diagramme de séquence
+
+L'élaboration des diagrammes de séquences permet identifier les différents éléments du système nécessaires, les communications entre eux, les données échangées et sauvegardées.
+
+![Diagramme de séquence](../pdf/cours/bts2/cours_diagramme_sequence_v2.pdf)
+
+Travail réalisé en cours :
+
+![Diagramme Bataille navale](../pdf/cours/bts2/battleships_sequence.pdf)
