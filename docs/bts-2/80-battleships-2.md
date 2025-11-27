@@ -47,6 +47,12 @@ Si cela ne fonctionne pas, essayer : `python -m pip install pyxel`
 4. Lancer VS Code.
 5. Installer l'extension **Python**.
 
+## Python
+
+![Aide-mémoire Python](../pdf/cours/bts2/memo_python.pdf)
+
+![Cheatsheet Python](../pdf/cours/bts2/beginners_python_cheat_sheet_pcc_all.pdf)
+
 ## Découverte de l'API
 
 Documentation officielle en français : 
