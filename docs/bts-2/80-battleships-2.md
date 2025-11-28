@@ -75,3 +75,6 @@ Quelques défis (de saison) pour s'entraîner :
     ![defi3](../images/gif/defi3.gif)
 
 +   Cacher une image sous un fond noir et afficher un halo révélateur au survol de la souris
+
+    ![defi4](../images/gif/defi8.gif)
+
