@@ -52,6 +52,7 @@ nav:
   - NSI : 
     - Coder à la maison : nsi/10_coder.md
     - S'entraîner : nsi/20_s-entrainer.md
+    - PTHD : nsi/30_pthd.md
 
 theme:
   name: material
