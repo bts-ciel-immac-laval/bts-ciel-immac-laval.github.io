@@ -64,19 +64,232 @@ Quelques défis (de saison) pour s'entraîner :
 
 +   Afficher "Vive le vent..." caractère par caractère
 
-    ![defi1](../images/gif/defi1.gif)
+    ![defi1](../images/gif/day01.gif)
+
+    ??? success "Solution"
+
+        ```python
+        import pyxel
+
+        pyxel.init(128, 128)
+
+        song = [
+            "Vive le vent,",
+            "Vive le vent,",
+            "Vive le vent d'hiver",
+            "Qui s'en va sifflant, soufflant,",
+            "Dans les grands sapins verts...",
+            "Hey !",
+            " ",
+            "Vive le temps,",
+            "Vive le temps,",
+            "Vive le temps d'hiver",
+            "Boule de neige et jour de l'an,",
+            "Et bonne annee grand-mere !"
+        ]
+
+        steps = 0
+
+        def update() :
+            global steps
+
+            # On compte les itérations
+            steps += 1 
+
+        def draw() :
+            global steps, song
+
+            # On efface l'écran
+            pyxel.cls(1)
+
+            line = 0
+
+            # Pour ralentir l'affichage, on n'affiche 
+            # un caractère supplémentaire qu'une itération sur deux
+            remainingChars = steps // 2
+            
+            while remainingChars > 0 and line < len(song) :
+                # Si la ligne actuelle ne contient pas assez de caractère
+                # on n'en affiche qu'une partie
+                if remainingChars < len(song[line]) :
+                    pyxel.text(1, 20 + 7 * line, song[line][:remainingChars], 7)
+                    remainingChars = 0
+                
+                # sinon on affiche tout et on passe à la ligne suivante
+                else :
+                    pyxel.text(1, 20 + 7 * line, song[line], 7)
+                    remainingChars -= len(song[line])
+                    line += 1
+
+        pyxel.run(update, draw)
+        ```
 
 +   Afficher "Vive le vent..." mot par mot en changeant de couleur à chaque mot
 
-    ![defi2](../images/gif/defi2.gif)
+    ![defi2](../images/gif/day02.gif)
+
+    ??? success "Solution"
+
+        ```python
+        import pyxel
+
+        pyxel.init(128, 128)
+
+        song = [
+            "Vive le vent,",
+            "Vive le vent,",
+            "Vive le vent d'hiver",
+            "Qui s'en va sifflant, soufflant,",
+            "Dans les grands sapins verts...",
+            "Hey !",
+            " ",
+            "Vive le temps,",
+            "Vive le temps,",
+            "Vive le temps d'hiver",
+            "Boule de neige et jour de l'an,",
+            "Et bonne annee grand-mere !"
+        ]
+        # On éclate chaque ligne en un tableau de mots
+        songWords = list()
+        for i in range(len(song)) :
+            songWords.append(song[i].split(" "))
+
+        steps = 0
+
+        def update() :
+            global steps
+
+            # On compte les itérations
+            steps += 1 
+
+        def draw() :
+            global steps, songWords
+
+            # On efface l'écran
+            pyxel.cls(2)
+
+            # Pour ralentir l'affichage, on n'affiche 
+            # un mot supplémentaire qu'une itération sur 10 !
+            remainingWords = steps // 10
+
+            line = 0
+            color = 0
+            
+            while remainingWords > 0 and line < len(songWords) :
+                prevWordLength = 0
+
+                # On affiche chaque ligne mot à mot (tant qu'il reste des mots)
+                for i in range(len(songWords[line]) if len(songWords[line]) < remainingWords else remainingWords) :
+                    # Chaque caractère occupe 4 pixels de large
+                    pyxel.text(1 + prevWordLength * 4, 20 + 6 * line, songWords[line][i], color)
+                    
+                    remainingWords -= 1
+                    prevWordLength += len(songWords[line][i]) + 1       # + 1 espace
+                    
+                    # On change la couleur
+                    color += 1
+                    if color == 16 :
+                        color = 0
+                    if color == 2 :
+                        color += 1
+
+                line += 1
+
+        pyxel.run(update, draw)
+        ```
 
 +   Faire neiger sur l'écran
 
-    ![defi3](../images/gif/defi3.gif)
+    ![defi3](../images/gif/day03.gif)
+
+    ??? success "Solution"
+
+        ```python
+        import pyxel
+        from random import randint
+
+        pyxel.init(128, 128)
+
+        snow = []
+
+        def update() :
+            global snow
+
+            # On descend tous les flocons
+            for i in range(len(snow)) :
+                if pyxel.pget(snow[i][0], snow[i][1] + 1) != 7 and snow[i][1] < 127 :
+                    snow[i][1] += 1
+            
+            # On limite le nombre de flocons à la moitié de l'écran
+            if len(snow) < 128 * 64 :
+                # Ajouter des 3 à 10 flocons
+                for i in range(randint(3, 10)) :
+                    snow.append([randint(0, 127), 0])
+
+        def draw() :
+            global steps
+            pyxel.cls(3)
+
+            # On affiche tous les flocons
+            for i in range(len(snow)) :
+                pyxel.pset(snow[i][0], snow[i][1], 7)
+            
+
+        pyxel.run(update, draw)
+        ```
 
 +   Cacher une image sous un fond noir et afficher un halo révélateur au survol de la souris
 
-    ![defi4](../images/gif/defi8.gif)
+    ![defi4](../images/gif/day08.gif)
+
+    ??? success "Solution"
+
+        fichier .pyxres : [advent.pyxres](../files/bts2/advent.pyxres)
+
+        ```python
+        import pyxel
+        from random import randint
+        from math import sqrt
+
+        pyxel.init(128, 128)
+
+        # Chargement du pyxres
+        pyxel.load('../advent.pyxres')
+
+        # Placement de Santa et du coucou
+        santaX = randint(10, 90)
+        santaY = randint(20, 90)
+        coucouX = (santaX + 12) if santaX < 48 else (santaX - 10)
+        coucouY = santaY - 8
+
+        def update() :
+            pass
+
+        def draw() :
+            global santaX, santaY, coucouX, coucouY
+            
+            # On dessine d'abord le fond
+            pyxel.cls(9)
+            
+            # On dessine ensuite Santa
+            pyxel.blt(santaX, santaY, 0, 0, 0, 32, 32, 10)
+
+            # On dessine ensuite le coucou...
+            pyxel.text(coucouX, coucouY, "coucou", 7)
+            # ...avec une petite ligne dans le bon sens
+            if coucouX < santaX :
+                pyxel.line(coucouX + 12, coucouY + 6, coucouX + 13, coucouY + 7, 7)
+            else :
+                pyxel.line(coucouX + 11, coucouY + 6, coucouX + 10, coucouY + 7, 7)
+
+            # Finalement on colorie toute l'image en noir sauf la zone à une distance de 16 pixels ou moins de la souris
+            for i in range(128) :
+                for j in range(128) :
+                    if sqrt((i - pyxel.mouse_x)**2 + (j - pyxel.mouse_y)**2) >= 16 :
+                        pyxel.pset(i, j, 0)
+
+        pyxel.run(update, draw)
+        ```
 
 +   Créer une classe `Case` et l'utiliser dans un programme qui affiche une cache cochable au clic :
 
@@ -93,3 +306,7 @@ Quelques défis (de saison) pour s'entraîner :
             + draw()
         }
     ```
+
+    ??? success "Solution"
+
+        ![haha](../images/meme/oups-kristen.gif)
