@@ -29,7 +29,7 @@ Voici la liste des points à éclaircir avant de coder :
 
 + [ ] Lire un fichier CSV en C 📄
 
-    + [ ] Lire un fichier texte ligne par ligne
+    + [x] Lire un fichier texte ligne par ligne
 
     + [ ] Séparer les données de chaque ligne suivant un séparateur (token)
 
@@ -37,7 +37,7 @@ Voici la liste des points à éclaircir avant de coder :
 
     + [ ] Vérifier le checksum
     
-    + [ ] Récupérer l'heure
+    + [x] Récupérer l'heure
 
     + [ ] Récupérer et convertir la latitude et la longitude en degrés décimaux
 
@@ -62,3 +62,17 @@ Voici la liste des points à éclaircir avant de coder :
         +   6371 correspond au rayon de la terre en km.
 
 + [ ] Ecrire un fichier CSV en C ✏️
+
+## Conception
+
+Liste des fonctions à développer : 
+
+```c
+bool verifierChecksum(char * trame);
+void extraireInfoNMEA(char * trame, char * heure, char * latitude, char * longitude);
+int extraireHeure(char * heure);
+float convertirEnDegres(char * coordonnees);
+float calculerDistance(float latitude, float longitude);
+void export(int jour, char * heure, float latitude, float longitude, float distance);
+```
+
