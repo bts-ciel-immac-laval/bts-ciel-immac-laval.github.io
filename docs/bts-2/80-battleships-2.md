@@ -291,6 +291,8 @@ Quelques défis (de saison) pour s'entraîner :
         pyxel.run(update, draw)
         ```
 
+## Premiers développements
+
 +   Créer une classe `Case` et l'utiliser dans un programme qui affiche une cache cochable au clic :
 
     ``` mermaid
@@ -309,4 +311,93 @@ Quelques défis (de saison) pour s'entraîner :
 
     ??? success "Solution"
 
-        ![haha](../images/meme/oups-kristen.gif)
+        ```python
+        import pyxel
+
+        class Case :
+            def __init__(self, x : int, y : int, w : int, checked : bool) -> None:
+                self.__x = x
+                self.__y = y
+                self.__w = w
+                self.__h = w
+                self.__checked = checked
+
+            def update(self) -> None :
+                if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and self.__x <= pyxel.mouse_x <= self.__x + self.__w and self.__y <= pyxel.mouse_y <= self.__y + self.__h :
+                    self.__checked = not self.__checked
+
+            def draw(self) -> None :
+                pyxel.rectb(self.__x, self.__y, self.__w, self.__h, 7)
+                if self.__checked :
+                    pyxel.line(self.__x + 2, self.__y + 2, self.__x + self.__w - 3, self.__y + self.__h - 3, 7)
+                    pyxel.line(self.__x + self.__w - 3, self.__y + 2, self.__x + 2, self.__y + self.__h - 3, 7)
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                pyxel.mouse(True)
+                self.cases = [Case(10, 10, 9, False), Case(10, 21, 9, True), Case(10, 32, 9, False)]
+                pyxel.run(self.update, self.draw)
+
+            def update(self):
+                for i in range(len(self.cases)) :
+                    self.cases[i].update()
+
+            def draw(self):
+                pyxel.cls(0)
+                for i in range(len(self.cases)) :
+                    self.cases[i].draw()
+
+        App()
+        ```
+
++   Réutiliser la classe `Case` pour créer une grille
+
+    ``` mermaid
+    classDiagram
+        class Case {
+            - x : int
+            - y : int
+            - w : int
+            - h : int
+            - checked : boolean
+            + __init__(x : int, y : int, w : int, h :int)
+            + update()
+            + draw()
+        }
+        class Grille {
+            - x : int
+            - y : int
+            - l : int
+            - c : int
+            - cases : Case[]
+            + __init__(x : int, y : int, l : int, c :int)
+            + update()
+            + draw()
+        }
+        Grille -- Case
+    ```
+
++   Réutiliser la classe `Case` pour créer une case à cocher accompagnée d'un texte
+
+    ``` mermaid
+    classDiagram
+        class Case {
+            - x : int
+            - y : int
+            - w : int
+            - h : int
+            - checked : boolean
+            + __init__(x : int, y : int, w : int, h :int)
+            + update()
+            + draw()
+        }
+        class Checkbox {
+            - text : string
+            + __init__(x : int, y : int, w : int, h :int, text : string)
+            + update()
+            + draw()
+        }
+        Case <|-- Checkbox
+    ```
+
