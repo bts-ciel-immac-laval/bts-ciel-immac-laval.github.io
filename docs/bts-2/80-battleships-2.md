@@ -78,3 +78,18 @@ Quelques défis (de saison) pour s'entraîner :
 
     ![defi4](../images/gif/defi8.gif)
 
++   Créer une classe `Case` et l'utiliser dans un programme qui affiche une cache cochable au clic :
+
+    ``` mermaid
+    classDiagram
+        class Case {
+            - x : int
+            - y : int
+            - w : int
+            - h : int
+            - checked : boolean
+            + __init__(x : int, y : int, w : int, h :int)
+            + update()
+            + draw()
+        }
+    ```
