@@ -303,7 +303,7 @@ Quelques défis (de saison) pour s'entraîner :
             - w : int
             - h : int
             - checked : boolean
-            + __init__(x : int, y : int, w : int, h :int)
+            + _ _init_ _(x : int, y : int, w : int, h :int)
             + update()
             + draw()
         }
@@ -361,7 +361,7 @@ Quelques défis (de saison) pour s'entraîner :
             - w : int
             - h : int
             - checked : boolean
-            + __init__(x : int, y : int, w : int, h :int)
+            + _ _init_ _(x : int, y : int, w : int, h :int)
             + update()
             + draw()
         }
@@ -371,14 +371,14 @@ Quelques défis (de saison) pour s'entraîner :
             - l : int
             - c : int
             - cases : Case[]
-            + __init__(x : int, y : int, l : int, c :int)
+            + _ _init_ _(x : int, y : int, l : int, c :int)
             + update()
             + draw()
         }
         Grille -- Case
     ```
 
-+   Réutiliser la classe `Case` pour créer une case à cocher accompagnée d'un texte
++   Réutiliser la classe `Case` pour créer une case à cocher accompagnée d'un texte qui quand on clique dessus coche la case.
 
     ``` mermaid
     classDiagram
@@ -388,16 +388,23 @@ Quelques défis (de saison) pour s'entraîner :
             - w : int
             - h : int
             - checked : boolean
-            + __init__(x : int, y : int, w : int, h :int)
+            + _ _init_ _(x : int, y : int, w : int, h :int)
             + update()
             + draw()
         }
         class Checkbox {
             - text : string
-            + __init__(x : int, y : int, w : int, h :int, text : string)
+            + _ _init_ _(x : int, y : int, w : int, h :int, text : string)
             + update()
             + draw()
         }
         Case <|-- Checkbox
     ```
 
++   Créer un programme qui affiche un nombre au hasard récupéré depuis une URL
+
++   Créer un programme qui affiche une phrase récupérée depuis une URL au format json
+
++   Créer un programme qui affiche une phrase récupérée depuis une URL et complétée avec une donnée envoyée au format json
+
++   Créer un programme qui affiche le résultat récupéré depuis une URL d'une requête SQL filtrée par une donnée envoyée au format json
