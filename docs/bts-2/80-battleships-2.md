@@ -378,6 +378,73 @@ Quelques défis (de saison) pour s'entraîner :
         Grille -- Case
     ```
 
+    ??? success "Solution"
+
+        ```py
+        import pyxel
+
+        class Case :
+            def __init__(self, x : int, y : int, w : int, color : int = 7, checked : bool = False) -> None:
+                self.__x = x
+                self.__y = y
+                self.__w = w
+                self.__h = w
+                self.__color = color
+                self.__checked = checked
+
+            def update(self) -> None :
+                # Gestion du clic
+                if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and self.__x < pyxel.mouse_x < self.__x + self.__w - 1 and self.__y < pyxel.mouse_y < self.__y + self.__h - 1 :
+                    self.__checked = not self.__checked
+
+            def draw(self) -> None :
+                # Contour
+                pyxel.rectb(self.__x, self.__y, self.__w, self.__h, self.__color)
+                
+                # Croix
+                if self.__checked :
+                    pyxel.line(self.__x + 2, self.__y + 2, self.__x + self.__w - 3, self.__y + self.__h - 3, self.__color)
+                    pyxel.line(self.__x + self.__w - 3, self.__y + 2, self.__x + 2, self.__y + self.__h - 3, self.__color)
+
+        class Grille : 
+            def __init__(self, x : int, y : int, l : int, c : int, cw : int) -> None:
+                self.__x = x
+                self.__y = y
+                self.__l = l
+                self.__c = c
+                self.__cw = cw
+                self.cases = [[Case(self.__x + i * (self.__cw - 1), self.__y + j * (self.__cw - 1), self.__cw, 5) for i in range(c)] for j in range(l)]
+
+            def update(self) -> None :
+                # Mise à jour des cases
+                for i in range(self.__l) :
+                    for j in range(self.__c) :
+                        self.cases[i][j].update()
+
+            def draw(self) -> None :
+                # Affichage des cases
+                for i in range(self.__l) :
+                    for j in range(self.__c) :
+                        self.cases[i][j].draw()
+
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                pyxel.mouse(True)
+                self.grid = Grille(10, 10, 10, 10, 9)
+                pyxel.run(self.update, self.draw)
+
+            def update(self):
+                self.grid.update()
+
+            def draw(self):
+                pyxel.cls(6)
+                self.grid.draw()
+
+        App()
+        ```
+
 +   Réutiliser la classe `Case` pour créer une case à cocher accompagnée d'un texte qui quand on clique dessus coche la case.
 
     ``` mermaid
@@ -400,10 +467,151 @@ Quelques défis (de saison) pour s'entraîner :
         }
         Case <|-- Checkbox
     ```
+    
+    ??? success "Solution"
+
+        ```py
+        import pyxel
+
+        class Case :
+
+            def __init__(self, x : int, y : int, w : int, color : int = 7, checked : bool = False) -> None:
+                self._x = x
+                self._y = y
+                self.__w = w
+                self.__h = w
+                self.__color = color
+                self._checked = checked
+
+            def update(self) -> None :
+                # Gestion du clic
+                if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and self._x < pyxel.mouse_x < self._x + self.__w - 1 and self._y < pyxel.mouse_y < self._y + self.__h - 1 :
+                    self._checked = not self._checked
+
+            def draw(self) -> None :
+                # Contour
+                pyxel.rectb(self._x, self._y, self.__w, self.__h, self.__color)
+                
+                # Croix
+                if self._checked :
+                    pyxel.line(self._x + 2, self._y + 2, self._x + self.__w - 3, self._y + self.__h - 3, self.__color)
+                    pyxel.line(self._x + self.__w - 3, self._y + 2, self._x + 2, self._y + self.__h - 3, self.__color)
+
+                     # ↓↓↓↓ Nom de la classe héritée
+        class Checkbox(Case) : 
+            
+            def __init__(self, x : int, y : int, text : str) -> None:
+                
+                # Appel explicite de la méthode de la classe héritée :
+                super().__init__(x, y, 7, 1)
+                
+                self.__text = text
+                self._xt = x + 10
+                self.__wt = len(text) * 4
+
+            def update(self) -> None :
+                
+                # Mise à jour de la case
+                super().update()
+
+                # Gestion du clic au niveau du texte
+                if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and self._xt <= pyxel.mouse_x <= self._xt + self.__wt - 1 and self._y + 1 <= pyxel.mouse_y <= self._y + 6 :
+                    self._checked = not self._checked
+
+            def draw(self) -> None :
+                
+                # Affichage de la case
+                super().draw()
+                
+                # Affichage du texte
+                pyxel.text(self._xt, self._y + 1, self.__text, 1)
+
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                pyxel.mouse(True)
+                self.checkbox1 = Checkbox(10, 10, "Option 1")
+                self.checkbox2 = Checkbox(10, 20, "Option 2")
+                pyxel.run(self.update, self.draw)
+
+            def update(self):
+                self.checkbox1.update()
+                self.checkbox2.update()
+
+            def draw(self):
+                pyxel.cls(6)
+                self.checkbox1.draw()
+                self.checkbox2.draw()
+
+        App()
+        ```
 
 +   Créer un programme qui affiche un nombre au hasard récupéré depuis une URL
 
-+   Créer un programme qui affiche une phrase récupérée depuis une URL au format json
+    ??? success "Solution"
+
+        Après avoir installé WAMP, créer un dossier `battleships` dans le répertoire `www` de WAMP.
+
+        Y créer un fichier `lucky.php` :
+        
+        ```php
+        <?php
+        echo rand(0, 9);
+        ?> 
+        ```
+        
+        Côté Python/Pyxel :
+
+        ```py
+        import pyxel
+        import requests
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                pyxel.mouse(True)
+                
+                # Valeur par défaut de lucky
+                self.lucky = "?"
+                
+                pyxel.run(self.update, self.draw)
+
+            def update(self):
+                # Au clic sur le carré :
+                if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and 60 <= pyxel.mouse_x <= 67 and 60 <= pyxel.mouse_y <= 67 :
+                    
+                    # Emission d'une requête GET
+                    r = requests.get("http://localhost/battleships/lucky.php")
+                    
+                    # Récupération de la valeur renvoyée par le serveur
+                    self.lucky = r.text
+
+            def draw(self):
+                pyxel.cls(0)
+                pyxel.rectb(59, 59, 9, 9, 9)
+
+                # Affichage du nombre récupéré depuis le serveur (ou pas...)
+                pyxel.text(62, 61, self.lucky, 9)
+
+        App()
+        ```
+
++   Créer un programme qui affiche des éléments extraits d'un meassage au format json récupéré depuis une URL
+
+    Exemple de message :
+
+    ```json
+    {
+        "ma_phrase" : "hello, world!",
+        "lucky" : 9,
+        "tableau": [1, 2, 3],
+        "object" : {
+            "attribut1" : 12,
+            "attribut2" : "42"
+        }
+    }
+    ```
 
 +   Créer un programme qui affiche une phrase récupérée depuis une URL et complétée avec une donnée envoyée au format json
 
