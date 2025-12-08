@@ -613,6 +613,77 @@ Quelques défis (de saison) pour s'entraîner :
     }
     ```
 
+    ??? success "Solution"
+
+        Côté :simple-php: :
+
+        ```php
+        <?php
+        $message = '{
+            "ma_phrase" : "hello, world!",
+            "lucky" : 9,
+            "tableau": [1, 2, 3],
+            "object" : {
+                "attribut1" : 12.3,
+                "attribut2" : "42"
+            }
+        }';
+        echo $message;
+        ?>
+        ```
+
+        ou avec un "object/dictionnaire" encodé en json :
+
+        ```php
+        <?php
+        $message = [
+            'ma_phrase' => 'hello, world!',
+            'lucky' => rand(0, 9),
+            'tableau' => [1, 2, 3],
+            'object' => [
+                'attribut1' => 12.3,
+                'attribut2' => '42'
+            ]
+        ];
+        echo json_encode($message);
+        ?>
+        ```
+
+        Côté :material-language-python:
+
+        ```py
+        import pyxel
+        import requests
+        import json
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                pyxel.mouse(True)
+                self.message = None
+                pyxel.run(self.update, self.draw)
+
+            def update(self):
+                if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) :
+                    r = requests.get("http://localhost/battleships/message.php")
+                    self.message = json.loads(r.text)
+
+            def draw(self):
+                pyxel.cls(0)
+                
+                if self.message != None :
+                    pyxel.text(10, 10, self.message["ma_phrase"], 9)
+                    pyxel.text(10, 20, str(self.message["lucky"]), 9)
+                    for i in range(len(self.message["tableau"])) :
+                        pyxel.text(10 + i * 8, 30, str(self.message["tableau"][i]), 9)
+                    pyxel.text(10, 40, str(self.message["object"]["attribut1"]), 9)
+                    pyxel.text(10, 50, self.message["object"]["attribut2"], 9)
+
+        App()
+        ```
+
 +   Créer un programme qui affiche une phrase récupérée depuis une URL et complétée avec une donnée envoyée au format json
 
 +   Créer un programme qui affiche le résultat récupéré depuis une URL d'une requête SQL filtrée par une donnée envoyée au format json
+
++   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs...
