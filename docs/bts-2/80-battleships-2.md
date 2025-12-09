@@ -759,4 +759,35 @@ Quelques défis (de saison) pour s'entraîner :
 
 +   Créer un programme qui affiche le résultat récupéré depuis une URL d'une requête SQL filtrée par une donnée envoyée au format json
 
+    En utilisant PhpMyAdmin, créer une base de données :
+
+    ```sql
+    --
+    -- Base de données : `test`
+    --
+    CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+    USE `test`;
+
+    --
+    -- Structure de la table `utilisateur`
+    --
+
+    CREATE TABLE IF NOT EXISTS `utilisateur` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `login` varchar(33) NOT NULL,
+    `password` varchar(33) NOT NULL,
+    PRIMARY KEY (`id`)
+    ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+    --
+    -- Déchargement des données de la table `utilisateur`
+    --
+
+    INSERT INTO `utilisateur` (`id`, `login`, `password`) VALUES
+    (1, 'michel', 'd780182f77b121450849c2b088a444f0'),
+    (2, 'karine', 'fd90a6b28219a4febb1ab06d03513d77');
+    ```
+
+    Envoyer ensuite login et mot de passe (michel/michel ou karine/karine) via une requête post et valider la connexion au regard de la base de données. 
+
 +   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs (404, 500)...
