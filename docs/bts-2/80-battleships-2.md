@@ -684,6 +684,79 @@ Quelques défis (de saison) pour s'entraîner :
 
 +   Créer un programme qui affiche une phrase récupérée depuis une URL et complétée avec une donnée envoyée au format json
 
+    ??? success "Solution"
+
+        Côté :simple-php: :
+        ```php
+        <?php
+        // On vérifie s'il y a des données postées
+        if (isset($_POST) && isset($_POST['prenom'])) {
+            // On récupère le prénom envoyé avec $_POST['prenom']
+            echo json_encode(["message" => "Bonjour " . $_POST['prenom'] . " !"]);
+        }
+        else {
+            echo json_encode(["message" => "Erreur !"]);
+        }
+        ?>
+        ```
+
+        Côté :material-language-python:
+
+        ```py
+        import pyxel
+        import requests
+        import json
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                self.prenom = ""
+                self.reponse = None
+                pyxel.run(self.update, self.draw)
+
+            def update(self):
+                # Saisie du prénom au clavier
+                if len(self.prenom) < 10 :
+                    for i in range(26) :
+                        if (pyxel.btnp(pyxel.KEY_A + i)) :
+                            self.prenom += chr(pyxel.KEY_A + i - 32)
+
+                # Correction
+                if pyxel.btnp(pyxel.KEY_BACKSPACE) and len(self.prenom) > 0 :
+                    self.prenom = self.prenom[:-1]
+
+                # Emission de la requête
+                if pyxel.btnp(pyxel.KEY_RETURN) :
+                    r = requests.post("http://localhost/battleships/hello.php", { "prenom" : self.prenom })
+                    self.reponse = json.loads(r.text)
+
+            def draw(self):
+                pyxel.cls(0)
+                
+                pyxel.text(10, 10, "Prenom:", 7)
+                
+                # Boîte de texte
+                pyxel.rectb(42, 8, 44, 9, 7)
+                pyxel.text(44, 10, self.prenom, 7)
+                if (pyxel.frame_count % 40 > 20) :
+                    x = 44 + len(self.prenom) * 4
+                    pyxel.line(x, 10, x, 14, 7) 
+                
+                # Bouton
+                pyxel.rect(89, 8, 9, 9, 7)
+                pyxel.line(94, 10, 94, 13, 0)
+                pyxel.line(94, 13, 91, 13, 0)
+                pyxel.pset(92, 12, 0)
+                pyxel.pset(92, 14, 0)
+                pyxel.pset(91, 14, 13)
+
+                # Message (s'il y en a un...)
+                if self.reponse != None :
+                    pyxel.text(44, 20, self.reponse["message"], 7)
+
+        App()
+        ```
+
 +   Créer un programme qui affiche le résultat récupéré depuis une URL d'une requête SQL filtrée par une donnée envoyée au format json
 
-+   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs...
++   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs (404, 500)...
