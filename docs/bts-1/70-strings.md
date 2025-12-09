@@ -194,3 +194,48 @@ Résultat : salutcommentallezvous
         + [ ] On peut passer le message et le décalage via la ligne de commande
         
         + [ ] Proposer un chiffrage par décalage plus robuste à une attaque brute force
+
+## Passer des informations via la ligne de commande
+
+### Cours
+
+![argc_argv](../pdf/cours/bts1/bts1_10_argc-argv.pdf)
+
+### Tester
+
+Le programme ci-dessous permet de lister les arguments sur la ligne de commande :
+
+```c
+#include <stdio.h>
+
+int main(int argc, char ** argv) {
+    int i;
+    for (i = 0; i < argc; i++) {
+        printf("%d : %s\n", i, argv[i]);
+    }
+    return 0;
+}
+```
+
+Tester et vérifier les exemples donnés dans le cours.
+
+En utilisation courante, on teste toujours la variable `argc` (le nombre d'arguments sur la ligne de commande) pour valider qu'il y a bien le minimum d'arguments attendus.
+
+Par exemple, si mon programme a besoin d'au moins une valeur de la ligne de commande, on affiche une erreur et on arrête le programme :
+
+```c
+#include <stdio.h>
+
+int main(int argc, char ** argv) {
+    
+    // Vérification
+    if (argc < 2) {
+        // Message d'erreur 
+        puts("ERREUR : programme.exe valeur_attendue [valeurs optionnelles]");
+        // Sortie avec un code d'erreur
+        return -1;
+    }
+
+    return 0;
+}
+```

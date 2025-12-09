@@ -196,21 +196,21 @@ Résultat : salutcommentallezvous
 
     + [x] Fonction de nettoyage du texte :
 
-        + [ ] Supprime les espaces
+        + [x] Supprime les espaces
         
-        + [ ] Supprime les caractères non alphabétiques
+        + [x] Supprime les caractères non alphabétiques
 
-        + [ ] Remplace les caractères accentués par leur équivalent non-accentué
+        + [x] Remplace les caractères accentués par leur équivalent non-accentué
 
-        + [ ] Transforme les caractères alphabétiques en minuscules
+        + [x] Transforme les caractères alphabétiques en minuscules
 
     + [x] Fonction de chiffrage :
 
-        + [ ] Permute les caractères de manière cyclique
+        + [x] Permute les caractères de manière cyclique
 
     + [x] Fonction de déchiffrage :
 
-        + [ ] Permute les caractères de manière cyclique
+        + [x] Permute les caractères de manière cyclique
 
     + [ ] Aller plus loin
 
@@ -219,3 +219,9 @@ Résultat : salutcommentallezvous
         + [ ] On peut passer le message et le décalage via la ligne de commande
         
         + [ ] Proposer un chiffrage par décalage plus robuste à une attaque brute force
+
+## Passer des informations via la ligne de commande
+
+### Cours
+
+![argc_argv](../pdf/cours/bts1/bts1_10_argc-argv.pdf)
