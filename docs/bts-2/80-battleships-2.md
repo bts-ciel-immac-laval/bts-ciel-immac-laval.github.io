@@ -597,7 +597,7 @@ Quelques défis (de saison) pour s'entraîner :
         App()
         ```
 
-+   Créer un programme qui affiche des éléments extraits d'un meassage au format json récupéré depuis une URL
++   Créer un programme qui affiche des éléments extraits d'un message au format json récupéré depuis une URL
 
     Exemple de message :
 
@@ -759,7 +759,7 @@ Quelques défis (de saison) pour s'entraîner :
 
 +   Créer un programme qui affiche le résultat récupéré depuis une URL d'une requête SQL filtrée par une donnée envoyée au format json
 
-    En utilisant PhpMyAdmin, créer une base de données :
+    En utilisant [PhpMyAdmin](http://localhost/phpmyadmin/), créer une base de données :
 
     ```sql
     --
