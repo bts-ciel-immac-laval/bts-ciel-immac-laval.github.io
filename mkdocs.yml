@@ -18,7 +18,7 @@ nav:
     - 02 - Boucles : bts-1/30-boucles.md
     - 03 - Fonctions :
       - Usage courant : bts-1/40-fonctions.md
-  #     - Variables statiques : bts-1/41-fonctions.md
+      - Variables statiques : bts-1/41-fonctions.md
   #     - Récursivité : bts-1/42-fonctions.md
     - 04 - Pointeurs : bts-1/50-pointeurs.md
     - 05 - Tableaux : bts-1/60-tableaux.md
