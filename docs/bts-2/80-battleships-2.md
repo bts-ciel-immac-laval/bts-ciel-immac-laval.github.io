@@ -790,4 +790,6 @@ Quelques défis (de saison) pour s'entraîner :
 
     Envoyer ensuite login et mot de passe (michel/michel ou karine/karine) via une requête post et valider la connexion au regard de la base de données. 
 
+    Pour faciliter la mise en place des formulaires, vous pouvez utiliser la bibliothèque : [forms](../files/bts2/pyxel_forms.zip)
+
 +   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs (404, 500)...
