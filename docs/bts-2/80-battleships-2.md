@@ -792,4 +792,15 @@ Quelques défis (de saison) pour s'entraîner :
 
     Pour faciliter la mise en place des formulaires, vous pouvez utiliser la bibliothèque : [forms](../files/bts2/pyxel_forms.zip)
 
+    Ajouter la fonction suivante à la classe Form :
+
+    ```py
+    def toDict(self) -> dict :
+        result = {}
+        for i in range(len(self.__items)) :
+            if type(self.__items[i]) in [Textbox, Checkbox, Radio] :
+                result[self.__items[i].getName()] = self.__items[i].getValue()
+        return result
+    ```
+
 +   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs (404, 500)...
