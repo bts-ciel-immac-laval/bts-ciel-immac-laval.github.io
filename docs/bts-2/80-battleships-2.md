@@ -687,6 +687,7 @@ Quelques défis (de saison) pour s'entraîner :
     ??? success "Solution"
 
         Côté :simple-php: :
+
         ```php
         <?php
         // On vérifie s'il y a des données postées
@@ -790,17 +791,107 @@ Quelques défis (de saison) pour s'entraîner :
 
     Envoyer ensuite login et mot de passe (michel/michel ou karine/karine) via une requête post et valider la connexion au regard de la base de données. 
 
-    Pour faciliter la mise en place des formulaires, vous pouvez utiliser la bibliothèque : [forms](../files/bts2/pyxel_forms.zip)
+    Pour faciliter la mise en place des formulaires, vous pouvez utiliser la bibliothèque forms :
+    
+    [:material-file-download: Télécharger la bibliothèque forms](../files/bts2/forms.py){ .md-button .md-button--primary }
 
-    Ajouter la fonction suivante à la classe Form :
+    ??? success "Solution"
 
-    ```py
-    def toDict(self) -> dict :
-        result = {}
-        for i in range(len(self.__items)) :
-            if type(self.__items[i]) in [Textbox, Checkbox, Radio] :
-                result[self.__items[i].getName()] = self.__items[i].getValue()
-        return result
-    ```
+        Côté :simple-php: :
+        
+        ```php
+        <?php
+        // Connexion à la base de données avec gestion manuelle des erreurs
+        // pour s'assurer de ne renvoyer que du json
+        error_reporting(0);
+        mysqli_report(MYSQLI_REPORT_OFF);
+        $db = mysqli_connect('localhost', 'root', '', 'test', 3307);
+        if (mysqli_connect_errno()) {
+            die('{"error" : "' . mysqli_connect_errno() . ' : ' . mysqli_connect_error() . '"}');
+        }
+
+        // Récupération et préparation des données postées
+        if (!(isset($_POST['login']) && isset($_POST['password']))) {
+            die('{"error" : "Informations de connexion manquantes"}');
+        }
+        mysqli_set_charset($db, "utf8mb4");
+        $login = mysqli_real_escape_string($db, $_POST['login']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+
+        // Préparation de la requête
+        $query = 'SELECT id FROM utilisateur WHERE login="' . $login . '" and password = md5("' . $password . '")';
+
+        // Exécution de la requête, récupération et envoi du résultat
+        $result = mysqli_query($db, $query);
+        if (mysqli_num_rows($result) == 1) {
+            $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            echo '{"result" : ' . $rows[0]['id'] . '}';
+        }
+        else {
+            echo '{"result" : 0}';
+        }
+        ?>
+        ```
+
+        Côté :material-language-python:
+
+        ```py
+        import pyxel
+        import requests
+        import json
+        from forms import *
+
+        class App:
+            def __init__(self):
+                pyxel.init(128, 128)
+                pyxel.mouse(True)
+
+                self.isLoggedIn = False
+
+                # Création du formulaire
+                self.form = Form([
+                    Label("Connexion", 10, Alignable.ALIGN_CENTER),
+                    Label("", 8),
+                    Label("Identifiant :", 13),
+                    Textbox("login"),
+                    Label("Mot de passe :", 13),
+                    Textbox("password", password = True),
+                    Label("", 8),
+                    # Checkbox("remember_me", "Se souvenir de moi", True),
+                    Button("Se connecter", self.onValidateForm)
+                ], 10, 10, True, 10)
+
+                pyxel.run(self.update, self.draw)
+                
+            def onValidateForm(self) :
+                # Récupération d'un dictionnaire et envoi au script php
+                response = requests.post("http://localhost/battleships/login.php", self.form.toDict())
+                data = json.loads(response.text)
+                
+                # En cas d'erreur
+                if "error" in data :
+                    self.form.items(6).setText("Erreur de bdd...")
+                
+                # Si la connexion a réussie
+                elif data["result"] != 0 :
+                    self.isLoggedIn = True
+                
+                # Sinon...
+                else :
+                    self.form.items(6).setText("Echec...")
+                    
+
+            def update(self):
+                self.form.update()
+
+            def draw(self):
+                pyxel.cls(0)
+
+                if not self.isLoggedIn :
+                    self.form.draw()
+                else :
+                    pyxel.text(28, 61, "Connexion reussie !", 7)
+        App()
+        ```
 
 +   Créer un code qui gère les différents aléas induits par l'utilisation d'une requête HTTP : délai de réponse, erreurs (404, 500)...
