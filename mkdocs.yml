@@ -5,15 +5,13 @@ copyright: Copyright &copy; 2025 - 2026 Mathieu DOMER
 
 nav:
   - BTS : 
-    # - Calendrier de l'Avent : bts/00_calendrier_avent.md
     - Les gammes : bts/10_gammes.md
     - Stages : bts/20_stages.md
-    # - Vidéos : bts/30_videos.md
     - Plus Plus : bts/99_plusplus.md
+    - PTHD : nsi/30_pthd.md
   - BTS 1 :
     - Projet Thelma : bts-1/10-projet-thelma.md
   #   - C'est pour bientôt ! : bts-1/00-waitforit.md
-  #   - 01 - Premiers pas en C : bts-1/10-premiers-pas-en-c.md
     - 01 - Premiers programmes : bts-1/20-premiers-programmes.md
     - 02 - Boucles : bts-1/30-boucles.md
     - 03 - Fonctions :
@@ -24,11 +22,13 @@ nav:
     - 05 - Tableaux : bts-1/60-tableaux.md
     - 06 - Chaînes de caractères : bts-1/70-strings.md
     - 07 - Les experts : bts-1/71-strings.md
-    - BDD : bts-1/99-bdd.md
   #   - 09 - Structures : bts-1/80-structures.md
   #   - 10 - Allocations dynamiques : bts-1/90-dynamic.md
   #   - 11 - Listes chaînées : bts-1/91-listes-chainees.md
   #   - 12 - POO : bts-1/100-poo-1.md
+    - BDD : 
+      - Un peu d'entraînement : bts-1/99-bdd-1.md
+      - Mini-projet : bts-1/99-bdd-2.md
   #   - Maths x STI :
   #     - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
   #     - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
