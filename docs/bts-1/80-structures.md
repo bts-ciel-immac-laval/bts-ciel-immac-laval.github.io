@@ -167,19 +167,44 @@ Exemple :
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct point {
+        int x;
+        int y;
+    };
+    ```
 
 **Q9** | Proposer la déclaration d'une structure nommée `student` pour stocker le nom d'un étudiant, son prénom et 10 notes.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct student {
+        char nom[50];
+        char prenom[50];
+        float notes[10];
+    };
+    ```
     
 **Q10** | Proposer la déclaration d'une structure nommée `releve_temperature` pour stocker un relevé de température en conservant la date et l'heure du relevé.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    #include <time.h>
+
+    struct releve_temperature {
+        struct tm tm;
+        float temperature;
+    };
+
+    // ou mieux :
+
+    struct releve_temperature {
+        time_t timestamp;
+        float temperature;
+    };
+    ```
 
 La définition d'une structure doit toujours être placée avant sa première utilisation. L'endroit où elle est définie détermine sa portée.
 
@@ -204,7 +229,9 @@ int main() {
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    La structure `ma_structure` est déclarée dans le `main`, sa portée se limite donc à cette fonction. Il n’est pas possible d’y faire référence dans une fonction `f` déclarée avant le `main`.
+
+    Une structure doit être déclarée **avant** d’être utilisée.
 
 ### Utiliser une structure
 
