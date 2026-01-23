@@ -239,31 +239,45 @@ int main() {
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct point A, B;
+    ```
 
 **Q13** | En utilisant la structure `point` définie plus tôt, **initialiser** les points `C(1, 2)` et `D(3, -2)`.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct point C = { 1, 2 }, D = { 3, -2 };
+    ```
 
 **Q14** | En utilisant la structure `student` définie plus tôt, **initialiser** une variable `mf` pour stocker les informations de l'étudiante Micheline FROUBILLON avec les notes suivantes : 18, 13, 17.5 et 19.5.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    // Initialisation séquentielle (forcément dans l'ordre de déclaration des attributs)
+    struct student mf = { "FROUBILLON", "Micheline", { 18, 13, 17.5, 19.5 } };
+
+    // Initialisation sélective
+    struct student mf = { .prenom = "Micheline", .notes = { 18, 13, 17.5, 19.5 }, .nom = "FROUBILLON" };
+    ```
 
 **Q15** | En utilisant la structure `student` définie plus tôt, **initialiser** une variable `md` pour stocker les informations de  l'étudiant Michel DURAND, qui n'a pas encore de note.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct student md = { "DURAND", "Michel" };
+    ```
 
 **Q16** | En utilisant la structure `student` définie plus tôt, **initialiser** une variable `xx` pour stocker les informations d'un étudiant anonyme avec un relevé de notes initialisé à -1.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct student xx = { .notes = { -1 } };
+    ```
     
 ### Accéder aux valeurs des attributs
 
