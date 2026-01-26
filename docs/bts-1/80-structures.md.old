@@ -292,29 +292,9 @@ Notes : 18.00, 13.00, 17.50, 19.50
 
 ??? success "Solution"
 
-    Il faut compléter notre structure `student` pour ajouter le nombre de notes saisies dans le tableau :
-
     ```c
-    struct student {
-        char nom [25];
-        char prenom [25];
-        float notes [10];
-        int notesCount;
-    };
-    ```
-
-    Ce qui permet d'afficher le contenu d'une structure `student` de la manière suivante :
-
-    ```c
-    struct student mf = {
-        "FROUBILLON", 
-        "Micheline",         
-        { 18, 13, 17.5, 19.5 },
-        4
-    };
-
     printf("Prénom : %s\nNom : %s\nNotes : ", mf.prenom, mf.nom);
-    for (int i = 0; i < mf.notesCount; i++) {
+    for (int i = 0; i < mf.nbNotes; i++) {
         printf("%s%.2f", i == 0 ? "" : ", ", mf.notes[i]);
     }
     ```
@@ -326,7 +306,7 @@ Notes : 18.00, 13.00, 17.50, 19.50
     ```c
     void display(struct student s) {
         printf("Prénom : %s\nNom : %s\nNotes : ", s.prenom, s.nom);
-        for (int i = 0; i < s.notesCount; i++) {
+        for (int i = 0; i < s.nbNotes; i++) {
             printf("%s%.2f", i == 0 ? "" : ", ", s.notes[i]);
         }
     }
@@ -339,10 +319,13 @@ Notes : 18.00, 13.00, 17.50, 19.50
     ```c
     float getAverageGrade(struct student s) {
         float result = 0;
-        for (int i = 0; i < s.notesCount; i++) {
+        if (s.nbNotes == 0) {
+            return 0;
+        }
+        for (int i = 0; i < s.nbNotes; i++) {
             result += s.notes[i];
         }
-        return result / s.notesCount;
+        return result / s.nbNotes;
     }
     ```
 

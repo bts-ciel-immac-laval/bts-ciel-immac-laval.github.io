@@ -174,7 +174,7 @@ Exemple :
     };
     ```
 
-**Q9** | Proposer la déclaration d'une structure nommée `student` pour stocker le nom d'un étudiant, son prénom et 10 notes.
+**Q9** | Proposer la déclaration d'une structure nommée `student` pour stocker le nom d'un étudiant, son prénom, 10 notes et le nombre de notes saisies.
 
 ??? success "Solution"
 
@@ -183,6 +183,7 @@ Exemple :
         char nom[50];
         char prenom[50];
         float notes[10];
+        int nbNotes;
     };
     ```
     
@@ -257,10 +258,10 @@ int main() {
 
     ```c
     // Initialisation séquentielle (forcément dans l'ordre de déclaration des attributs)
-    struct student mf = { "FROUBILLON", "Micheline", { 18, 13, 17.5, 19.5 } };
+    struct student mf = { "FROUBILLON", "Micheline", { 18, 13, 17.5, 19.5 }, 4 };
 
     // Initialisation sélective
-    struct student mf = { .prenom = "Micheline", .notes = { 18, 13, 17.5, 19.5 }, .nom = "FROUBILLON" };
+    struct student mf = { .prenom = "Micheline", .notes = { 18, 13, 17.5, 19.5 }, .nom = "FROUBILLON", .nbNotes = 4 };
     ```
 
 **Q15** | En utilisant la structure `student` définie plus tôt, **initialiser** une variable `md` pour stocker les informations de  l'étudiant Michel DURAND, qui n'a pas encore de note.
@@ -268,15 +269,15 @@ int main() {
 ??? success "Solution"
 
     ```c
-    struct student md = { "DURAND", "Michel" };
+    struct student md = { "DURAND", "Michel", .nbNotes = 0 };
     ```
 
-**Q16** | En utilisant la structure `student` définie plus tôt, **initialiser** une variable `xx` pour stocker les informations d'un étudiant anonyme avec un relevé de notes initialisé à -1.
+**Q16** | En utilisant la structure `student` définie plus tôt, **initialiser** une variable `xx` pour stocker les informations d'un étudiant anonyme avec un relevé de notes sans notes.
 
 ??? success "Solution"
 
     ```c
-    struct student xx = { .notes = { -1 } };
+    struct student xx = { .nbNotes = 0 };
     ```
     
 ### Accéder aux valeurs des attributs
@@ -292,19 +293,42 @@ Notes : 18.00, 13.00, 17.50, 19.50
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    printf("Prénom : %s\nNom : %s\nNotes : ", mf.prenom, mf.nom);
+    for (int i = 0; i < mf.nbNotes; i++) {
+        printf("%s%.2f", i == 0 ? "" : ", ", mf.notes[i]);
+    }
+    ```
 
 **Q18** | Remplacer le code de la question précédente par une fonction nommée display() et l'utiliser pour afficher les valeurs des champs des variables `mf`, `md` et `xx`.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    void display(struct student s) {
+        printf("Prénom : %s\nNom : %s\nNotes : ", s.prenom, s.nom);
+        for (int i = 0; i < s.nbNotes; i++) {
+            printf("%s%.2f", i == 0 ? "" : ", ", s.notes[i]);
+        }
+    }
+    ```
 
 **Q19** | Créer une fonction nommée `getAverageGrade()` qui renvoie la moyenne d'un `student` passé en paramètre.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    float getAverageGrade(struct student s) {
+        float result = 0;
+        if (s.nbNotes == 0) {
+            return 0;
+        }
+        for (int i = 0; i < s.nbNotes; i++) {
+            result += s.notes[i];
+        }
+        return result / s.nbNotes;
+    }
+    ```
 
 ### Copier une variable de type structuré
 
