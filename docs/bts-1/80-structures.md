@@ -338,13 +338,29 @@ Contrairement aux tableaux (et par extension aux chaînes de caractères), il es
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    #include <string.h>
+
+    // ...
+
+    struct student md = { .prenom = "Michel", .nom = "DURAND", .notesCount = 0 };
+    struct student md1;
+    md1 = md;
+    strcpy(md1.prenom, "Maurice"); // ! Pas d'affectation de chaîne de caractères !
+    ```
 
 **Q21** | Pour simplifier le processus de création de `student`, en compilant vos travaux ci-dessus, créer une fonction `createStudent()` qui renvoie une variable `student` avec toutes ses notes initialisées à 0 et les noms et prénoms passés en paramètres.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct student createStudent(char * prenom, char * nom) {
+        struct student s = { .notes = { 0 }, .nbNotes = 0 };
+        strcpy(s.nom, nom);
+        strcpy(s.prenom, prenom);
+        return s;
+    }
+    ```
 
 ### Modifier les valeurs des champs
 
@@ -352,13 +368,30 @@ Contrairement aux tableaux (et par extension aux chaînes de caractères), il es
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    struct student js = createStudent("SUPINOT", "Jacqueline");
+    js.notes[0] = 17;
+    js.notes[1] = 9.5;
+    js.notes[2] = 13.75;
+    js.notesCount = 3;
+    display(js);
+    ```
   
 **Q23** | Créer une fonction `ucFirstFirstname()` qui permet de mettre la première lettre du prénom d'une variable `student` passée en argument en majuscule.
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    void ucFirstFirstname(struct student * s) {
+        s->prenom[0] = toupper(s->prenom[0]);
+    }
+
+    // ...
+
+    // Utilisation
+    struct student js = createStudent("SUPINOT", "jacqueline");
+    ucFirstFirstname(&js);
+    ```
     
 ## Exercice
 

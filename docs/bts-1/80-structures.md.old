@@ -353,14 +353,11 @@ Contrairement aux tableaux (et par extension aux chaînes de caractères), il es
 ??? success "Solution"
 
     ```c
-    struct student createStudent(char * nom, char * prenom) {
-        struct student newStudent = { 
-            .notes = { 0 }, 
-            .notesCount = 0 
-        };
-        strcpy(newStudent.nom, nom);
-        strcpy(newStudent.prenom, prenom);
-        return newStudent;
+    struct student createStudent(char * prenom, char * nom) {
+        struct student s = { .notes = { 0 }, .nbNotes = 0 };
+        strcpy(s.nom, nom);
+        strcpy(s.prenom, prenom);
+        return s;
     }
     ```
 
