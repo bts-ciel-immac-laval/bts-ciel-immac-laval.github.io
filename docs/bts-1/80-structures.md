@@ -461,9 +461,89 @@ int main() {
 
 ??? success "Solution"
 
-    ![waiting](../images/meme/loading-02.gif)
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
 
+    struct releve_temperature {
+        time_t timestamp;
+        float temperature;
+    };
+
+    // On passe le tableau par adresse, ça ne change pas...
+    void readFile(struct releve_temperature * releves) {
+        FILE * ftemp = fopen("temp-100-jours.csv", "r");
+        
+        // Le timestamp et la temperature minimale vont aller dans la structure 
+        // mais les deux autres températures doivent être lues.
+        float tmax = 0.0f, tmoy = 0.0f;
+
+        if (ftemp == NULL) {
+            puts("Problème lors de la lecture du fichier");
+            exit(-1);
+        }
+
+        // Lecture et stockage dans le tableau 
+        for (int i = 0; i < 100; i++) {
+            fscanf(ftemp, "%d;%f;%f;%f\r\n", &releves[i].timestamp, &releves[i].temperature, &tmax, &tmoy);
+        }
+
+        fclose(ftemp);
+    }
+
+    // Détection du minimum, algorithme classique de recherche de minimum
+    struct releve_temperature getMin(struct releve_temperature * releves) {
+        struct releve_temperature minimum = releves[0];
+        for (int i = 1; i < 100; i++) {
+            if (releves[i].temperature < minimum.temperature) {
+                minimum = releves[i];
+            }
+        }
+        return minimum;
+    }
+
+    int main() {
+        // Encodage et nettoyage de la console
+        system("chcp 65001");
+        system("cls");
+
+        struct releve_temperature releves[100], minimum;
+        struct tm minimumDate;
+
+        // Lecture du fichier
+        readFile(releves);
+        minimum = getMin(releves);
+
+        // On tranforme le timestamp en date lisible
+        minimumDate = *localtime(&minimum.timestamp);
+
+        // Affichage
+        printf("Il faisait %.2f°C le %02d/%02d/%04d", 
+            minimum.temperature,
+            minimumDate.tm_mday,
+            minimumDate.tm_mon + 1,
+            minimumDate.tm_year + 1900
+        );
+
+        return 0;
+    }
+    ```
 
 ## Exercice bonus
 
 Créer un programme qui reproduit le fonctionnement du site : https://estcequecestbientotleweekend.fr/
+
+## Projet
+
+![pirate](../images/illustration/pirate.jpg)
+
+Lorsqu'un pirate s'introduit dans un serveur hébergeant un (ou des) site(s) web, son objectif n'est pas de "détruire" le serveur, mais d'y ajouter des scripts (ou de modifier des scripts existants) pour nuire à l'activité du site web (en diffusant de la propagande par exemple...).
+
+En supplément de mesures anti-intusion, on vous demande de développer un programme capable de comparer l'état d'un dossier entre deux exécutions.
+
+Le programme doit fournir une liste des fichiers ajoutés, modifiés ou supprimés depuis la précédente exécution du programme.
+
+Pour éviter les faux positifs, on créera une liste d'exclusion.
+
+Optionnellement, le programme gèrera son historique de rapport en le purgeant régulièrement (durée de rétention paramétrable).
