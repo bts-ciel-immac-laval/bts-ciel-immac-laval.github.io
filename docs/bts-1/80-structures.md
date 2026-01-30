@@ -536,7 +536,7 @@ Créer un programme qui reproduit le fonctionnement du site : https://estcequece
 
 ## Projet
 
-![pirate](../images/illustration/pirate.jpg)
+![pirate](../images/illustration/pirate.jpg){ align=right }
 
 Lorsqu'un pirate s'introduit dans un serveur hébergeant un (ou des) site(s) web, son objectif n'est pas de "détruire" le serveur, mais d'y ajouter des scripts (ou de modifier des scripts existants) pour nuire à l'activité du site web (en diffusant de la propagande par exemple...).
 
