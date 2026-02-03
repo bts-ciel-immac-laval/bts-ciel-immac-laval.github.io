@@ -55,6 +55,59 @@ Les techniques que nous devons maîtriser :
         ```
         
     - [ ] Naviguer en profondeur dans l'arborescence
+     
+    ??? note "Appel récursif d'une fonction"
+
+        ```c
+        #include <stdio.h>
+        #include <string.h> 
+        #include <stdlib.h> 
+        // La bibliothèque qui permet d'explorer un dossier dans le système de fichier
+        #include "dirent.h"
+        
+        void ls(char * chemin);
+        
+        int main() {
+            ls("[Chemin (relatif ou absolu) du dossier racine]");
+            return 0;
+        }
+        
+        // Liste les éléments contenus dans un dossier
+        void ls(char * chemin) {
+            DIR * dossier = NULL;
+            struct dirent * element = NULL;
+            char cheminElement[PATH_MAX] = "";
+        
+            // Ouverture du dossier
+            dossier = opendir(chemin);
+            if (dossier == NULL) {
+                puts("Chemin inconnu !");
+                exit(-1);
+            }
+        
+            // Lister les "éléments" contenus
+            while ((element = readdir(dossier)) != NULL) {
+                // Ne pas traiter . et ..
+                if (strcmp(element->d_name, ".") != 0 && strcmp(element->d_name, "..") != 0) {
+                    // Définition du chemin de l'élément
+                    sprintf(cheminElement, "%s\\%s", chemin, element->d_name);
+                    // Si l'élément est un dossier
+                    if (element->d_type == DT_DIR) {
+                        // Appel récursif de ls sur le sous-dossier
+                        ls(cheminElement);
+                    }
+                    // Ce n'est pas un dossier
+                    else {
+                        // On affiche le chemin de l'élément
+                        puts(cheminElement);
+                    }
+                }
+            }
+        
+            // Fermer le dossier
+            closedir(dossier);
+        }
+        ```
 
 - [ ] Détecter la modification d'un fichier
 
