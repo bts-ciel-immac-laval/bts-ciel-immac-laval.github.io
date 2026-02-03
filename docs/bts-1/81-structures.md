@@ -18,7 +18,7 @@ Optionnellement, le programme gèrera son historique de rapport en le purgeant r
 
 Les techniques que nous devons maîtriser :
 
-- [ ] Parcourir un dossier
+- [x] Parcourir un dossier
 
     - [x] Lister les fichiers contenus dans un dossier
 
@@ -54,7 +54,7 @@ Les techniques que nous devons maîtriser :
         }
         ```
         
-    - [ ] Naviguer en profondeur dans l'arborescence
+    - [x] Naviguer en profondeur dans l'arborescence
      
     ??? note "Appel récursif d'une fonction"
 
@@ -170,3 +170,5 @@ Les techniques que nous devons maîtriser :
 ## Ressources
 
 [:material-file-download: Télécharger dirent.h](../files/bts1/dirent.h){ .md-button .md-button--primary }
+
+[:material-file-download: Télécharger une arborescence de test](../files/bts1/arborescence.h){ .md-button .md-button--primary }
