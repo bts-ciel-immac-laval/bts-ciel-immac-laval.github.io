@@ -21,14 +21,15 @@ nav:
     - 04 - Pointeurs : bts-1/50-pointeurs.md
     - 05 - Tableaux : bts-1/60-tableaux.md
     - 06 - Chaînes de caractères : bts-1/70-strings.md
-    - 07 - Les experts : bts-1/71-strings.md
+    - Projet CSI Laval : bts-1/71-strings.md
+    - 07 - BDD : 
+      - Un peu d'entraînement : bts-1/99-bdd-1.md
+      - Mini-projet : bts-1/99-bdd-2.md
     - 08 - Structures : bts-1/80-structures.md
+    - Projet Charlie : bts-1/81-structures.md
   #   - 10 - Allocations dynamiques : bts-1/90-dynamic.md
   #   - 11 - Listes chaînées : bts-1/91-listes-chainees.md
   #   - 12 - POO : bts-1/100-poo-1.md
-    - BDD : 
-      - Un peu d'entraînement : bts-1/99-bdd-1.md
-      - Mini-projet : bts-1/99-bdd-2.md
   #   - Maths x STI :
   #     - 01 - Algorithmique : bts-1/Maths x STI/10-algorithmique.md
   #     - 02 - Bases de données : bts-1/Maths x STI/20-bdd.md
