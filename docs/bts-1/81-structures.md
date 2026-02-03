@@ -14,7 +14,7 @@ Pour éviter les faux positifs, on créera une liste d'exclusion.
 
 Optionnellement, le programme gèrera son historique de rapport en le purgeant régulièrement (durée de rétention paramétrable).
 
-### Analyse / Conception
+## Analyse / Conception
 
 Les techniques que nous devons maîtriser :
 
@@ -22,8 +22,38 @@ Les techniques que nous devons maîtriser :
 
     - [x] Lister les fichiers contenus dans un dossier
 
-    Utilisation de dirent.h
+    ??? note "Utilisation de dirent.h"
 
+        ```c
+        #include <stdio.h>
+        #include <string.h> 
+        // La bibliothèque qui permet d'explorer un dossier dans le système de fichier
+        #include "dirent.h"
+
+        int main() {
+            DIR * dossier = NULL;
+            struct dirent * element = NULL;
+
+            // Ouverture du dossier
+            dossier = opendir("[chemin (relatif ou absolu) du dossier à explorer]");
+            if (dossier == NULL) {
+                puts("Chemin inconnu !");
+                return - 1;
+            }
+
+            // Lister les "éléments" contenus
+            while ((element = readdir(dossier)) != NULL) {
+                // Affichage du nom de l'élément
+                puts(element->d_name);
+            }
+
+            // Fermer le dossier
+            closedir(dossier);
+
+            return 0;
+        }
+        ```
+        
     - [ ] Naviguer en profondeur dans l'arborescence
 
 - [ ] Détecter la modification d'un fichier
@@ -62,6 +92,7 @@ Les techniques que nous devons maîtriser :
 
 - [ ] Gérer une liste d'exclusion
 
-### Ressources
+
+## Ressources
 
 [:material-file-download: Télécharger dirent.h](../files/bts1/dirent.h){ .md-button .md-button--primary }
