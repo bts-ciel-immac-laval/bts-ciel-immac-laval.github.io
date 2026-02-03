@@ -58,9 +58,30 @@ Les techniques que nous devons maîtriser :
 
 - [ ] Détecter la modification d'un fichier
 
-    - [ ] Récupérer la date de dernière modification d'un fichier
+    - [x] Récupérer la date de dernière modification d'un fichier
     
-    - [ ] Récupérer la taille d'un fichier
+    - [x] Récupérer la taille d'un fichier
+     
+    ??? note "Recupérer les métadonnées d'un fichier"
+
+        ```c
+        #include <stdio.h>
+        // La bibliothèque pour afficher les informations d'un fichier
+        #include <sys/stat.h>
+        
+        int main() {
+            // La structure qui contiendra les informations du fichier
+            struct stat stats;
+            
+            // Récupération des métadonnées du fichiers
+            stat("[Chemin vers le fichier]", &stats);
+        
+            // Affichage du poids et de la date de dernère modification (en secondes)
+            printf("%d, %d", stats.st_size, stats.st_mtime);
+            
+            return 0;
+        }
+        ```
     
     - [ ] Calculer un checksum d'un fichier
     
