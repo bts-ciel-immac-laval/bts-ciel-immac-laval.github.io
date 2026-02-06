@@ -1,0 +1,70 @@
+# Récursivité
+
+## Cours
+
+![Récursivité](../pdf/cours/bts1/bts1_2425_05_fonctions_recursivite.pdf)
+
+## Exercice 1
+
+Voici une fonction en C :
+
+```c
+void f(int n) {
+    if (n == 0) {
+        printf("Partez !");
+    }
+    else {
+        printf("%d\n", n);
+        f(n - 1);
+    }   
+}
+```
+
+1) Qu'affiche l'instruction `f(5)` ?
+
+2) Pourquoi dit-on de cette fonction qu'elle est récursive ?
+
+## Exercice 2
+
+Ecrire une fonction récursive qui demande à l'utilisateur de saisir des chiffres tant qu'il ne saisit pas un zéro, puis lui affiche les chiffres saisis du dernier au premier.
+
+```
+> ./exo2.exe
+Saisir des chiffres (0 pour arrêter) :
+1
+2
+3
+4
+5
+6
+0
+
+OK ! Voici vos saisies en partant de la fin :
+6
+5
+4
+3
+2
+1
+```
+
+## Exercice 3
+
+Réécrire la fonction récursive de l'exercice 2 en limitant le nombre de saisies à 5.
+
+```
+> ./exo.exe
+Saisir 5 chiffres :
+12
+298
+34
+470
+5
+
+Et les voici en ordre inverse :
+5
+470
+34
+298
+12
+```
