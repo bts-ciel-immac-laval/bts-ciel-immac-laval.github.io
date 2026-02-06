@@ -1,0 +1,248 @@
+# Qt - Premier projet
+
+## Création d’un projet
+
+!!! warning ""
+
+    Les captures ont été réalisées avec **différentes versions** de Qt Creator, des libellés peuvent différer de ce que vous voyez à l'écran.
+
+1. Cliquer sur : **Fichier > Nouveau fichier ou projet**
+    
+    ![qt-1](../images/cours/bts-2/90/qt-1.png)
+    
+2. Sélectionner **Application (Qt)** puis **Qt Widgets Application** et cliquer sur **Choisir…**
+    
+    ![qt-2](../images/cours/bts-2/90/qt-2.png)
+    
+3. Sur la page **Emplacement/Location** donner un nom au projet et sélectionner le chemin du projet (au choix) les répertoires sont à créer s’ils n'existent pas. Cliquer sur **Suivant**.
+    
+    ![qt-3](../images/cours/bts-2/90/qt-3.png)
+    
+4. Sur la page **Système de compilation/Build System**, choisir le système **qmake**. Cliquer sur **Suivant**.
+
+    ![qt-23](../images/cours/bts-2/90/qt-24.png)
+    
+5. Sur la page **Détails/Details**, laisser le nom par défaut de la fenêtre principale `MainWindow`. Cliquer sur **Suivant**.
+
+    ![qt-23](../images/cours/bts-2/90/qt-25.png)
+    
+6. Sur la page **Traduction/Translation**, laisser les valeurs par défaut. Cliquer sur **Suivant**.
+
+    ![qt-23](../images/cours/bts-2/90/qt-26.png)
+    
+7. Sur la page **Kits/Kits**, sélectionner les cibles pour lesquelles vous souhaitez créer le programme. Cliquer sur **Suivant**.
+
+    ![qt-23](../images/cours/bts-2/90/qt-27.png)
+    
+8. Sur la page **Résumé/Summary**, laisser les valeurs par défaut. Cliquer sur **Terminer**.
+
+    ![qt-23](../images/cours/bts-2/90/qt-28.png)
+
+9. Appuyer sur la flèche verte en bas à gauche.
+    
+    ![qt-4](../images/cours/bts-2/90/qt-4.png)
+    
+10. Le programme se lance, la fenêtre est vide.
+    
+    ![qt-5](../images/cours/bts-2/90/qt-5.png)
+
+👍 Votre projet est prêt pour le développement !
+
+## Les fichiers
+
+![Qt #2](../pdf/cours/bts2/bts2_qt_02.pdf)
+
+A tout moment, utiliser la touche ++f1++ pour avoir de l’aide sur les classes des widgets et des classes Qt (la documentation est disponible sur [https://doc.qt.io/](https://doc.qt.io/)).
+
+### `main.cpp`
+
+```cpp
+#include "mainwindow.h"
+
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv); // (1)!
+    MainWindow w; // (2)!
+    w.show(); // (3)!
+    return a.exec(); // (4)!
+}
+```
+
+1.  Création de l'objet qui gère l'application.
+2.  Création de l'objet qui gère la fenêtre principale.
+3.  Affichage de la fenêtre principale.
+4.  Lancement de la boucle d'événement.
+
+On ne modifie que rarement ce fichier.
+
+### `mainwindow.cpp`
+
+C'est ici que la plupart de vos développements vont trouver place.
+
+```cpp
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+{
+    ui->setupUi(this/* (4)!*/);
+
+    // (1)!
+}
+
+MainWindow::~MainWindow()
+{
+    // (2)!
+
+    delete ui;
+}
+
+// (3)!
+```
+
+1.  Placer ici tout le code à exécuter lors du chargement de la fenêtre... (création des widgets, connexions signaux/slots...)
+2.  ... et ici lors de la fermeture (suppression des allocations dynamiques, fermeture de connexions aux bases de données...)
+3.  Ici viendront les définitions des slots que vous créerez.
+4.  `this` est un pointeur sur l'objet MainWindow.
+
+`ui` est un attribut (donc disponible dans **toute** la classe) qui pointe sur les widgets ajoutés de la fenêtre :
+
+![qt-8](../images/cours/bts-2/90/qt-8.png)
+
+## Connexion signal &#8594; slot
+
+![Qt #3](../pdf/cours/bts2/bts2_qt_03.pdf)
+
+1.  Dans la partie projet, double-cliquer sur le fichier `mainwindow.ui`.
+    
+    ![qt-6](../images/cours/bts-2/90/qt-6.png)
+    
+2.  Le designer apparaît :
+    
+    ![qt-7](../images/cours/bts-2/90/qt-7.png)
+    
+3.  Pour ajouter un bouton sur la fenêtre, faire un glisser-déposer du widget de la liste des widgets vers l'aperçu de la fenêtre.
+    
+    ![qt-9](../images/cours/bts-2/90/qt-9.png)
+    
+### 🧸 Connexion via le designer
+
+Nous allons connecter le clic sur le bouton que nous venons de poser à la fermeture de la fenêtre.  
+
+Le signal `QPushButton::clicked()` et le slot `QMainWindow::close()` sont deux éléments natifs du framework (que nous n'avons pas à développer).
+
+1.  Passer en mode slots ( ++f4++ ).
+
+    ![qt-29](../images/cours/bts-2/90/qt-29.png)
+
+2.  Cliquer sur le widget à l'origine du signal (le bouton) et, tout en maintenant le clic, déplacer le curseur vers la cible propriétaire du slot à déclencher (la fenêtre). 
+
+    ![qt-30](../images/cours/bts-2/90/qt-30.png)
+
+3.  La liste des signaux et slots s'affiche. 
+
+    Cliquer sur la case à cocher **Afficher les signaux et slots hérités de QWidget**.
+    
+    ![qt-10](../images/cours/bts-2/90/qt-10.png)
+    
+4.  Choisir le signal et le slot à connecter, ici, on choisit :
+
+    + `clicked()` dans la liste de gauche,
+    
+    + `close()` dans la liste de droite.
+    
+    ![qt-11](../images/cours/bts-2/90/qt-11.png)
+    
+5.  Valider et visualiser le résultat graphique.
+    
+    ![qt-12](../images/cours/bts-2/90/qt-12.png)
+    
+6.  Résultat : un clic sur le bouton ferme la fenêtre.
+
+    Tester en lançant l’application en appuyant sur la flèche verte en bas à gauche.
+    
+    ![qt-13](../images/cours/bts-2/90/qt-13.png)
+
+### 🎖️ Connexion via le code
+    
+On peut aussi associer un signal à un slot via le code.
+
+C'est le mode opératoire **à privilégier** car il permet de centraliser les connexions dans le code et d'ainsi mieux les gérer.
+
+![Qt #4](../pdf/cours/bts2/bts2_qt_04.pdf)
+
+Nous allons connecter le clic sur un nouveau bouton à l'agrandissement de la fenêtre : le signal `QPushButton::clicked()` et le slot `QMainWindow::showMaximized()`
+
+1.  Ajouter un nouveau bouton via le designer
+
+2.  Renommer l'objet en `bouton_2` en modifiant son `objectName` dans l'éditeur de propriété ou en double-cliquant dessus dans l'inspecteur d'objets.
+
+    ![qt-32](../images/cours/bts-2/90/qt-32.png)
+
+3.  Changer son libellé en `Bouton 2` en modifiant son `text` dans l'éditeur de propriété ou en double-cliquant dessus dans l'aperçu de la fenêtre.
+
+    ![qt-33](../images/cours/bts-2/90/qt-33.png)
+
+4.  Sauvegarder le fichier mainwindow.ui.
+
+5.  Ouvrir le fichier mainwindow.cpp.
+
+6.  Dans le constructeur, après l'instruction `ui->setupUi(this);`, ajouter la ligne suivante :
+
+    ```cpp
+    connect(
+        ui->bouton_2/*(1)!*/, 
+        SIGNAL(clicked(bool))/*(2)!*/, 
+        this/*(3)!*/, 
+        SLOT(showMaximized())/*(4)!*/
+    );
+    ```
+
+    1.  Un pointeur vers l'objet qui envoie le signal : `ui->bouton_2`
+    2.  Le prototype du signal en paramètre de la macro `SIGNAL()` : `SIGNAL(clicked(bool))`
+    3.  Un pointeur vers l'objet qui contient le slot : `this` (la MainWindow)
+    4.  Le prototype du slot en paramètre de la macro `SLOT()` : `SLOT(showMaximized())`
+
+    ??? warning "`ui->bouton_2` n'est pas proposé par l'auto-complétion ?"
+
+        Il peut arriver que les widgets tout juste ajoutés n'apparaissent pas en auto-complétion :
+
+        ![qt-34](../images/cours/bts-2/90/qt-34.png)
+
+        Veillez à bien sauvegarder tous les fichiers puis lancer une compilation (build) en cliquant sur le bouton avec le marteau pour rafraîchir Qt Creator.
+
+        ![qt-35](../images/cours/bts-2/90/qt-35.png)
+
+7. Sauvegarder et tester.
+
+### ⚠️ Connexion via "Aller au slot"
+
+Vous noterez peut-être qu'il est possible de déclarer un slot, le connecter à un signal et le définir en une seule action 🤩 via le clic-droit sur un widget puis **Aller au slot...**.
+
+Elle est notée comme obsolète (deprecated) dans les dernières versions de Qt et ne sera donc bientôt **plus supportée** (un programme utilisant cette fonctionnalité devra être redéveloppé avant de le mettre à jour).
+
+Vous pouvez donc utiliser cette fonctionnalité pour un prototypage rapide, mais c'est tout... 😭
+
+![qt-14](../images/cours/bts-2/90/qt-14.png)
+
+![qt-15](../images/cours/bts-2/90/qt-15.png)
+    
+## Déboguer
+
+Pour mettre des traces dans votre programme vous pouvez utiliser `qDebug()`.
+
+`qDebug()` est une fonction mais s’utilise comme cout.
+
+Les messages soumis à `qDebug()` s'affichent dans le terminal visible dans l'onglet **Sortie de l'application**.
+    
+```cpp
+#include <QDebug>
+
+...
+
+qDebug() << "Je suis passé par ici";
+```
+
+![qt-31](../images/cours/bts-2/90/qt-31.png)
