@@ -48,6 +48,28 @@ OK ! Voici vos saisies en partant de la fin :
 1
 ```
 
+??? success "Solution"
+
+    ```c
+    #include <stdio.h>
+
+    void afficherEnRemontant() {
+        int input = 0;
+        scanf("%d", &input);
+        if (input == 0) {
+            puts("\nOK ! Voici vos saisies en partant de la fin :");
+        }
+        else {
+            afficherEnRemontant();
+            printf("%d\n", input);
+        }
+    }
+    
+    int main() {
+        afficherEnRemontant();
+    }
+    ```
+
 ## Exercice 3
 
 Réécrire la fonction récursive de l'exercice 2 en limitant le nombre de saisies à 5.
