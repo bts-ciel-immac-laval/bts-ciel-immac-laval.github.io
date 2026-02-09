@@ -24,6 +24,21 @@ void f(int n) {
 
 2) Pourquoi dit-on de cette fonction qu'elle est récursive ?
 
+??? success "Solution"
+    
+    `f(5)` affiche :
+
+    ```
+    5
+    4
+    3
+    2
+    1
+    Partez !
+    ```
+
+    `f` est une fonction récursive car elle s'appelle elle-même.
+
 ## Exercice 2
 
 Ecrire une fonction récursive qui demande à l'utilisateur de saisir des chiffres tant qu'il ne saisit pas un zéro, puis lui affiche les chiffres saisis du dernier au premier.
