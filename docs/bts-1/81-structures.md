@@ -109,7 +109,7 @@ Les techniques que nous devons maîtriser :
         }
         ```
 
-- [ ] Détecter la modification d'un fichier
+- [x] Détecter la modification d'un fichier
 
     - [x] Récupérer la date de dernière modification d'un fichier
     
@@ -136,17 +136,111 @@ Les techniques que nous devons maîtriser :
         }
         ```
     
-    - [ ] Calculer un checksum d'un fichier
+    - [x] Calculer un checksum d'un fichier
+
+    ??? note "Calculer le checksum md5 d'un fichier"
+
+        La bibliothèque md5.h est à télécharger dans la partie Ressources en bas de page.
+
+        ```c
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <stdint.h>
+
+        #include "md5.h"
+
+        void print_hash(uint8_t *p){
+            for(unsigned int i = 0; i < 16; ++i){
+                printf("%02x", p[i]);
+            }
+            printf("\n");
+        }
+
+        // On passera le chemin du fichier en ligne de commande
+        int main(int argc, char ** argv){
+            uint8_t result[16];
+            if (argc == 2) {
+                FILE * f = fopen(argv[1], "r");
+                if (f != NULL) {
+                    md5File(f, result);
+                    print_hash(result);
+                }
+            }
+            return 0;
+        }
+        ```
     
 - [x] Générer un tableau avec les informations (données structurées)
     
-- [ ] Sauvegarder le tableau entre deux exécutions
+- [x] Sauvegarder le tableau entre deux exécutions
 
-    - [ ] Sauvegarder un fichier binaire
+    - [x] Sauvegarder un fichier binaire
 
-    - [ ] Trouver une convention de nommage (si plusieurs dossiers surveillés)
+    ??? note "Ecrire dans un fichier binaire"
 
-    - [ ] Charger le tableau à partir du fichier
+        ```c
+        #include <stdio.h>
+        #include <string.h>
+
+        int main() {
+
+            // Ouverture en écriture binaire
+            FILE * f = fopen("test.data", "wb");
+            if (f == NULL) {
+                puts("Impossible d'ouvrir le fichier test.data");
+                return -1;
+            }
+
+            int i = 42;
+            char string[25] = "test";
+            float pi = 3.14;
+
+            // Ecriture : on doit indiquer la taille de chaque éléments à écrire
+            fwrite(&i, sizeof(int), 1, f);
+            fwrite(string, sizeof(char), 25, f);
+            fwrite(&pi, sizeof(float), 1, f);
+
+            fclose(f);
+
+            return 0;
+        }
+        ```
+
+    - [x] Trouver une convention de nommage (si plusieurs dossiers surveillés)
+
+    ??? note "Lire dans un fichier binaire"
+
+        ```c
+        #include <stdio.h>
+
+        int main() {
+
+            // Ouverture en lecture binaire
+            FILE * f = fopen("test.data", "rb");
+            if (f == NULL) {
+                puts("Impossible d'ouvrir le fichier test.data");
+                return -1;
+            }
+
+            int i = 0;
+            char string[25] = "";
+            float pi = 0;
+            
+            // Lecture : on doit indiquer la taille de chaque éléments à lire, 
+            // ce qui implique de connaitre l'organisation du fichier et, donc,
+            // une réflexion sur les éléments de taille dynamique.
+
+            fread(&i, sizeof(int), 1, f);
+            fread(string, sizeof(char), 25, f);
+            fread(&pi, sizeof(float), 1, f);
+
+            printf("%d %s %f", i, string, pi);
+
+            fclose(f);
+
+            return 0;
+        }
+        ```
 
 - [x] Comparer deux tableaux
 
@@ -171,4 +265,6 @@ Les techniques que nous devons maîtriser :
 
 [:material-file-download: Télécharger dirent.h](../files/bts1/dirent.h){ .md-button .md-button--primary }
 
-[:material-file-download: Télécharger une arborescence de test](../files/bts1/arborescence.h){ .md-button .md-button--primary }
+[:material-file-download: Télécharger une arborescence de test](../files/bts1/arborescence.zip){ .md-button .md-button--primary }
+
+[:material-file-download: Télécharger md5.h](../files/bts1/md5.h){ .md-button .md-button--primary }
