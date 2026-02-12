@@ -4,12 +4,21 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Lancer le site",
+            "label": "Générer le site",
             "type": "shell",
             "command": "python -m mkdocs serve --livereload",
             "problemMatcher": [
                 "$python"
             ]
+        },
+        {
+            "label": "Afficher le site",
+            "type": "shell",
+            "command": "start",
+            "args": [
+                "http://127.0.0.1:8000"
+            ],
+            "problemMatcher": []
         }
     ]
 }

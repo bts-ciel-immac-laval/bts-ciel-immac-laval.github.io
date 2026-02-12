@@ -14,7 +14,7 @@ Pour éviter les faux positifs, on créera une liste d'exclusion.
 
 Optionnellement, le programme gèrera son historique de rapport en le purgeant régulièrement (durée de rétention paramétrable).
 
-## Analyse / Conception
+## Analyse
 
 Les techniques que nous devons maîtriser :
 
@@ -205,9 +205,7 @@ Les techniques que nous devons maîtriser :
             return 0;
         }
         ```
-
-    - [x] Trouver une convention de nommage (si plusieurs dossiers surveillés)
-
+        
     ??? note "Lire dans un fichier binaire"
 
         ```c
@@ -242,6 +240,8 @@ Les techniques que nous devons maîtriser :
         }
         ```
 
+    - [x] Trouver une convention de nommage (si plusieurs dossiers surveillés)
+
 - [x] Comparer deux tableaux
 
     - [x] Détecter un ajout
@@ -260,6 +260,64 @@ Les techniques que nous devons maîtriser :
 
 - [ ] Gérer une liste d'exclusion
 
+## Conception
+
+``` mermaid
+flowchart TB
+ subgraph main["Fonction principale"]
+    direction TB
+        a1[["Générer listing"]]
+        astart(["Début"])
+        c1{"Listing
+    pré-existant ?"}
+        a5[["Chargement listing"]]
+        a4[["Sauvegarde listing"]]
+        a2[["Comparaison"]]
+        a3[["Sauvegarde comparaison"]]
+        aend(["Fin"])
+  end
+ subgraph genererListing["Générer listing"]
+    direction TB
+        bstart(["Début"])
+        b1["Lister éléments du dossier"]
+        b11{"Element restant ?"}
+        b10["Lire élément"]
+        b2{". ou .. ?"}
+        b3{"Est un dossier ?"}
+        b4["Récupérer date 
+        de dernière modification"]
+        b0[["Générer listing"]]
+        b5{"Est un fichier 
+        régulier ?"}
+        b6["Récupérer taille"]
+        b7[["Calculer checksum"]]
+        b8["Ajouter au listing"]
+        bend(["Fin"])
+  end
+    astart --> a1
+    a1 --> c1
+    c1 -- oui --> a5
+    c1 -- non --> a4
+    a5 --> a2
+    a2 --> a3
+    a3 --> a4
+    a4 --> aend
+    bstart --> b1
+    b1 --> b11
+    b11 -- oui --> b10
+    b11 -- non --> bend
+    b10 --> b2
+    b2 -- oui --> b11
+    b2 -- non --> b3
+    b3 -- oui --> b0
+    b3 -- non --> b5
+    b5 -- oui --> b4
+    b5 -- non --> b11
+    b4 --> b6
+    b6 --> b7
+    b7 --> b8
+    b8 --> b11
+```
 
 ## Ressources
 
