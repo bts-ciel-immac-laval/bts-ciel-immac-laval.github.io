@@ -279,9 +279,9 @@ flowchart TB
  subgraph genererListing["Générer listing"]
     direction TB
         bstart(["Début"])
-        b1["Lister éléments du dossier"]
+        b1["Ouvrir le dossier"]
+        b10["Lire élément suivant"]
         b11{"Element restant ?"}
-        b10["Lire élément"]
         b2{". ou .. ?"}
         b3{"Est un dossier ?"}
         b4["Récupérer date 
@@ -292,6 +292,7 @@ flowchart TB
         b6["Récupérer taille"]
         b7[["Calculer checksum"]]
         b8["Ajouter au listing"]
+        b9["Fermer le dossier"]
         bend(["Fin"])
   end
     astart --> a1
@@ -303,20 +304,21 @@ flowchart TB
     a3 --> a4
     a4 --> aend
     bstart --> b1
-    b1 --> b11
-    b11 -- oui --> b10
-    b11 -- non --> bend
-    b10 --> b2
-    b2 -- oui --> b11
+    b1 --> b10
+    b11 -- oui --> b2
+    b11 -- non --> b9
+    b10 --> b11
+    b2 -- oui --> b10
     b2 -- non --> b3
     b3 -- oui --> b0
     b3 -- non --> b5
     b5 -- oui --> b4
-    b5 -- non --> b11
+    b5 -- non --> b10
     b4 --> b6
     b6 --> b7
     b7 --> b8
-    b8 --> b11
+    b8 --> b10
+    b9 --> bend
 ```
 
 ## Ressources
