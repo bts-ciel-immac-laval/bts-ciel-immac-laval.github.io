@@ -12,6 +12,10 @@ icon: material/factory
 
 [:material-file-download: Télécharger la liste des compétences](../pdf/stage/bts_stage_competences.pdf){ .md-button .md-button--primary }
 
+## Pré-accord de stage
+
+[:material-file-download: Télécharger le pré-accord de stage](../pdf/stage/bts_stage_pre-accord.docx){ .md-button .md-button--primary }
+
 ## Attestation de stage
 
 [:material-file-download: Télécharger l'attestation de stage](../pdf/stage/bts_stage_attestation.docx){ .md-button .md-button--primary }
