@@ -321,6 +321,25 @@ flowchart TB
     b9 --> bend
 ```
 
+## Développement
+
+1.  Compléter les fonctions suivantes du fichier `charlie.c` à télécharger ci-dessous :
+
+    +   `sauvegarder_listing`
+
+    +   `charger_listing`
+
+    +   `comparer_checksum`
+
+    +   `exporter_differences`
+
+    [:material-file-download: Télécharger charlie.c](../files/bts1/charlie.c){ .md-button .md-button--primary }
+
+2.  Compléter le programme pour rendre le chemin d'accès du dossier de départ paramétrable en ligne de commande.
+
+3.  Implémenter la purge des anciens fichiers et la rendre paramétrable en ligne de commande.
+
+
 ## Ressources
 
 [:material-file-download: Télécharger dirent.h](../files/bts1/dirent.h){ .md-button .md-button--primary }
