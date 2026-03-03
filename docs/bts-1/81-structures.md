@@ -392,7 +392,57 @@ flowchart TB
 
     +   `comparer_checksum`
 
+    ```c
+    /**
+    * Comparaison de deux checksums
+    */
+    int comparer_checksum(uint8_t * a, uint8_t * b) {
+        // Les checksums sont des tableaux de 16 entiers
+        for (int i = 0; i < 16; i++) {
+            // Dès qu'il y a une différence, on renvoie faux.
+            if (a[i] != b[i]) {
+                return 0;
+            }
+        }
+        // Pas de différence ? On renvoie vrai.
+        return 1;
+    }
+    ```
+
     +   `exporter_differences`
+
+    ```c
+    /**
+     * Export des différences dans un fichier CSV
+     */
+    void exporter_differences(difference * listing, int taille) {
+
+        char nom_fichier[25] = "delta_yyyymmddhhiiss.csv";
+        time_t now_in_s = time(NULL);
+        struct tm * now = localtime(&now_in_s);
+        FILE * fichier = NULL;
+
+        // Génération du nom de fichier
+        sprintf(nom_fichier, "delta_%04d%02d%02d%02d%02d%02d.csv", now->tm_year + 1900, now->tm_mon + 1, now->tm_mday, now->tm_hour, now->tm_min, now->tm_sec);
+
+        // Ouverture du fichier en écriture texte (cette fois)
+        fichier = fopen(nom_fichier, "w");
+
+        // Contrôle
+        if (fichier == NULL) {
+            puts("ERREUR lors de l'export des différences...");
+            exit(-2);
+        }
+
+        // Ecriture
+        for (int i = 0; i < taille; i++) {
+            fprintf(fichier, "%c;%s;%s\n", listing[i].type, listing[i].chemin, listing[i].date);
+        }
+
+        // Fermeture du fichier
+        fclose(fichier);
+    }
+    ```
 
     [:material-file-download: Télécharger charlie.c](../files/bts1/charlie.c){ .md-button .md-button--primary }
 
