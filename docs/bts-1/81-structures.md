@@ -327,7 +327,68 @@ flowchart TB
 
     +   `sauvegarder_listing`
 
+    ```c
+    /**
+     * Sauvegarde du listing dans un fichier binaire
+     */
+    void sauvegarder_listing(fichier * listing, int taille) {
+
+        char nom_fichier[28] = "listing_yyyymmddhhiiss.data";
+        time_t now_in_s = time(NULL);
+        struct tm * now = localtime(&now_in_s);
+        FILE * fichier = NULL;
+
+        // Génération du nom de fichier
+        sprintf(nom_fichier, "listing_%04d%02d%02d%02d%02d%02d.data", now->tm_year + 1900, now->tm_mon + 1, now->tm_mday, now->tm_hour, now->tm_min, now->tm_sec);
+
+        // Ouverture du fichier en écriture binaire "wb"
+        fichier = fopen(nom_fichier, "wb");
+        
+        // Contrôle habituel
+        if (fichier == NULL) {
+            puts("ERREUR lors de la sauvegarde du listing");
+            exit(-1);
+        }
+
+        // On sauvegarde dans le fichier en première place le nombre d'éléments qui va suivre
+        fwrite(&taille, sizeof(int), 1, fichier);
+
+        // Puis on copie le listing dans le fichier
+        fwrite(listing, sizeof(struct fichier), taille, fichier);
+        
+        // Fermeture
+        fclose(fichier);
+    }
+    ```
+
     +   `charger_listing`
+
+    ```c
+    /**
+     * Chargement d'un listing
+     */
+    void charger_listing(char * chemin, fichier * listing, int * taille) {
+        
+        FILE * fichier = NULL;
+
+        // Ouverture du fichier en lecture binaire "wb"
+        fichier = fopen(chemin, "rb");
+        
+        // Contrôle habituel
+        if (fichier == NULL) {
+            puts("ERREUR lors de la lecture du listing");
+            exit(-1);
+        }
+
+        // Lecture du nombre d'éléments à lire
+        fread(taille, sizeof(int), 1, fichier);
+
+        // Chargement du listing en une fois grâce à la taille lue au préalable
+        fread(listing, sizeof(struct fichier), *taille, fichier);
+        
+        // Fermeture du fichier
+        fclose(fichier);
+    }
 
     +   `comparer_checksum`
 
