@@ -450,6 +450,8 @@ flowchart TB
 
 3.  Implémenter la purge des anciens fichiers et la rendre paramétrable en ligne de commande.
 
+    [:material-file-download: Télécharger charlie.c](../files/bts1/charlie_2.c){ .md-button .md-button--primary }
+
 
 ## Ressources
 
