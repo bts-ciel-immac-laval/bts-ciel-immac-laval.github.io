@@ -533,25 +533,3 @@ int main() {
 ## Exercice bonus
 
 Créer un programme qui reproduit le fonctionnement du site : https://estcequecestbientotleweekend.fr/
-
-## Projet
-
-![pirate](../images/illustration/pirate.jpg){ align=right }
-
-Lorsqu'un pirate s'introduit dans un serveur hébergeant un (ou des) site(s) web, son objectif n'est pas de "détruire" le serveur, mais d'y ajouter des scripts (ou de modifier des scripts existants) pour nuire à l'activité du site web (en diffusant de la propagande par exemple...).
-
-En supplément de mesures anti-intusion, on vous demande de développer un programme capable de comparer l'état d'un dossier entre deux exécutions.
-
-Le programme doit fournir une liste des fichiers ajoutés, modifiés ou supprimés depuis la précédente exécution du programme.
-
-Pour éviter les faux positifs, on créera une liste d'exclusion.
-
-Optionnellement, le programme gèrera son historique de rapport en le purgeant régulièrement (durée de rétention paramétrable).
-
-### Analyse / Conception
-
-![wip](../images/meme/loading-02.gif)
-
-### Ressources
-
-[:material-file-download: Télécharger dirent.h](../files/bts1/dirent.h){ .md-button .md-button--primary }
