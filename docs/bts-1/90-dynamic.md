@@ -17,21 +17,54 @@ Afin de réaliser la saisie une chaîne de caractères, on désire allouer dynam
 3. avec la fonction `realloc`
 
 ??? success "Solution"
-
-    ![waiting...](../images/meme/looking-john.gif)
     
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main() {
+        char * texte = NULL;
+
+        texte = (char *) malloc(25 * sizeof(char));
+        // texte = (char *) calloc(25, sizeof(char));
+        // texte = (char *) realloc(NULL, 25 * sizeof(char));
+        if (texte != NULL) {
+            strcpy(texte, "hello, world!");
+            printf("%p %s\n", texte, texte);
+            free(texte);
+        }
+        
+        return 0;
+    }
     ```
 
 Refaire l’exercice avec un tableau de 100 `float`.
 
 ??? success "Solution"
 
-    ![waiting...](../images/meme/waiting-alice.gif)
-
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        float * tab = NULL;
+
+        tab = (float *) malloc(100 * sizeof(float));
+        // tab = (float *) calloc(100, sizeof(float));
+        // tab = (float *) realloc(NULL, 100 * sizeof(float));
+        if (tab != NULL) {
+            for (int i = 0; i < 100; i++) {
+                tab[i] = i * 0.01;
+            }
+            for (int i = 0; i < 100; i++) {
+                printf("%.2f\n", *(tab + i));
+            }
+            free(tab);
+        }
+        
+        return 0;
+    }
     ```
 
 ## Exercice 2
@@ -53,7 +86,42 @@ Ecrire un programme permettant de saisir un tableau de nombres décimaux. Ce pro
     ![waiting...](../images/meme/waiting-sonic.gif)
 
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+        float * tab = NULL;
+        int nb = 0;
+
+        // 1. Demandera de saisir la taille n du tableau.
+        printf("Nombre d'elements : ");
+        scanf("%d", &nb);
+
+        // 2. Allouera la mémoire nécessaire avec la fonction adaptée (penser à gérer le cas ou l’allocation s’avère impossible à effectuer).
+        tab = (float *) calloc(nb, sizeof(float));
+        if (tab == NULL) {
+            puts("Erreur d'allocation dynamique.");
+            return -1;
+        }
+
+        // 3. Effectuera la saisie des n éléments du tableau.
+        for (int i = 0; i < nb; i++) {
+            printf("#%02d : ", i + 1);
+            scanf("%f", tab + i);
+        }
+
+        // 4. Affichera le tableau.
+        printf("Voici les elements saisis\n[ ");
+        for (int i = 0; i < nb; i++) {
+            printf("%.2f ", tab[i]);
+        }
+        printf("]");
+
+        // 5. Libèrera l’espace mémoire alloué.
+        free(tab);
+        
+        return 0;
+    }
     ```
 
 ## Exercice 3
