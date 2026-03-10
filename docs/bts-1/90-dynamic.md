@@ -137,7 +137,46 @@ On veut pouvoir saisir un tableau d’entiers. Le nombre d’entiers à saisir n
     ![waiting...](../images/meme/waiting-kid.gif)
 
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    int main() {
+        char input[12] = "";
+        int * tab = NULL, taille = 0;
+
+        system("chcp 65001");
+        system("cls");
+
+        puts("Saisir des entiers.");
+        puts("Saisie vide = arrêt.");
+        do {
+            printf("#%02d : ", taille + 1);
+            // gets indispensable pour supporter la saisie vide
+            gets(input);
+            // Si la saisie n'est pas vide
+            if (strcmp(input, "") != 0) {
+                // On agrandit le tableau
+                tab = (int *) realloc(tab, (taille + 1) * sizeof(int));
+                // On ajoute l'élément
+                tab[taille] = atoi(input);
+                // On agrandit la taille
+                taille++;
+            }
+        }
+        while(strcmp(input, "") != 0);
+
+        printf("\nValeurs saisies : ");
+        for (int i = 0; i < taille; i++) {
+            printf("%d ", tab[i]);
+        }
+
+        printf("\nTaille du tableau : %d octets", taille * sizeof(int));
+
+        free(tab);
+        
+        return 0;
+    }
     ```
 
 ## Exercice 4
