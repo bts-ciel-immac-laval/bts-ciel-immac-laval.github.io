@@ -83,8 +83,6 @@ Ecrire un programme permettant de saisir un tableau de nombres décimaux. Ce pro
 
 ??? success "Solution"
 
-    ![waiting...](../images/meme/waiting-sonic.gif)
-
     ```c
     #include <stdio.h>
     #include <stdlib.h>
@@ -133,8 +131,6 @@ On veut pouvoir saisir un tableau d’entiers. Le nombre d’entiers à saisir n
 +   Le programme affichera également la taille mémoire allouée.
 
 ??? success "Solution"
-
-    ![waiting...](../images/meme/waiting-kid.gif)
 
     ```c
     #include <stdio.h>
