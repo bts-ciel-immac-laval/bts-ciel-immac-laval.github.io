@@ -187,8 +187,69 @@ Le programme sauvegardera les chaînes saisies dans un fichier texte horodaté a
 
 ??? success "Solution"
 
-    ![waiting...](../images/meme/waiting-barney.gif)
-
     ```c
-    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #include <time.h>
+
+    int main() {
+        char input[128] = "";
+        char ** texte = NULL;
+        int nb_lignes = 0;
+        time_t now;
+        struct tm tm_now;
+        char nom_fichier[20];
+        FILE * fichier;
+
+        do {
+            // Saisie
+            printf("> ");
+            fgets(input, 127, stdin);
+
+            // Si la chaîne n'est pas vide
+            if (input[0] != '\n') {
+                nb_lignes++;
+                
+                // Ajouter une case dans le texte
+                texte = (char **) realloc(texte, nb_lignes * sizeof(char *));
+                if (texte == NULL) {
+                    puts("Erreur d'allocation...");
+                    return -1;
+                }
+                
+                // Réserver un espace dans le tas pour stocker input
+                texte[nb_lignes - 1] = (char *) calloc(strlen(input) + 1, sizeof(char));
+                if (texte[nb_lignes - 1] == NULL) {
+                    puts("Erreur d'allocation...");
+                    return -2;
+                }
+
+                // Copier input dans l'espace
+                strcpy(texte[nb_lignes - 1], input);
+            }
+        } while(input[0] != '\n');
+
+        // Sauvegarde dans un fichier texte horodaté
+        now = time(NULL);
+        tm_now = *localtime(&now);
+        sprintf(nom_fichier, "%04d%02d%02d%02d%02d%02d.txt", tm_now.tm_year + 1900, tm_now.tm_mon + 1, tm_now.tm_mday, tm_now.tm_hour, tm_now.tm_min, tm_now.tm_sec);
+        fichier = fopen(nom_fichier, "w");
+        if (fichier == NULL) {
+            puts("Erreur à l'ouverture du fichier...");
+            return -3;
+        }
+        
+        for (int i = 0; i < nb_lignes; i++) {
+            // Ecriture de la ligne
+            fprintf(fichier, texte[i]);
+
+            // Libération de la mémoire
+            free(texte[i]);
+        }
+        fclose(fichier);
+        free(texte);
+
+        return 0;
+    }
     ```
