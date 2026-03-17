@@ -452,6 +452,11 @@ flowchart TB
 
     [:material-file-download: Télécharger charlie.c](../files/bts1/charlie_2.c){ .md-button .md-button--primary }
 
+4.  Implémenter l'allocation dynamique pour une meilleure gestion de la mémoire.
+
+## Résultat final
+
+[:material-file-download: Télécharger la version finale du programme](../files/bts1/charlie_final.c){ .md-button .md-button--primary }
 
 ## Ressources
 
