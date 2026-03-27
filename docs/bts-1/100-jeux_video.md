@@ -45,4 +45,23 @@
 
 ## Projet
 
+Créer un jeu simple mais fonctionnel (serpent, pong, memory...).
+
+## Evaluation (03/04/2026)
+
++ Oral de 5 minutes pour présenter le jeu, son fonctionnement et expliquer le développement (difficultés, solutions, astuces) avec support de présentation (pptx, odp, pdf...)
+
++ Démonstration - 5 minutes
+
++ Questions/réponses - 5 minutes
+
+> Déposer les fichiers du projet regroupés dans une archive Zip dans le cahier de texte à la date du 03/04/2026
+
+Critères d'évaluation :
+
++ Jouabilité ~ un jeu qui ne marche pas ne sera pas évalué ~
++ Originalité / Créativité / Complexité
++ Qualité du code
++ Oral (Respect des consignes / Présentation / Mode d'emploi
+
 ![labyrinthe](../images/illustration/labyrinthe.gif)
