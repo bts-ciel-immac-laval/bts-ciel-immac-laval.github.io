@@ -32,7 +32,17 @@ Ecrire un programme en C++ qui affiche `hello, world!`
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    int main() {
+        cout << "hello, world!" << endl;
+
+        return 0;
+    }
+    ```
 
 ## Exercice 1
 
@@ -60,11 +70,33 @@ Il refusera les valeurs négatives et s'arrêtera si on lui fournit 0.
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```cpp
+    #include <iostream>
+    #include <cmath>
+
+    using namespace std;
+
+    int main() {
+        cout << "Saisir des nombres positifs (0 pour arreter) :" << endl;
+        int saisie;
+        do {
+            cout << "> ";
+            cin >> saisie;
+            if (saisie < 0) {
+                cout << "Saisir des nombres positifs !" << endl;
+            } 
+            else if (saisie > 0) {
+                cout << "= " << sqrt(saisie) << endl;
+            }
+        } while (saisie != 0);
+
+        return 0;
+    }
+    ```
 
 ## Exercice 2
 
-Ecrire deux fonctions de swap utilisant :
+Ecrire deux fonctions de swap, nommées `echanger` (parce que le cpp fournit une fonction nommée `swap`), utilisant :
 
 1. le passage par adresse
 2. le passage par référence
@@ -77,7 +109,41 @@ et le programme principal de test les utilisant en C++.
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    void afficher(int a, int b);
+    void echanger(int * a, int * b);
+    void echanger(int & a, int & b);
+
+    int main() {
+        int n = 13, p = 42;
+        afficher(n, p);
+        echanger(&n, &p);
+        afficher(n, p);
+        echanger(n, p);
+        afficher(n, p);
+        return 0;
+    }
+
+    void afficher(int a, int b) {
+        cout << a << ", " << b << endl;
+    }
+
+    void echanger(int * a, int * b) {
+        int c = *a;
+        *a = *b;
+        *b = c;
+    }
+
+    void echanger(int & a, int & b) {
+        int c = a;
+        a = b;
+        b = c;
+    }
+    ```
 
 ## Exercice 3
 
