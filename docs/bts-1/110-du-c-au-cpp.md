@@ -159,7 +159,25 @@ Ecrire un programme de test.
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    int secondes(int h, int m = 0, int s = 0);
+
+    int main() {
+        cout << secondes(3, 27, 54) << endl;
+        cout << secondes(3, 27) << endl;
+        cout << secondes(3) << endl;
+
+        return 0;
+    }
+
+    int secondes(int h, int m, int s) {
+        return h * 3600 + m * 60 + s;
+    }
+    ```
 
 ## Exercice 4
 
