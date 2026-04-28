@@ -315,6 +315,85 @@ Valeurs saisie : 23, 675, -33
     
     Rendre le nombre d’éléments et le type de tableau paramétrable via la ligne de commande.
 
+    ??? success "Correction"
+
+        ```cpp
+        #include <iostream>
+        #include <string>
+
+        using namespace std;
+
+        void saisieTableau(int * tab,  int taille);
+        // Surdéfinition :
+        void saisieTableau(char * tab, int taille);
+
+        int main(int argc, char ** argv) {
+            system("chcp 65001");
+            system("cls");
+
+            if (argc != 3) {
+                cout << "Erreur : exo5.exe [type (int|char)] [nombre d'éléments (> 0)]";
+                return -1;
+            }
+
+            int count = atoi(argv[2]);
+            if (count <= 0) {
+                cout << "Erreur : le nombre d'éléments doit être supérieur à 0.";
+                return -2;
+            }
+
+            string type = argv[1];
+
+            if (type == "int") {
+                int * tab = new int[count];
+                saisieTableau(tab, count);
+                delete [] tab;
+            }
+            else {
+                char * tab = new char[count];
+                saisieTableau(tab, count);
+                delete [] tab;
+            }
+
+            return 0;
+        }
+
+        void saisieTableau(int * tab,  int taille) {
+            // Saisie
+            printf("Saisie de %d entiers :\n", taille);
+            for (int i = 0; i < taille; i ++) {
+                printf("> ");
+                scanf("%d", tab + i);
+            }
+            scanf("%c");
+
+            // Affichage
+            printf("\nAffichage des entiers saisis :\n");
+            for (int i = 0; i < taille; i ++) {
+                printf("%d ", tab[i]);
+            }
+            printf("\n");
+        }
+
+        void saisieTableau(char * tab, int taille) {
+            // Saisie
+            printf("Saisie de %d caracteres :\n", taille);
+            char input[2];
+            for (int i = 0; i < taille; i ++) {
+                printf("> ");
+                gets(input);
+                sscanf(input, "%c", tab + i);
+            }
+
+            // Affichage
+            printf("\nAffichage des caracteres saisis :\n");
+            for (int i = 0; i < taille; i ++) {
+                printf("%c ", tab[i]);
+            }
+            printf("\n");
+        }
+        ```
+
 ## Exercice 6
 
 Migrer le programme en C suivant en C++ en utilisant les nouvelles possibilités du langage
@@ -347,13 +426,52 @@ int main () {
 }
 ```
 
-??? success "Correction"
-
-    ![waiting](../images/meme/waiting-kid.gif)
-
 ??? danger "Aller plus loin"
     
     Déplacer le code de remplissage de la personne dans une fonction `saisiePersonne`.
+
+??? success "Correction"
+
+    ```cpp
+    #include <iostream>
+    #include <string>
+    #include <vector>
+
+    using namespace std;
+
+    struct Personne
+    {
+        string nom;
+        int age;
+    };
+
+    Personne saisiePersonne(int i);
+
+    int main () {
+        vector<Personne> p;
+
+        system("chcp 65001");
+        system("cls");
+
+        // Saisie des 3 personnes
+        for (int i = 0; i < 3; i++) {
+            p.push_back(saisiePersonne(i));
+        }
+        
+        printf("\n%d personnes ont ete saisies\n", p.size());
+
+        return 0;
+    }
+
+    Personne saisiePersonne(int i) {
+        Personne p;
+        cout << "Saisir le nom de la personne n°" << i + 1 << " : ";
+        cin >> p.nom;
+        cout << "Saisir l'age de la personne n°" << i + 1 << " : ";
+        cin >> p.age;
+        return p;
+    }
+    ```
 
 ## Exercices ++
 
@@ -376,7 +494,32 @@ Le nombre d'étages est donné par l'utilisateur.
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    main() {
+        int l;
+        
+        do {
+            cout << "nombre d'étages : ";
+            cin >> l;
+        } while (l < 1);
+        
+        cout << '\n';
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < l - i + 1; j++) {
+                cout << ' ';
+            }
+            for (int j = 0; j < 2 * i + 1; j++) {
+                cout << '*';
+            }
+            cout << '\n';
+        }
+        cout << string(l + 1, ' ') << '*';
+    }
+    ```
 
 ### Exercice 8
 
@@ -399,7 +542,35 @@ Afficher les tables de multiplications de 1 à 10 sous la forme suivante :
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```cpp
+    #include <iostream>
+    #include <iomanip>
+
+    using namespace std;
+
+    int main()
+    {
+        int i, j;
+
+        // En-têtes
+        cout << "     |";
+        for (j = 1; j <= 10; j++) {
+            cout << setw(4) << j;
+        }
+        cout << "\n------";
+        for (j = 1; j <= 10; j++) {
+            cout << "----";
+        }
+
+        // Lignes
+        for (i = 1; i <= 10; i++) {
+            cout << '\n' << setw(3) << i << "  |";
+            for (j = 1; j <= 10; j++) {
+                cout << setw(4) << i * j;
+            }
+        }
+    }
+    ```
 
 ??? danger "Aller plus loin"
     
