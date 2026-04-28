@@ -210,7 +210,16 @@ int main () {
 
 ??? success "Correction"
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    ```output
+    fct (n);    // Correct, appel de la fonction A
+    fct (x);    // Correct, appel de la fonction B
+    fct (n,x);  // Correct, appel de la fonction C
+    fct (x,n);  // Correct, appel de la fonction D
+    fct (c);    // Correct, appel de la fonction A, conversion implicite de char en int
+    fct (n,p);  // Incorrect, conflit entre C et D
+    fct (n,c);  // Incorrect, conflit entre C et D 
+    fct (n,z);  // Correct, appel de la fonction C, conversion implicite de double en float
+    ```
 
 ## Exercice 5
 
@@ -243,8 +252,64 @@ Valeurs saisie : 23, 675, -33
     ```
 
 ??? success "Correction"
+    
+    ```cpp
+    #include <iostream>
 
-    ![waiting](../images/meme/waiting-kid.gif)
+    using namespace std;
+
+    void saisieTableau(int * tab,  int taille);
+    // Surdéfinition :
+    void saisieTableau(char * tab, int taille);
+
+    int main() {
+        
+        int tabInt[3];
+        char tabChar[5];
+
+        saisieTableau(tabInt, 3);
+        
+        // Ici c'est la surdéfinition qui est appelée :
+        saisieTableau(tabChar, 5);
+
+        return 0;
+    }
+
+    void saisieTableau(int * tab,  int taille) {
+        // Saisie
+        printf("Saisie de %d entiers :\n", taille);
+        for (int i = 0; i < taille; i ++) {
+            printf("> ");
+            scanf("%d", tab + i);
+        }
+        scanf("%c");
+
+        // Affichage
+        printf("\nAffichage des entiers saisis :\n");
+        for (int i = 0; i < taille; i ++) {
+            printf("%d ", tab[i]);
+        }
+        printf("\n");
+    }
+
+    void saisieTableau(char * tab, int taille) {
+        // Saisie
+        printf("Saisie de %d caracteres :\n", taille);
+        char input[2];
+        for (int i = 0; i < taille; i ++) {
+            printf("> ");
+            gets(input);
+            sscanf(input, "%c", tab + i);
+        }
+
+        // Affichage
+        printf("\nAffichage des caracteres saisis :\n");
+        for (int i = 0; i < taille; i ++) {
+            printf("%c ", tab[i]);
+        }
+        printf("\n");
+    }
+    ```
     
 ??? danger "Aller plus loin"
     
@@ -276,7 +341,7 @@ int main () {
         scanf("%d", &p[i].age);
         nbpers++;
     }
-    printf("\\n%d personnes ont ete saisies\\n", nbpers);
+    printf("\n%d personnes ont ete saisies\n", nbpers);
 
     return 0;
 }
