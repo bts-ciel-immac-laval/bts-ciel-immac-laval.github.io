@@ -14,7 +14,7 @@ Créer un programme en C++ qui utilise la classe des chaînes de caractères [`s
 
     +   Lui concaténer la chaîne `", world!"` (2 manières : méthode ou opérateur) ;
 
-    +   Afficher la sous-chaîne du 2ème au 5ème caractères (2 manières : méthode ou algorithmique) ;
+    +   Afficher la sous-chaîne du 2ème au 5ème caractère (2 manières : méthode ou algorithmique) ;
 
     +   Remplacer `"hello"` par `"bonjour"` en utilisant une méthode.
 
@@ -25,6 +25,79 @@ Créer un programme en C++ qui utilise la classe des chaînes de caractères [`s
     +   Si `input` contient au moins 3 lettres à suivre `'l'`, afficher `"boooooooooooooonjour"`.
 
     +   Créer une fonction `app::cleanNum` qui efface les caractères numériques de la chaîne qui lui est passée en paramètre. La tester avec la saisie de l'utilisateur.
+
+??? success "Solution"
+
+    ```cpp
+    #include <iostream>
+    #include <string>
+
+    // Nouveau namespace
+    namespace app {
+        // Fonction avec passage par référence pour modifier l'objet envoyé et que
+        // la modification soit effective dans la fonction appelante.
+        void cleanNum(std::string & s) {
+            // Parcours en partant de la fin pour éviter de sauter des caractères lors
+            // des suppressions.
+            for (int i = s.size(); i >= 0 ; i--) {
+                if (s[i] >= '0' && s[i] <= '9') {
+                    s.erase(i, 1);
+                }
+            }
+        }
+    }
+
+    int main() {
+
+        std::string hw;
+        hw = "hello";                               // Affectation
+
+        std::cout << hw << "\n";
+        std::cout << hw.size() << "\n";             // Taille
+
+                                                    // Concaténation
+        hw.append(", world!");                      // Manière 1 avec une méthode
+        // hw += ", world!";                        // Manière 2 avec un opérateur
+
+        std::cout << hw << "\n";
+
+                                                    // Sous-chaine
+        std::cout << hw.substr(1, 4) << "\n";       // 1 avec une méthode
+        
+        for (int i = 1; i < 5; i++) {               // 2 algorithmiquement
+            std::cout << hw[i]; // ou hw.at(i)
+        }
+        std::cout << "\n";
+
+        hw.replace(hw.find("hello"), 5, "bonjour"); // Recherche et remplacement
+        std::cout << hw << "\n";
+
+        std::string input;
+
+        do {
+            std::cout << "> ";
+            std::cin >> input;
+                                                    // Comparaison
+            if (input == "hello") {                 // en utilisant l'opérateur ==
+            // if (input.compare("hello") == 0) {   // en utilisant une méthode
+                std::cout << "bonjour\n";
+            }
+
+            // Recherche d'une sous-chaine
+            else if (input.find("lll") != std::string::npos) {
+                                        // ↑ valeur renvoyée si la sous-chaîne n'est pas trouvée
+                std::cout << "boooooooooooooonjour\n";
+            }
+
+            // Appel de cleanNum()
+            app::cleanNum(input);
+            std::cout << input << "\n";
+
+        } while (input != "quit");
+        
+        return 0;
+    }
+    ```
 
 
 ## Exercice 2
@@ -55,30 +128,7 @@ Créer un programme en C++ qui utilise la classe des listes/tableaux [`std::vect
 
     +   Vider `tab2`
 
-## Exercice 3
+??? success "Solution"
 
-![range](../images/illustration/range.jpg)
+    ![Waiiit !](../images/meme/loading-03.gif)
 
-> Concevoir, créer une classe et l'utiliser
-
-### Besoin
-
-On souhaite créer des variables pouvant contenir un entier dont la valeur est bornée entre une valeur minimale et maximale.
-
-Une fois créée, la variable ne peut être qu'incrémenter ou décrémenter de 1.
-
-Si une borne est atteinte, on ne peut pas la dépasser :
-
-+   Incrémenter une variable qui a atteint la borne maximale n'a pas d'effet,
-
-+   Décrémenter une variable qui a atteint la borne minimale n'a pas d'effet.
-
-A tout moment, on pourra récupérer la valeur et la réinitialiser à sa valeur de départ.
-
-On pourra également récupérer les valeurs maximales et minimales atteintes jusque-là.
-
-### Travail
-
-Concevoir, réaliser le diagramme de classe et développer en C++ la classe `IntRange` répondant au besoin décrit ci-dessus.
-
-Réaliser un programme de test en C++ démontrant l'adéquation de la classe au besoin.
