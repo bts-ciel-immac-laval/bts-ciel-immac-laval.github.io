@@ -54,3 +54,31 @@ Créer un programme en C++ qui utilise la classe des listes/tableaux [`std::vect
     +   Echanger le contenu de `tab1` et `tab2`
 
     +   Vider `tab2`
+
+## Exercice 3
+
+![range](../images/illustration/range.jpg)
+
+> Concevoir, créer une classe et l'utiliser
+
+### Besoin
+
+On souhaite créer des variables pouvant contenir un entier dont la valeur est bornée entre une valeur minimale et maximale.
+
+Une fois créée, la variable ne peut être qu'incrémenter ou décrémenter de 1.
+
+Si une borne est atteinte, on ne peut pas la dépasser :
+
++   Incrémenter une variable qui a atteint la borne maximale n'a pas d'effet,
+
++   Décrémenter une variable qui a atteint la borne minimale n'a pas d'effet.
+
+A tout moment, on pourra récupérer la valeur et la réinitialiser à sa valeur de départ.
+
+On pourra également récupérer les valeurs maximales et minimales atteintes jusque-là.
+
+### Travail
+
+Concevoir, réaliser le diagramme de classe et développer en C++ la classe `IntRange` répondant au besoin décrit ci-dessus.
+
+Réaliser un programme de test en C++ démontrant l'adéquation de la classe au besoin.
