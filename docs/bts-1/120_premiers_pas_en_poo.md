@@ -2,6 +2,8 @@
 
 ## Exercice 1
 
+![string](../images/illustration/string.jpg)
+
 > Utiliser une classe
 
 Créer un programme en C++ qui utilise la classe des chaînes de caractères [`std::string`](https://cplusplus.com/reference/string/string/){target="_blank"} :
@@ -26,6 +28,8 @@ Créer un programme en C++ qui utilise la classe des chaînes de caractères [`s
 
 
 ## Exercice 2
+
+![grids](../images/illustration/grids.jpg)
 
 > Utiliser une classe
 
