@@ -240,7 +240,7 @@ Concevoir (1) la classe `IntRange` répondant au besoin décrit ci-dessus, réal
     
     Un bon point de départ est d'imaginer un programme utilisant la classe.
 
-2.  Réaliser un programme de test en C++ démontrant l'adéquation de la classe au besoin.
+Réaliser un programme de test en C++ démontrant l'adéquation de la classe au besoin.
 
 ??? success "Solution"
 
