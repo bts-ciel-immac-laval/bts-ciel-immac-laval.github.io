@@ -209,6 +209,10 @@ Créer un programme en C++ qui utilise la classe des listes/tableaux [`std::vect
     }
     ```
 
+## Cours
+
+![cours](../pdf/cours/bts1/bts1_2526_01_introduction-a-la-poo.pdf)
+
 ## Exercice 3
 
 ![range](../images/illustration/range.jpg)
@@ -244,4 +248,23 @@ Réaliser un programme de test en C++ démontrant l'adéquation de la classe au 
 
 ??? success "Solution"
 
-    ![Waiiit !](../images/meme/loading-04.gif)
+    Le diagramme de classe répondant au besoin :
+
+    ``` mermaid
+    classDiagram
+        class IntRange {
+            - valeur : int
+            - bmin : int
+            - bmax : int
+            - vmin : int
+            - vmax : int
+            - vdepart : int
+            + IntRange(bmin : int, bmax : int, vdepart : int)
+            + incrementer() void
+            + decrementer() void
+            + reinitialiser() void
+            + getValeur() int
+            + getVMin() int
+            + getVMax() int
+        }
+    ```
