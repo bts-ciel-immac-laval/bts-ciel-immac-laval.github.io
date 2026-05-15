@@ -186,7 +186,7 @@ Créer un programme en C++ qui utilise la classe des listes/tableaux [`std::vect
 
         // Utilisation d'un constructeur pour initialiser le tableau
         std::vector<int> tab2(10, 3);
-                            // ↑ valeur par défaut
+                            //    ↑ valeur par défaut
                             // ↑ nombre d'éléments
 
         app::print(tab2);
