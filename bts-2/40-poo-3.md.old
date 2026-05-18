@@ -1,0 +1,1116 @@
+# 04 - POO ++
+
+## Constructeur par recopie
+
+![Constructeur par recopie](../pdf/cours/bts2/bts2_03_constructeur_recopie.pdf)
+
+### Exercice 0
+
+Compléter la classe `Tab` suivante permettant de gérer un tableau d’entiers en allocation dynamique et présentant un bug lors de son utilisation  dans le fichier exo.cpp à la ligne 17.
+    
+```cpp
+// Tab.h
+#ifndef TAB_H
+#define TAB_H
+class Tab {
+    private :
+        int count;
+        int * first;
+    public :
+        Tab(int);
+        ~Tab();
+        void insert(int, int);
+        int get(int);
+        void display();
+};
+#endif
+```
+
+```cpp
+// Tab.cpp
+#include "Tab.h"
+#include <iostream>
+
+Tab::Tab(int _count) {
+    count = _count;
+    first = new int[count]{0};
+}
+
+Tab::~Tab() {
+    delete [] first;
+}
+
+void Tab::insert(int i, int value) {
+    if (i >= 0 && i < count) {
+        first[i] = value;
+    }
+}
+
+int Tab::get(int i) {
+    if (i >= 0 && i < count) {
+        return first[i];
+    }
+    throw "Indice hors-limite !";
+}
+
+void Tab::display(){
+    std::cout << "[ ";
+    for (int i = 0; i < count; i++) {
+        std::cout << first[i] << (i < count - 1 ? ", " : "" );
+    }
+    std::cout << " ]\n";
+}
+```
+
+```cpp  linenums="1"
+// exo0.cpp
+#include "Tab.h"
+
+int main() {
+    Tab t1(10);
+
+    t1.display();
+    t1.insert(3, 45);
+    t1.insert(7, -89053);
+    t1.display();
+    std::cout << "t1[3] : " << t1.get(3) << std::endl;
+
+    Tab t2 = t1;
+    t2.display();
+    t2.insert(6, 78);
+    t2.display();
+    t1.display(); // 😱
+
+    return 0;
+}
+```
+    
+??? success "Solution"
+    
+    ```cpp
+    // Tab.h
+    #ifndef TAB_H
+    #define TAB_H
+    class Tab {
+        private :
+            int count;
+            int * first;
+        public :
+            Tab(int);
+            Tab(Tab &); // <- Déclaration du constructeur par recopie
+            ~Tab();
+            void insert(int, int);
+            int get(int);
+            void display();
+    };
+    #endif
+    ```
+
+    Ajouter dans 'Tab.cpp' :
+    
+    ```cpp
+    // Définition du constructeur par recopie
+    Tab::Tab(Tab & t) {
+        count = t.count;
+        first = new int[count]{0};
+        for (int i = 0; i < count; i++) {
+            first[i] = t.first[i];
+        }
+    }
+    ```
+
+### Exercice 1
+
+Soit le programme suivant :
+
+```cpp
+#include "Truc.h"
+
+void fonction (Truc a) {
+	// Ne se passe-t-il vraiment rien ici 🤔
+}
+
+int main() {
+    Truc x;
+    Truc y = x;
+    fonction(y);
+    cout << "Bonjour !" << endl;
+}
+```
+
+Créer la classe `Truc` de manière à ce que le programme ci-dessus fournisse le résultat suivant :
+
+```
+> ./exo1.exe
+Création d'un truc
+Copie d'un truc
+Copie d'un truc
+Destruction d'un truc
+Bonjour !
+Destruction d'un truc
+Destruction d'un truc
+```
+
+??? success "Solution"
+    
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    class Truc {
+        public:
+            Truc() {
+                cout << "Création d'un truc" << endl;
+            }
+            Truc(Truc & t) {
+                cout << "Copie d'un truc" << endl;
+            }
+            ~Truc() {
+                cout << "Destruction d'un truc" << endl;
+            }
+    };
+    ```
+
+### Exercice 2
+
+!!! danger "A faire sur papier !"
+
+Que va afficher le programme suivant ?
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Point {
+    private:
+        int x, y;
+    public:
+        Point(int abs = 1, int ord = 0) {
+            x = abs;
+            y = ord;
+            cout << "C : " << x << ", " << y << endl;
+        };
+        Point(Point &);
+        ~Point();
+};
+
+Point::Point(Point & d) {
+    cout << "R : " << d.x << ", " << d.y << endl;
+    x = d.x;
+    y = d.y;
+}
+
+Point::~Point() {
+    cout << "D !"<< endl;
+}
+
+void fct (Point, Point *);
+
+int main() {
+    cout << "Début main" << endl;
+    Point a;
+    Point c = a;
+    Point *adr = new Point (3, 3);
+    fct(a, adr);
+    c = Point(5, 5);
+    cout << "Fin main" << endl;
+}
+
+void fct (Point d, Point * add) {
+    cout << "Entrée fct" << endl;
+    delete add;
+    cout << "Sortie fct" << endl;
+}
+```
+
+??? success "Solution"
+
+    ```cpp
+    Début main
+    C : 1, 0    // (1)!
+    R : 1, 0    // (2)!
+    C : 3, 3    // (3)!
+    R : 1, 0    // (4)!
+    Entrée fct
+    D !         // (5)!
+    Sortie fct
+    D !         // (6)!
+    C : 5, 5    // (7)!
+    D !         // (8)!
+    Fin main
+    D !         // (9)!
+    D !         // (10)!
+    ```
+
+    1.  Création de a
+    2.  Recopie de a dans c
+    3.  Création du point dans le tas
+    4.  Recopie de a dans le paramètre d (passage par valeur)
+    5.  Destruction du point créé dans le tas
+    6.  Destruction de d
+    7.  Création du point éphémère avant affectation dans c
+    8.  Destruction du point éphémère
+    9.  Destruction de c
+    10. Destruction de a
+
+## Surdéfinition d'opérateur
+
+![Surdéfinition d'opérateur](../pdf/cours/bts2/bts2_04_surdefinition_operateurs.pdf)
+
+### Exercice 3
+
+Soit une classe Vecteur3d :
+
+```cpp
+class Vecteur3d {
+    private:
+        float x, y, z;
+    public:
+        Vecteur3d (int _x = 0, int _y = 0, int _z = 0) {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+};
+```
+
+1.  Surdéfinir l'opérateur == en utilisant une fonction membre inline.
+    
+    Deux `Vecteur3D` sont égaux si leurs coordonnées sont respectivement égales.
+    
+2.  Surdéfinir l'opérateur != en utilisant une fonction membre inline.
+    
+    !!! danger "Trouver un moyen "malin" ne pas utiliser les attributs x, y, z pour la surcharge de l'opérateur !=."
+
+3.  Créer un programme de test.
+
+??? success "Solution"
+
+    ```cpp
+    #include <iostream>
+
+    using namespace std;
+
+    class Vecteur3d {
+        private:
+            float x, y, z;
+        public:
+            Vecteur3d (int _x = 0, int _y = 0, int _z = 0) {
+                x = _x;
+                y = _y;
+                z = _z;
+            }
+
+            // Question 1
+            bool operator == (Vecteur3d & v) {
+                return (x == v.x && y == v.y && z == v.z);
+            }
+
+            // Question 2
+            bool operator != (Vecteur3d & v) {
+                return !(*this == v);
+            }
+    };
+
+    // Question 3
+    int main() {
+        
+        Vecteur3d v1(1, 2, 3), v2(4, 5, 6), v3(1, 2, 3);
+
+        cout << (v1 == v2) << endl;
+        cout << (v1 != v2) << endl;
+        cout << (v1 == v3) << endl;
+        cout << (v1 != v3) << endl;
+    }
+    ```
+
+### Exercice 4
+
+Reprendre la classe `Tab` de l’exercice 0.
+
+1.  Surdéfinir l'opérateur = pour que **l'affectation** soit possible entre deux objets `Tab`.
+    
+    ```cpp
+    Tab t1(10), t2(5);
+    t2 = t1;
+    ```
+    
+2.  Surdéfinir l'opérateur [] pour affecter et récupérer des valeurs directement dans le tableau sans passer par `set` ou `get`. 
+Ne pas oublier d'indiquer un débordement d'indice du tableau. 
+Dans ce cas, on lancera une exception.
+    
+    ```cpp
+    Tableau t1(10);
+    t1[5] = 7;
+    cout << t1[3];
+    ```
+    
+    ??? tip "Un peu d’aide ?"
+        
+        [https://en.cppreference.com/w/cpp/language/operators#Array_subscript_operator](https://en.cppreference.com/w/cpp/language/operators#Array_subscript_operator)
+        
+3.  Surdéfinir l’opérateur + pour concaténer des tableaux.
+
+4.  Trouver un moyen d’afficher un tableau au complet à l’aide de `cout`.
+    
+    ```cpp
+    Tableau t1(10);
+    t1[5] = 7;
+    cout << t1;
+    ```
+
+??? success "Solution"
+
+    ```cpp
+    // Tab.h
+    #include <iostream>
+
+    using namespace std;
+
+    #ifndef TAB_H
+    #define TAB_H
+    class Tab {
+        private :
+            int count;
+            int * first;
+        public :
+            Tab(int);
+            Tab(Tab &);
+            ~Tab();
+            Tab & operator = (Tab);
+            int & operator [] (int);
+            Tab operator + (Tab &);
+            // Fonction "amie" définie à l'extérieur de la classe, 
+            // mais qui aura accès à tous les attributs de la classe.
+            friend ostream & operator << (ostream &, Tab &);
+    };
+    #endif
+    ```
+
+    ```cpp
+    // Tab.cpp
+    #include "Tab.h"
+    
+    Tab::Tab(int _count) {
+        count = _count;
+        first = new int[count]{0};
+    }
+
+    Tab::Tab(Tab & t) {
+        count = t.count;
+        first = new int[count]{0};
+        for (int i = 0; i < count; i++) {
+            first[i] = t.first[i];
+        }
+    }
+
+    Tab::~Tab() {
+        delete [] first;
+    }
+
+    Tab & Tab::operator = (Tab t) {
+        count = t.count;
+        // On n'oublie pas d'effacer l'ancien tableau
+        delete [] first;
+        first = new int[count]{0};
+        for (int i = 0; i < count; i++) {
+            first[i] = t.first[i];
+        }
+        return *this;
+    }
+
+    int & Tab::operator [] (int i) {
+        if (i > count) {
+            throw "Indice hors-limite !";
+        }
+        return first[i];
+    }
+
+    Tab Tab::operator + (Tab & t) {
+        // Nouveau tableau 
+        Tab tNew(count + t.count);
+        // Remplissage de la première partie avec les valeurs de l'objet courant
+        for (int i = 0; i < count; i++) {
+            tNew.first[i] = first[i];
+        }
+        // Remplissage de la deuxième partie avec les valeurs de l'objet en paramètre
+        for (int i = 0; i < t.count; i++) {
+            tNew.first[i + count] = t.first[i];
+        }
+        // On renvoie le nouveau tableau
+        return tNew;
+    }
+
+    // Fonction amie donc juste operator et non Tab::operator
+    ostream & operator << (ostream & os, Tab & t) {
+        os << "[ ";
+        for (int i = 0; i < t.count; i++) {
+            std::cout << t.first[i] << (i < t.count - 1 ? ", " : "" );
+        }
+        os << " ]\n";
+        return os;
+    }
+    ```
+
+    ```cpp
+    // exo4.cpp
+    #include "Tab.h"
+
+    int main() {
+        Tab t1(10), t2(5), t3(1);
+        
+        cout << t2;
+        t2 = t1;
+        cout << t2;
+
+        cout << t1;
+        t1[5] = 7;
+        cout << t1[5] << endl;
+        cout << t1;
+
+        cout << t3;
+        t2[3] = 42;
+        t3 = t1 + t2;
+        cout << t3;
+
+        return 0;
+    }
+    ```
+
+## Héritage
+
+![Héritage](../pdf/cours/bts2/bts2_05_heritage.pdf)
+
+### Exercice 5
+
+#### Partie 1
+
+Ecrire une classe Batiment avec les attributs suivants :
+
+```cpp
+string adresse;
+```
+
+La classe Batiment doit disposer des constructeurs suivants:
+
+```cpp
+Batiment();
+Batiment (adresse);
+```
+
+La classe Bâtiment doit contenir les accesseurs et mutateurs pour ses attributs.
+
+#### Partie 2
+
+Ecrire une classe Maison héritant de Batiment avec les attributs suivants:
+
+```cpp
+int NbPieces; // Le nombre de pièces de la maison
+```
+
+La classe Maison doit disposer des constructeurs suivants:
+
+```cpp
+Maison();
+Maison(adresse, nbPieces);
+```
+
+La classe Maison doit contenir des accesseurs pour ses attributs.
+
+#### Partie 3
+
+Ecrire un programme afin de tester ces deux classes avec le debugger.
+
+??? success "Solution"
+
+    ```cpp
+    #include <iostream>
+    #include <string>
+
+    using namespace std;
+
+    // Partie 1
+    class Batiment {
+        private :
+            string adresse;
+        public :
+            Batiment() {
+                adresse = "Sans adresse";
+            };
+            Batiment (string _adresse) {
+                adresse = _adresse;
+            };
+            string getAdresse(){
+                return adresse;
+            };
+            void setAdresse(string _adresse) {
+                adresse = _adresse;
+            };
+    };
+
+    // Partie 2
+    class Maison : public Batiment {
+        private :
+            int nbPieces;
+        public :
+            Maison() {
+                nbPieces = 0;
+            };
+            Maison(string _adresse, int _nbPieces) : Batiment(_adresse) {
+                nbPieces = _nbPieces;
+            };
+            int getNbPieces() {
+                return nbPieces;
+            };
+            void setNbPieces(int _nbPieces) {
+                nbPieces = _nbPieces;
+            };
+    };
+
+    // Partie 3
+    int main() {
+        Batiment b1, b2("15 rue Crossadiere 53000 LAVAL");
+        Maison m1, m2("12 rue de la paix 75001 PARIS", 9);
+
+        cout << "b1 : " << b1.getAdresse() << endl;
+        cout << "m1 : " << m1.getAdresse() << " " << m1.getNbPieces() << endl;
+
+        b1.setAdresse("165 avenue du General de Gaulle 49100 ANGERS");
+        m1.setAdresse("Lieu-dit la Girandieres 44300 NANTES");
+        m1.setNbPieces(6);
+        
+        cout << "b1 : " << b1.getAdresse() << endl;
+        cout << "m1 : " << m1.getAdresse() << " " << m1.getNbPieces() << endl;
+        
+        cout << "b2 : " << b2.getAdresse() << endl;
+        cout << "m2 : " << m2.getAdresse() << " " << m2.getNbPieces() << endl;
+
+        return 0;
+    }
+    ```
+
+### Exercice 6
+
+#### Présentation
+
+On veut gérer les étudiants d’une école à l’aide d’une classe `Etudiant` définie par les attributs suivants :
+
++   `nom` : nom d’un étudiant
+
++   `prénom` : prénom d’un étudiant
+
++   `notes` : tableau contenant les notes d’un étudiant
+
+Constructeur, destructeur, accesseurs et mutateurs et les méthodes suivantes :
+
++   `void affichage()`, permettant l’affichage d’un étudiant
+
++   `float moyenne()`, retourne comme résultat la moyenne des notes d’un étudiant.
+
+On veut également représenter, à l’aide d’une nouvelle classe Etudiant2A, certains étudiants qui possèdent un attribut supplémentaire :
+
++   `note_stage`, qui représente la note de leur stage.
+
+Les méthodes à associer à cette classe sont les suivantes :
+
++   `void affichage()`, permettant l’affichage d’un étudiant 2ème année
+
++   `float moyenne()`, retourne la moyenne finale (la moyenne des notes et la note de stage ont le même poids).
+
+#### Tâches
+
+1.  Donner la représentation UML des deux classes dans [Visual Paradigm](https://online.visual-paradigm.com/).
+
+2.  Ecrire la classe Etudiant en C++.
+
+3.  Ecrire la classe Etudiant2A en C++.
+
+4.  Ecrire un programme de test.
+
+??? success "Solution"
+
+    Le diagramme de classe :
+
+    ``` mermaid
+    classDiagram
+        class Etudiant {
+            - nom : string
+            - prenom : string
+            - notes : float [ ]
+            + setNom(_nom = string)
+            + getNom() string
+            + setPrenom(_prenom : string)
+            + getPrenom() string
+            + addNote(_note : float)
+            + getNotes() float [ ]
+            + affichage()
+            + moyenne() float
+        }
+        class Etudiant2A {
+            - note_stage : float
+            + setNoteStage(_note : float)
+            + getNoteStage() float
+            + affichage()
+            + moyenne() float
+        }
+        Etudiant <|-- Etudiant2A
+    ```
+
+    Le code correspondant :
+
+    ```cpp
+    #include <iostream>
+    #include <string>
+    #include <vector>
+    #include <cstdlib>
+    #include <ctime>
+
+    using namespace std;
+
+    class Etudiant {
+        protected :
+            string nom;
+            string prenom;
+            vector<float> notes;
+
+        public :
+            Etudiant(string _nom, string _prenom) {
+                nom = _nom;
+                prenom = _prenom;
+            };
+
+            void setNom(string _nom) { nom = _nom; };
+            
+            string getNom() { return nom; };
+            
+            void setPrenom(string _prenom) { prenom = _prenom; };
+            
+            string getPrenom() { return prenom; };
+            
+            void addNote(float _note) { notes.push_back(_note); };
+            
+            vector<float> getNotes() { return notes; };
+            
+            void affichage() {
+                cout << prenom << " " << nom << " (1A), moyenne : " << moyenne() << " [";
+                for (int i = 0; i < notes.size(); i++) {
+                    cout << (i != 0 ? ", " : "") << notes[i];
+                }
+                cout << "]" << endl;
+            };
+            
+            float moyenne() {
+                float resultat = 0;
+                for (int i = 0; i < notes.size(); i++) {
+                    resultat += notes[i];
+                }
+                return resultat / notes.size();
+            }
+    };
+
+    class Etudiant2A : public Etudiant {
+        private :
+            float note_stage;
+        public :
+            Etudiant2A(string _nom, string _prenom) : Etudiant(_nom, _prenom) {};
+            
+            void setNoteStage(float _note_stage) { note_stage = _note_stage; };
+            
+            float getNoteStage() { return note_stage; };
+            
+            float moyenne() {
+                return (Etudiant::moyenne() * notes.size() + note_stage) / (notes.size() + 1);
+            }
+            
+            void affichage() {
+                cout << prenom << " " << nom << " (1A), moyenne : " << moyenne() << " [";
+                for (int i = 0; i < notes.size(); i++) {
+                    cout << (i != 0 ? ", " : "") << notes[i];
+                }
+                cout << ", stage : " << note_stage << "]" << endl;
+            };
+    };
+
+    int main() {
+        
+        Etudiant e1("HADDOCK", "Archibald"), e2("TOURNESOL", "Tryphon");
+        Etudiant2A e3("SZUT", "Piotr");
+        
+        srand(time(NULL));
+
+        // Remplissage aléatoire des notes
+        for (int i = 0; i < 8; i++) {
+            e1.addNote((float)(rand() % 41) / 2);
+            e2.addNote((float)(rand() % 41) / 2);
+            e3.addNote((float)(rand() % 41) / 2);
+        }
+
+        e3.setNoteStage(14.5);
+
+        // Affichage
+        e1.affichage();
+        e2.affichage();
+        e3.affichage();
+
+        return 0;
+    }
+    ```
+
+### Exercice 7
+
+Soit les classes suivantes :
+
+```cpp
+class A1 {};
+class B1 : public A1 {};
+```
+
+Compléter les classes A et B pour que le programme suivant sans modification :
+
+```cpp
+int main() {
+    B1 *p = new B1;
+    delete p;
+    return 0;
+}
+```
+
+affiche :
+
+```
+constructeur A1
+constructeur B1
+destructeur B1
+destructeur A1
+```
+
+??? success "Solution"
+
+    ```cpp
+    #include <iostream>
+
+    class A1 {
+        public :
+            A1() {
+                std::cout << "constructeur A1" << std::endl;
+            }
+            ~A1() {
+                std::cout << "destructeur A1" << std::endl;
+            };
+    };
+    class B1 : public A1 {
+        public :
+            B1() {
+                std::cout << "constructeur B1" << std::endl;
+            };
+            ~B1() {
+                std::cout << "destructeur B1" << std::endl;
+            };
+    };
+
+    int main() {
+        B1 *p = new B1;
+        delete p;
+        return 0;
+    }
+    ```
+
+### Exercice 8
+
+Soit une classe qui représente un point dans un plan.
+
+```cpp
+class Point2d {
+    int x, y;
+    public:
+        Point2d(int _x, int _y) {
+            x = _x, y = _y;
+        }
+        Point2d(Point2d & p) {
+            x = p.x, y = p.y;
+        }
+        void affiche() {
+            cout << "x = " << x << " y = " << y;
+        }
+};
+
+```
+
+1.  Ecrire une classe `Point3d` dérivée de la classe qui rajoute une cordonnée `z` au point. 
+    Cette classe possède une fonction membre `affiche()` qui affiche :
+    
+    ```
+    z = (valeur de z)
+    ```
+        
+2.  Ecrire un programme (main) qui crée un objet `Point3d` avec les coordonnées 1, 2, 3. 
+    Le programme doit afficher :
+    
+    ```
+    x = 1 y = 2 z = 3
+    ```
+        
+3.  Modifier la méthode `affiche()` de la classe `Point3d` pour qu'elle affiche en appelant la méthode affiche de la classe Point2d
+    
+    ```
+    x = 1 y = 2 z = 3
+    ```
+        
+4.  Supprimer/commenter la méthode affiche() de Point2d et faire le nécessaire pour utiliser une seule méthode affiche() dans Point3d pour afficher :
+    
+    ```
+    x = 1 y = 2 z = 3
+    ```
+
+### Exercice 9
+
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Chambre {
+    float surface;
+    int fenetres;
+    public :
+        Chambre(float cSurface = 9.0, int cFenetres = 0) {
+            surface = cSurface, fenetres = cFenetres;
+        };
+        string toString() {
+            char sSurface[5];
+            sprintf(sSurface, "%.1f", surface);
+            return "[" + (string)sSurface + " m2, " + to_string(fenetres) + (fenetres > 1 ? " fenetres" : " fenetre") + "]";
+        };
+};
+
+class Batiment {
+    protected:
+        string adresse;
+    public:
+        Batiment(string adr) : adresse(adr) {};
+        string getAdr() {
+            return adresse;
+        };
+};
+
+class Maison : public Batiment
+{
+    Chambre * chambres;
+    int nbChambres;
+    public:
+        Maison(int nCh, string adr, Chambre * mChambres) : Batiment(adr) {
+            chambres = new Chambre[nbChambres = nCh];
+            for(int i = 0; i < nbChambres; i++) {
+                chambres[i] = mChambres[i];
+            }
+        }
+        ~Maison() {
+            delete [] chambres;
+        }
+        int getNbChambres() {
+            return nbChambres;
+        }
+        string afficheChambres() {
+            string result = "";
+            for(int i = 0; i < nbChambres; i++) {
+                if (i != 0) {
+                    result += ", ";
+                }
+                result += chambres[i].toString();
+            }
+            return result;
+        }
+};
+
+int main()
+{
+    Chambre chambres[] = {Chambre(12.5, 1), Chambre(14, 2), Chambre(9, 1)};
+    Maison *m1 = new Maison(3, "LAVAL", chambres);
+    cout << "Maison 1 a " << m1->getAdr() << ", chambres " <<  m1->getNbChambres() << " : " << m1->afficheChambres() << endl;
+    Maison m2 = *m1;
+    delete m1;
+    cout << "Maison 2 a " << m2.getAdr() << ", chambres " <<  m2.getNbChambres() << " : "   << m2.afficheChambres() << endl;
+}
+```
+
+1. Le programme devrait afficher le résultat suivant, mais...
+    
+    ```
+    Maison 1 a LAVAL, chambres 3 : [12.5 m2, 1 fenetre], [14.0 m2, 2 fenetres], [9.0 m2, 1 fenetre]
+    Maison 2 a LAVAL, chambres 3 : [12.5 m2, 1 fenetre], [14.0 m2, 2 fenetres], [9.0 m2, 1 fenetre]
+    ```
+    
+    Identifier l'anomalie, puis compléter le programme **sans modifier** le `main()` pour corriger l'anomalie.
+    
+    Proposer **deux** solutions.
+    
+    ??? success "Solution"
+
+        Le problème vient de la ligne :
+        
+        ```cpp
+        Maison m2 = *m1;
+        ```
+
+        Lors de l'initialisation, le constructeur par recopie "standard" recopie "bêtement" les valeurs des attributs de `*m1` dans `m2`, même le pointeur `chambres`. Les deux objets se retrouvent alors à pointer sur le même tableau de chambres. Quand `m1` est supprimé avec ses chambres à la ligne suivante, le pointeur `chambres` de `m2` se retrouve à pointer dans le vide, d'où l'affichage chaotique...
+
+        Il faut surdéfinir le constructeur par recopie de la classe `Maison`. La présence de l'héritage de `Batiment` nous amène à réfléchir à comment lui passer les informations concernant l'adresse. Deux options :
+
+        +   passer au constructeur de Batiment les infos de l'adresse :
+
+            ```cpp
+            // Dans la classe Maison
+            Maison(Maison & m) : Batiment(m.adresse) {
+                nbChambres = m.nbChambres;
+                chambres = new Chambre[nbChambres];
+                for(int i = 0; i < nbChambres; i++) {
+                    chambres[i] = m.chambres[i];
+                }
+            };
+            ```
+
+        +   tout gérer dans le constructeur par recopie et créer un constructeur vide côté Batiment :
+
+            ```cpp
+            // Dans la classe Batiment
+            Batiment() {
+                adresse = "";
+            }
+
+            // Dans la classe Maison
+            Maison(Maison & m) {
+                adresse = m.adresse;
+                nbChambres = m.nbChambres;
+                chambres = new Chambre[nbChambres];
+                for(int i = 0; i < nbChambres; i++) {
+                    chambres[i] = m.chambres[i];
+                }
+            };
+            ```
+
+2. Modifier le programme dans le cas d'un héritage `protected` :
+    
+    ```cpp
+    class Maison : protected Batiment
+    ```
+
+    ??? success "Solution"
+
+        En passant l'héritage en `protected`, les méthodes `public` passent en `protected` et ne sont donc plus accessibles de l'extérieur.
+
+        Il faut surdéfinir la méthode `getAdr`, dans la classe `Maison` pour qu'elle soit de nouveau disponible *(quitte à ne rien lui faire faire de plus qu'un appel à la fonction originale...)*.
+
+        ```cpp
+        // Dans la classe Maison
+        string getAdr() {
+            return Batiment::getAdr();
+        };
+        ```
+
+### Exercice 10
+
+Dans Qt Creator, ouvrir le projet Exemples > Drag and Drop Robot Example et répondre aux questions suivantes :
+
+1.  Lister les classes créées dans le projet.
+
+    ??? success "Solution"
+        - `ColorItem`
+        - `RobotPart`
+        - `RobotHead`
+        - `RobotTorso`
+        - `RobotLimb`
+        - `Robot`
+
+2.  De quelles classes héritent-t-elles ?
+
+    ??? success "Solution"
+        - `QGraphicsItem` ← `ColorItem`
+        - `QGraphicsObject` ← `RobotPart`
+        - `RobotPart` ← `RobotHead, RobotTorso, RobotLimb, Robot`
+
+3.  Dessiner le diagramme de classes "allégé" (juste les noms des classes 🫣) du programme en affichant les classes héritées.
+
+    ??? success "Solution"
+        
+        ![diagramme_robot](../images/cours/bts-2/40/qrobot.png)
+        
+4.  La méthode `dragLeaveEvent()` est-elle accessible dans la classe `RobotHead` ? 
+    Pourquoi ?
+
+    ??? success "Solution"
+        
+        Oui car `dragLeaveEvent()` est définie en `protected` dans `RobotPart` dont hérite `RobotHead`.
+        
+5.  La méthode `connect()` est-elle accessible dans la classe `RobotHead` ? 
+    Pourquoi ?
+
+    ??? success "Solution"
+        
+        Oui car `connect()` est définie en `public` dans `QObject` dont hérite `RobotHead` par l'intermédiaire de `RobotPart` et `QGraphicsObject`.
+        
+6.  La méthode `connect()` est-elle accessible dans la classe `ColorItem` ? 
+    Pourquoi ?
+
+    ??? success "Solution"
+        
+        Non pas directement car `connect()` est définie en `public` dans `QObject` dont n'hérite pas `ColorItem`, mais comme elle est définie en `*static*`, ce serait possible sans créer d'objet.
+        
+7.  Dans robot.cpp, à quoi sert la ligne 61 ?
+    
+    ??? success "Solution"
+        
+        Elle permet de passer des arguments aux constructeurs des classes héritées ou des attributs.
+        
+8.  Quelle méthode faut-il surcharger pour modifier l'apparence d'un `QGraphicsObject` ?
+    
+    ??? success "Solution"
+        
+        Il faut surcharger la méthode `QGraphicsItem::paint()`.
+        
+9. Modifier le programme pour que le robot ait une tête carrée.
+    
+    ??? success "Solution"
+        
+        ```cpp
+        // dans RobotHead::paint(), ligne 5 :
+        painter->drawRoundedRect(-15, -30, 30, 30, 25, 25, Qt::RelativeSize);
+        ```
+        
+10. Déposer une couleur sur certains membres est compliqué, modifier le programme pour ralentir l'animation.
+    
+    ??? success "Solution"
+        
+        ```cpp
+        // dans Robot::Robot(), ligne 91 :
+        anim->setDuration(5000);
+        ```
+        
+11. Une image de tête apparaît lors de certains glisser-déposer, quand ?  
+
+    ??? success "Solution"
+        
+        A partir du 2ème glisser-déposer et 1 fois sur 4 comme l'indique la ligne suivante dans `ColorItem::mouseMoveEvent()` :
+        
+        ```cpp
+        if (n++ > 2 && QRandomGenerator::global()->bounded(3) == 0) {
+        ```
+        
+12. La couleur des cercles sur les côtés est générée aléatoirement, où cela est-il codé ?
+    
+    ??? success "Solution"
+        
+        Dans la définition du constructeur des `ColorItem` : 
+        
+        ```cpp
+        ColorItem::ColorItem()
+            : color(QRandomGenerator::global()->bounded(256), QRandomGenerator::global()->bounded(256), QRandomGenerator::global()->bounded(256))
+        ```
+        
+13. Supprimer la génération aléatoire des couleurs pour la remplacer par un set de couleurs fixes à définir.
+    
+    ??? success "Solution"
+        
+        Il faut d'abord enlever cette valorisation aléatoire puis coder une valorisation fixe, par exemple à partir d'un tableau de `QColor` et à l'aide d'une variable statique.
