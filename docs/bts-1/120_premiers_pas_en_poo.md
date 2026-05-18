@@ -391,12 +391,16 @@ class Connexion {
         string ip;
         int port;
     public :
-        void Connexion(string _ip, string port);
+        Connexion(string _ip, string port);
         string getIp();
         int getPort();
         void connecter();
 }
 ```
+
+??? success "Solution"
+
+    ![connexion](../images/cours/bts-1/120/connexion.png)
 
 ## Exercice 5
 
