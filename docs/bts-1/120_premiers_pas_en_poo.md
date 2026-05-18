@@ -268,3 +268,152 @@ Réaliser un programme de test en C++ démontrant l'adéquation de la classe au 
             + getVMax() int
         }
     ```
+
+    :octicons-file-24: exo3/IntRange.h
+
+    ```cpp
+    class IntRange {
+        private :
+            int valeur;
+            int bmin;
+            int bmax;
+            int vmin;
+            int vmax;
+            int vdepart;
+        public :
+            IntRange(int bmin, int bmax, int valeur);
+            void incrementer();
+            void decrementer();
+            void reinitialiser();
+            int getValeur();
+            int getVMin();
+            int getVMax();
+    };
+    ```
+
+    :octicons-file-24: exo3/IntRange.cpp
+
+    ```cpp
+    #include "IntRange.h"
+
+    IntRange::IntRange(int bmin, int bmax, int valeur) {
+        this->bmin = bmin;
+        this->bmax = bmax;
+        this->valeur = valeur;
+        this->vdepart = valeur;
+        this->vmin = valeur;
+        this->vmax = valeur;
+    }
+
+    void IntRange::incrementer() {
+        if (valeur + 1 <= bmax) {
+            valeur++;
+            if (valeur > vmax) {
+                vmax = valeur;
+            }
+        }
+    }
+
+    void IntRange::decrementer() {
+        if (valeur - 1 >= bmin) {
+            valeur--;
+            if (valeur < vmin) {
+                vmin = valeur;
+            }
+        }
+    }
+
+    void IntRange::reinitialiser() {
+        valeur = vdepart;
+    }
+
+    int IntRange::getValeur() {
+        return valeur;
+    }
+
+    int IntRange::getVMin() {
+        return vmin;
+    }
+
+    int IntRange::getVMax() {
+        return vmax;
+    }
+    ```
+
+    :octicons-file-24: exo3/main.cpp
+
+    ```cpp
+    #include <iostream>
+    #include <cassert>
+    #include "IntRange.h"
+
+    int main() {
+        IntRange a(0, 10, 5), toto(-20, 20, 0);
+
+        // Valeur de départ
+        assert(a.getValeur() == 5); // Assert vérifie la condition et plante si la condition n'est pas vérifiée.
+
+        // Incrémentation
+        a.incrementer();
+        assert(a.getValeur() == 6);
+
+        for (int i = 0; i < 10; i++) {
+            a.incrementer();
+        }
+        assert(a.getValeur() == 10);
+
+        // Décrémentation
+        a.decrementer();
+        assert(a.getValeur() == 9);
+
+        for (int i = 0; i < 20; i++) {
+            a.decrementer();
+        }
+        assert(a.getValeur() == 0);
+
+        // Réinitialiser
+        a.reinitialiser();
+        assert(a.getValeur() == 5);
+
+        return 0;
+    }
+    ```
+
+
+
+## Exercice 4
+
+Dessiner le diagramme correspondant à la classe C++ suivante dans [Visual Paradigm](https://online.visual-paradigm.com/login.jsp){:target="_blank"} :
+
+```cpp
+class Connexion {
+    private :
+        string ip;
+        int port;
+    public :
+        void Connexion(string _ip, string port);
+        string getIp();
+        int getPort();
+        void connecter();
+}
+```
+
+## Exercice 5
+
+Ecrire une classe Fraction :
+
+- Cette classe contient un numérateur et un dénominateur dont les valeurs par défaut sont égales à 1.
+
+- On pourra instancier un objet Fraction en spécifiant numérateur et dénominateur ou en ne spécifiant que le numérateur.
+
+- On pourra afficher la Fraction sous la forme numérateur/dénominateur.
+
+- On mettra en place les accesseurs nécessaires.
+
+- On pourra additionner deux objets Fraction et obtenir le résultat sous la forme d'un troisième objet Fraction.
+
+Votre mission :
+
+1. Représenter la classe en UML.
+
+2. Ecrire le code de la classe dans des fichiers séparés et un programme de démonstration.
